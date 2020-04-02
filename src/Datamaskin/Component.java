@@ -1,4 +1,4 @@
-package sample;
+package Datamaskin;
 
 import javafx.scene.control.CheckBox;
 

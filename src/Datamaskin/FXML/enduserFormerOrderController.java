@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class OrdresideSluttbrukerController {
+public class enduserFormerOrderController {
 
     @FXML private Button tilHovedside;
 

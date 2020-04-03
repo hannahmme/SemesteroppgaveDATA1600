@@ -9,8 +9,8 @@
 <AnchorPane prefHeight="744.0" prefWidth="1039.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.MainpageController">
    <children>
       <Text layoutX="190.0" layoutY="439.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sett inn illustrasjon her" />
-      <TextField layoutX="490.0" layoutY="51.0" />
-      <TextField layoutX="721.0" layoutY="51.0" />
+      <TextField fx:id="txtUsername" layoutX="490.0" layoutY="51.0" />
+      <TextField fx:id="txtPassword" layoutX="721.0" layoutY="51.0" />
       <Text layoutX="101.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Er du administrator? Logg inn her!" />
       <Text layoutX="490.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brukernavn" />
       <Text layoutX="721.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" />

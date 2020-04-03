@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class OrdresideSuperbrukerController {
+public class admAllOrdersController {
 
     @FXML private Button tilSuperbrukerside;
 

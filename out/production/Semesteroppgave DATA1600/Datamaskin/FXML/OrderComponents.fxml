@@ -10,9 +10,10 @@
    <children>
       <TextField fx:id="txtEpost" layoutX="234.0" layoutY="158.0" />
       <Button layoutX="262.0" layoutY="201.0" mnemonicParsing="false" onAction="#sendBestilling" text="Send bestilling" />
-      <Text layoutX="107.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Legg inn din epostadresse og klikk på knappen for å sende bestillingen" />
+      <Text layoutX="100.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Legg inn din epostadresse og klikk på knappen for å sende bestillingen" />
       <Text layoutX="234.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Epostadresse" />
       <Label fx:id="gjennomførtBestilling" layoutX="168.0" layoutY="291.0" prefHeight="49.0" prefWidth="304.0" />
       <Button fx:id="tilHovedside" layoutX="182.0" layoutY="389.0" mnemonicParsing="false" onAction="#tilHovedside" text="Klikk her for å gå tilbake til hovedsiden" />
+      <Button fx:id="tilSluttbrukerside" layoutX="31.0" layoutY="21.0" mnemonicParsing="false" onAction="#tilSluttbrukerside" text="Har du glemt noe? Klikk her for å gå tilbake til handlekurven" />
    </children>
 </AnchorPane>

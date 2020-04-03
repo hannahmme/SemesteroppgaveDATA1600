@@ -73,6 +73,7 @@ public class ProductAdmPageController implements Initializable{
 
         aRegister.leggTilKomponent(componentTableview);
 
+
     }
 
         // kode for å komme tilbake til hovedmenyen for superbruker

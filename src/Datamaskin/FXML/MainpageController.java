@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -16,6 +17,17 @@ public class MainpageController {
     @FXML private Button tilSuperbrukerside;
     @FXML private TextField txtUsername;
     @FXML private TextField txtPassword;
+
+
+    @FXML private Button tilBrukerOrdreSide;
+
+    @FXML void tilBrukerOrdreSide(ActionEvent event) throws IOException {
+        Stage primaryStage = (Stage) tilSluttbrukerside.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("UserspesificOrder.fxml"));
+        primaryStage.setTitle("Konfigurasjonssystem for datamaskiner");
+        primaryStage.setScene(new Scene(root, 1200, 800));
+        primaryStage.show();
+    }
 
     // metode som åpner ny scene til superbrukersiden
     @FXML void tilSluttbrukerside(ActionEvent event) throws IOException {

@@ -40,7 +40,7 @@ public class SuperuserPageController {
 
     @FXML void tilOrdreside(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) tilOrdreside.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("admAllOrders.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AllOrders.fxml"));
         primaryStage.setTitle("Ordre som har blitt laget av brukere");
         primaryStage.setScene(new Scene(root, 1200, 800));
         primaryStage.show();

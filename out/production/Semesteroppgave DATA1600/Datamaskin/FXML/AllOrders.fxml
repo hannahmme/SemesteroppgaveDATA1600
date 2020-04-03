@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="822.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.admAllOrdersController">
+<AnchorPane prefHeight="822.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.AllOrdersController">
    <children>
       <Text layoutX="57.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hei superbruker. Her kan du se alle ordre som er gjennomført. Gjerne sorter etter dato om du vil" />
       <TableView layoutX="57.0" layoutY="189.0" prefHeight="590.0" prefWidth="636.0">

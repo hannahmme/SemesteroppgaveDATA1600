@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="744.0" prefWidth="1039.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.HovedsideController">
+   <children>
+      <Text layoutX="192.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sett inn illustrasjon her" />
+      <TextField layoutX="490.0" layoutY="51.0" />
+      <TextField layoutX="721.0" layoutY="51.0" />
+      <Text layoutX="237.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Er du administrator? Logg inn her!" />
+      <Text layoutX="490.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brukernavn" />
+      <Text layoutX="721.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" />
+      <Button layoutX="938.0" layoutY="51.0" mnemonicParsing="false" onAction="#tilSuperbrukerside" text="Logg inn" />
+      <Button layoutX="630.0" layoutY="367.0" mnemonicParsing="false" onAction="#tilSluttbrukerside" text="Sett opp din egne pc her!" />
+   </children>
+</AnchorPane>

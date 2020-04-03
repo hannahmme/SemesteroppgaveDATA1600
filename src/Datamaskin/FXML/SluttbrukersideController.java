@@ -1,5 +1,6 @@
-package Datamaskin;
+package Datamaskin.FXML;
 
+import Datamaskin.Component;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,7 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class Controller implements Initializable {
+public class SluttbrukersideController implements Initializable {
 
     private CheckBox checkBox1 = new CheckBox();
     private CheckBox checkBox2 = new CheckBox();

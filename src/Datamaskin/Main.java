@@ -11,8 +11,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("FXML/Hovedside.fxml"));
-        primaryStage.setTitle("Velg dine deler");
-        primaryStage.setScene(new Scene(root, 600, 800));
+        primaryStage.setTitle("Konfigurasjonssystem for datamaskin");
+        primaryStage.setScene(new Scene(root, 1200, 800));
         primaryStage.show();
     }
 

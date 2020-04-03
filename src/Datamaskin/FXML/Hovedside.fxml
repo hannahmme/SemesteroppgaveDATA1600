@@ -3,18 +3,23 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
-
 
 <AnchorPane prefHeight="744.0" prefWidth="1039.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.HovedsideController">
    <children>
-      <Text layoutX="192.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sett inn illustrasjon her" />
+      <Text layoutX="190.0" layoutY="439.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sett inn illustrasjon her" />
       <TextField layoutX="490.0" layoutY="51.0" />
       <TextField layoutX="721.0" layoutY="51.0" />
-      <Text layoutX="237.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Er du administrator? Logg inn her!" />
+      <Text layoutX="101.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Er du administrator? Logg inn her!" />
       <Text layoutX="490.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brukernavn" />
       <Text layoutX="721.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" />
-      <Button layoutX="938.0" layoutY="51.0" mnemonicParsing="false" onAction="#tilSuperbrukerside" text="Logg inn" />
-      <Button layoutX="630.0" layoutY="367.0" mnemonicParsing="false" onAction="#tilSluttbrukerside" text="Sett opp din egne pc her!" />
+      <Button fx:id="tilSuperbrukerside" layoutX="938.0" layoutY="51.0" mnemonicParsing="false" onAction="#tilSuperbrukerside" text="Logg inn" />
+      <Button fx:id="tilSluttbrukerside" layoutX="627.0" layoutY="418.0" mnemonicParsing="false" onAction="#tilSluttbrukerside" text="Sett opp din egne pc her!" />
+      <Line endX="938.0" layoutX="101.0" layoutY="107.0" startX="-100.0" />
+      <Text layoutX="179.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ønsker du å se dine tidligere bestillinger?           Skriv inn eposten din og klikk på knappen!" wrappingWidth="324.92919921875" />
+      <Button layoutX="876.0" layoutY="144.0" mnemonicParsing="false" text="Se bestillinger" />
+      <TextField layoutX="520.0" layoutY="144.0" prefHeight="31.0" prefWidth="331.0" />
+      <Text layoutX="520.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Epostadresse" />
    </children>
 </AnchorPane>

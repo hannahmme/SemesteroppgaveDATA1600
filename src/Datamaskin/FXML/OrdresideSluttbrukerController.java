@@ -1,6 +1,6 @@
 package Datamaskin.FXML;
 
-import Datamaskin.nyScene;
+import Datamaskin.newScene;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,8 +16,8 @@ public class OrdresideSluttbrukerController {
 
     @FXML void tilHovedside(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) tilHovedside.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("Hovedside.fxml"));
-        nyScene.tilHovedside(primaryStage, root);
+        Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
+        newScene.tilHovedside(primaryStage, root);
     }
 
 }

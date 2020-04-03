@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class nyScene {
+public class newScene {
 
     // metode for å lage en ny scene.
     public static void tilHovedside(Stage primaryStage, Parent FXMLString) throws IOException {

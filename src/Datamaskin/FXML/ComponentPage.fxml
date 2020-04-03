@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="713.0" prefWidth="1083.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.KomponentsideController">
+<AnchorPane prefHeight="713.0" prefWidth="1083.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.ComponentPageController">
    <children>
       <Button layoutX="91.0" layoutY="651.0" mnemonicParsing="false" text="Legg til komponent" />
       <Button fx:id="tilSuperbrukerside" layoutX="70.0" layoutY="32.0" mnemonicParsing="false" onAction="#tilSuperbrukerside" text="Tilbake til menysiden" />

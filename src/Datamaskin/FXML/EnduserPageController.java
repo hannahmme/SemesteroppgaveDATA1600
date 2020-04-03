@@ -1,3 +1,5 @@
+// denne siden gjelder sluttbruker siden der man skal velge komponenter
+
 package Datamaskin.FXML;
 
 import Datamaskin.Component;
@@ -6,16 +8,21 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class SluttbrukersideController implements Initializable {
+public class EnduserPageController implements Initializable {
 
     private CheckBox checkBox1 = new CheckBox();
     private CheckBox checkBox2 = new CheckBox();
@@ -83,7 +90,16 @@ public class SluttbrukersideController implements Initializable {
     private ObservableList<Component> cartList = FXCollections.observableArrayList();
 
     @FXML
-    void loadPayment(ActionEvent event) {
+    void loadPayment(ActionEvent event) throws IOException {
+
+        // legger inn metoden for å åpne ny scene - Amalie
+        Stage primaryStage = (Stage) btnGoToPay.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("OrderComponents.fxml"));
+        primaryStage.setTitle("Sluttbruker hello: her gjør du ferdig din bestilling");
+        primaryStage.setScene(new Scene(root, 700, 600));
+        primaryStage.show();
+
+
     }
 
     @FXML

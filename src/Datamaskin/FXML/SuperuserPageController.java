@@ -2,7 +2,7 @@
 package Datamaskin.FXML;
 
 
-import Datamaskin.nyScene;
+import Datamaskin.newScene;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class SuperbrukersideController{
+public class SuperuserPageController {
 
     @FXML private Button tilKomponentside;
     @FXML private Button tilOrdreside;
@@ -22,15 +22,15 @@ public class SuperbrukersideController{
     //knapp som sender bruker tilbake til hovedsiden
     @FXML void tilHovedside(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) tilHovedside.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("Hovedside.fxml"));
-        nyScene.tilHovedside(primaryStage, root);
+        Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
+        newScene.tilHovedside(primaryStage, root);
     }
 
 
     //knapp som sender brukeren til siden hvor man kan administrere komponenter
     @FXML void tilKomponentside(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) tilKomponentside.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("Komponentside.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ComponentPage.fxml"));
         primaryStage.setTitle("Å lage eller ikke lage nye komponenter");
         primaryStage.setScene(new Scene(root, 1200, 800));
         primaryStage.show();

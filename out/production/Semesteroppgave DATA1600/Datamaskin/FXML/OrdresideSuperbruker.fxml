@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Datamaskin.FXML.OrdresideSuperbrukerController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="822.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.OrdresideSuperbrukerController">
+   <children>
+      <Text layoutX="57.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hei superbruker. Her kan du se alle ordre som er gjennomført. Gjerne sorter etter dato om du vil" />
+      <TableView layoutX="57.0" layoutY="189.0" prefHeight="590.0" prefWidth="636.0">
+        <columns>
+          <TableColumn prefWidth="212.0" text="Epostadresse" />
+          <TableColumn prefWidth="145.0" text="Ordrenummer" />
+            <TableColumn prefWidth="144.0" text="Ordredato" />
+            <TableColumn prefWidth="134.0" text="Totalpris" />
+        </columns>
+      </TableView>
+      <Button fx:id="tilSuperbrukerside" layoutX="57.0" layoutY="23.0" mnemonicParsing="false" onAction="#tilSuperbrukerside" text="Tilbake til menyvalg" />
+      <TextField layoutX="506.0" layoutY="141.0" />
+      <Text layoutX="428.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Søk i liste" />
+   </children>
 </AnchorPane>

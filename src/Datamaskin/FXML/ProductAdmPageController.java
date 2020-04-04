@@ -1,5 +1,7 @@
 package Datamaskin.FXML;
 
+import Datamaskin.Exceptions.InvalidLifetimeException;
+import Datamaskin.Exceptions.InvalidPriceException;
 import Datamaskin.ProductRegister;
 import Datamaskin.Product;
 import Datamaskin.newScene;
@@ -18,6 +20,7 @@ import java.util.ResourceBundle;
 public class ProductAdmPageController implements Initializable{
 
     @FXML private Button tilSuperbrukerside;
+    @FXML private Label wrongInput;
 
     // inputfields for å lage et produkt/ komponent
     @FXML private TextField txtComponentname;
@@ -50,17 +53,41 @@ public class ProductAdmPageController implements Initializable{
         txtDescription.setText("");
         txtLifetime.setText("");
         txtPrice.setText("");
+        wrongInput.setText("");
     }
 
-    private Product createProductObjectFromGUI(){
-        //try catch metoder må inn her også
-        String name = txtComponentname.getText();
-        String description = txtDescription.getText();
-        String lifetime = txtLifetime.getText();
-        int price = Integer.parseInt(txtPrice.getText());
+    private Product createProductObjectFromGUI() {
+        String name;
+        String description;
+        int lifetime;
+        double price;
 
-        Product aProduct = new Product(name, description, lifetime, price);
-        return aProduct;
+        // sjekke om field er tomt/ har bare mellomrom. hvordan?
+        if (txtComponentname.getText().isEmpty() || txtDescription.getText().isEmpty() ||
+                txtLifetime.getText().isEmpty() || txtPrice.getText().isEmpty()) {
+            wrongInput.setText("Remember to fill out every field");
+        } else {
+            try {
+                name = txtComponentname.getText();
+                Product.validateName(name);
+
+                description = txtDescription.getText();
+                Product.validateDescription(description);
+
+                lifetime = Integer.parseInt(txtLifetime.getText());
+                Product.validateLifetime(lifetime);
+
+                price = Double.parseDouble(txtPrice.getText());
+                Product.validatePrice(price);
+
+                Product aProduct = new Product(name, description, lifetime, price);
+                return aProduct;
+
+            } catch (InvalidPriceException | IllegalArgumentException | InvalidLifetimeException e) {
+                wrongInput.setText(e.getMessage());
+            }
+        }
+        return null;
     }
 
 

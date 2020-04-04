@@ -1,19 +1,23 @@
 package Datamaskin;
 
+import Datamaskin.Exceptions.InvalidLifetimeException;
+import Datamaskin.Exceptions.InvalidPriceException;
+import com.sun.javaws.exceptions.InvalidArgumentException;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Product {
     private SimpleStringProperty name;
     private SimpleStringProperty description;
-    private SimpleStringProperty lifetime;
-    private SimpleIntegerProperty price;
+    private SimpleIntegerProperty lifetime;
+    private SimpleDoubleProperty price;
 
-    public Product(String name, String description, String lifetime, int price) {
+    public Product(String name, String description, int lifetime, double price) {
         this.name = new SimpleStringProperty(name);
         this.description = new SimpleStringProperty(description);
-        this.lifetime = new SimpleStringProperty(lifetime);
-        this.price = new SimpleIntegerProperty(price);
+        this.lifetime = new SimpleIntegerProperty(lifetime);
+        this.price = new SimpleDoubleProperty(price);
     }
 
     public String getName() {
@@ -30,18 +34,61 @@ public class Product {
         this.description = new SimpleStringProperty(componentDescription);
     }
 
-    public String getLifetime() {
+    public int getLifetime() {
         return lifetime.get();
     }
-    public void setLifetime(String componentLifetime) {
-        this.lifetime = new SimpleStringProperty(componentLifetime);
+    public void setLifetime(int componentLifetime) {
+        this.lifetime = new SimpleIntegerProperty(componentLifetime);
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price.get();
     }
     public void setPrice(int componentPrice) {
-        this.price = new SimpleIntegerProperty(componentPrice);
+        this.price = new SimpleDoubleProperty(componentPrice);
     }
+
+
+    // enhtesvalideringsmetoder
+    public static String validateName(String name) throws IllegalArgumentException {
+        if (name.matches("[a-zA-Z \\-]*")&& name.length()<20 && !name.equals("")) {
+            return name;
+        }
+        throw new IllegalArgumentException("Skriv inn et gyldignavn!");
+    }
+
+    public static String validateDescription(String description) throws IllegalArgumentException {
+        if (description.matches("[a-zA-Z \\-]*") && description.length()<170 && !description.equals("")) {
+            return description;
+        }
+        throw new IllegalArgumentException("Skriv inn en gyldig beskrivelse!");
+    }
+
+    public static Integer validateLifetime (int lifetime) throws InvalidLifetimeException {
+        if (lifetime > 0 && lifetime < 20){
+            return lifetime;
+        }
+        throw new InvalidLifetimeException("Put in a valid number of years");
+    }
+
+    public static Double validatePrice (double price) throws InvalidPriceException {
+        if (price > 0 && price < 10000){
+            return price;
+        }
+        throw new InvalidPriceException("Put in a valid price");
+    }
+
+
+
+    // testmetoder
+
+    public static boolean testPrice (double price){
+        if (price > 0 && price < 10000){
+            return true;
+        }
+        return false;
+    }
+
+
 
 }

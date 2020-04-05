@@ -1,0 +1,7 @@
+## Directory-based project format:
+# Inneholder brukerinstillinger for intelliJ. Skal ikke ligge på github. 
+.idea/
+
+# IntelliJ - Filer under /out/-mappen genereres hver gang vi bygger prosjektet.
+# disse filene skal _ikke_ ligge på github (Fører bare til unødvendige merge-konflikter)
+/out/

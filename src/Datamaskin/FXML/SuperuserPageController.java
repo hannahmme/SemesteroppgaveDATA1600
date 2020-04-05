@@ -30,7 +30,7 @@ public class SuperuserPageController {
     //knapp som sender brukeren til siden hvor man kan administrere komponenter
     @FXML void tilKomponentside(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) tilKomponentside.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("ComponentPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ProductAdmPage.fxml"));
         primaryStage.setTitle("Å lage eller ikke lage nye komponenter");
         primaryStage.setScene(new Scene(root, 1200, 800));
         primaryStage.show();
@@ -40,7 +40,7 @@ public class SuperuserPageController {
 
     @FXML void tilOrdreside(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) tilOrdreside.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("OrdresideSuperbruker.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AllOrders.fxml"));
         primaryStage.setTitle("Ordre som har blitt laget av brukere");
         primaryStage.setScene(new Scene(root, 1200, 800));
         primaryStage.show();

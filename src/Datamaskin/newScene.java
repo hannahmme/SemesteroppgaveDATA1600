@@ -26,6 +26,14 @@ public class newScene {
     }
 
 
+    public static void toEnduserPage(Stage primaryStage, Parent FXMLString) throws IOException {
+        Parent root = FXMLString;
+        primaryStage.setTitle("Hei Sluttbruker");
+        primaryStage.setScene(new Scene(root, 1200, 800));
+        primaryStage.show();
+    }
+
+
 
 
 

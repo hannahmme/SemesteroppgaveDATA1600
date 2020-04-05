@@ -52,7 +52,7 @@ public class EnduserPageController implements Initializable {
     private Button btnGoToPay;
 
     @FXML
-    private TextArea txtCart;
+    private TableView<Component> txtCart;
 
     @FXML
     private Button btnAddToCart;
@@ -98,17 +98,16 @@ public class EnduserPageController implements Initializable {
         primaryStage.setTitle("Sluttbruker hello: her gjør du ferdig din bestilling");
         primaryStage.setScene(new Scene(root, 700, 600));
         primaryStage.show();
-
-
     }
 
     @FXML
     void AddToCart(ActionEvent event) {
         isChecked();
         System.out.println(cartList);
-        txtCart.setText(cartList.toString());
+        txtCart.setItems(cartList);
         }
 
+        //hører til side hvor sluttbruker legger til tilbehør (checkbokser).
     public ObservableList isChecked(){
         if (checkBox1.isSelected()) {
             cartList.add(object1);

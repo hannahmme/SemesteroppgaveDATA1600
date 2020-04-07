@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="643.0" prefWidth="902.0" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.ExtraOrderEnduserPageController">
+<AnchorPane prefHeight="661.0" prefWidth="948.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.ExtraOrderEnduserPageController">
    <children>
       <SplitPane dividerPositions="0.5165394402035624" layoutX="-4.0" layoutY="-5.0" orientation="VERTICAL" prefHeight="650.0" prefWidth="906.0">
         <items>
@@ -31,11 +31,12 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="329.0" prefWidth="905.0">
                <children>
-                  <TableView layoutX="25.0" layoutY="55.0" prefHeight="200.0" prefWidth="435.0">
+                  <TableView fx:id="tblCart" layoutX="25.0" layoutY="55.0" prefHeight="200.0" prefWidth="514.0">
                     <columns>
-                      <TableColumn prefWidth="145.14285850524902" text="Produkt" />
-                      <TableColumn prefWidth="206.8571014404297" text="Info" />
-                        <TableColumn prefWidth="82.857177734375" text="Pris" />
+                      <TableColumn fx:id="cartName" prefWidth="145.14285850524902" text="Produkt" />
+                      <TableColumn fx:id="cartInfo" prefWidth="206.8571014404297" text="Info" />
+                        <TableColumn fx:id="cartPrice" prefWidth="82.857177734375" text="Pris" />
+                        <TableColumn fx:id="cartCheck" prefWidth="75.0" text="CheckSjekk" />
                     </columns>
                   </TableView>
                   <Label layoutX="25.0" layoutY="24.0" prefHeight="17.0" prefWidth="306.0" text="Handlekurv:" />

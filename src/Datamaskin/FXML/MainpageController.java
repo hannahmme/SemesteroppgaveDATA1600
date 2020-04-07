@@ -24,8 +24,7 @@ public class MainpageController {
     @FXML void tilBrukerOrdreSide(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) tilSluttbrukerside.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("UserspesificOrder.fxml"));
-        primaryStage.setTitle("Konfigurasjonssystem for datamaskiner");
-        primaryStage.setScene(new Scene(root, 1200, 800));
+        newScene.toUserspesificOrder(primaryStage, root);
         primaryStage.show();
     }
 

@@ -3,6 +3,7 @@
 package Datamaskin.FXML;
 
 import Datamaskin.Component;
+import Datamaskin.newScene;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 
@@ -69,19 +71,28 @@ public class EnduserPageController {
         // legger inn metoden for å åpne ny scene - Amalie
         Stage primaryStage = (Stage) btnGoToPay.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("ExtraOrderEnduserPage.fxml"));
-        primaryStage.setTitle("Sluttbruker hello: Har du glemt noe tilbehør til din pc?");
-        primaryStage.setScene(new Scene(root, 900, 650));
+        newScene.toExtraOrderEnduserPage(primaryStage, root);
         primaryStage.show();
     }
     @FXML
     void goBack(ActionEvent event) throws IOException {
+        //Man får en advarsel om at hvis man går til hovedsiden, vil bestillingen avsluttes - Hannah
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Vent litt...");
+        alert.setContentText("Ønsker du å avslutte din bestilling og gå til hovedsiden?");
+        ButtonType buttonYes = new ButtonType("Ja, det ønsker jeg");
+        ButtonType buttonNo = new ButtonType("Nei");
+        alert.getButtonTypes().addAll(buttonYes, buttonNo);
+        Optional<ButtonType> userAnswer = alert.showAndWait();
 
-        //legger inn metoden for å åpne tidligere side (forside) - Hannah
-        Stage primaryStage = (Stage) btnGoBack.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
-        primaryStage.setTitle("Konfigurasjonssystem for datamaskiner");
-        primaryStage.setScene(new Scene(root, 1200, 800));
-        primaryStage.show();
+        if (userAnswer.get() == buttonYes) {
+
+            //legger inn metoden for å åpne tidligere side (forside) - Hannah
+            Stage primaryStage = (Stage) btnGoBack.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
+            newScene.tilHovedside(primaryStage, root);
+            primaryStage.show();
+        }
     }
 
 /*

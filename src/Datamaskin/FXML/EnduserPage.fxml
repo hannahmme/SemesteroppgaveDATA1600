@@ -3,59 +3,74 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="767.0" prefWidth="1124.0" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.EnduserPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="866.0" prefWidth="1446.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.EnduserPageController">
    <children>
-      <TableView fx:id="tableView" editable="true" layoutX="659.0" layoutY="399.0" prefHeight="183.0" prefWidth="406.0">
-        <columns>
-          <TableColumn fx:id="componentName" prefWidth="124.57147026062012" text="Komponentnavn" />
-          <TableColumn fx:id="componentInfo" prefWidth="170.8571319580078" text="Beskrivelse" />
-            <TableColumn fx:id="componentPrice" minWidth="0.0" prefWidth="60.0" text="Pris" />
-            <TableColumn fx:id="componentChecked" minWidth="0.0" prefWidth="52.00006103515625" text="Valgt" />
-        </columns>
-      </TableView>
-      <Label layoutX="34.0" layoutY="49.0" prefHeight="39.0" prefWidth="367.0" text="Essensielle deler til din datamaskin:" />
-      <Button fx:id="btnAddToCart" layoutX="759.0" layoutY="585.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="154.0" text="Legg til i handlekurv" />
-      <Label layoutX="34.0" layoutY="414.0" prefHeight="33.0" prefWidth="220.0" text="Handlekurv:" />
-      <TextField fx:id="txtTotalPrice" layoutX="398.0" layoutY="703.0" />
-      <Label layoutX="310.0" layoutY="711.0" prefHeight="17.0" prefWidth="89.0" text="Totalt å betale:" />
-      <Button fx:id="btnGoToPay" layoutX="836.0" layoutY="694.0" mnemonicParsing="false" onAction="#loadPayment" prefHeight="33.0" prefWidth="177.0" text="Gå til betaling" />
       <Label fx:id="lblError" layoutX="225.0" layoutY="395.0" prefHeight="25.0" prefWidth="205.0" />
-      <Button layoutX="34.0" layoutY="703.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="177.0" text="Fjern fra handlekurv" />
-      <Label layoutX="462.0" layoutY="44.0" prefHeight="17.0" prefWidth="140.0" text="Logget inn som:" />
-      <TextField fx:id="txtUserid" layoutX="607.0" layoutY="40.0" prefHeight="25.0" prefWidth="125.0" />
-      <ChoiceBox layoutX="36.0" layoutY="134.0" prefWidth="150.0" />
-      <ChoiceBox layoutX="253.0" layoutY="134.0" prefWidth="150.0" />
-      <ChoiceBox layoutX="36.0" layoutY="205.0" prefWidth="150.0" />
-      <ChoiceBox layoutX="252.0" layoutY="205.0" prefWidth="150.0" />
-      <Label layoutX="37.0" layoutY="105.0" prefHeight="17.0" prefWidth="140.0" text="Skjerm" />
-      <Label layoutX="253.0" layoutY="105.0" prefHeight="17.0" prefWidth="149.0" text="Tastatur" />
-      <Label layoutX="37.0" layoutY="181.0" prefHeight="17.0" prefWidth="149.0" text="Mus" />
-      <Label layoutX="251.0" layoutY="181.0" prefHeight="17.0" prefWidth="149.0" text="Prosessor" />
-      <ChoiceBox layoutX="36.0" layoutY="276.0" prefWidth="150.0" />
-      <ChoiceBox layoutX="253.0" layoutY="276.0" prefWidth="150.0" />
-      <Label layoutX="36.0" layoutY="250.0" prefHeight="17.0" prefWidth="149.0" text="Harddisk" />
-      <Label layoutX="251.0" layoutY="250.0" prefHeight="17.0" prefWidth="150.0" text="Skjermkort" />
-      <ChoiceBox layoutX="36.0" layoutY="344.0" prefWidth="150.0" />
-      <ChoiceBox layoutX="251.0" layoutY="344.0" prefWidth="150.0" />
-      <Label layoutX="37.0" layoutY="320.0" prefHeight="17.0" prefWidth="149.0" text="Minne" />
-      <Label layoutX="251.0" layoutY="320.0" prefHeight="17.0" prefWidth="149.0" text="Strømforsyning" />
-      <TableView fx:id="txtCart" layoutX="34.0" layoutY="454.0" prefHeight="237.0" prefWidth="535.0">
-        <columns>
-          <TableColumn prefWidth="165.71429061889648" text="Produktnavn" />
-            <TableColumn prefWidth="288.5714874267578" text="Beskrivelse" />
-            <TableColumn prefWidth="80.00003051757812" text="Pris" />
-        </columns>
-      </TableView>
-      <Label layoutX="659.0" layoutY="386.0" prefHeight="17.0" prefWidth="406.0" text="Trenger du noe ekstra tilbehør? Finn det her!" />
-      <Button layoutX="927.0" layoutY="585.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="140.0" text="Fjern fra handlekurv" />
-      <TextArea layoutX="462.0" layoutY="130.0" prefHeight="237.0" prefWidth="271.0" />
-      <Label layoutX="462.0" layoutY="105.0" prefHeight="17.0" prefWidth="271.0" text="Produktinformasjon:" />
-      <Button fx:id="btnGoBack" layoutX="633.0" layoutY="694.0" mnemonicParsing="false" onAction="#goBack" prefHeight="33.0" prefWidth="163.0" text="Tilbake til forside" />
+      <SplitPane dividerPositions="0.21668153434433543" layoutX="28.0" layoutY="51.0" prefHeight="738.0" prefWidth="1279.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="755.0" prefWidth="451.0">
+               <children>
+                  <Label layoutX="20.0" layoutY="23.0" prefHeight="39.0" prefWidth="220.0" text="Essensielle deler til din datamaskin:" />
+                  <ChoiceBox layoutX="20.0" layoutY="107.0" prefWidth="150.0" />
+                  <ChoiceBox layoutX="20.0" layoutY="178.0" prefWidth="150.0" />
+                  <Label layoutX="21.0" layoutY="78.0" prefHeight="17.0" prefWidth="140.0" text="Skjerm" />
+                  <Label layoutX="21.0" layoutY="154.0" prefHeight="17.0" prefWidth="149.0" text="Mus" />
+                  <ChoiceBox layoutX="20.0" layoutY="249.0" prefWidth="150.0" />
+                  <Label layoutX="20.0" layoutY="223.0" prefHeight="17.0" prefWidth="149.0" text="Harddisk" />
+                  <ChoiceBox layoutX="20.0" layoutY="317.0" prefWidth="150.0" />
+                  <Label layoutX="21.0" layoutY="293.0" prefHeight="17.0" prefWidth="149.0" text="Minne" />
+                  <ChoiceBox layoutX="21.0" layoutY="393.0" prefWidth="150.0" />
+                  <ChoiceBox layoutX="20.0" layoutY="464.0" prefWidth="150.0" />
+                  <Label layoutX="19.0" layoutY="440.0" prefHeight="17.0" prefWidth="149.0" text="Prosessor" />
+                  <ChoiceBox layoutX="21.0" layoutY="535.0" prefWidth="150.0" />
+                  <Label layoutX="19.0" layoutY="509.0" prefHeight="17.0" prefWidth="150.0" text="Skjermkort" />
+                  <ChoiceBox layoutX="19.0" layoutY="603.0" prefWidth="150.0" />
+                  <Label layoutX="19.0" layoutY="579.0" prefHeight="17.0" prefWidth="149.0" text="Strømforsyning" />
+                  <Label layoutX="21.0" layoutY="364.0" prefHeight="17.0" prefWidth="149.0" text="Tastatur" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="1064.0">
+               <children>
+                  <SplitPane dividerPositions="0.41771228479719874" layoutY="-1.0" prefHeight="738.0" prefWidth="1002.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="386.0" prefWidth="177.0">
+                           <children>
+                              <Button fx:id="btnAddToCart" layoutX="32.0" layoutY="459.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="154.0" text="Legg til i handlekurv" />
+                              <TextArea layoutX="32.0" layoutY="83.0" prefHeight="335.0" prefWidth="329.0" />
+                              <Label layoutX="32.0" layoutY="39.0" prefHeight="17.0" prefWidth="271.0" text="Produktinformasjon:" />
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="737.0" prefWidth="673.0">
+                           <children>
+                              <TableView fx:id="txtCart" layoutX="24.0" layoutY="84.0" prefHeight="237.0" prefWidth="535.0">
+                                <columns>
+                                  <TableColumn prefWidth="165.71429061889648" text="Produktnavn" />
+                                    <TableColumn prefWidth="288.5714874267578" text="Beskrivelse" />
+                                    <TableColumn prefWidth="80.00003051757812" text="Pris" />
+                                </columns>
+                              </TableView>
+                              <Label layoutX="24.0" layoutY="30.0" prefHeight="33.0" prefWidth="125.0" text="Handlekurv:" />
+                              <Button layoutX="24.0" layoutY="341.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="177.0" text="Fjern fra handlekurv" />
+                              <TextField fx:id="txtTotalPrice" layoutX="410.0" layoutY="353.0" />
+                              <Label layoutX="410.0" layoutY="332.0" prefHeight="17.0" prefWidth="89.0" text="Totalt å betale:" />
+                              <Button fx:id="btnGoBack" layoutX="14.0" layoutY="678.0" mnemonicParsing="false" onAction="#goBack" prefHeight="33.0" prefWidth="163.0" text="Tilbake til forside" />
+                              <Button fx:id="btnGoToPay" layoutX="376.0" layoutY="678.0" mnemonicParsing="false" onAction="#loadPayment" prefHeight="33.0" prefWidth="177.0" text="Gå til betaling" />
+                              <TextField fx:id="txtUserid" layoutX="436.0" layoutY="17.0" prefHeight="25.0" prefWidth="125.0" />
+                              <Label layoutX="339.0" layoutY="21.0" prefHeight="17.0" prefWidth="89.0" text="Logget inn som:" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
    </children>
 </AnchorPane>

@@ -1,6 +1,7 @@
 package Datamaskin.FXML;
 
 import Datamaskin.Component;
+import Datamaskin.newScene;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -8,13 +9,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ExtraOrderEnduserPageController implements Initializable {
@@ -37,6 +38,18 @@ public class ExtraOrderEnduserPageController implements Initializable {
     private TextArea txtExtraComponentInfo;
 
     @FXML
+    private TableView<Component> tblCart;
+
+    @FXML
+    private TableColumn<Component, String> cartName;
+
+    @FXML
+    private TableColumn<Component, String> cartInfo;
+
+    @FXML
+    private TableColumn<Component, Integer> cartPrice;
+
+    @FXML
     private TableView<Component> tblExtraComponent;
 
     @FXML
@@ -50,6 +63,9 @@ public class ExtraOrderEnduserPageController implements Initializable {
 
     @FXML
     private TableColumn<Component, CheckBox> componentChosen;
+
+    @FXML
+    private TableColumn<Component, CheckBox> cartCheck;
 
     @FXML
     private Button btnSaveToCart;
@@ -66,56 +82,61 @@ public class ExtraOrderEnduserPageController implements Initializable {
     @FXML
     private Button btnGoToMainpage;
 
-    private ObservableList<Component> extraComponentList = FXCollections.observableArrayList();
+    private ObservableList<Component> selectedComponents = FXCollections.observableArrayList();
 
-    @FXML
-    void addToCart(ActionEvent event) {
-        isChecked();
-        System.out.println(extraComponentList);
-        tblExtraComponent.setItems(extraComponentList);
-    }
-
-
-    public ObservableList isChecked(){
+    //metode som sjekker om checkboksene er huket av og legger til komponentene dersom de er huket av.
+    private void updateCart(){
         if (checkBox1.isSelected()) {
-            extraComponentList.add(object1);
+            Component valgtKomponent = object1;
+            selectedComponents.add(valgtKomponent);
             checkBox1.setSelected(false);
         }
         if (checkBox2.isSelected()) {
-            extraComponentList.add(object2);
+            selectedComponents.add(object2);
             checkBox2.setSelected(false);
         }
         if (checkBox3.isSelected()) {
-            extraComponentList.add(object3);
+            selectedComponents.add(object3);
             checkBox3.setSelected(false);
         }
         if (checkBox4.isSelected()) {
-            extraComponentList.add(object4);
+            selectedComponents.add(object4);
             checkBox4.setSelected(false);
         }
         if (checkBox5.isSelected()) {
-            extraComponentList.add(object5);
+            selectedComponents.add(object5);
             checkBox5.setSelected(false);
         }
         if (checkBox6.isSelected()) {
-            extraComponentList.add(object6);
+            selectedComponents.add(object6);
             checkBox6.setSelected(false);
         }
-        return extraComponentList;
     }
 
+    //metode som legger til elementer i handlekurven, dersom de er huket av. (Funker ikke helt enda)
+    @FXML
+    void addToCart(ActionEvent event) {
+        updateCart();
+        System.out.println(selectedComponents);
+
+        cartPrice.setCellValueFactory(new PropertyValueFactory<>("cartPrice"));
+        cartInfo.setCellValueFactory(new PropertyValueFactory<>("cartInfo"));
+        cartName.setCellValueFactory(new PropertyValueFactory<>("cartName"));
+        cartCheck.setCellValueFactory(new PropertyValueFactory<>("cartCheck"));
+        tblCart.setItems(selectedComponents);
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //liste som er i tableviewet
+        //liste over ekstra tilbehør med checkbokser.
         ObservableList<Component> komponentList = FXCollections.observableArrayList();
         komponentList.addAll(object1, object2, object3, object4, object5, object6);
 
         tblExtraComponent.getItems().addAll(komponentList);
-        componentInfo.setCellValueFactory(new PropertyValueFactory<Component, String>("componentInfo"));
-        componentName.setCellValueFactory(new PropertyValueFactory<Component, String>("componentName"));
-        componentPrice.setCellValueFactory(new PropertyValueFactory<Component, Double>("componentPrice"));
-        componentChosen.setCellValueFactory(new PropertyValueFactory<Component, CheckBox>("checkbox"));
+        componentInfo.setCellValueFactory(new PropertyValueFactory<>("componentInfo"));
+        componentName.setCellValueFactory(new PropertyValueFactory<>("componentName"));
+        componentPrice.setCellValueFactory(new PropertyValueFactory<>("componentPrice"));
+        componentChosen.setCellValueFactory(new PropertyValueFactory<>("checkbox"));
     }
 
 
@@ -123,26 +144,35 @@ public class ExtraOrderEnduserPageController implements Initializable {
     void goBack(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) btnGoBack.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("EnduserPage.fxml"));
-        primaryStage.setTitle("Velg essensielle deler for å bygge din egen datamaskin!");
-        primaryStage.setScene(new Scene(root, 1000, 800));
+        newScene.toEnduserPage(primaryStage,root);
         primaryStage.show();
     }
 
     @FXML
-    void goToMainpage(ActionEvent event) throws IOException{
-        Stage primaryStage = (Stage) btnGoToMainpage.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
-        primaryStage.setTitle("Konfigurasjonssystem for datamaskiner");
-        primaryStage.setScene(new Scene(root, 1200,800));
-        primaryStage.show();
+    void goToMainpage(ActionEvent event) throws IOException {
+        //Man får en advarsel om at hvis man går til hovedsiden, vil bestillingen avsluttes - Hannah
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Vent litt...");
+        alert.setContentText("Ønsker du å avslutte din bestilling og gå til hovedsiden?");
+        ButtonType buttonYes = new ButtonType("Ja, det ønsker jeg");
+        ButtonType buttonNo = new ButtonType("Nei");
+        alert.getButtonTypes().addAll(buttonYes, buttonNo);
+        Optional<ButtonType> userAnswer = alert.showAndWait();
+
+        if (userAnswer.get() == buttonYes) {
+
+            Stage primaryStage = (Stage) btnGoToMainpage.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
+            newScene.tilHovedside(primaryStage, root);
+            primaryStage.show();
+        }
     }
 
     @FXML
     void goToPay(ActionEvent event) throws IOException{
         Stage primaryStage = (Stage) btnGoToPay.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("EnduserSendOrderPage.fxml"));
-        primaryStage.setTitle("Send bestilling");
-        primaryStage.setScene(new Scene(root, 700, 500));
+        newScene.toEnduserSendOrderPage(primaryStage,root);
         primaryStage.show();
 
     }

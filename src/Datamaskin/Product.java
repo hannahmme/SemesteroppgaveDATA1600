@@ -57,6 +57,12 @@ public class Product {
     }
 
 
+    @Override public String toString(){
+        return "Name: " + name.getValue() + "; Description: " + description.getValue() + "; Lifetime: " + lifetime.getValue() +
+                "; Price: " + price.getValue() + "; Category: " + category.getValue();
+    }
+
+
     // enhtesvalideringsmetoder
     public static String validateName(String name) throws IllegalArgumentException {
         if (name.matches("[a-zA-Z \\-]*")&& name.length()<20 && !name.equals("")) {

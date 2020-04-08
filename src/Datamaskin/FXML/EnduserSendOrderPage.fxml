@@ -3,10 +3,18 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.text.Text?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.EnduserSendOrderPageController">
    <children>
       <Button fx:id="btnSendOrder" layoutX="417.0" layoutY="346.0" mnemonicParsing="false" onAction="#sendOrder" prefHeight="25.0" prefWidth="127.0" text="Send bestilling" />
       <Button fx:id="btnGoBack" layoutX="62.0" layoutY="346.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="127.0" text="Gå tilbake" />
       <Button fx:id="btnGoToMainpage" layoutX="417.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToMainpage" prefHeight="25.0" prefWidth="127.0" text="Gå til hovedsiden" />
+      <TextField fx:id="txtEpost" layoutX="234.0" layoutY="158.0" />
+
+      <Text layoutX="100.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Legg inn din epostadresse og klikk på knappen for å sende bestillingen" />
+      <Text layoutX="234.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Epostadresse" />
+      <Label fx:id="gjennomførtBestilling" layoutX="168.0" layoutY="291.0" prefHeight="49.0" prefWidth="304.0" />
    </children>
 </AnchorPane>

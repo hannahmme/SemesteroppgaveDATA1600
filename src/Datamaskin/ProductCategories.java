@@ -4,6 +4,7 @@ import Datamaskin.FXML.ProductAdmPageController;
 
 import javax.print.attribute.standard.MediaSize;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ProductCategories {
     String componentName;
@@ -24,23 +25,34 @@ public class ProductCategories {
     public static ArrayList<Product> Keyboard = new ArrayList<>();
     public static ArrayList<Product> Mouse = new ArrayList<>();
     public static ArrayList<Product> OtherComponents = new ArrayList<>();
+    public static ArrayList<Product> Color = new ArrayList<>();
 
 
     public static void setData(Product etProduct, String category){
-        if(category == "GraphicCard") {
+        if(category.equals("Graphic card")) {
             GraphicCard.add(etProduct);
-        } else if (category == "Memorycard"){
+            for (Product x : GraphicCard) {
+                System.out.println("Dette er lagt til i kategorien Graphic card: " + x);
+            }
+        }
+        else if (category.equals("Memorycard")){
             Memorycard.add(etProduct);
-        } else if (category == "Keyboard"){
+            for (Product x : Memorycard) {
+                System.out.println("Dette er lagt til i kategorien Memorycard: " + x);
+            }
+        }
+        else if (category.equals("Keyboard")){
             Keyboard.add(etProduct);
-        } else if (category == "Mouse"){
+        }
+        else if (category.equals("Mouse")){
             Mouse.add(etProduct);
-        } else if (category == "Other Components"){
+        }
+        else if (category.equals("Other Components")){
             OtherComponents.add(etProduct);
         }
-
-        System.out.println(GraphicCard.toString());
-        System.out.println(Memorycard.toString());
+        else if (category.equals("Color")){
+            Color.add(etProduct);
+        }
 
     }
 

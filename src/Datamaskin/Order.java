@@ -5,15 +5,15 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Order {
 
-    private transient SimpleIntegerProperty orderID;
+    private transient SimpleStringProperty orderID;
     private transient SimpleStringProperty epost;
-    private transient SimpleStringProperty telefonnr;
+    //private transient SimpleStringProperty telefonnr;
     private transient SimpleIntegerProperty totalbeløp;
 
-    public Order (int orderID, String epost, String telefonnr, int totalbeløp){
-        this.orderID = new SimpleIntegerProperty(orderID);
+    public Order (String orderID, String epost,  int totalbeløp){
+        this.orderID = new SimpleStringProperty(orderID);
         this.epost = new SimpleStringProperty(epost);
-        this.telefonnr = new SimpleStringProperty(telefonnr);
+        //this.telefonnr = new SimpleStringProperty(telefonnr);
         this.totalbeløp = new SimpleIntegerProperty(totalbeløp);
 
     }

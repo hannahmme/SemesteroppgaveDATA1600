@@ -1,14 +1,15 @@
 package Datamaskin.FXML;
 
+import Datamaskin.Customer;
+import Datamaskin.InvalidEmailException;
+import Datamaskin.Order;
 import Datamaskin.newScene;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,6 +20,8 @@ public class EnduserSendOrderPageController {
     @FXML private Button btnSendOrder;
     @FXML private Button btnGoBack;
     @FXML private Button btnGoToMainpage;
+    @FXML private TextField txtEpost;
+    @FXML private Label lblOrderSent;
 
     @FXML void goToMainpage(ActionEvent event) throws IOException {
         //Man får en advarsel om at hvis man går til hovedsiden, vil bestillingen avsluttes - Hannah
@@ -37,11 +40,16 @@ public class EnduserSendOrderPageController {
         }
     }
 
-    @FXML void sendOrder(ActionEvent event) throws IOException{
-        // sjekke om eposten er riktig etter regex
+    @FXML void goBack(ActionEvent event) throws IOException {
+        Stage primaryStage = (Stage) btnGoBack.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("ExtraOrderEnduserPage.fxml"));
+        newScene.toExtraOrderEnduserPage(primaryStage, root);
+        primaryStage.show();
+    }
 
-        // setter en tekst for å vise at handelen er gjennomført dersom epost er riktig etter regex
-        // gjennomførtBestilling.setText("Takk for din bestilling");
+    @FXML void sendOrder(ActionEvent event) throws IOException, InvalidEmailException {
+        // sjekke om eposten er riktig etter regex
+            Order anOrder = createOrderObjectFromGUI();
 
         /* legge til bestillingen gjort på forrige side i et array over fullførte bestillinger.
         Den bør allerede ligge i et "midlertidig" array fra forrige side, i tilfelle bruker vil se handlekurven igjen før bestilling.
@@ -49,16 +57,45 @@ public class EnduserSendOrderPageController {
         fra det midlertidige arrayet
         */
 
-        // setter en tekst som sier at eposten er feil deroms den ikke er etter regex
+        // setter en tekst som sier at eposten er feil dersom den ikke er etter regex
 
-        // må sette knappen for å gå tilbake til handlekurven som disabled
+
+        // setter en ordreID og en tekst om at bestillingen er gjennomført hvis epost er riktig
+        //if (epost == gyldig){}
+
+
+        // sette knappen for å sende bestillingen som disabled
     }
 
-    @FXML void goBack(ActionEvent event) throws IOException {
-        Stage primaryStage = (Stage) btnGoBack.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("ExtraOrderEnduserPage.fxml"));
-        newScene.toExtraOrderEnduserPage(primaryStage, root);
-        primaryStage.show();
+    private static int orderID = 100;
+    public String generateOrderID (){
+        orderID++;
+        return "#"+orderID;
+    }
+
+
+    public Order createOrderObjectFromGUI(){
+        String orderID;
+        String email = null;
+        int totalbeløp = 0;
+
+        try {
+            email = txtEpost.getText();
+            Customer.validateEmail(email);
+
+            totalbeløp = 200;
+
+        } catch (InvalidEmailException e){
+            e.printStackTrace();
+        }
+
+        orderID = generateOrderID();
+        lblOrderSent.setText("Thank you for your order, here is your order ID: #" + orderID);
+
+
+        Order anOrder = new Order(orderID, email, totalbeløp);
+
+        return anOrder;
     }
 
 }

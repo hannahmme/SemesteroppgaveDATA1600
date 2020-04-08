@@ -4,42 +4,43 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Order {
 
     private transient SimpleStringProperty orderID;
     private transient SimpleStringProperty email;
-    //private transient SimpleStringProperty telefonnr;
+    // private transient Date orderDate;
     private transient SimpleDoubleProperty totalPrice;
 
-    public Order (String orderID, String epost, int totalPrice){
+    public Order (String orderID, String email, int totalPrice){
         this.orderID = new SimpleStringProperty(orderID);
-        this.epost = new SimpleStringProperty(epost);
-        //this.telefonnr = new SimpleStringProperty(telefonnr);
+        this.email = new SimpleStringProperty(email);
+        // this.orderDate = orderDate;
         this.totalPrice = new SimpleDoubleProperty(totalPrice);
-
     }
 
-    public String getName() {
-        return name.get();
+    public String getOrderID() {
+        return orderID.get();
     }
-    public void setName(String componentName) {
-        this.name = new SimpleStringProperty(componentName);
+    public void setOrderID(String OrderID) {
+        this.orderID = new SimpleStringProperty(OrderID);
     }
 
-    public String getName() {
-        return name.get();
+    public String getEmail() {
+        return email.get();
     }
-    public void setName(String componentName) {
-        this.name = new SimpleStringProperty(componentName);
+    public void setEmail(String Email) {
+        this.email = new SimpleStringProperty(Email);
     }
 
     public double getTotalPrice() {
         return totalPrice.get();
     }
-    public void setTotalPrice(double componentPrice) {
-        this.totalPrice = new SimpleDoubleProperty(componentPrice);
+    public void setTotalPrice(double Price) {
+        this.totalPrice = new SimpleDoubleProperty(Price);
     }
-
 
 
 }

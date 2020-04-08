@@ -22,9 +22,8 @@ public class AllOrdersController implements Initializable {
     @FXML private TableView<Order> allOrders;
     @FXML private TableColumn<String, Order> emailColumn;
     @FXML private TableColumn<String, Order> orderIDColumn;
-    @FXML private TableColumn<Date, Order> orderDateColumn;
+    // @FXML private TableColumn<Date, Order> orderDateColumn;
     @FXML private TableColumn<Double, Order> totalPriceColumn;
-
     @FXML private Button tilSuperbrukerside;
 
     //knappen "tilbake" tar brukeren med tilbake til menysiden for superbruker
@@ -34,21 +33,14 @@ public class AllOrdersController implements Initializable {
         newScene.tilSuperbrukerside(primaryStage, root);
     }
 
-
-
     // metoder for å legge inn ordreregisteret på denne siden
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
         orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("OrderID"));
-        orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
+        // orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
         totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
 
         EnduserSendOrderPageController.orderRegister.leggTilOrdre(allOrders);
-
     }
-
-
-
-
 }

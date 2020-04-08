@@ -12,14 +12,14 @@
       <TextField fx:id="txtUsername" layoutX="490.0" layoutY="51.0" />
       <TextField fx:id="txtPassword" layoutX="721.0" layoutY="51.0" />
       <Text layoutX="101.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Er du administrator? Logg inn her!" />
-      <Text layoutX="490.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brukernavn" />
-      <Text layoutX="721.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" />
-      <Button fx:id="tilSuperbrukerside" layoutX="938.0" layoutY="51.0" mnemonicParsing="false" onAction="#tilSuperbrukerside" text="Logg inn" />
+      <Text layoutX="490.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
+      <Text layoutX="721.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+      <Button fx:id="tilSuperbrukerside" layoutX="938.0" layoutY="51.0" mnemonicParsing="false" onAction="#tilSuperbrukerside" text="Log in" />
       <Button fx:id="tilSluttbrukerside" layoutX="627.0" layoutY="418.0" mnemonicParsing="false" onAction="#tilSluttbrukerside" text="Sett opp din egne pc her!" />
       <Line endX="938.0" layoutX="101.0" layoutY="107.0" startX="-100.0" />
       <Text layoutX="179.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ønsker du å se dine tidligere bestillinger?           Skriv inn eposten din og klikk på knappen!" wrappingWidth="324.92919921875" />
-      <Button fx:id="tilBrukerOrdreSide" layoutX="876.0" layoutY="144.0" mnemonicParsing="false" onAction="#tilBrukerOrdreSide" text="Se bestillinger" />
-      <TextField layoutX="520.0" layoutY="144.0" prefHeight="31.0" prefWidth="331.0" />
-      <Text layoutX="520.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Epostadresse" />
+      <Button fx:id="btnUserOrders" layoutX="876.0" layoutY="144.0" mnemonicParsing="false" onAction="#btnUserOrders" text="See your orders" />
+      <TextField fx:id="txtEmail" layoutX="520.0" layoutY="144.0" prefHeight="31.0" prefWidth="331.0" />
+      <Text layoutX="520.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
    </children>
 </AnchorPane>

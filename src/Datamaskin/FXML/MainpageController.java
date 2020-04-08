@@ -17,16 +17,22 @@ public class MainpageController {
     @FXML private Button tilSuperbrukerside;
     @FXML private TextField txtUsername;
     @FXML private TextField txtPassword;
+    @FXML private Button btnUserOrders;
+    @FXML private TextField txtEmail;
 
-
-    @FXML private Button tilBrukerOrdreSide;
-
-    @FXML void tilBrukerOrdreSide(ActionEvent event) throws IOException {
-        Stage primaryStage = (Stage) tilSluttbrukerside.getScene().getWindow();
+    @FXML void btnUserOrders(ActionEvent event) throws IOException {
+        Stage primaryStage = (Stage) btnUserOrders.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("UserspesificOrder.fxml"));
         newScene.toUserspesificOrder(primaryStage, root);
         primaryStage.show();
     }
+
+    public static void checkEmail(String email){
+
+    }
+
+    @FXML private Button tilBrukerOrdreSide;
+
 
     // metode som åpner ny scene til superbrukersiden
     @FXML void tilSluttbrukerside(ActionEvent event) throws IOException {

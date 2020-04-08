@@ -1,10 +1,6 @@
-package Datamaskin;
+package Datamaskin.Product;
 
-import Datamaskin.FXML.ProductAdmPageController;
-
-import javax.print.attribute.standard.MediaSize;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ProductCategories {
     String componentName;
@@ -53,7 +49,6 @@ public class ProductCategories {
         else if (category.equals("Color")){
             Color.add(etProduct);
         }
-
     }
 
 

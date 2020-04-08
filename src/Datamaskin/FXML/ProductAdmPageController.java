@@ -2,9 +2,9 @@ package Datamaskin.FXML;
 
 import Datamaskin.Exceptions.InvalidLifetimeException;
 import Datamaskin.Exceptions.InvalidPriceException;
-import Datamaskin.ProductCategories;
-import Datamaskin.ProductRegister;
-import Datamaskin.Product;
+import Datamaskin.Product.ProductCategories;
+import Datamaskin.Product.ProductRegister;
+import Datamaskin.Product.Product;
 import Datamaskin.newScene;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -123,6 +123,7 @@ public class ProductAdmPageController implements Initializable{
 
         aRegister.leggTilKomponent(componentTableview);
 
+        // for å ha kategoriene i nedtrekkslista fra før av
         setData();
 
 

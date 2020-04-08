@@ -1,5 +1,6 @@
-package Datamaskin;
+package Datamaskin.Order;
 
+import Datamaskin.Order.Order;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;

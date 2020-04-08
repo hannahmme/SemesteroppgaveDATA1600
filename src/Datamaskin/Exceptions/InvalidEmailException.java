@@ -1,4 +1,4 @@
-package Datamaskin;
+package Datamaskin.Exceptions;
 
 
 public class InvalidEmailException extends Exception{

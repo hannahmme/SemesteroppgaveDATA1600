@@ -11,10 +11,10 @@
       <Button fx:id="btnSendOrder" layoutX="236.0" layoutY="340.0" mnemonicParsing="false" onAction="#sendOrder" prefHeight="25.0" prefWidth="127.0" text="Send bestilling" />
       <Button fx:id="btnGoBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="31.0" prefWidth="170.0" text="Glemt noe? Gå tilbake" />
       <Button fx:id="btnGoToMainpage" layoutX="417.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToMainpage" prefHeight="31.0" prefWidth="170.0" text="Gå til hovedsiden" />
-      <TextField fx:id="txtEpost" layoutX="207.0" layoutY="192.0" />
+      <TextField fx:id="txtEpost" layoutX="175.0" layoutY="192.0" prefHeight="31.0" prefWidth="249.0" />
 
       <Text layoutX="142.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Legg inn din epostadresse og send bestillingen!" />
       <Text layoutX="256.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Epostadresse" />
-      <Label fx:id="lblOrderSent" layoutX="283.0" layoutY="241.0" />
+      <Label fx:id="lblOrderSent" layoutX="177.0" layoutY="242.0" prefHeight="77.0" prefWidth="249.0" />
    </children>
 </AnchorPane>

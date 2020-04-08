@@ -1,4 +1,4 @@
-package Datamaskin;
+package Datamaskin.Product;
 
 import Datamaskin.Exceptions.InvalidLifetimeException;
 import Datamaskin.Exceptions.InvalidPriceException;
@@ -45,7 +45,7 @@ public class Product {
     public double getPrice() {
         return price.get();
     }
-    public void setPrice(int componentPrice) {
+    public void setPrice(double componentPrice) {
         this.price = new SimpleDoubleProperty(componentPrice);
     }
 

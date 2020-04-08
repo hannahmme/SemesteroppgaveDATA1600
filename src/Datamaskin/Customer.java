@@ -1,5 +1,7 @@
 package Datamaskin;
 
+import Datamaskin.Exceptions.InvalidEmailException;
+
 public class Customer {
 
     public static String validateEmail(String email) throws InvalidEmailException {

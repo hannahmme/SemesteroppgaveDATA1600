@@ -1,11 +1,10 @@
 package Datamaskin.FXML;
 
-import Datamaskin.Order;
+import Datamaskin.Order.Order;
 import Datamaskin.newScene;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.stage.Stage;

@@ -2,6 +2,7 @@ package Datamaskin.FXML;
 
 import Datamaskin.Exceptions.InvalidLifetimeException;
 import Datamaskin.Exceptions.InvalidPriceException;
+import Datamaskin.ProductCategories;
 import Datamaskin.ProductRegister;
 import Datamaskin.Product;
 import Datamaskin.newScene;
@@ -27,6 +28,12 @@ public class ProductAdmPageController implements Initializable{
     @FXML private TextField txtDescription;
     @FXML private TextField txtLifetime;
     @FXML private TextField txtPrice;
+    @FXML private ChoiceBox<String> cboxCategory;
+
+    // metode for å lage kategoriene
+    public void setData(){
+        cboxCategory.getItems().addAll("Skjermkort", "Minnekort", "Farge");
+    }
 
     // konfigurerer tabellen
     @FXML private TableView<Product> componentTableview;
@@ -34,9 +41,10 @@ public class ProductAdmPageController implements Initializable{
     @FXML private TableColumn<Product, String> descriptionColumn;
     @FXML private TableColumn<Product, String> lifetimeColumn;
     @FXML private TableColumn<Product, Integer> priceColumn;
+    @FXML private TableColumn<Product, String> categoryColumn;
 
     // oppretter et nytt objekt av typen Produktregister
-    ProductRegister aRegister = new ProductRegister();
+    public static ProductRegister aRegister = new ProductRegister();
 
 
     // knappen for å legge til et nytt produkt i listen
@@ -61,6 +69,8 @@ public class ProductAdmPageController implements Initializable{
         String description;
         int lifetime;
         double price;
+        String category;
+
 
         // sjekke om field er tomt/ har bare mellomrom. hvordan?
         if (txtComponentname.getText().isEmpty() || txtDescription.getText().isEmpty() ||
@@ -80,8 +90,20 @@ public class ProductAdmPageController implements Initializable{
                 price = Double.parseDouble(txtPrice.getText());
                 Product.validatePrice(price);
 
-                Product aProduct = new Product(name, description, lifetime, price);
+                category = cboxCategory.getSelectionModel().getSelectedItem();
+                Product.validateCategory(category);
+
+                //oppretter produktet med alle riktige attributter etter at de er sjekket for feil
+                Product aProduct = new Product(name, description, lifetime, price, category);
+
+                // metode som også legger til produktet i riktig kategori-array
+                ProductCategories.setData(aProduct, category);
+
+                // returnerer produktet
                 return aProduct;
+
+
+
 
             } catch (InvalidPriceException | IllegalArgumentException | InvalidLifetimeException e) {
                 wrongInput.setText(e.getMessage());
@@ -97,8 +119,11 @@ public class ProductAdmPageController implements Initializable{
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
         lifetimeColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
+        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("Category"));
 
         aRegister.leggTilKomponent(componentTableview);
+
+        setData();
 
 
     }

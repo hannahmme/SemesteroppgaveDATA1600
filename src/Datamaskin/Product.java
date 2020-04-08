@@ -2,7 +2,6 @@ package Datamaskin;
 
 import Datamaskin.Exceptions.InvalidLifetimeException;
 import Datamaskin.Exceptions.InvalidPriceException;
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -12,12 +11,14 @@ public class Product {
     private SimpleStringProperty description;
     private SimpleIntegerProperty lifetime;
     private SimpleDoubleProperty price;
+    private SimpleStringProperty category;
 
-    public Product(String name, String description, int lifetime, double price) {
+    public Product(String name, String description, int lifetime, double price, String category) {
         this.name = new SimpleStringProperty(name);
         this.description = new SimpleStringProperty(description);
         this.lifetime = new SimpleIntegerProperty(lifetime);
         this.price = new SimpleDoubleProperty(price);
+        this.category = new SimpleStringProperty(category);
     }
 
     public String getName() {
@@ -48,6 +49,13 @@ public class Product {
         this.price = new SimpleDoubleProperty(componentPrice);
     }
 
+    public String getCategory() {
+        return category.get();
+    }
+    public void setCategory(String componentCategory) {
+        this.category = new SimpleStringProperty(componentCategory);
+    }
+
 
     // enhtesvalideringsmetoder
     public static String validateName(String name) throws IllegalArgumentException {
@@ -76,6 +84,15 @@ public class Product {
             return price;
         }
         throw new InvalidPriceException("Put in a valid price");
+    }
+
+
+    public static String validateCategory (String category){
+        if(category.isEmpty()){
+            throw new IllegalArgumentException("Choose a category" +
+                    "!");
+        }
+        return category;
     }
 
 

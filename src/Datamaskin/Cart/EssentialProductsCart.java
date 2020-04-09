@@ -1,5 +1,6 @@
 package Datamaskin.Cart;
 
+import Datamaskin.Product.Product;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -12,11 +13,11 @@ public class EssentialProductsCart {
     private SimpleIntegerProperty lifetime;
     private SimpleDoubleProperty price;
 
-    public EssentialProductsCart(String name, String description, int lifetime, double price) {
-        this.name = new SimpleStringProperty(name);
-        this.description = new SimpleStringProperty(description);
-        this.lifetime = new SimpleIntegerProperty(lifetime);
-        this.price = new SimpleDoubleProperty(price);
+    public EssentialProductsCart(Product aProduct) {
+        //String[] splittetProduct = aProduct.split(";");
+
+
+
     }
 
     public String getName() {

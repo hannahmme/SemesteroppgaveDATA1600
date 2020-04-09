@@ -30,6 +30,10 @@ public class ProductAdmPageController implements Initializable{
     @FXML private TextField txtPrice;
     @FXML private ChoiceBox<String> cboxCategory;
 
+    @FXML private MenuButton menuDropdown;
+    @FXML private MenuItem saveToFile;
+    @FXML private MenuItem openFromFile;
+
     // metode for å lage kategoriene
     public void setData(){
         cboxCategory.getItems().addAll("Skjermkort", "Minnekort", "Farge", "Andre produkter");
@@ -128,5 +132,16 @@ public class ProductAdmPageController implements Initializable{
         Stage primaryStage = (Stage) tilSuperbrukerside.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
         newScene.tilSuperbrukerside(primaryStage, root);
+    }
+
+
+
+    // litt enkel filbehandling her, lagre til binære filer? og lage for ordre også
+    @FXML void openFromFile(ActionEvent event) {
+
+    }
+
+    @FXML void saveToFile(ActionEvent event) {
+
     }
 }

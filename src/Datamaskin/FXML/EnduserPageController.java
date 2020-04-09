@@ -158,10 +158,22 @@ public class EnduserPageController implements Initializable{
     }
 
     private Product createCartObjectFromGUI() {
+        Product graphicCard;
 
+        String graphiccard = cBoxGraphicCard.getValue();
         // sjekke om choicebox er tomt med en if-setning. hvordan?
 
         // sjekke hvilken verdi hver choicebox har, og bruke denne til å hente pris osv til tableviewet
+
+        
+        // løkke og if-setning som finner riktig objekt i array og legger det til i handlekurven
+        for(int i = 0; i<ProductCategories.GraphicCard.size(); i++){
+            if(graphiccard.equals(ProductCategories.GraphicCard.keySet().toArray()[i].toString())){
+                graphicCard = ProductCategories.GraphicCard.get(graphiccard);
+                System.out.println(graphicCard);
+            }
+        }
+
 
 
         return null;

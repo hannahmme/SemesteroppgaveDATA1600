@@ -3,6 +3,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -10,9 +12,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="713.0" prefWidth="1083.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.ProductAdmPageController">
+<AnchorPane prefHeight="699.0" prefWidth="1083.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.ProductAdmPageController">
    <children>
-      <Button layoutX="40.0" layoutY="592.0" mnemonicParsing="false" onAction="#addComponent" text="Legg til komponent" />
+      <Button layoutX="41.0" layoutY="645.0" mnemonicParsing="false" onAction="#addComponent" text="Legg til komponent" />
       <Button fx:id="tilSuperbrukerside" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#tilSuperbrukerside" text="Tilbake til menysiden" />
       <TableView fx:id="componentTableview" layoutX="270.0" layoutY="99.0" prefHeight="582.0" prefWidth="788.0">
         <columns>
@@ -54,5 +56,11 @@
       <Label fx:id="wrongInput" layoutX="40.0" layoutY="660.0" />
       <ChoiceBox fx:id="cboxCategory" layoutX="40.0" layoutY="519.0" prefHeight="31.0" prefWidth="150.0" />
       <Text layoutX="86.0" layoutY="514.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category" />
+      <MenuButton fx:id="menuDropdown" layoutX="953.0" layoutY="14.0" mnemonicParsing="false" text="Menyvalg">
+        <items>
+          <MenuItem fx:id="saveToFile" mnemonicParsing="false" onAction="#saveToFile" text="Lagre til fil" />
+          <MenuItem fx:id="openFromFile" mnemonicParsing="false" onAction="#openFromFile" text="Importer fra fil" />
+        </items>
+      </MenuButton>
    </children>
 </AnchorPane>

@@ -4,7 +4,6 @@ import Datamaskin.FXML.ProductAdmPageController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class ProductCategories {
     String componentName;
@@ -73,26 +72,26 @@ public class ProductCategories {
         GraphicCard.put("Skjermkort 1", graphiccard1);
         GraphicCard.put("Skjermkort 2", graphiccard2);
 
-        Product memorycard1 = new Product("Minnekort 1", "Dette er vårt billigste minnekort", 5, 299, "Minnekort");
-        Product memorycard2 = new Product("Minnekort 2", "Dette er vårt nest billigste skjermkort", 10, 699, "Minnekort");
+        Product memorycard1 = new Product("4GB RAM", "Dette er vårt billigste minnekort", 5, 299, "Minnekort");
+        Product memorycard2 = new Product("8GB RAM", "Dette er vårt nest billigste skjermkort", 10, 699, "Minnekort");
         ProductAdmPageController.aRegister.addElement(memorycard1);
         ProductAdmPageController.aRegister.addElement(memorycard2);
-        Memorycard.put("Minnekort 1", memorycard1);
-        Memorycard.put("Minnekort 2", memorycard2);
+        Memorycard.put("4GB RAM", memorycard1);
+        Memorycard.put("8GB RAM", memorycard2);
 
-        Product harddrive1 = new Product("Harddisk 1", "blabla", 5, 299, "Harddisk");
-        Product harddrive2 = new Product("Harddisk 2", "Dette er ikke vårt billigste minnekort", 5, 999, "Harddisk");
+        Product harddrive1 = new Product("128 GB SSD", "blabla", 5, 299, "Harddisk");
+        Product harddrive2 = new Product("256 GB SSD", "Dette er ikke vårt billigste minnekort", 5, 999, "Harddisk");
         ProductAdmPageController.aRegister.addElement(harddrive1);
         ProductAdmPageController.aRegister.addElement(harddrive2);
-        Harddrive.put("Harddisk 1", harddrive1);
-        Harddrive.put("Harddisk 2", harddrive2);
+        Harddrive.put("128 GB SSD", harddrive1);
+        Harddrive.put("256 GB SSD", harddrive2);
 
-        Product processor1 = new Product("Proessor 1", "hei", 5, 299, "Prosessor");
-        Product processor2 = new Product("Proessor 2", "hei", 5, 99, "Prosessor");
+        Product processor1 = new Product("Intel Core I3", "hei", 5, 299, "Prosessor");
+        Product processor2 = new Product("Intel Core I5", "hei", 5, 99, "Prosessor");
         ProductAdmPageController.aRegister.addElement(processor1);
         ProductAdmPageController.aRegister.addElement(processor2);
-        Processor.put("Proessor 1", processor1);
-        Processor.put("Proessor 2", processor2);
+        Processor.put("Intel Core I3", processor1);
+        Processor.put("Intel Core I5", processor2);
 
         Product Power1 = new Product("Strømforsyning 1", "noe", 5, 299, "Strømforsyning");
         Product Power2 = new Product("Strømforsyning 2", "noe", 5, 399, "Strømforsyning");

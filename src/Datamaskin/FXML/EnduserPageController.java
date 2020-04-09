@@ -1,8 +1,7 @@
 // denne siden gjelder sluttbruker siden der man skal velge komponenter
-
 package Datamaskin.FXML;
-
 import Datamaskin.Component;
+import Datamaskin.Product.ProductCategories;
 import Datamaskin.newScene;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,59 +22,83 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+public class EnduserPageController implements Initializable{
 
-public class EnduserPageController {
+    @FXML private Button btnGoBack;
+    @FXML private Button btnGoToPay;
 
-    @FXML
-    private Button btnGoBack;
+    @FXML private TextField txtUserid;
+    @FXML private TextField txtTotalPrice;
 
-    @FXML
-    private TextField txtUserid;
+    @FXML private Label lblError;
 
-    @FXML
-    private Label lblError;
-
-    @FXML
-    private TextField txtTotalPrice;
-
-    @FXML
-    private Button btnGoToPay;
-
-    @FXML
-    private TableView<Component> txtCart;
-
-    @FXML
-    private Button btnAddToCart;
+    @FXML private TableView<Component> txtCart;
+    @FXML private Button btnAddToCart;
     
-    @FXML
-    private TableView<Component> tableView;
+    @FXML private TableView<Component> tableView;
+    @FXML private TableColumn<Component, String> componentInfo;
+    @FXML private TableColumn<Component, String> componentName;
+    @FXML private TableColumn<Component, Integer> componentPrice;
+    @FXML private TableColumn<Component, CheckBox> componentChecked;
 
-    @FXML
-    private TableColumn<Component, String> componentInfo;
+    // choicebox som skal populeres med arrays lagret i ProductAdmPage
+    @FXML private ChoiceBox<String> cBoxGraphicCard;
+    @FXML private ChoiceBox<String> cBoxMemorycard;
+    @FXML private ChoiceBox<String> cBoxHarddrive;
+    @FXML private ChoiceBox<String> cBoxProcessor;
+    @FXML private ChoiceBox<String> cBoxPower;
+    @FXML private ChoiceBox<String> cBoxSoundcard;
+    @FXML private ChoiceBox<String> cBoxOpticaldisk;
+    @FXML private ChoiceBox<String> cBoxColor;
 
-    @FXML
-    private TableColumn<Component, String> componentName;
+    // metode som setter verdier til choicebox
+    public void setValuesToChoicebox(){
+        for(int index = 0; index<ProductCategories.GraphicCard.size(); index++) {
+            cBoxGraphicCard.getItems().add(ProductCategories.CategorynameToString(ProductCategories.GraphicCard, index));
+        }
+        for(int index = 0; index<ProductCategories.Memorycard.size(); index++) {
+            cBoxMemorycard.getItems().add(ProductCategories.CategorynameToString(ProductCategories.Memorycard, index));
+        }
+        for(int index = 0; index<ProductCategories.Harddrive.size(); index++) {
+            cBoxHarddrive.getItems().add(ProductCategories.CategorynameToString(ProductCategories.Harddrive, index));
+        }
+        for(int index = 0; index<ProductCategories.Processor.size(); index++) {
+            cBoxProcessor.getItems().add(ProductCategories.CategorynameToString(ProductCategories.Processor, index));
+        }
+        for(int index = 0; index<ProductCategories.Power.size(); index++) {
+            cBoxPower.getItems().add(ProductCategories.CategorynameToString(ProductCategories.Power, index));
+        }
+        for(int index = 0; index<ProductCategories.Soundcard.size(); index++) {
+            cBoxSoundcard.getItems().add(ProductCategories.CategorynameToString(ProductCategories.Soundcard, index));
+        }
+        for(int index = 0; index<ProductCategories.OpticalDisk.size(); index++) {
+            cBoxOpticaldisk.getItems().add(ProductCategories.CategorynameToString(ProductCategories.OpticalDisk, index));
+        }
+        for(int index = 0; index<ProductCategories.Color.size(); index++) {
+            cBoxColor.getItems().add(ProductCategories.CategorynameToString(ProductCategories.Color, index));
+        }
 
-    @FXML
-    private TableColumn<Component, Integer> componentPrice;
+    }
 
-    @FXML
-    private TableColumn<Component, CheckBox> componentChecked;
+
+
+
+    // label som vi setter lik total pris på det som er valgt av essensielle komponenter
+    @FXML private Label lblTotalPrice;
 
     //liste over valgte produkter
     private ObservableList<Component> cartList = FXCollections.observableArrayList();
 
-    @FXML
-    void loadPayment(ActionEvent event) throws IOException {
-
-        // legger inn metoden for å åpne ny scene - Amalie
+    // knapp som sender bruker til neste side
+    @FXML void loadPayment(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) btnGoToPay.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("ExtraOrderEnduserPage.fxml"));
         newScene.toExtraOrderEnduserPage(primaryStage, root);
         primaryStage.show();
     }
-    @FXML
-    void goBack(ActionEvent event) throws IOException {
+
+    // knapp som sender bruker til forrige side + advarsel om å avslutte
+    @FXML void goBack(ActionEvent event) throws IOException {
         //Man får en advarsel om at hvis man går til hovedsiden, vil bestillingen avsluttes - Hannah
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle("Vent litt...");
@@ -86,7 +109,6 @@ public class EnduserPageController {
         Optional<ButtonType> userAnswer = alert.showAndWait();
 
         if (userAnswer.get() == buttonYes) {
-
             //legger inn metoden for å åpne tidligere side (forside) - Hannah
             Stage primaryStage = (Stage) btnGoBack.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
@@ -124,6 +146,8 @@ public class EnduserPageController {
     };
 
 
-
-
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        setValuesToChoicebox();
+    }
 }

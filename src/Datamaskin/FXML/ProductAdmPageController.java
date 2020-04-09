@@ -71,7 +71,6 @@ public class ProductAdmPageController implements Initializable{
         double price;
         String category;
 
-
         // sjekke om field er tomt/ har bare mellomrom. hvordan?
         if (txtComponentname.getText().isEmpty() || txtDescription.getText().isEmpty() ||
                 txtLifetime.getText().isEmpty() || txtPrice.getText().isEmpty()) {
@@ -97,12 +96,10 @@ public class ProductAdmPageController implements Initializable{
                 Product aProduct = new Product(name, description, lifetime, price, category);
 
                 // metode som også legger til produktet i riktig kategori-array
-                ProductCategories.setData(aProduct, category);
+                ProductCategories.setData(aProduct, category, name);
 
                 // returnerer produktet
                 return aProduct;
-
-
 
 
             } catch (InvalidPriceException | IllegalArgumentException | InvalidLifetimeException e) {
@@ -125,9 +122,6 @@ public class ProductAdmPageController implements Initializable{
 
         // for å ha kategoriene i nedtrekkslista fra før av
         setData();
-        ProductCategories.setExampleData();
-
-
     }
 
         // kode for å komme tilbake til hovedmenyen for superbruker

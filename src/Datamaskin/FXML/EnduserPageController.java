@@ -1,7 +1,13 @@
 // denne siden gjelder sluttbruker siden der man skal velge komponenter
 package Datamaskin.FXML;
+import Datamaskin.Cart.Cart;
+import Datamaskin.Cart.EssentialProductsCart;
 import Datamaskin.Component;
+import Datamaskin.Exceptions.InvalidLifetimeException;
+import Datamaskin.Exceptions.InvalidPriceException;
+import Datamaskin.Product.Product;
 import Datamaskin.Product.ProductCategories;
+import Datamaskin.Product.ProductRegister;
 import Datamaskin.newScene;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,10 +17,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -26,20 +30,18 @@ public class EnduserPageController implements Initializable{
 
     @FXML private Button btnGoBack;
     @FXML private Button btnGoToPay;
-
-    @FXML private TextField txtUserid;
-    @FXML private TextField txtTotalPrice;
+    @FXML private Button btnAddToCart;
 
     @FXML private Label lblError;
 
-    @FXML private TableView<Component> txtCart;
-    @FXML private Button btnAddToCart;
-    
-    @FXML private TableView<Component> tableView;
-    @FXML private TableColumn<Component, String> componentInfo;
-    @FXML private TableColumn<Component, String> componentName;
-    @FXML private TableColumn<Component, Integer> componentPrice;
-    @FXML private TableColumn<Component, CheckBox> componentChecked;
+    // label som vi setter lik total pris på det som er valgt av essensielle komponenter
+    @FXML private Label lblTotalPrice;
+
+    @FXML private TableView<Product> tableviewCart;
+    @FXML private TableColumn<String, Product> nameColumn;
+    @FXML private TableColumn<String, Product> descriptionColumn;
+    @FXML private TableColumn<Integer, Product> lifetimeColumn;
+    @FXML private TableColumn<Double, Product> priceColumn;
 
     // choicebox som skal populeres med arrays lagret i ProductAdmPage
     @FXML private ChoiceBox<String> cBoxGraphicCard;
@@ -80,11 +82,6 @@ public class EnduserPageController implements Initializable{
 
     }
 
-
-
-
-    // label som vi setter lik total pris på det som er valgt av essensielle komponenter
-    @FXML private Label lblTotalPrice;
 
     //liste over valgte produkter
     private ObservableList<Component> cartList = FXCollections.observableArrayList();
@@ -145,9 +142,42 @@ public class EnduserPageController implements Initializable{
         }
     };
 
+    // under her er kode for å populere handlekurven
+    private static Cart aCart = new Cart();
+
+
+    @FXML void addToCart(ActionEvent event) {
+
+        Product aProduct = createCartObjectFromGUI();
+        if(aProduct != null) {
+            aCart.addElement(aProduct);
+            // metode for å disable legg til knappen så man ikke får lagt til mer,
+            // men man må få endret på tableviewet på en eller annen måte
+        }
+
+    }
+
+    private Product createCartObjectFromGUI() {
+
+        // sjekke om choicebox er tomt med en if-setning. hvordan?
+
+        // sjekke hvilken verdi hver choicebox har, og bruke denne til å hente pris osv til tableviewet
+
+
+        return null;
+    }
+
+
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL url, ResourceBundle rb) {
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        lifetimeColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
+
+        aCart.addComponent(tableviewCart);
+
         setValuesToChoicebox();
     }
 }

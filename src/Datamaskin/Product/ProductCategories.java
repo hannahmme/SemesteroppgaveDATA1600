@@ -65,7 +65,6 @@ public class ProductCategories {
     }
 
     // eksempeldata, så slipper vi å lage nye produkter hver gang vi kjører progr. Bør ha minst x2 produkter innenfor hver kategori
-    // denne må bindes opp med brukersiden på "EnduserPage".
     public static void setExampleData(){
         Product graphiccard1 = new Product("Skjermkort 1", "Dette er vårt billigste skjermkort", 10, 299, "Skjermkort");
         Product graphiccard2 = new Product("Skjermkort 2", "Dette er vårt nest billigste skjermkort", 12, 399, "Skjermkort");
@@ -144,10 +143,9 @@ public class ProductCategories {
 
 
 
-    //metode som gjør at navnet fra hashmappen kommer opp som et option i choicebox, og ikke hele objektet
+    //metode som gjør at navnet fra hashmappen kommer opp som et option i choicebox, og ikke hele objektet blir vist som et valg
     public static String CategorynameToString(HashMap<String, Product> aProduct, int index){
         return aProduct.keySet().toArray()[index].toString();
-
     }
 
 }

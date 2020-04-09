@@ -46,7 +46,6 @@ public class ProductAdmPageController implements Initializable{
     // oppretter et nytt objekt av typen Produktregister
     public static ProductRegister aRegister = new ProductRegister();
 
-
     // knappen for å legge til et nytt produkt i listen
     @FXML void addComponent(ActionEvent event) {
         Product aProduct = createProductObjectFromGUI();

@@ -7,12 +7,13 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="866.0" prefWidth="1446.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.EnduserPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="833.0" prefWidth="1331.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.EnduserPageController">
    <children>
       <Label fx:id="lblError" layoutX="225.0" layoutY="395.0" prefHeight="25.0" prefWidth="205.0" />
-      <SplitPane dividerPositions="0.21668153434433543" layoutX="28.0" layoutY="51.0" prefHeight="738.0" prefWidth="1279.0">
+      <SplitPane dividerPositions="0.20751761942051683" layoutX="28.0" layoutY="51.0" prefHeight="738.0" prefWidth="1279.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="755.0" prefWidth="451.0">
                <children>
@@ -41,26 +42,42 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="386.0" prefWidth="177.0">
                            <children>
-                              <Button fx:id="btnAddToCart" layoutX="32.0" layoutY="459.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="329.0" text="Legg til valgte produkter i handlekurv" />
+                              <Button fx:id="btnAddToCart" layoutX="32.0" layoutY="459.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="31.0" prefWidth="329.0" text="Legg til valgte produkter i handlekurv" />
                               <TextArea layoutX="32.0" layoutY="83.0" prefHeight="335.0" prefWidth="329.0" />
                               <Label layoutX="32.0" layoutY="39.0" prefHeight="17.0" prefWidth="271.0" text="Produktinformasjon:" />
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="737.0" prefWidth="673.0">
                            <children>
-                              <TableView fx:id="txtCart" layoutX="24.0" layoutY="84.0" prefHeight="237.0" prefWidth="535.0">
+                              <TableView fx:id="tableviewCart" layoutX="24.0" layoutY="84.0" prefHeight="503.0" prefWidth="535.0">
                                 <columns>
-                                  <TableColumn prefWidth="165.71429061889648" text="Produktnavn" />
-                                    <TableColumn prefWidth="288.5714874267578" text="Beskrivelse" />
-                                    <TableColumn prefWidth="80.00003051757812" text="Pris" />
+                                  <TableColumn fx:id="nameColumn" prefWidth="136.0" text="Produktnavn">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="Name" />
+                                    </cellValueFactory>
+                                  </TableColumn>
+                                  <TableColumn fx:id="descriptionColumn" prefWidth="214.0" text="Beskrivelse">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="Description" />
+                                    </cellValueFactory>
+                                  </TableColumn>
+                                  <TableColumn fx:id="lifetimeColumn" prefWidth="91.0" text="Levetid">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="Lifetime" />
+                                    </cellValueFactory>
+                                  </TableColumn>
+                                  <TableColumn fx:id="priceColumn" prefWidth="93.0" text="Pris">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="Price" />
+                                    </cellValueFactory>
+                                  </TableColumn>
                                 </columns>
                               </TableView>
                               <Label layoutX="24.0" layoutY="30.0" prefHeight="33.0" prefWidth="125.0" text="Handlekurv:" />
-                              <Button layoutX="24.0" layoutY="341.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="177.0" text="Fjern fra handlekurv" />
-                              <Label layoutX="376.0" layoutY="343.0" prefHeight="21.0" prefWidth="109.0" text="Totalt å betale:" />
-                              <Button fx:id="btnGoBack" layoutX="14.0" layoutY="678.0" mnemonicParsing="false" onAction="#goBack" prefHeight="33.0" prefWidth="163.0" text="Tilbake til forside" />
+                              <Button layoutX="24.0" layoutY="623.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="177.0" text="Fjern fra handlekurv" />
+                              <Label layoutX="376.0" layoutY="617.0" prefHeight="21.0" prefWidth="109.0" text="Totalt å betale:" />
                               <Button fx:id="btnGoToPay" layoutX="376.0" layoutY="678.0" mnemonicParsing="false" onAction="#loadPayment" prefHeight="33.0" prefWidth="177.0" text="Gå til betaling" />
-                              <Label fx:id="lblTotalPrice" layoutX="500.0" layoutY="343.0" />
+                              <Label fx:id="lblTotalPrice" layoutX="485.0" layoutY="617.0" prefHeight="21.0" prefWidth="59.0" />
                            </children>
                         </AnchorPane>
                     </items>
@@ -69,5 +86,6 @@
             </AnchorPane>
         </items>
       </SplitPane>
+      <Button fx:id="btnGoBack" layoutX="28.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="33.0" prefWidth="163.0" text="Tilbake til forside" />
    </children>
 </AnchorPane>

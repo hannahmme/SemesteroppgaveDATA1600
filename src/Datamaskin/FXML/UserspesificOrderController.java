@@ -23,9 +23,8 @@ public class UserspesificOrderController implements Initializable {
         @FXML private TableView<Order> allOrders;
         @FXML private TableColumn<Order, String> emailColumn;
         @FXML private TableColumn<Order, String> orderIDColumn;
-        // @FXML private TableColumn<Date, Order> orderDateColumn;
+        // @FXML private TableColumn<Order, Date> orderDateColumn;
         @FXML private TableColumn<Double, Order> totalPriceColumn;
-        @FXML private Button tilSuperbrukerside;
 
         //knappen "tilbake" tar brukeren med tilbake til menysiden for superbruker
         @FXML void toMainpage(ActionEvent event) throws IOException {
@@ -54,5 +53,40 @@ public class UserspesificOrderController implements Initializable {
 
         }
 
+
+    /*// kode for filtrering
+    @FXML void filtreringsFelt() {
+        FilteredList<Order> filtrertData = new FilteredList<>((Register), p -> true);
+        String userEmail;
+
+        //hver gang verdien endres skjer følgende
+        userEmail.textProperty().addListener((observable, gammelVerdi, nyVerdi) -> {
+            filtrertData.setPredicate(person -> {
+
+                String småBokstaver = nyVerdi.toLowerCase();
+
+                if (nyVerdi.matches("[a-zA-Z. -_0-9()@]*")) {    //
+
+                    // Hvis feltet er tomt skal alle personer vises
+                    if (nyVerdi.isEmpty()) {
+                        return true;
+                    }
+
+                    // Sammenligner alle kolonner med filtertekst
+                     if (person.getEpost().toLowerCase().contains(småBokstaver)) {
+                        return true;
+                    }
+                } return false;
+            });
+        });
+
+        // oppretter en sortert liste binder den sammen med tabellen
+        SortedList<Order> sortertData = new SortedList<>(filtrertData);
+        sortertData.comparatorProperty().bind(tabell1.comparatorProperty());
+
+        // legger til sotrert og filtert data til tabellen
+        tabell1.setItems(sortertData);
+    }
+*/
 }
 

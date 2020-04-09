@@ -32,7 +32,7 @@ public class ProductAdmPageController implements Initializable{
 
     // metode for å lage kategoriene
     public void setData(){
-        cboxCategory.getItems().addAll("Graphic card", "Memorycard", "Keyboard", "Mouse", "Other components", "Color");
+        cboxCategory.getItems().addAll("Skjermkort", "Minnekort", "Farge", "Andre produkter");
     }
 
     // konfigurerer tabellen
@@ -125,6 +125,7 @@ public class ProductAdmPageController implements Initializable{
 
         // for å ha kategoriene i nedtrekkslista fra før av
         setData();
+        ProductCategories.setExampleData();
 
 
     }

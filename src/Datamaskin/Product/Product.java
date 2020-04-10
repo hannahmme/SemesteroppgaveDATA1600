@@ -65,21 +65,21 @@ public class Product {
 
     // enhtesvalideringsmetoder
     public static String validateName(String name) throws IllegalArgumentException {
-        if (name.matches("[a-zA-Z \\-]*")&& name.length()<20 && !name.equals("")) {
+        if (name.matches("[a-zA-Z \\-0-9]*")&& name.length()<30 && !name.equals("")) {
             return name;
         }
         throw new IllegalArgumentException("Skriv inn et gyldignavn!");
     }
 
     public static String validateDescription(String description) throws IllegalArgumentException {
-        if (description.matches("[a-zA-Z \\-]*") && description.length()<170 && !description.equals("")) {
+        if (description.matches("[a-zA-Z \\-0-9]*") && description.length()<200 && !description.equals("")) {
             return description;
         }
         throw new IllegalArgumentException("Skriv inn en gyldig beskrivelse!");
     }
 
     public static Integer validateLifetime (int lifetime) throws InvalidLifetimeException {
-        if (lifetime > 0 && lifetime < 20){
+        if (lifetime > 0 && lifetime < 36){
             return lifetime;
         }
         throw new InvalidLifetimeException("Put in a valid number of years");

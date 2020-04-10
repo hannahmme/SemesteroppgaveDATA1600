@@ -53,7 +53,7 @@
       <Text layoutX="77.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
       <Text layoutX="56.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lifetime (in years)" />
       <Text layoutX="63.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price (in Kroner)" />
-      <Label fx:id="wrongInput" layoutX="40.0" layoutY="660.0" />
+      <Label fx:id="wrongInput" layoutX="41.0" layoutY="584.0" prefHeight="21.0" prefWidth="150.0" />
       <ChoiceBox fx:id="cboxCategory" layoutX="40.0" layoutY="519.0" prefHeight="31.0" prefWidth="150.0" />
       <Text layoutX="86.0" layoutY="514.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category" />
       <MenuButton fx:id="menuDropdown" layoutX="953.0" layoutY="14.0" mnemonicParsing="false" text="Menyvalg">

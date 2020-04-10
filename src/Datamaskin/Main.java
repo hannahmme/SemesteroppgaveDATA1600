@@ -1,6 +1,7 @@
 package Datamaskin;
 
 import Datamaskin.FXML.ProductAdmPageController;
+import Datamaskin.Order.OrderExample;
 import Datamaskin.Product.ProductCategories;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +20,7 @@ public class Main extends Application {
 
         //Setter all eksempeldata ved start av applikasjon så den ikke dupliseres
         ProductCategories.setExampleData();
+        OrderExample.setExampleData();
 
     }
 

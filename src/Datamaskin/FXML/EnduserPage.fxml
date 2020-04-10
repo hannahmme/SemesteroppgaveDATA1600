@@ -18,7 +18,7 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="755.0" prefWidth="451.0">
                <children>
                   <Label layoutX="20.0" layoutY="23.0" prefHeight="39.0" prefWidth="247.0" text="Essensielle deler til din datamaskin:" />
-                  <ChoiceBox fx:id="cBoxGraphicCard" layoutX="20.0" layoutY="107.0" prefWidth="150.0" />
+                  <ChoiceBox id="Velg her" fx:id="cBoxGraphicCard" layoutX="20.0" layoutY="107.0" prefWidth="150.0" />
                   <ChoiceBox fx:id="cBoxMemorycard" layoutX="20.0" layoutY="178.0" prefWidth="150.0" />
                   <Label layoutX="21.0" layoutY="78.0" prefHeight="17.0" prefWidth="140.0" text="Skjermkort" />
                   <Label layoutX="21.0" layoutY="154.0" prefHeight="17.0" prefWidth="149.0" text="Minnekort" />
@@ -42,7 +42,7 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="386.0" prefWidth="177.0">
                            <children>
-                              <Button fx:id="btnAddToCart" layoutX="32.0" layoutY="459.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="31.0" prefWidth="329.0" text="Legg til valgte produkter i handlekurv" />
+                              <Button fx:id="btnAddToCart" layoutX="32.0" layoutY="459.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="31.0" prefWidth="329.0" text="Bygg pc med valgt komponenter" />
                               <TextArea layoutX="32.0" layoutY="83.0" prefHeight="335.0" prefWidth="329.0" />
                               <Label layoutX="32.0" layoutY="39.0" prefHeight="17.0" prefWidth="271.0" text="Produktinformasjon:" />
                            </children>
@@ -73,7 +73,7 @@
                                   </TableColumn>
                                 </columns>
                               </TableView>
-                              <Label layoutX="24.0" layoutY="30.0" prefHeight="33.0" prefWidth="125.0" text="Handlekurv:" />
+                              <Label layoutX="24.0" layoutY="30.0" prefHeight="33.0" prefWidth="214.0" text="Komponenter til din pc:" />
                               <Button layoutX="24.0" layoutY="623.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="177.0" text="Fjern fra handlekurv" />
                               <Label layoutX="376.0" layoutY="617.0" prefHeight="21.0" prefWidth="109.0" text="Totalt å betale:" />
                               <Button fx:id="btnGoToPay" layoutX="376.0" layoutY="678.0" mnemonicParsing="false" onAction="#loadPayment" prefHeight="33.0" prefWidth="177.0" text="Gå til betaling" />

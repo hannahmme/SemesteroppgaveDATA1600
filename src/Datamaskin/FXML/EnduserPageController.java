@@ -1,13 +1,9 @@
 // denne siden gjelder sluttbruker siden der man skal velge komponenter
 package Datamaskin.FXML;
 import Datamaskin.Cart.Cart;
-import Datamaskin.Cart.EssentialProductsCart;
 import Datamaskin.Component;
-import Datamaskin.Exceptions.InvalidLifetimeException;
-import Datamaskin.Exceptions.InvalidPriceException;
 import Datamaskin.Product.Product;
 import Datamaskin.Product.ProductCategories;
-import Datamaskin.Product.ProductRegister;
 import Datamaskin.newScene;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,7 +16,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -33,10 +28,9 @@ public class EnduserPageController implements Initializable{
     @FXML private Button btnGoToPay;
     @FXML private Button btnAddToCart;
 
-    @FXML private Label lblError;
-
     // label som vi setter lik total pris på det som er valgt av essensielle komponenter
     @FXML private Label lblTotalPrice;
+    @FXML private Label lblError;
 
     @FXML private TableView<Product> tableviewCart;
     @FXML private TableColumn<String, Product> nameColumn;
@@ -148,8 +142,6 @@ public class EnduserPageController implements Initializable{
 
 
     @FXML void addToCart(ActionEvent event) {
-        //setCartEmpty();
-
         createCartObjectsFromGUI();
         getTotalprice();
     }
@@ -168,13 +160,18 @@ public class EnduserPageController implements Initializable{
 
 
     // metode for å nullstille handlevognen hver gang man trykker oppdater, så få man bare inn en av hver komponent
-    public void setCartEmpty(){
-    }
     
     
     private void createCartObjectsFromGUI() {
-        // sjekke om choicebox er tomt med en if-setning. hvordan?
+        // sjekke om handlekurven allerede har komponenter, da må de slettes for å legge til nye komponenter som bruker vil endre til
+        if (!Cart.Register.isEmpty()) {
+            aCart.deleteElements();
+        }
+        createProducts();
+    }
 
+    // metode som oppretter produkter fra hver choicebox
+    public void createProducts(){
         String graphicCard = cBoxGraphicCard.getValue();
         String memoryCard = cBoxMemorycard.getValue();
         String harddrive = cBoxHarddrive.getValue();
@@ -192,9 +189,9 @@ public class EnduserPageController implements Initializable{
         addProduct(soundcard, ProductCategories.Soundcard);
         addProduct(opticalDisk, ProductCategories.OpticalDisk);
         addProduct(color, ProductCategories.Color);
-
     }
 
+    // metode for å hente frem riktig produkt fra listen(hashmappen) og legge til produktet i handlekurven
     public void addProduct(String aString, HashMap<String, Product> aHashMap){
         Product aProduct = null;
         for(int i = 0; i<aHashMap.size(); i++){
@@ -216,6 +213,7 @@ public class EnduserPageController implements Initializable{
 
         aCart.addComponent(tableviewCart);
 
+        // setter eksempelinfo til choiceboksene
         setValuesToChoicebox();
 
         // må sette prisen på varer hvis bruker går tilabke

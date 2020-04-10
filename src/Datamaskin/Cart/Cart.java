@@ -13,8 +13,14 @@ public class Cart {
     }
 
     public void addElement(Product etProduct) {
-        Register.addAll(etProduct);
+        Register.add(etProduct);
     }
 
-
+    public void deleteElements(){
+        if(Register.size() != 0) {
+            for (int i = 7; i > -1; i--) {
+                Register.remove(i);
+            }
+        }
+    }
 }

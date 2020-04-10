@@ -13,12 +13,6 @@ public class EssentialProductsCart {
     private SimpleIntegerProperty lifetime;
     private SimpleDoubleProperty price;
 
-    public EssentialProductsCart(Product aProduct) {
-        //String[] splittetProduct = aProduct.split(";");
-
-
-
-    }
 
     public String getName() {
         return name.get();

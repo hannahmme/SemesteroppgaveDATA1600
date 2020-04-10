@@ -13,7 +13,7 @@ public class Cart {
     }
 
     public void addElement(Product etProduct) {
-        Register.add(etProduct);
+        Register.addAll(etProduct);
     }
 
 

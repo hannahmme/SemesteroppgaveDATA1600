@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -147,36 +148,61 @@ public class EnduserPageController implements Initializable{
 
 
     @FXML void addToCart(ActionEvent event) {
+        //setCartEmpty();
 
-        Product aProduct = createCartObjectFromGUI();
-        if(aProduct != null) {
-            aCart.addElement(aProduct);
-            // metode for å disable legg til knappen så man ikke får lagt til mer,
-            // men man må få endret på tableviewet på en eller annen måte
+        createCartObjectsFromGUI();
+        getTotalprice();
+    }
+
+
+    // meotde for å hente ut verdier fra pris-kolonnen og legge de sammen, for så å sette verdien til lbl
+    public void getTotalprice(){
+        double totalPrice = 0;
+
+        for(int i = 0; i<8; i++){
+            double a = Double.parseDouble(tableviewCart.getColumns().get(3).getCellObservableValue(i).getValue().toString());
+            totalPrice += a;
         }
+        lblTotalPrice.setText(String.valueOf(totalPrice));
+    }
+
+
+    // metode for å nullstille handlevognen hver gang man trykker oppdater, så få man bare inn en av hver komponent
+    public void setCartEmpty(){
+    }
+    
+    
+    private void createCartObjectsFromGUI() {
+        // sjekke om choicebox er tomt med en if-setning. hvordan?
+
+        String graphicCard = cBoxGraphicCard.getValue();
+        String memoryCard = cBoxMemorycard.getValue();
+        String harddrive = cBoxHarddrive.getValue();
+        String processor = cBoxProcessor.getValue();
+        String power = cBoxPower.getValue();
+        String soundcard = cBoxSoundcard.getValue();
+        String opticalDisk = cBoxOpticaldisk.getValue();
+        String color = cBoxColor.getValue();
+
+        addProduct(graphicCard, ProductCategories.GraphicCard);
+        addProduct(memoryCard, ProductCategories.Memorycard);
+        addProduct(harddrive, ProductCategories.Harddrive);
+        addProduct(processor, ProductCategories.Processor);
+        addProduct(power, ProductCategories.Power);
+        addProduct(soundcard, ProductCategories.Soundcard);
+        addProduct(opticalDisk, ProductCategories.OpticalDisk);
+        addProduct(color, ProductCategories.Color);
 
     }
 
-    private Product createCartObjectFromGUI() {
-        Product graphicCard;
-
-        String graphiccard = cBoxGraphicCard.getValue();
-        // sjekke om choicebox er tomt med en if-setning. hvordan?
-
-        // sjekke hvilken verdi hver choicebox har, og bruke denne til å hente pris osv til tableviewet
-
-        
-        // løkke og if-setning som finner riktig objekt i array og legger det til i handlekurven
-        for(int i = 0; i<ProductCategories.GraphicCard.size(); i++){
-            if(graphiccard.equals(ProductCategories.GraphicCard.keySet().toArray()[i].toString())){
-                graphicCard = ProductCategories.GraphicCard.get(graphiccard);
-                System.out.println(graphicCard);
+    public void addProduct(String aString, HashMap<String, Product> aHashMap){
+        Product aProduct = null;
+        for(int i = 0; i<aHashMap.size(); i++){
+            if(aString.equals(aHashMap.keySet().toArray()[i].toString())){
+                aProduct = aHashMap.get(aString);
             }
         }
-
-
-
-        return null;
+        aCart.addElement(aProduct);
     }
 
 

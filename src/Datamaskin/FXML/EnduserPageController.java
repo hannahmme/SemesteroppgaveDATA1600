@@ -217,5 +217,8 @@ public class EnduserPageController implements Initializable{
         aCart.addComponent(tableviewCart);
 
         setValuesToChoicebox();
+
+        // må sette prisen på varer hvis bruker går tilabke
+        //getTotalprice();
     }
 }

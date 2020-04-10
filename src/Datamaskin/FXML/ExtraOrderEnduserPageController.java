@@ -34,53 +34,23 @@ public class ExtraOrderEnduserPageController implements Initializable {
     private Component object5 = new Component("Monitor", "4k-skjerm", 2999, checkBox5);
     private Component object6 = new Component("Prosessor", "Beste CPU-en", 1599, checkBox6);
 
-    @FXML
-    private TextArea txtExtraComponentInfo;
+    @FXML private TextArea txtExtraComponentInfo;
+    @FXML private TableView<Component> tblCart;
+    @FXML private TableColumn<Component, String> cartName;
+    @FXML private TableColumn<Component, String> cartInfo;
+    @FXML private TableColumn<Component, Integer> cartPrice;
+    @FXML private TableView<Component> tblExtraComponent;
+    @FXML private TableColumn<Component, String> componentName;
+    @FXML private TableColumn<Component, String> componentInfo;
+    @FXML private TableColumn<Component, Double> componentPrice;
+    @FXML private TableColumn<Component, CheckBox> componentChosen;
+    @FXML private TableColumn<Component, CheckBox> cartCheck;
 
-    @FXML
-    private TableView<Component> tblCart;
-
-    @FXML
-    private TableColumn<Component, String> cartName;
-
-    @FXML
-    private TableColumn<Component, String> cartInfo;
-
-    @FXML
-    private TableColumn<Component, Integer> cartPrice;
-
-    @FXML
-    private TableView<Component> tblExtraComponent;
-
-    @FXML
-    private TableColumn<Component, String> componentName;
-
-    @FXML
-    private TableColumn<Component, String> componentInfo;
-
-    @FXML
-    private TableColumn<Component, Double> componentPrice;
-
-    @FXML
-    private TableColumn<Component, CheckBox> componentChosen;
-
-    @FXML
-    private TableColumn<Component, CheckBox> cartCheck;
-
-    @FXML
-    private Button btnSaveToCart;
-
-    @FXML
-    private Button btnGoToPay;
-
-    @FXML
-    private TextField txtTotalPay;
-
-    @FXML
-    private Button btnGoBack;
-
-    @FXML
-    private Button btnGoToMainpage;
+    @FXML private Button btnSaveToCart;
+    @FXML private Button btnGoToPay;
+    @FXML private TextField txtTotalPay;
+    @FXML private Button btnGoBack;
+    @FXML private Button btnGoToMainpage;
 
     private ObservableList<Component> selectedComponents = FXCollections.observableArrayList();
 
@@ -146,6 +116,12 @@ public class ExtraOrderEnduserPageController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("EnduserPage.fxml"));
         newScene.toEnduserPage(primaryStage,root);
         primaryStage.show();
+
+        // kaller metode for å velge riktige choiceboxer når man går tilbake
+
+        // kaller metode for å sette totalbeløpet på nytt
+
+
     }
 
     @FXML

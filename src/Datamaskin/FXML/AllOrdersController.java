@@ -1,6 +1,6 @@
 package Datamaskin.FXML;
 
-import Datamaskin.Order.Order;
+import Datamaskin.Order.FinalOrder;
 import Datamaskin.newScene;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,16 +14,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class AllOrdersController implements Initializable {
 
-    @FXML private TableView<Order> allOrders;
-    @FXML private TableColumn<String, Order> emailColumn;
-    @FXML private TableColumn<String, Order> orderIDColumn;
+    @FXML private TableView<FinalOrder> allOrders;
+    @FXML private TableColumn<String, FinalOrder> emailColumn;
+    @FXML private TableColumn<String, FinalOrder> orderIDColumn;
     // @FXML private TableColumn<Date, Order> orderDateColumn;
-    @FXML private TableColumn<Double, Order> totalPriceColumn;
+    @FXML private TableColumn<Double, FinalOrder> totalPriceColumn;
     @FXML private Button tilSuperbrukerside;
 
     //knappen "tilbake" tar brukeren med tilbake til menysiden for superbruker
@@ -41,6 +40,6 @@ public class AllOrdersController implements Initializable {
         // orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
         totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
 
-        EnduserSendOrderPageController.orderRegister.leggTilOrdre(allOrders);
+        EnduserSendOrderPageController.finalOrderRegister.leggTilOrdre(allOrders);
     }
 }

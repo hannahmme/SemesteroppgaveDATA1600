@@ -1,20 +1,19 @@
 package Datamaskin.Order;
 
-import Datamaskin.Order.Order;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 
-public class OrderRegister {
+public class FinalOrderRegister {
 
-    public transient static ObservableList<Order> OrdreRegister = FXCollections.observableArrayList();
+    public transient static ObservableList<FinalOrder> OrdreRegister = FXCollections.observableArrayList();
 
     public void leggTilOrdre(TableView tv) {
         tv.setItems(OrdreRegister);
     }
 
 
-    public void addElement(Order enOrdre) {
+    public void addElement(FinalOrder enOrdre) {
         OrdreRegister.add(enOrdre);
     }
 

@@ -7,14 +7,14 @@ import javafx.beans.property.SimpleStringProperty;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Order {
+public class FinalOrder {
 
     private transient SimpleStringProperty orderID;
     private transient SimpleStringProperty email;
     // private transient Date orderDate;
     private transient SimpleDoubleProperty totalPrice;
 
-    public Order (String orderID, String email, int totalPrice){
+    public FinalOrder(String orderID, String email, int totalPrice){
         this.orderID = new SimpleStringProperty(orderID);
         this.email = new SimpleStringProperty(email);
         // this.orderDate = orderDate;

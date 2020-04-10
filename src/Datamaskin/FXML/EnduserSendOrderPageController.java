@@ -2,10 +2,8 @@ package Datamaskin.FXML;
 
 import Datamaskin.Customer;
 import Datamaskin.Exceptions.InvalidEmailException;
-import Datamaskin.Order.Order;
-import Datamaskin.Order.OrderRegister;
-import Datamaskin.Product.Product;
-import Datamaskin.Product.ProductRegister;
+import Datamaskin.Order.FinalOrder;
+import Datamaskin.Order.FinalOrderRegister;
 import Datamaskin.newScene;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -57,13 +55,13 @@ public class EnduserSendOrderPageController {
         primaryStage.show();
     }
 
-    public static OrderRegister orderRegister = new OrderRegister();
+    public static FinalOrderRegister finalOrderRegister = new FinalOrderRegister();
 
     @FXML void sendOrder(ActionEvent event) throws IOException, InvalidEmailException {
-        Order anOrder = createOrderObjectFromGUI();
+        FinalOrder anFinalOrder = createOrderObjectFromGUI();
 
-        if(anOrder != null) {
-            orderRegister.addElement(anOrder);
+        if(anFinalOrder != null) {
+            finalOrderRegister.addElement(anFinalOrder);
             txtEpost.setText("");
         }
     }
@@ -76,7 +74,7 @@ public class EnduserSendOrderPageController {
     }
 
 
-    public Order createOrderObjectFromGUI(){
+    public FinalOrder createOrderObjectFromGUI(){
         String orderID;
         String email;
         int totalbeløp;
@@ -93,14 +91,14 @@ public class EnduserSendOrderPageController {
             orderID = generateOrderID();
             lblOrderSent.setText("Thank you for your order, here is your order ID: #" + orderID);
 
-            Order anOrder = new Order(orderID, email, totalbeløp);
+            FinalOrder anFinalOrder = new FinalOrder(orderID, email, totalbeløp);
 
             // setter knappene som disabled fordi bestillingen er gjennomført og man må starte på nytt
             btnSendOrder.setDisable(true);
             btnGoBack.setDisable(true);
 
             // returnerer ordren siden alt er riktig av input osv
-            return anOrder;
+            return anFinalOrder;
 
         } catch (InvalidEmailException e){
             lblOrderSent.setText("Order not sent, please put in a valid E-mail address");

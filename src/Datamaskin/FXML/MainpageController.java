@@ -1,5 +1,7 @@
 package Datamaskin.FXML;
 
+import Datamaskin.Customer;
+import Datamaskin.Exceptions.InvalidEmailException;
 import Datamaskin.newScene;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,8 +12,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.lang.reflect.Array;
 
 public class MainpageController {
+    public String eposten;
 
     @FXML private Button tilSluttbrukerside;
     @FXML private Button tilSuperbrukerside;
@@ -27,12 +31,14 @@ public class MainpageController {
         primaryStage.show();
     }
 
-    public static void checkEmail(String email){
+    // bruke denne med try/catch for å legge til en verdi som skal brukes for å filtrere userSpecific order
+    public void checkEmail() throws InvalidEmailException {
+        String email = txtEmail.getText();
+        Customer.validateEmail(email);
 
+        eposten = txtEmail.getText();
     }
-
-    @FXML private Button tilBrukerOrdreSide;
-
+    
 
     // metode som åpner ny scene til superbrukersiden
     @FXML void tilSluttbrukerside(ActionEvent event) throws IOException {
@@ -40,7 +46,6 @@ public class MainpageController {
         Parent root = FXMLLoader.load(getClass().getResource("EnduserPage.fxml"));
         newScene.toEnduserPage(primaryStage, root);
     }
-
 
     // metode som åpner ny scene til sluttbrukersiden
     @FXML void tilSuperbrukerside(ActionEvent event) throws IOException {

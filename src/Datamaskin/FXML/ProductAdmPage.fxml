@@ -49,13 +49,13 @@
       <TextField fx:id="txtDescription" layoutX="22.0" layoutY="217.0" prefHeight="98.0" prefWidth="187.0" />
       <TextField fx:id="txtLifetime" layoutX="85.0" layoutY="366.0" prefHeight="31.0" prefWidth="58.0" />
       <TextField fx:id="txtPrice" layoutX="90.0" layoutY="439.0" prefHeight="31.0" prefWidth="51.0" />
-      <Text layoutX="58.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Componentname" />
-      <Text layoutX="77.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
-      <Text layoutX="56.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lifetime (in years)" />
-      <Text layoutX="63.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price (in Kroner)" />
+      <Text layoutX="58.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Komponentnavn" />
+      <Text layoutX="30.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beskrivelse av komponent" />
+      <Text layoutX="75.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Levetid (i år)" />
+      <Text layoutX="83.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pris (i KR)" />
       <Label fx:id="wrongInput" layoutX="41.0" layoutY="584.0" prefHeight="21.0" prefWidth="150.0" />
       <ChoiceBox fx:id="cboxCategory" layoutX="40.0" layoutY="519.0" prefHeight="31.0" prefWidth="150.0" />
-      <Text layoutX="86.0" layoutY="514.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category" />
+      <Text layoutX="88.0" layoutY="514.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kategori" />
       <MenuButton fx:id="menuDropdown" layoutX="953.0" layoutY="14.0" mnemonicParsing="false" text="Menyvalg">
         <items>
           <MenuItem fx:id="saveToFile" mnemonicParsing="false" onAction="#saveToFile" text="Lagre til fil" />

@@ -46,11 +46,6 @@ public class UserspesificOrderController implements Initializable {
 
 
     // for å søke etter emailen til bruker skjult, så bare brukerens ordre kommer opp
-        public void checkEmail(){
-
-                // setter en sorteringsgreie så kun emailen som skrives inn kommer opp
-
-        }
 
 
     /*// kode for filtrering

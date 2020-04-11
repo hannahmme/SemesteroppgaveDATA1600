@@ -26,7 +26,6 @@ public class EnduserPageController implements Initializable{
 
     @FXML private Button btnGoBack;
     @FXML private Button btnGoToPay;
-    @FXML private Button btnAddToCart;
 
     // label som vi setter lik total pris på det som er valgt av essensielle komponenter
     @FXML private Label lblTotalPrice;
@@ -78,9 +77,6 @@ public class EnduserPageController implements Initializable{
     }
 
 
-    //liste over valgte produkter
-    private ObservableList<Component> cartList = FXCollections.observableArrayList();
-
     // knapp som sender bruker til neste side
     @FXML void loadPayment(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) btnGoToPay.getScene().getWindow();
@@ -109,7 +105,8 @@ public class EnduserPageController implements Initializable{
         }
     }
 
-/*
+// hvor hører denne til?
+    /*
     @FXML
     void getSelected(MouseEvent event) {
         if (checkBox1.isSelected()) {
@@ -127,6 +124,7 @@ public class EnduserPageController implements Initializable{
     }
 */
 
+    // hører denne til på en annen side?
     EventHandler checkBoxChanged = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
@@ -137,12 +135,19 @@ public class EnduserPageController implements Initializable{
         }
     };
 
+
     // under her er kode for å populere handlekurven
     private static Cart aCart = new Cart();
+    // må nullstille dette arrayet hvis bruker avbryter handleturen
+
 
     @FXML void addToCart(ActionEvent event) {
-        createCartObjectsFromGUI();
-        getTotalprice();
+        if(checkIfCboxValuesIsEmpty()){
+            lblError.setText("Husk å velge en komponent i alle choiceboksene!");
+        } else {
+            createCartObjectsFromGUI();
+            getTotalprice();
+        }
     }
 
 
@@ -157,10 +162,7 @@ public class EnduserPageController implements Initializable{
         lblTotalPrice.setText(String.valueOf(totalPrice));
     }
 
-
-    // metode for å nullstille handlevognen hver gang man trykker oppdater, så få man bare inn en av hver komponent
-    
-    
+    // metode for å slette gamle objekter og for å lage nye objekter som kommer an på valg i choiceboksene
     private void createCartObjectsFromGUI() {
         // sjekke om handlekurven allerede har komponenter, da må de slettes for å legge til nye komponenter som bruker vil endre til
         if (!Cart.Register.isEmpty()) {
@@ -202,9 +204,8 @@ public class EnduserPageController implements Initializable{
     }
 
 
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    // metode som kjøres umiddelbart hver gang denne scenen blir laget
+    @Override public void initialize(URL url, ResourceBundle rb) {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
         lifetimeColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
@@ -215,13 +216,11 @@ public class EnduserPageController implements Initializable{
         // setter eksempelinfo til choiceboksene
         setValuesToChoicebox();
 
-        // kaller metode for å velge riktige choiceboxer når man går tilbake
+        // kaller metode for å velge riktige choicebokser når man går tilbake
         if(!Cart.Register.isEmpty()) {
             setChosenChoicebox();
             getTotalprice();
         }
-
-
     }
 
 
@@ -231,6 +230,7 @@ public class EnduserPageController implements Initializable{
         return cBoxValue;
     }
 
+    // metode som bruker metoden over til å sette verdier til hver cBox
     public void setChosenChoicebox(){ ;
         cBoxGraphicCard.setValue(setAllChosenChoiceboxes(0));
         cBoxMemorycard.setValue(setAllChosenChoiceboxes(1));
@@ -240,10 +240,16 @@ public class EnduserPageController implements Initializable{
         cBoxSoundcard.setValue(setAllChosenChoiceboxes(5));
         cBoxOpticaldisk.setValue(setAllChosenChoiceboxes(6));
         cBoxColor.setValue(setAllChosenChoiceboxes(7));
-
-
-
     }
 
+    // metode for å sjekke om alle choiceboksene er valgt
+    public boolean checkIfCboxValuesIsEmpty(){
+        if(cBoxGraphicCard.getValue().equals("") || cBoxMemorycard.getValue().equals("") || cBoxHarddrive.getValue().equals("") ||
+        cBoxProcessor.getValue().equals("") || cBoxPower.getValue().equals("") || cBoxSoundcard.getValue().equals("") ||
+        cBoxOpticaldisk.getValue().equals("") || cBoxColor.getValue().equals("")){
+            return true;
+        }
+        return false;
+    }
 
 }

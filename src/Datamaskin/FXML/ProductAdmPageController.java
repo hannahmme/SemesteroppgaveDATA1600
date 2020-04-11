@@ -36,7 +36,9 @@ public class ProductAdmPageController implements Initializable{
 
     // metode for å lage kategoriene
     public void setData(){
-        cboxCategory.getItems().addAll("Skjermkort", "Minnekort", "Farge", "Andre produkter");
+        cboxCategory.getItems().addAll("Skjermkort", "Minnekort",
+                "Harddisk", "Prosessor", "Strømforsyning", "Lydkort",
+                "Optisk disk" , "Farge", "Andre produkter");
     }
 
     // konfigurerer tabellen
@@ -59,6 +61,7 @@ public class ProductAdmPageController implements Initializable{
         }
     }
 
+    // nullstiller tekstfelt når det blir lagt til et nytt produkt
     private void tømTxtFelt() {
         txtComponentname.setText("");
         txtDescription.setText("");
@@ -67,6 +70,7 @@ public class ProductAdmPageController implements Initializable{
         wrongInput.setText("");
     }
 
+    // sjekker inputfields for feil og legger til i array
     private Product createProductObjectFromGUI() {
         String name;
         String description;
@@ -127,7 +131,7 @@ public class ProductAdmPageController implements Initializable{
         setData();
     }
 
-        // kode for å komme tilbake til hovedmenyen for superbruker
+    // kode for å komme tilbake til hovedmenyen for superbruker
     @FXML void tilSuperbrukerside(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) tilSuperbrukerside.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));

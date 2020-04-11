@@ -140,7 +140,6 @@ public class EnduserPageController implements Initializable{
     // under her er kode for å populere handlekurven
     private static Cart aCart = new Cart();
 
-
     @FXML void addToCart(ActionEvent event) {
         createCartObjectsFromGUI();
         getTotalprice();
@@ -216,7 +215,35 @@ public class EnduserPageController implements Initializable{
         // setter eksempelinfo til choiceboksene
         setValuesToChoicebox();
 
-        // må sette prisen på varer hvis bruker går tilabke
-        //getTotalprice();
+        // kaller metode for å velge riktige choiceboxer når man går tilbake
+        if(!Cart.Register.isEmpty()) {
+            setChosenChoicebox();
+            getTotalprice();
+        }
+
+
     }
+
+
+    // metoder for å sette choicebox til riktig verdi utifra det brukeren allerede har valgt
+    public String setAllChosenChoiceboxes(int i){
+        String cBoxValue = tableviewCart.getColumns().get(0).getCellObservableValue(i).getValue().toString();
+        return cBoxValue;
+    }
+
+    public void setChosenChoicebox(){ ;
+        cBoxGraphicCard.setValue(setAllChosenChoiceboxes(0));
+        cBoxMemorycard.setValue(setAllChosenChoiceboxes(1));
+        cBoxHarddrive.setValue(setAllChosenChoiceboxes(2));
+        cBoxProcessor.setValue(setAllChosenChoiceboxes(3));
+        cBoxPower.setValue(setAllChosenChoiceboxes(4));
+        cBoxSoundcard.setValue(setAllChosenChoiceboxes(5));
+        cBoxOpticaldisk.setValue(setAllChosenChoiceboxes(6));
+        cBoxColor.setValue(setAllChosenChoiceboxes(7));
+
+
+
+    }
+
+
 }

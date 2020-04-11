@@ -117,9 +117,6 @@ public class ExtraOrderEnduserPageController implements Initializable {
         newScene.toEnduserPage(primaryStage,root);
         primaryStage.show();
 
-        // kaller metode for å velge riktige choiceboxer når man går tilbake
-
-        // kaller metode for å sette totalbeløpet på nytt
 
 
     }

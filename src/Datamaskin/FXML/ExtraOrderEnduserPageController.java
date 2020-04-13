@@ -1,5 +1,6 @@
 package Datamaskin.FXML;
 
+import Datamaskin.Cart.Cart;
 import Datamaskin.Component;
 import Datamaskin.Product.Product;
 import Datamaskin.newScene;
@@ -35,17 +36,22 @@ public class ExtraOrderEnduserPageController implements Initializable {
     private Component object5 = new Component("Monitor", "4k-skjerm", 2999, checkBox5);
     private Component object6 = new Component("Prosessor", "Beste CPU-en", 1599, checkBox6);
 
-    @FXML private TextArea txtExtraComponentInfo;
-    @FXML private TableView<Component> tblCart;
-    @FXML private TableColumn<Component, String> cartName;
-    @FXML private TableColumn<Component, String> cartInfo;
-    @FXML private TableColumn<Component, Integer> cartPrice;
 
+    //Handlekurv på høyre side
+    @FXML private TableView<Product> tableviewCart;
+    @FXML private TableColumn<Product, String> nameColumn;
+    @FXML private TableColumn<Product, String> descriptionColumn;
+    @FXML private TableColumn<Product, Integer> lifetimeColumn;
+    @FXML private TableColumn<Product, Double> priceColumn;
+
+    //Tableview på venstre side med ekstra komponenter
     @FXML private TableView<Component> tblExtraComponent;
     @FXML private TableColumn<Component, String> componentName;
     @FXML private TableColumn<Component, String> componentInfo;
     @FXML private TableColumn<Component, Double> componentPrice;
     @FXML private TableColumn<Component, CheckBox> componentChosen;
+
+
     @FXML private TableColumn<Component, CheckBox> cartCheck;
 
     @FXML private Button btnSaveToCart;
@@ -95,15 +101,10 @@ public class ExtraOrderEnduserPageController implements Initializable {
         updateCart();
         System.out.println(selectedComponents);
 
-        cartPrice.setCellValueFactory(new PropertyValueFactory<>("cartPrice"));
-        cartInfo.setCellValueFactory(new PropertyValueFactory<>("cartInfo"));
-        cartName.setCellValueFactory(new PropertyValueFactory<>("cartName"));
-        cartCheck.setCellValueFactory(new PropertyValueFactory<>("cartCheck"));
-        tblCart.setItems(selectedComponents);
     }
 
     @Override public void initialize(URL location, ResourceBundle resources) {
-        //liste over ekstra tilbehør med checkbokser.
+        //Tableview på venstre side med ekstra tilbehør
         ObservableList<Component> komponentList = FXCollections.observableArrayList();
         komponentList.addAll(object1, object2, object3, object4, object5, object6);
 
@@ -114,10 +115,21 @@ public class ExtraOrderEnduserPageController implements Initializable {
         componentChosen.setCellValueFactory(new PropertyValueFactory<>("checkbox"));
 
 
-        // setter totalprisen fra vinduet blir opprettet
-        //setTotalPrice();
+        //Handlekurven på høyre side lastes inn når siden lastes inn
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        lifetimeColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
+
+        Cart shoppingCart = new Cart();
+        shoppingCart.addComponent(tableviewCart);
+
+        //Setter riktig totaltpris ved innlasting av siden
+        updateTotalPriceLabel();
 
     }
+
+
 
     // går tilbake til forrige side for å se på valgte komponenter
     @FXML void goBack(ActionEvent event) throws IOException {
@@ -166,14 +178,14 @@ public class ExtraOrderEnduserPageController implements Initializable {
 
 
     // metode som setter den totale prisen basert på komponentene i arrayet
-    public void setTotalPrice(){
+    public void updateTotalPriceLabel(){
         double totalPrice = 0;
 
-        for(int i = 0; i<100; i++){
-            String b = tblCart.getColumns().get(3).getCellObservableValue(i).getValue().toString();
-            if(tblCart.getColumns().get(3).getCellObservableValue(i).getValue().toString() != null) {
-                double a = Double.parseDouble(b);
-                totalPrice += a;
+        for(int i = 0; i< tableviewCart.getColumns().size(); i++){
+            String priceColumn = tableviewCart.getColumns().get(3).getCellObservableValue(i).getValue().toString();
+            if(priceColumn != null) {
+                double price = Double.parseDouble(priceColumn);
+                totalPrice += price;
             }
         }
         lblTotalPrice.setText(String.valueOf(totalPrice));

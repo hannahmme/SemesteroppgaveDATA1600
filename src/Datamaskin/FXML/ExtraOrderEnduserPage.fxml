@@ -8,7 +8,8 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="758.0" prefWidth="1113.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.ExtraOrderEnduserPageController">
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<AnchorPane prefHeight="758.0" prefWidth="1113.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.ExtraOrderEnduserPageController">
    <children>
       <SplitPane dividerPositions="0.5354896675651393" layoutY="-5.0" prefHeight="800.0" prefWidth="1140.0">
         <items>
@@ -33,14 +34,30 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="765.0" prefWidth="511.0">
                <children>
                   <Button fx:id="btnGoToPay" layoutX="373.0" layoutY="727.0" mnemonicParsing="false" onAction="#goToPay" prefHeight="25.0" prefWidth="126.0" text="Gå til betaling" />
-                  <TableView fx:id="tblCart" layoutX="6.0" layoutY="14.0" prefHeight="672.0" prefWidth="514.0">
-                    <columns>
-                      <TableColumn fx:id="cartName" prefWidth="145.14285850524902" text="Produktnavn" />
-                      <TableColumn fx:id="cartInfo" prefWidth="180.0" text="Beskrivelse" />
-                        <TableColumn fx:id="cartPrice" prefWidth="89.0" text="Pris" />
-                        <TableColumn fx:id="cartCheck" prefWidth="96.0" text="CheckSjekk" />
-                    </columns>
-                  </TableView>
+                   <TableView fx:id="tableviewCart" layoutX="6.0" layoutY="14.0" prefHeight="672.0" prefWidth="514.0">
+                       <columns>
+                           <TableColumn fx:id="nameColumn" prefWidth="136.0" text="Produktnavn">
+                               <cellValueFactory>
+                                   <PropertyValueFactory property="Name" />
+                               </cellValueFactory>
+                           </TableColumn>
+                           <TableColumn fx:id="descriptionColumn" prefWidth="214.0" text="Beskrivelse">
+                               <cellValueFactory>
+                                   <PropertyValueFactory property="Description" />
+                               </cellValueFactory>
+                           </TableColumn>
+                           <TableColumn fx:id="lifetimeColumn" prefWidth="91.0" text="Levetid">
+                               <cellValueFactory>
+                                   <PropertyValueFactory property="Lifetime" />
+                               </cellValueFactory>
+                           </TableColumn>
+                           <TableColumn fx:id="priceColumn" prefWidth="93.0" text="Pris">
+                               <cellValueFactory>
+                                   <PropertyValueFactory property="Price" />
+                               </cellValueFactory>
+                           </TableColumn>
+                       </columns>
+                   </TableView>
                   <Label layoutX="-117.0" layoutY="137.0" prefHeight="17.0" prefWidth="306.0" text="Handlekurv:" />
                   <Label layoutX="15.0" layoutY="732.0" prefHeight="21.0" prefWidth="126.0" text="Totalt å betale:" />
                   <Label fx:id="lblTotalPrice" layoutX="141.0" layoutY="732.0" prefHeight="21.0" prefWidth="96.0" />

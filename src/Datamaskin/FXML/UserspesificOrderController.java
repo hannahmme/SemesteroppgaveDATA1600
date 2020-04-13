@@ -28,7 +28,7 @@ public class UserspesificOrderController implements Initializable {
         //knappen "tilbake" tar brukeren med tilbake til menysiden for superbruker
         @FXML void toMainpage(ActionEvent event) throws IOException {
             Stage primaryStage = (Stage) toMainpage.getScene().getWindow();
-            newScene.tilHovedside(primaryStage, FXMLLoader.load(getClass().getResource("Mainpage.fxml")));
+            newScene.toMainpage(primaryStage, FXMLLoader.load(getClass().getResource("Mainpage.fxml")));
         }
 
 
@@ -40,7 +40,7 @@ public class UserspesificOrderController implements Initializable {
         // orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
         totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
 
-        EnduserSendOrderPageController.finalOrderRegister.leggTilOrdre(allOrders);
+        EnduserSendOrderPageController.OrderRegister.leggTilOrdre(allOrders);
 
     }
 

@@ -1,23 +1,21 @@
 package Datamaskin.Order;
 
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class FinalOrder {
 
     private transient SimpleStringProperty orderID;
     private transient SimpleStringProperty email;
-    // private transient Date orderDate;
+    private transient LocalDate orderDate = LocalDate.now();
     private transient SimpleDoubleProperty totalPrice;
 
-    public FinalOrder(String orderID, String email, int totalPrice){
+    public FinalOrder(String orderID, String email, LocalDate orderDate, int totalPrice){
         this.orderID = new SimpleStringProperty(orderID);
         this.email = new SimpleStringProperty(email);
-        // this.orderDate = orderDate;
+        this.orderDate = orderDate;
         this.totalPrice = new SimpleDoubleProperty(totalPrice);
     }
 
@@ -34,6 +32,13 @@ public class FinalOrder {
     public void setEmail(String Email) {
         this.email = new SimpleStringProperty(Email);
     }
+
+    /*public int getOrderDate() {
+        return orderDate.get(LocalDate.now());
+    }
+    public void setOrderDate(double OrderDate) {
+        this.orderDate = new LocalDate(OrderDate);
+    }*/
 
     public double getTotalPrice() {
         return totalPrice.get();

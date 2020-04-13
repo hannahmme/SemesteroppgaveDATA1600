@@ -100,7 +100,7 @@ public class EnduserPageController implements Initializable{
             //legger inn metoden for å åpne tidligere side (forside) - Hannah
             Stage primaryStage = (Stage) btnGoBack.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
-            newScene.tilHovedside(primaryStage, root);
+            newScene.toMainpage(primaryStage, root);
             primaryStage.show();
         }
     }

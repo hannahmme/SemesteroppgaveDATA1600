@@ -2,6 +2,7 @@ package Datamaskin.FXML;
 
 import Datamaskin.Exceptions.InvalidLifetimeException;
 import Datamaskin.Exceptions.InvalidPriceException;
+import Datamaskin.Filbehandling.SaveToBinaryFile;
 import Datamaskin.Product.ProductCategories;
 import Datamaskin.Product.ProductRegister;
 import Datamaskin.Product.Product;
@@ -135,7 +136,7 @@ public class ProductAdmPageController implements Initializable{
     @FXML void tilSuperbrukerside(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) tilSuperbrukerside.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
-        newScene.tilSuperbrukerside(primaryStage, root);
+        newScene.toSuperuserpage(primaryStage, root);
     }
 
 
@@ -147,5 +148,6 @@ public class ProductAdmPageController implements Initializable{
 
     @FXML void saveToFile(ActionEvent event) {
 
+        SaveToBinaryFile.readFile("Hei");
     }
 }

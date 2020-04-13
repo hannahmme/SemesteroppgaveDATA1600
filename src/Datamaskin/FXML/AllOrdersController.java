@@ -23,13 +23,13 @@ public class AllOrdersController implements Initializable {
     @FXML private TableColumn<String, FinalOrder> orderIDColumn;
     // @FXML private TableColumn<Date, Order> orderDateColumn;
     @FXML private TableColumn<Double, FinalOrder> totalPriceColumn;
-    @FXML private Button tilSuperbrukerside;
+    @FXML private Button toSuperuserpage;
 
     //knappen "tilbake" tar brukeren med tilbake til menysiden for superbruker
-    @FXML void tilSuperbrukerside(ActionEvent event) throws IOException {
-        Stage primaryStage = (Stage) tilSuperbrukerside.getScene().getWindow();
+    @FXML void toSuperuserpage(ActionEvent event) throws IOException {
+        Stage primaryStage = (Stage) toSuperuserpage.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
-        newScene.tilSuperbrukerside(primaryStage, root);
+        newScene.toSuperuserpage(primaryStage, root);
     }
 
     // metoder for å legge inn ordreregisteret på denne siden
@@ -40,6 +40,6 @@ public class AllOrdersController implements Initializable {
         // orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
         totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
 
-        EnduserSendOrderPageController.finalOrderRegister.leggTilOrdre(allOrders);
+        EnduserSendOrderPageController.OrderRegister.leggTilOrdre(allOrders);
     }
 }

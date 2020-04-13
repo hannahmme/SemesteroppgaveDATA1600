@@ -136,7 +136,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
 
             Stage primaryStage = (Stage) btnGoToMainpage.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
-            newScene.tilHovedside(primaryStage, root);
+            newScene.toMainpage(primaryStage, root);
             primaryStage.show();
         }
     }

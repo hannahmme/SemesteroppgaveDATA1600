@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Optional;
 
 public class EnduserSendOrderPageController {
@@ -31,7 +32,7 @@ public class EnduserSendOrderPageController {
         if(btnSendOrder.isDisabled()){
             Stage primaryStage = (Stage) btnGoToMainpage.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
-            newScene.tilHovedside(primaryStage, root);
+            newScene.toMainpage(primaryStage, root);
         } else {
             //Man får en advarsel om at hvis man går til hovedsiden, vil bestillingen avsluttes - Hannah
             Alert alert = new Alert(Alert.AlertType.NONE);
@@ -45,7 +46,7 @@ public class EnduserSendOrderPageController {
             if (userAnswer.get() == buttonYes) {
                 Stage primaryStage = (Stage) btnGoToMainpage.getScene().getWindow();
                 Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
-                newScene.tilHovedside(primaryStage, root);
+                newScene.toMainpage(primaryStage, root);
             }
         }
     }
@@ -58,13 +59,13 @@ public class EnduserSendOrderPageController {
         primaryStage.show();
     }
 
-    @FXML private TableView<?> finalOrderRegister;
-    @FXML private TableColumn<?, ?> nameColumn;
-    @FXML private TableColumn<?, ?> priceColumn;
-
-
-
+    @FXML private TableView<FinalOrder> finalOrderRegister;
+    @FXML private TableColumn<FinalOrder, String> nameColumn;
+    @FXML private TableColumn<FinalOrder, String> priceColumn;
+    
+    
     public static FinalOrderRegister OrderRegister = new FinalOrderRegister();
+
 
     @FXML void sendOrder(ActionEvent event) throws IOException, InvalidEmailException {
         FinalOrder anFinalOrder = createOrderObjectFromGUI();
@@ -97,11 +98,14 @@ public class EnduserSendOrderPageController {
             // henter totalbeløpet til bestillingen
             totalbeløp = 200;
 
+            // henter datoen
+            LocalDate date = LocalDate.now();
+
             //lager en ordreID for bestillingen og viser den til bruker
             orderID = generateOrderID();
             lblOrderSent.setText("Thank you for your order, here is your order ID: " + orderID);
 
-            FinalOrder anFinalOrder = new FinalOrder(orderID, email, totalbeløp);
+            FinalOrder anFinalOrder = new FinalOrder(orderID, email, date, totalbeløp);
 
             // setter knappene som disabled fordi bestillingen er gjennomført og man må starte på nytt
             btnSendOrder.setDisable(true);
@@ -119,6 +123,10 @@ public class EnduserSendOrderPageController {
         return null;
 
     }
+
+
+
+
 
 }
 

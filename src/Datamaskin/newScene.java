@@ -10,7 +10,7 @@ import java.io.IOException;
 public class newScene {
 
     // metode for å lage en ny scene.
-    public static void tilHovedside(Stage primaryStage, Parent FXMLString) throws IOException {
+    public static void toMainpage(Stage primaryStage, Parent FXMLString) throws IOException {
         Parent root = FXMLString;
         primaryStage.setTitle("Konfigurasjonssystem for datamaskiner");
         primaryStage.setScene(new Scene(root, 1100, 500));
@@ -24,13 +24,12 @@ public class newScene {
         primaryStage.show();
     }
 
-    public static void tilSuperbrukerside(Stage primaryStage, Parent FXMLString) throws IOException {
+    public static void toSuperuserpage(Stage primaryStage, Parent FXMLString) throws IOException {
         Parent root = FXMLString;
         primaryStage.setTitle("Hei Superbruker");
         primaryStage.setScene(new Scene(root, 1200, 800));
         primaryStage.show();
     }
-
 
     public static void toEnduserPage(Stage primaryStage, Parent FXMLString) throws IOException {
         Parent root = FXMLString;
@@ -50,15 +49,7 @@ public class newScene {
     public static void toEnduserSendOrderPage(Stage primaryStage, Parent FXMLString) throws IOException {
         Parent root = FXMLString;
         primaryStage.setTitle("Fullfør bestilling");
-        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setScene(new Scene(root, 1020, 725));
         primaryStage.show();
     }
-
-
-
-
-
-
-
-
 }

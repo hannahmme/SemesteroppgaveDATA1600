@@ -60,7 +60,7 @@ public class MainpageController {
             try {
                 Stage primaryStage = (Stage) tilSuperbrukerside.getScene().getWindow();
                 Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
-                newScene.tilSuperbrukerside(primaryStage, root);
+                newScene.toSuperuserpage(primaryStage, root);
             } catch (Exception e) {
                 e.printStackTrace();
             }

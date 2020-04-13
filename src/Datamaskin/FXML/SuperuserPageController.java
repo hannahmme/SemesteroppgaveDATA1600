@@ -23,7 +23,7 @@ public class SuperuserPageController {
     @FXML void tilHovedside(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) tilHovedside.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
-        newScene.tilHovedside(primaryStage, root);
+        newScene.toMainpage(primaryStage, root);
     }
 
 

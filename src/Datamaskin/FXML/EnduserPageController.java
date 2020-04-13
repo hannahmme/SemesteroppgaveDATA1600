@@ -32,10 +32,10 @@ public class EnduserPageController implements Initializable{
     @FXML private Label lblError;
 
     @FXML private TableView<Product> tableviewCart;
-    @FXML private TableColumn<String, Product> nameColumn;
-    @FXML private TableColumn<String, Product> descriptionColumn;
-    @FXML private TableColumn<Integer, Product> lifetimeColumn;
-    @FXML private TableColumn<Double, Product> priceColumn;
+    @FXML private TableColumn<Product, String> nameColumn;
+    @FXML private TableColumn<Product, String> descriptionColumn;
+    @FXML private TableColumn<Product, Integer> lifetimeColumn;
+    @FXML private TableColumn<Product, Double> priceColumn;
 
     // choicebox som skal populeres med arrays lagret i ProductAdmPage
     @FXML private ChoiceBox<String> cBoxGraphicCard;

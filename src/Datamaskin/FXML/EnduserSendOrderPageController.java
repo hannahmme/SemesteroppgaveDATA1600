@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -99,7 +100,7 @@ public class EnduserSendOrderPageController {
             totalbeløp = 200;
 
             // henter datoen
-            LocalDate date = LocalDate.now();
+            Date date = Date.valueOf(LocalDate.now());
 
             //lager en ordreID for bestillingen og viser den til bruker
             orderID = generateOrderID();

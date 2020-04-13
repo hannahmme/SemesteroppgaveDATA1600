@@ -13,6 +13,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class UserspesificOrderController implements Initializable {
@@ -22,8 +24,8 @@ public class UserspesificOrderController implements Initializable {
         @FXML private TableView<FinalOrder> allOrders;
         @FXML private TableColumn<FinalOrder, String> emailColumn;
         @FXML private TableColumn<FinalOrder, String> orderIDColumn;
-        // @FXML private TableColumn<Order, Date> orderDateColumn;
-        @FXML private TableColumn<Double, FinalOrder> totalPriceColumn;
+        @FXML private TableColumn<FinalOrder, LocalDate> orderDateColumn;
+        @FXML private TableColumn<FinalOrder, Double> totalPriceColumn;
 
         //knappen "tilbake" tar brukeren med tilbake til menysiden for superbruker
         @FXML void toMainpage(ActionEvent event) throws IOException {
@@ -37,7 +39,7 @@ public class UserspesificOrderController implements Initializable {
         public void initialize(URL url, ResourceBundle rb) {
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
         orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("OrderID"));
-        // orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
+        orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("OrderDate"));
         totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
 
         EnduserSendOrderPageController.OrderRegister.leggTilOrdre(allOrders);

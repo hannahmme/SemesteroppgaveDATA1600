@@ -1,6 +1,7 @@
 package Datamaskin.FXML;
 
 import Datamaskin.Component;
+import Datamaskin.Product.Product;
 import Datamaskin.newScene;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,6 +40,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
     @FXML private TableColumn<Component, String> cartName;
     @FXML private TableColumn<Component, String> cartInfo;
     @FXML private TableColumn<Component, Integer> cartPrice;
+
     @FXML private TableView<Component> tblExtraComponent;
     @FXML private TableColumn<Component, String> componentName;
     @FXML private TableColumn<Component, String> componentInfo;
@@ -48,9 +50,10 @@ public class ExtraOrderEnduserPageController implements Initializable {
 
     @FXML private Button btnSaveToCart;
     @FXML private Button btnGoToPay;
-    @FXML private TextField txtTotalPay;
     @FXML private Button btnGoBack;
     @FXML private Button btnGoToMainpage;
+
+    @FXML private Label lblTotalPrice;
 
     private ObservableList<Component> selectedComponents = FXCollections.observableArrayList();
 
@@ -83,9 +86,12 @@ public class ExtraOrderEnduserPageController implements Initializable {
         }
     }
 
+
     //metode som legger til elementer i handlekurven, dersom de er huket av. (Funker ikke helt enda)
     @FXML
     void addToCart(ActionEvent event) {
+        //addEssentialComp();
+
         updateCart();
         System.out.println(selectedComponents);
 
@@ -96,8 +102,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
         tblCart.setItems(selectedComponents);
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    @Override public void initialize(URL location, ResourceBundle resources) {
         //liste over ekstra tilbehør med checkbokser.
         ObservableList<Component> komponentList = FXCollections.observableArrayList();
         komponentList.addAll(object1, object2, object3, object4, object5, object6);
@@ -107,22 +112,25 @@ public class ExtraOrderEnduserPageController implements Initializable {
         componentName.setCellValueFactory(new PropertyValueFactory<>("componentName"));
         componentPrice.setCellValueFactory(new PropertyValueFactory<>("componentPrice"));
         componentChosen.setCellValueFactory(new PropertyValueFactory<>("checkbox"));
+
+
+        // setter totalprisen fra vinduet blir opprettet
+        //setTotalPrice();
+
     }
 
-
-    @FXML
-    void goBack(ActionEvent event) throws IOException {
+    // går tilbake til forrige side for å se på valgte komponenter
+    @FXML void goBack(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) btnGoBack.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("EnduserPage.fxml"));
         newScene.toEnduserPage(primaryStage,root);
         primaryStage.show();
 
-
-
     }
 
-    @FXML
-    void goToMainpage(ActionEvent event) throws IOException {
+
+    // går tilbake til hovedsiden + alert
+    @FXML void goToMainpage(ActionEvent event) throws IOException {
         //Man får en advarsel om at hvis man går til hovedsiden, vil bestillingen avsluttes - Hannah
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle("Vent litt...");
@@ -141,13 +149,39 @@ public class ExtraOrderEnduserPageController implements Initializable {
         }
     }
 
-    @FXML
-    void goToPay(ActionEvent event) throws IOException{
+
+    // går videre til betalingssiden
+    @FXML void goToPay(ActionEvent event) throws IOException{
         Stage primaryStage = (Stage) btnGoToPay.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("EnduserSendOrderPage.fxml"));
         newScene.toEnduserSendOrderPage(primaryStage,root);
         primaryStage.show();
+    }
+
+    // metode for å legge til essentsielle komponenter fra forrige sider i arrayet
+    public void addEssentialComp(){
+
 
     }
+
+
+    // metode som setter den totale prisen basert på komponentene i arrayet
+    public void setTotalPrice(){
+        double totalPrice = 0;
+
+        for(int i = 0; i<100; i++){
+            String b = tblCart.getColumns().get(3).getCellObservableValue(i).getValue().toString();
+            if(tblCart.getColumns().get(3).getCellObservableValue(i).getValue().toString() != null) {
+                double a = Double.parseDouble(b);
+                totalPrice += a;
+            }
+        }
+        lblTotalPrice.setText(String.valueOf(totalPrice));
+
+    }
+
+
+
+
 
 }

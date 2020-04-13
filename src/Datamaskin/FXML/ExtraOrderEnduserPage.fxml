@@ -6,45 +6,44 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="661.0" prefWidth="948.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.ExtraOrderEnduserPageController">
+<AnchorPane prefHeight="758.0" prefWidth="1113.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.ExtraOrderEnduserPageController">
    <children>
-      <SplitPane dividerPositions="0.5165394402035624" layoutX="-4.0" layoutY="-5.0" orientation="VERTICAL" prefHeight="650.0" prefWidth="906.0">
+      <SplitPane dividerPositions="0.5354896675651393" layoutY="-5.0" prefHeight="800.0" prefWidth="1140.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="331.0" prefWidth="905.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="769.0" prefWidth="152.0">
                <children>
-                  <TextArea fx:id="txtExtraComponentInfo" layoutX="527.0" layoutY="66.0" prefHeight="199.0" prefWidth="343.0" />
-                  <TableView fx:id="tblExtraComponent" layoutX="26.0" layoutY="66.0" prefHeight="199.0" prefWidth="435.0">
+                  <Button fx:id="btnGoBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="126.0" text="Gå tilbake" />
+                  <TextArea fx:id="txtExtraComponentInfo" layoutX="16.0" layoutY="448.0" prefHeight="241.0" prefWidth="548.0" />
+                  <Label layoutX="146.0" layoutY="89.0" prefHeight="27.0" prefWidth="319.0" text="Trengte du noe ekstra tilbehør? Finn det her!" />
+                  <Label layoutX="242.0" layoutY="427.0" prefHeight="21.0" prefWidth="96.0" text="Produktinfo: " />
+                  <Button fx:id="btnSaveToCart" layoutX="155.0" layoutY="715.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="31.0" prefWidth="283.0" text="Legg til valgte produkter i handlekurv" />
+                  <TableView fx:id="tblExtraComponent" layoutX="14.0" layoutY="125.0" prefHeight="275.0" prefWidth="548.0">
                     <columns>
-                      <TableColumn fx:id="componentName" prefWidth="75.0" text="Komponent" />
-                      <TableColumn fx:id="componentInfo" prefWidth="237.14282989501953" text="Beskrivelse" />
-                        <TableColumn fx:id="componentPrice" prefWidth="81.71429443359375" text="Pris" />
-                        <TableColumn fx:id="componentChosen" prefWidth="38.2857666015625" text="Valgt" />
+                      <TableColumn fx:id="componentName" prefWidth="108.0" text="Komponent" />
+                      <TableColumn fx:id="componentInfo" prefWidth="323.0" text="Beskrivelse" />
+                        <TableColumn fx:id="componentPrice" prefWidth="64.0" text="Pris" />
+                        <TableColumn fx:id="componentChosen" prefWidth="52.0" text="Valgt" />
                     </columns>
                   </TableView>
-                  <Label layoutX="26.0" layoutY="14.0" prefHeight="27.0" prefWidth="270.0" text="Trengte du noe ekstra tilbehør? Finn det her!" />
-                  <Label layoutX="527.0" layoutY="19.0" prefHeight="17.0" prefWidth="262.0" text="Produktinfo: " />
-                  <Button fx:id="btnSaveToCart" layoutX="527.0" layoutY="278.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="25.0" prefWidth="171.0" text="Legg til handlekurv" />
+                  <Button fx:id="btnGoToMainpage" layoutX="190.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToMainpage" prefHeight="31.0" prefWidth="155.0" text="Gå til hovedsiden" />
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="329.0" prefWidth="905.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="765.0" prefWidth="511.0">
                <children>
-                  <TableView fx:id="tblCart" layoutX="25.0" layoutY="55.0" prefHeight="200.0" prefWidth="514.0">
+                  <Button fx:id="btnGoToPay" layoutX="373.0" layoutY="727.0" mnemonicParsing="false" onAction="#goToPay" prefHeight="25.0" prefWidth="126.0" text="Gå til betaling" />
+                  <TableView fx:id="tblCart" layoutX="6.0" layoutY="14.0" prefHeight="672.0" prefWidth="514.0">
                     <columns>
-                      <TableColumn fx:id="cartName" prefWidth="145.14285850524902" text="Produkt" />
-                      <TableColumn fx:id="cartInfo" prefWidth="206.8571014404297" text="Info" />
-                        <TableColumn fx:id="cartPrice" prefWidth="82.857177734375" text="Pris" />
-                        <TableColumn fx:id="cartCheck" prefWidth="75.0" text="CheckSjekk" />
+                      <TableColumn fx:id="cartName" prefWidth="145.14285850524902" text="Produktnavn" />
+                      <TableColumn fx:id="cartInfo" prefWidth="180.0" text="Beskrivelse" />
+                        <TableColumn fx:id="cartPrice" prefWidth="89.0" text="Pris" />
+                        <TableColumn fx:id="cartCheck" prefWidth="96.0" text="CheckSjekk" />
                     </columns>
                   </TableView>
-                  <Label layoutX="25.0" layoutY="24.0" prefHeight="17.0" prefWidth="306.0" text="Handlekurv:" />
-                  <Button fx:id="btnGoToPay" layoutX="745.0" layoutY="262.0" mnemonicParsing="false" onAction="#goToPay" prefHeight="25.0" prefWidth="126.0" text="Gå til betaling" />
-                  <Label layoutX="197.0" layoutY="266.0" prefHeight="17.0" prefWidth="91.0" text="Totalt å betale:" />
-                  <TextField fx:id="txtTotalPay" layoutX="311.0" layoutY="262.0" />
-                  <Button fx:id="btnGoBack" layoutX="597.0" layoutY="262.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="126.0" text="Gå tilbake" />
-                  <Button fx:id="btnGoToMainpage" layoutX="745.0" layoutY="28.0" mnemonicParsing="false" onAction="#goToMainpage" prefHeight="25.0" prefWidth="126.0" text="Gå til hovedsiden" />
+                  <Label layoutX="-117.0" layoutY="137.0" prefHeight="17.0" prefWidth="306.0" text="Handlekurv:" />
+                  <Label layoutX="15.0" layoutY="732.0" prefHeight="21.0" prefWidth="126.0" text="Totalt å betale:" />
+                  <Label fx:id="lblTotalPrice" layoutX="141.0" layoutY="732.0" prefHeight="21.0" prefWidth="96.0" />
                </children>
             </AnchorPane>
         </items>

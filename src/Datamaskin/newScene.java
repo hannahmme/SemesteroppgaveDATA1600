@@ -34,22 +34,21 @@ public class newScene {
     public static void toEnduserPage(Stage primaryStage, Parent FXMLString) throws IOException {
         Parent root = FXMLString;
         primaryStage.setTitle("Konfigurer essensielle deler til din datamaskin");
-        primaryStage.setScene(new Scene(root, 1350, 800));
+        primaryStage.setScene(new Scene(root, 1320, 815));
         primaryStage.show();
     }
 
     public static void toExtraOrderEnduserPage(Stage primaryStage, Parent FXMLString) throws IOException {
         Parent root = FXMLString;
         primaryStage.setTitle("Legg til ekstra tilbehør");
-        primaryStage.setScene(new Scene(root, 950, 700));
+        primaryStage.setScene(new Scene(root, 1140, 800));
         primaryStage.show();
-
     }
 
     public static void toEnduserSendOrderPage(Stage primaryStage, Parent FXMLString) throws IOException {
         Parent root = FXMLString;
         primaryStage.setTitle("Fullfør bestilling");
-        primaryStage.setScene(new Scene(root, 1020, 725));
+        primaryStage.setScene(new Scene(root, 1040, 700));
         primaryStage.show();
     }
 }

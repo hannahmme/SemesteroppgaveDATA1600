@@ -10,81 +10,69 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="833.0" prefWidth="1331.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.EnduserPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="815.0" prefWidth="1320.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.EnduserPageController">
    <children>
-      <SplitPane dividerPositions="0.20751761942051683" layoutX="28.0" layoutY="51.0" prefHeight="738.0" prefWidth="1279.0">
+      <SplitPane dividerPositions="0.5606891151135474" layoutX="-3.0" layoutY="-5.0" prefHeight="826.0" prefWidth="1329.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="755.0" prefWidth="451.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="705.0" prefWidth="712.0">
                <children>
-                  <Label layoutX="20.0" layoutY="23.0" prefHeight="39.0" prefWidth="247.0" text="Essensielle deler til din datamaskin:" />
-                  <ChoiceBox id="Velg her" fx:id="cBoxGraphicCard" layoutX="20.0" layoutY="107.0" prefWidth="150.0" />
-                  <ChoiceBox fx:id="cBoxMemorycard" layoutX="20.0" layoutY="178.0" prefWidth="150.0" />
-                  <Label layoutX="21.0" layoutY="78.0" prefHeight="17.0" prefWidth="140.0" text="Skjermkort" />
-                  <Label layoutX="21.0" layoutY="154.0" prefHeight="17.0" prefWidth="149.0" text="Minnekort" />
-                  <ChoiceBox fx:id="cBoxHarddrive" layoutX="20.0" layoutY="249.0" prefWidth="150.0" />
-                  <Label layoutX="20.0" layoutY="223.0" prefHeight="17.0" prefWidth="149.0" text="Harddisk" />
-                  <ChoiceBox fx:id="cBoxProcessor" layoutX="20.0" layoutY="317.0" prefWidth="150.0" />
-                  <Label layoutX="21.0" layoutY="293.0" prefHeight="17.0" prefWidth="149.0" text="Prosessor" />
-                  <ChoiceBox fx:id="cBoxPower" layoutX="21.0" layoutY="393.0" prefWidth="150.0" />
-                  <ChoiceBox fx:id="cBoxSoundcard" layoutX="20.0" layoutY="464.0" prefWidth="150.0" />
-                  <Label layoutX="19.0" layoutY="440.0" prefHeight="17.0" prefWidth="149.0" text="Lydkort" />
-                  <ChoiceBox fx:id="cBoxOpticaldisk" layoutX="21.0" layoutY="535.0" prefWidth="150.0" />
-                  <Label layoutX="19.0" layoutY="509.0" prefHeight="17.0" prefWidth="150.0" text="Optisk disk" />
-                  <ChoiceBox fx:id="cBoxColor" layoutX="19.0" layoutY="603.0" prefWidth="150.0" />
-                  <Label layoutX="19.0" layoutY="579.0" prefHeight="17.0" prefWidth="149.0" text="Farge" />
-                  <Label layoutX="21.0" layoutY="364.0" prefHeight="17.0" prefWidth="149.0" text="Strømforsyning" />
+                  <Label layoutX="17.0" layoutY="134.0" prefHeight="21.0" prefWidth="247.0" text="Essensielle deler til din datamaskin:" />
+                  <ChoiceBox id="Velg her" fx:id="cBoxGraphicCard" layoutX="17.0" layoutY="196.0" prefWidth="150.0" />
+                  <ChoiceBox fx:id="cBoxMemorycard" layoutX="16.0" layoutY="265.0" prefWidth="150.0" />
+                  <Label layoutX="21.0" layoutY="174.0" prefHeight="17.0" prefWidth="140.0" text="Skjermkort" />
+                  <Label layoutX="17.0" layoutY="244.0" prefHeight="17.0" prefWidth="149.0" text="Minnekort" />
+                  <ChoiceBox fx:id="cBoxHarddrive" layoutX="17.0" layoutY="336.0" prefWidth="150.0" />
+                  <Label layoutX="17.0" layoutY="315.0" prefHeight="17.0" prefWidth="149.0" text="Harddisk" />
+                  <ChoiceBox fx:id="cBoxProcessor" layoutX="16.0" layoutY="404.0" prefWidth="150.0" />
+                  <Label layoutX="17.0" layoutY="383.0" prefHeight="17.0" prefWidth="149.0" text="Prosessor" />
+                  <ChoiceBox fx:id="cBoxPower" layoutX="16.0" layoutY="471.0" prefWidth="150.0" />
+                  <ChoiceBox fx:id="cBoxSoundcard" layoutX="16.0" layoutY="535.0" prefWidth="150.0" />
+                  <Label layoutX="17.0" layoutY="514.0" prefHeight="17.0" prefWidth="149.0" text="Lydkort" />
+                  <ChoiceBox fx:id="cBoxOpticaldisk" layoutX="16.0" layoutY="602.0" prefWidth="150.0" />
+                  <Label layoutX="16.0" layoutY="581.0" prefHeight="17.0" prefWidth="150.0" text="Optisk disk" />
+                  <ChoiceBox fx:id="cBoxColor" layoutX="16.0" layoutY="668.0" prefWidth="150.0" />
+                  <Label layoutX="19.0" layoutY="647.0" prefHeight="17.0" prefWidth="149.0" text="Farge" />
+                  <Label layoutX="21.0" layoutY="450.0" prefHeight="17.0" prefWidth="149.0" text="Strømforsyning" />
+                  <Button fx:id="btnAddToCart" layoutX="310.0" layoutY="699.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="82.0" prefWidth="398.0" text="Bygg pc med valgte komponenter/ oppdater handlekurv" />
+                  <TextArea layoutX="345.0" layoutY="174.0" prefHeight="354.0" prefWidth="329.0" />
+                  <Label layoutX="435.0" layoutY="144.0" prefHeight="21.0" prefWidth="149.0" text="Produktinformasjon:" />
+                  <Label fx:id="lblError" layoutX="336.0" layoutY="566.0" prefHeight="134.0" prefWidth="347.0" />
+                  <Button fx:id="btnGoBack" layoutX="10.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="33.0" prefWidth="163.0" text="Tilbake til forside" />
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="1064.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="813.0" prefWidth="582.0">
                <children>
-                  <SplitPane dividerPositions="0.41771228479719874" layoutY="-1.0" prefHeight="738.0" prefWidth="1002.0">
-                    <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="386.0" prefWidth="177.0">
-                           <children>
-                              <Button fx:id="btnAddToCart" layoutX="7.0" layoutY="459.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="82.0" prefWidth="398.0" text="Bygg pc med valgte komponenter/ oppdater handlekurv" />
-                              <TextArea layoutX="32.0" layoutY="83.0" prefHeight="335.0" prefWidth="329.0" />
-                              <Label layoutX="32.0" layoutY="39.0" prefHeight="17.0" prefWidth="271.0" text="Produktinformasjon:" />
-                              <Label fx:id="lblError" layoutX="28.0" layoutY="571.0" prefHeight="134.0" prefWidth="347.0" />
-                           </children>
-                        </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="737.0" prefWidth="673.0">
-                           <children>
-                              <TableView fx:id="tableviewCart" layoutX="24.0" layoutY="84.0" prefHeight="430.0" prefWidth="535.0">
-                                <columns>
-                                  <TableColumn fx:id="nameColumn" prefWidth="136.0" text="Produktnavn">
-                                    <cellValueFactory>
-                                        <PropertyValueFactory property="Name" />
-                                    </cellValueFactory>
-                                  </TableColumn>
-                                  <TableColumn fx:id="descriptionColumn" prefWidth="214.0" text="Beskrivelse">
-                                    <cellValueFactory>
-                                        <PropertyValueFactory property="Description" />
-                                    </cellValueFactory>
-                                  </TableColumn>
-                                  <TableColumn fx:id="lifetimeColumn" prefWidth="91.0" text="Levetid">
-                                    <cellValueFactory>
-                                        <PropertyValueFactory property="Lifetime" />
-                                    </cellValueFactory>
-                                  </TableColumn>
-                                  <TableColumn fx:id="priceColumn" prefWidth="93.0" text="Pris">
-                                    <cellValueFactory>
-                                        <PropertyValueFactory property="Price" />
-                                    </cellValueFactory>
-                                  </TableColumn>
-                                </columns>
-                              </TableView>
-                              <Label layoutX="24.0" layoutY="30.0" prefHeight="33.0" prefWidth="247.0" text="Her er dine valgte komponenter:" />
-                              <Label layoutX="376.0" layoutY="566.0" prefHeight="21.0" prefWidth="109.0" text="Totalt å betale:" />
-                              <Button fx:id="btnGoToPay" layoutX="376.0" layoutY="678.0" mnemonicParsing="false" onAction="#loadPayment" prefHeight="33.0" prefWidth="177.0" text="Gå til betaling" />
-                              <Label fx:id="lblTotalPrice" layoutX="485.0" layoutY="566.0" prefHeight="21.0" prefWidth="59.0" />
-                           </children>
-                        </AnchorPane>
-                    </items>
-                  </SplitPane>
+                  <TableView fx:id="tableviewCart" layoutX="11.0" layoutY="58.0" prefHeight="574.0" prefWidth="535.0">
+                    <columns>
+                      <TableColumn fx:id="nameColumn" prefWidth="136.0" text="Produktnavn">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="Name" />
+                        </cellValueFactory>
+                      </TableColumn>
+                      <TableColumn fx:id="descriptionColumn" prefWidth="214.0" text="Beskrivelse">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="Description" />
+                        </cellValueFactory>
+                      </TableColumn>
+                      <TableColumn fx:id="lifetimeColumn" prefWidth="91.0" text="Levetid">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="Lifetime" />
+                        </cellValueFactory>
+                      </TableColumn>
+                      <TableColumn fx:id="priceColumn" prefWidth="93.0" text="Pris">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="Price" />
+                        </cellValueFactory>
+                      </TableColumn>
+                    </columns>
+                  </TableView>
+                  <Label layoutX="16.0" layoutY="14.0" prefHeight="33.0" prefWidth="247.0" text="Her er dine valgte komponenter:" />
+                  <Label layoutX="30.0" layoutY="684.0" prefHeight="21.0" prefWidth="109.0" text="Totalt å betale:" />
+                  <Button fx:id="btnGoToPay" layoutX="350.0" layoutY="678.0" mnemonicParsing="false" onAction="#loadPayment" prefHeight="33.0" prefWidth="177.0" text="Gå til betaling" />
+                  <Label fx:id="lblTotalPrice" layoutX="139.0" layoutY="684.0" prefHeight="21.0" prefWidth="59.0" />
                </children>
             </AnchorPane>
         </items>
       </SplitPane>
-      <Button fx:id="btnGoBack" layoutX="28.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="33.0" prefWidth="163.0" text="Tilbake til forside" />
    </children>
 </AnchorPane>

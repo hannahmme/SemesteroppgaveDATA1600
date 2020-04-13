@@ -22,7 +22,9 @@ public class EnduserSendOrderPageController {
     @FXML private Button btnGoToMainpage;
     @FXML private TextField txtEpost;
     @FXML private Label lblOrderSent;
+    @FXML private Label lblTotalPrice;
 
+    // metode for å gå tilbake til hovedside
     @FXML void goToMainpage(ActionEvent event) throws IOException {
 
         // legger inn en if-setning, hvis bruker har sendt bestillingen med suksess, får man ikke opp denne alerten - Amalie
@@ -48,6 +50,7 @@ public class EnduserSendOrderPageController {
         }
     }
 
+    // metode for å gå tilbake til forrige side
     @FXML void goBack(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) btnGoBack.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("ExtraOrderEnduserPage.fxml"));
@@ -55,25 +58,32 @@ public class EnduserSendOrderPageController {
         primaryStage.show();
     }
 
-    public static FinalOrderRegister finalOrderRegister = new FinalOrderRegister();
+    @FXML private TableView<?> finalOrderRegister;
+    @FXML private TableColumn<?, ?> nameColumn;
+    @FXML private TableColumn<?, ?> priceColumn;
+
+
+
+    public static FinalOrderRegister OrderRegister = new FinalOrderRegister();
 
     @FXML void sendOrder(ActionEvent event) throws IOException, InvalidEmailException {
         FinalOrder anFinalOrder = createOrderObjectFromGUI();
 
         if(anFinalOrder != null) {
-            finalOrderRegister.addElement(anFinalOrder);
+            OrderRegister.addElement(anFinalOrder);
             txtEpost.setText("");
         }
     }
 
-    // metode for å generere ordreID
+
+    // metode for å generere ordreID, tenker det er greit å starte på 100? Så kan eksempler være før 100.
     private static int orderID = 100;
     public String generateOrderID (){
         orderID++;
         return "#"+orderID;
     }
 
-
+    // metode for å generere en ordre og legget il ordreID og epost i array
     public FinalOrder createOrderObjectFromGUI(){
         String orderID;
         String email;
@@ -89,13 +99,16 @@ public class EnduserSendOrderPageController {
 
             //lager en ordreID for bestillingen og viser den til bruker
             orderID = generateOrderID();
-            lblOrderSent.setText("Thank you for your order, here is your order ID: #" + orderID);
+            lblOrderSent.setText("Thank you for your order, here is your order ID: " + orderID);
 
             FinalOrder anFinalOrder = new FinalOrder(orderID, email, totalbeløp);
 
             // setter knappene som disabled fordi bestillingen er gjennomført og man må starte på nytt
             btnSendOrder.setDisable(true);
             btnGoBack.setDisable(true);
+
+            // Setter totalprisen til brukers skjerm
+            lblTotalPrice.setText(String.valueOf(totalbeløp));
 
             // returnerer ordren siden alt er riktig av input osv
             return anFinalOrder;
@@ -108,6 +121,8 @@ public class EnduserSendOrderPageController {
     }
 
 }
+
+/* Mye av den koden vi trenger her kan finnes fra enduserpagecontroller-siden*/
 
 /* legge til bestillingen gjort på forrige side i et array over fullførte bestillinger.
         Den bør allerede ligge i et "midlertidig" array fra forrige side, i tilfelle bruker vil se handlekurven igjen før bestilling.

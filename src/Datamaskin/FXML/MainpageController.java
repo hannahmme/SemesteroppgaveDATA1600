@@ -7,12 +7,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.lang.reflect.Array;
 
 public class MainpageController {
     public String eposten;
@@ -38,7 +36,7 @@ public class MainpageController {
 
         eposten = txtEmail.getText();
     }
-    
+
 
     // metode som åpner ny scene til superbrukersiden
     @FXML void tilSluttbrukerside(ActionEvent event) throws IOException {

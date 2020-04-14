@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <?import javafx.scene.control.cell.PropertyValueFactory?>
-<AnchorPane prefHeight="758.0" prefWidth="1113.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.ExtraOrderEnduserPageController">
+<AnchorPane prefHeight="758.0" prefWidth="1113.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.ExtraOrderEnduserPageController">
    <children>
       <SplitPane dividerPositions="0.5354896675651393" layoutY="-5.0" prefHeight="800.0" prefWidth="1140.0">
         <items>

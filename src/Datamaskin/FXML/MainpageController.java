@@ -6,13 +6,21 @@ import Datamaskin.newScene;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import java.io.IOException;
 
-public class MainpageController {
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class MainpageController implements Initializable {
     public String eposten;
 
     @FXML private Button tilSluttbrukerside;
@@ -21,6 +29,9 @@ public class MainpageController {
     @FXML private TextField txtPassword;
     @FXML private Button btnUserOrders;
     @FXML private TextField txtEmail;
+
+    public MainpageController() throws FileNotFoundException {
+    }
 
     @FXML void btnUserOrders(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) btnUserOrders.getScene().getWindow();
@@ -67,4 +78,35 @@ public class MainpageController {
         }
     }
 
+    @FXML
+    private ImageView orderImageView;
+    private String orderPath = "./src/Datamaskin/images/order.png";
+    private FileInputStream orderStream = new FileInputStream(orderPath);
+    private Image orderImage = new Image(orderStream);
+
+
+
+    @FXML
+    private ImageView buildImageView;
+    private String imagepath = "./src/Datamaskin/images/hammer.png";
+    private FileInputStream hammerStream = new FileInputStream(imagepath);
+    private Image hammerImage = new Image(hammerStream);
+
+
+    @FXML
+    private ImageView adminImageView;
+    private String adminPath = "./src/Datamaskin/images/admin.png";
+    private FileInputStream adminStream = new FileInputStream(adminPath);
+    private Image adminImage = new Image(adminStream);
+
+    private void setImageView(ImageView iv, Image image){
+        iv.setImage(image);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        setImageView(orderImageView, orderImage);
+        setImageView(buildImageView, hammerImage);
+        setImageView(adminImageView, adminImage);
+    }
 }

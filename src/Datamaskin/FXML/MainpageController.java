@@ -3,6 +3,7 @@ package Datamaskin.FXML;
 import Datamaskin.Customer;
 import Datamaskin.Exceptions.InvalidEmailException;
 import Datamaskin.newScene;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,10 +11,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -78,6 +79,13 @@ public class MainpageController implements Initializable {
         }
     }
 
+
+    @FXML
+    private ImageView hardwareImageView;
+    private String hardwarePath = "./src/Datamaskin/images/hardware.jpg";
+    private FileInputStream hardwareStream = new FileInputStream(hardwarePath);
+    private Image hardwareImage = new Image(hardwareStream);
+
     @FXML
     private ImageView orderImageView;
     private String orderPath = "./src/Datamaskin/images/order.png";
@@ -103,10 +111,19 @@ public class MainpageController implements Initializable {
         iv.setImage(image);
     }
 
+    //Effekt for å blurre bilde på mainpage (det blå bildet)
+    private DropShadow shadowEffect = new DropShadow();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setImageView(orderImageView, orderImage);
         setImageView(buildImageView, hammerImage);
         setImageView(adminImageView, adminImage);
+        setImageView(hardwareImageView, hardwareImage);
+        shadowEffect.setRadius(50);
+        shadowEffect.setWidth(50);
+        shadowEffect.setHeight(25);
+        hardwareImageView.setEffect(shadowEffect);
+
     }
 }

@@ -17,7 +17,7 @@ public class FinalOrder {
 
     // DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
-    public FinalOrder(String orderID, String email, Date orderDate, int totalPrice){
+    public FinalOrder(String orderID, String email, Date orderDate, double totalPrice){
         this.orderID = new SimpleStringProperty(orderID);
         this.email = new SimpleStringProperty(email);
         this.orderDate = orderDate;

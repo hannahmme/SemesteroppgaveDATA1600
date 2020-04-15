@@ -8,7 +8,7 @@ import javafx.scene.control.TableView;
 public class Cart {
     public transient static ObservableList<Product> Register = FXCollections.observableArrayList();
 
-    public void addComponent(TableView tv) {
+    public void attachTableview(TableView tv) {
         tv.setItems(Register);
     }
 
@@ -25,8 +25,17 @@ public class Cart {
         }
     }
 
+    //Metode som returnerer totalsum av varer lagt til i handlekurv - Hannah
+    public double getTotalPrice() {
+        double totalSum = 0;
+        for (Product product : Register) {
+            totalSum += product.getPrice();
+        }
+        return totalSum;
+    }
 
-    //Metode som sletter alle elementer i handlelisten (brukes når bruker skal tilbake til hovedsiden)
+
+    //Metode som sletter alle elementer i handlelisten (brukes når bruker skal tilbake til hovedsiden) - Hannah
     public void deleteShoppingcart(){
         if(Register.size() != 0){
             Register.remove(0, Register.size());

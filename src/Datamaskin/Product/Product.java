@@ -68,7 +68,7 @@ public class Product {
         this.category = new SimpleStringProperty(componentCategory);
     }
 
-    //hvis et produkt ikke har et bilde (det er valgtfritt å legge til for admin), vil "missingImage" settes i ImagesViewet.
+    //hvis et produkt ikke har et bilde (det er valgtfritt å legge til for admin når admin oppretter et nytt produkt), vil "missingImage" settes i ImagesViewet.
     public String getImageUri() {
        String imgUri = MISSING_IMG_PATH;
 
@@ -78,7 +78,6 @@ public class Product {
         if(imgUri.isEmpty()){
             imgUri = MISSING_IMG_PATH;
         }
-
         return imgUri;
     }
 

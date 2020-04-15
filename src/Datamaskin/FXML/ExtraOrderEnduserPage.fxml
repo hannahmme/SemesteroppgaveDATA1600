@@ -19,19 +19,19 @@
                   <Label layoutX="146.0" layoutY="89.0" prefHeight="27.0" prefWidth="319.0" text="Trengte du noe ekstra tilbehør? Finn det her!" />
                   <Label layoutX="242.0" layoutY="427.0" prefHeight="21.0" prefWidth="96.0" text="Produktinfo: " />
                   <Button fx:id="btnSaveToCart" layoutX="155.0" layoutY="715.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="31.0" prefWidth="283.0" text="Legg til valgte produkter i handlekurv" />
-                  <TableView fx:id="tblExtraProduct" layoutX="14.0" layoutY="116.0" onMouseClicked="#selectedItemEvent" prefHeight="275.0" prefWidth="548.0">
+                  <TableView fx:id="tblExtraProduct" layoutX="35.0" layoutY="116.0" onMouseClicked="#selectedItemEvent" prefHeight="275.0" prefWidth="514.0">
                     <columns>
                       <TableColumn fx:id="extraProductName" prefWidth="108.0" text="Tilbehor">
                         <cellValueFactory>
                             <PropertyValueFactory property="Name" />
                         </cellValueFactory>
                       </TableColumn>
-                      <TableColumn fx:id="extraProductInfo" prefWidth="279.4285888671875" text="Beskrivelse">
+                      <TableColumn fx:id="extraProductInfo" prefWidth="325.71429443359375" text="Beskrivelse">
                         <cellValueFactory>
                             <PropertyValueFactory property="Description" />
                         </cellValueFactory>
                       </TableColumn>
-                        <TableColumn fx:id="extraProductPrice" prefWidth="74.85711669921875" text="Pris">
+                        <TableColumn fx:id="extraProductPrice" prefWidth="79.4285888671875" text="Pris">
                             <cellValueFactory>
                                 <PropertyValueFactory property="Price" />
                             </cellValueFactory>

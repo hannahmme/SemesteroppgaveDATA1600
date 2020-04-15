@@ -180,7 +180,7 @@ public class EnduserPageController implements Initializable{
         lifetimeColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
 
-        aCart.addComponent(tableviewCart);
+        aCart.attachTableview(tableviewCart);
 
         // setter eksempelinfo til choiceboksene
         setValuesToChoicebox();

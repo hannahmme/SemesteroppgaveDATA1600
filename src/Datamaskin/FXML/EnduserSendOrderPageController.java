@@ -32,22 +32,13 @@ public class EnduserSendOrderPageController implements Initializable {
     @FXML private Label lblOrderSent;
     @FXML private Label lblTotalPrice;
 
-    Cart shoppingcart = new Cart();
+    private Cart shoppingcart = new Cart();
 
 
     // metode som setter den totale prisen basert på komponentene i arrayet
     public void setTotalPriceLabel(){
-        double totalPrice = 0;
-
-        for(int i = 0; i< finalOrderRegister.getItems().size(); i++){
-            String priceColumn = finalOrderRegister.getColumns().get(1).getCellObservableValue(i).getValue().toString();
-            if(priceColumn != null) {
-                double price = Double.parseDouble(priceColumn);
-                totalPrice += price;
-            }
-        }
+        double totalPrice = shoppingcart.getTotalPrice();
         lblTotalPrice.setText(String.valueOf(totalPrice));
-
     }
 
 
@@ -103,7 +94,7 @@ public class EnduserSendOrderPageController implements Initializable {
 
 
         //Kobler handlekurven med tableviewet.
-        shoppingcart.addComponent(finalOrderRegister);
+        shoppingcart.attachTableview(finalOrderRegister);
 
         //Setter riktig totaltpris ved innlasting av siden
         setTotalPriceLabel();
@@ -116,6 +107,7 @@ public class EnduserSendOrderPageController implements Initializable {
         if(anFinalOrder != null) {
             OrderRegister.addElement(anFinalOrder);
             txtEpost.setText("");
+            shoppingcart.deleteShoppingcart();
         }
     }
 
@@ -131,7 +123,7 @@ public class EnduserSendOrderPageController implements Initializable {
     public FinalOrder createOrderObjectFromGUI(){
         String orderID;
         String email;
-        int totalPrice;
+        double totalPrice;
 
         try {
             // sjekker om input er riktig
@@ -139,14 +131,7 @@ public class EnduserSendOrderPageController implements Initializable {
             Customer.validateEmail(email);
 
             // henter totalbeløpet til bestillingen
-            totalPrice = 0;
-            for(int i = 0; i< finalOrderRegister.getItems().size(); i++){
-                String priceColumn = finalOrderRegister.getColumns().get(1).getCellObservableValue(i).getValue().toString();
-                if(priceColumn != null) {
-                    double price = Double.parseDouble(priceColumn);
-                    totalPrice += price;
-                }
-            }
+            totalPrice = shoppingcart.getTotalPrice();
 
             // henter datoen
             Date date = Date.valueOf(LocalDate.now());

@@ -75,7 +75,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
 
 
         //Kobler handlekurven med tableviewet.
-        shoppingCart.addComponent(tableviewCart);
+        shoppingCart.attachTableview(tableviewCart);
 
         //Setter riktig totaltpris ved innlasting av siden
         updateTotalPriceLabel();
@@ -143,26 +143,10 @@ public class ExtraOrderEnduserPageController implements Initializable {
         primaryStage.show();
     }
 
-    // metode for å legge til essentsielle komponenter fra forrige sider i arrayet
-    public void addEssentialComp(){
-
-
-    }
-
-
-    // metode som setter den totale prisen basert på komponentene i arrayet
-    public void updateTotalPriceLabel(){
-        double totalPrice = 0;
-
-        for(int i = 0; i< tableviewCart.getItems().size(); i++){
-            String priceColumn = tableviewCart.getColumns().get(3).getCellObservableValue(i).getValue().toString();
-            if(priceColumn != null) {
-                double price = Double.parseDouble(priceColumn);
-                totalPrice += price;
-            }
-        }
+    // Metode som oppdaterer label med totalsum
+    private void updateTotalPriceLabel(){
+        double totalPrice = shoppingCart.getTotalPrice();
         lblTotalPrice.setText(String.valueOf(totalPrice));
-
     }
 
 

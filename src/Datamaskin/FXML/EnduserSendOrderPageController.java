@@ -153,7 +153,7 @@ public class EnduserSendOrderPageController implements Initializable {
 
             //lager en ordreID for bestillingen og viser den til bruker
             orderID = generateOrderID();
-            lblOrderSent.setText("Thank you for your order, here is your order ID: " + orderID);
+            lblOrderSent.setText("Takk for din ordre.\nOrdrenummer: " + orderID);
 
             FinalOrder anFinalOrder = new FinalOrder(orderID, email, date, totalPrice);
 
@@ -168,7 +168,7 @@ public class EnduserSendOrderPageController implements Initializable {
             return anFinalOrder;
 
         } catch (InvalidEmailException e){
-            lblOrderSent.setText("Order not sent, please put in a valid E-mail address");
+            lblOrderSent.setText("Ordre ikke registrert, vennligst skriv inn gyldig e-postadresse");
         }
         return null;
 

@@ -1,8 +1,8 @@
 package Datamaskin.FXML;
 
 import Datamaskin.Cart.Cart;
-import Datamaskin.Component;
 import Datamaskin.Product.Product;
+import Datamaskin.Product.ProductCategories;
 import Datamaskin.newScene;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,29 +13,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+
+import java.io.*;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ExtraOrderEnduserPageController implements Initializable {
-
-    private CheckBox checkBox1 = new CheckBox();
-    private CheckBox checkBox2 = new CheckBox();
-    private CheckBox checkBox3 = new CheckBox();
-    private CheckBox checkBox4 = new CheckBox();
-    private CheckBox checkBox5 = new CheckBox();
-    private CheckBox checkBox6 = new CheckBox();
-
-    private Component object1 = new Component("Skjermkort", "Nyeste på markedet", 1000, checkBox1);
-    private Component object2 = new Component("Tastatur", "Best i test", 500, checkBox2);
-    private Component object3 = new Component("Mus", "Passer til alle pcer", 499, checkBox3);
-    private Component object4 = new Component("Harddisk", "God plass!", 4000, checkBox4);
-    private Component object5 = new Component("Monitor", "4k-skjerm", 2999, checkBox5);
-    private Component object6 = new Component("Prosessor", "Beste CPU-en", 1599, checkBox6);
-
 
     //Handlekurv på høyre side
     @FXML private TableView<Product> tableviewCart;
@@ -45,74 +34,36 @@ public class ExtraOrderEnduserPageController implements Initializable {
     @FXML private TableColumn<Product, Double> priceColumn;
 
     //Tableview på venstre side med ekstra komponenter
-    @FXML private TableView<Component> tblExtraComponent;
-    @FXML private TableColumn<Component, String> componentName;
-    @FXML private TableColumn<Component, String> componentInfo;
-    @FXML private TableColumn<Component, Double> componentPrice;
-    @FXML private TableColumn<Component, CheckBox> componentChosen;
+    @FXML private TableView<Product> tblExtraProduct;
+    @FXML private TableColumn<Product, String> extraProductName;
+    @FXML private TableColumn<Product, String> extraProductInfo;
+    @FXML private TableColumn<Product, Double> extraProductPrice;
+    @FXML private TableColumn<Product, Integer> extraProductLifetime;
 
-
-    @FXML private TableColumn<Component, CheckBox> cartCheck;
-
-    @FXML private Button btnSaveToCart;
     @FXML private Button btnGoToPay;
     @FXML private Button btnGoBack;
     @FXML private Button btnGoToMainpage;
-
     @FXML private Label lblTotalPrice;
+    @FXML private ImageView imgImageView;
 
-    private ObservableList<Component> selectedComponents = FXCollections.observableArrayList();
 
-    //metode som sjekker om checkboksene er huket av og legger til komponentene dersom de er huket av.
-    private void updateCart(){
-        if (checkBox1.isSelected()) {
-            Component valgtKomponent = object1;
-            selectedComponents.add(valgtKomponent);
-            checkBox1.setSelected(false);
-        }
-        if (checkBox2.isSelected()) {
-            selectedComponents.add(object2);
-            checkBox2.setSelected(false);
-        }
-        if (checkBox3.isSelected()) {
-            selectedComponents.add(object3);
-            checkBox3.setSelected(false);
-        }
-        if (checkBox4.isSelected()) {
-            selectedComponents.add(object4);
-            checkBox4.setSelected(false);
-        }
-        if (checkBox5.isSelected()) {
-            selectedComponents.add(object5);
-            checkBox5.setSelected(false);
-        }
-        if (checkBox6.isSelected()) {
-            selectedComponents.add(object6);
-            checkBox6.setSelected(false);
-        }
-    }
-
+    private Cart shoppingCart = new Cart();
 
     //metode som legger til elementer i handlekurven, dersom de er huket av. (Funker ikke helt enda)
     @FXML
     void addToCart(ActionEvent event) {
-        //addEssentialComp();
-
-        updateCart();
-        System.out.println(selectedComponents);
-
+        Product extraProduct = tblExtraProduct.getSelectionModel().getSelectedItem();
+        shoppingCart.addElement(extraProduct);
     }
+
 
     @Override public void initialize(URL location, ResourceBundle resources) {
         //Tableview på venstre side med ekstra tilbehør
-        ObservableList<Component> komponentList = FXCollections.observableArrayList();
-        komponentList.addAll(object1, object2, object3, object4, object5, object6);
-
-        tblExtraComponent.getItems().addAll(komponentList);
-        componentInfo.setCellValueFactory(new PropertyValueFactory<>("componentInfo"));
-        componentName.setCellValueFactory(new PropertyValueFactory<>("componentName"));
-        componentPrice.setCellValueFactory(new PropertyValueFactory<>("componentPrice"));
-        componentChosen.setCellValueFactory(new PropertyValueFactory<>("checkbox"));
+        tblExtraProduct.getItems().addAll(ProductCategories.otherProducts);
+        tblExtraProduct.setItems(ProductCategories.otherProducts);
+        extraProductName.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        extraProductInfo.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        extraProductPrice.setCellValueFactory(new PropertyValueFactory<>("Price"));
 
 
         //Handlekurven på høyre side lastes inn når siden lastes inn
@@ -121,11 +72,42 @@ public class ExtraOrderEnduserPageController implements Initializable {
         lifetimeColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
 
-        Cart shoppingCart = new Cart();
+
+        //Kobler handlekurven med tableviewet.
         shoppingCart.addComponent(tableviewCart);
 
         //Setter riktig totaltpris ved innlasting av siden
         updateTotalPriceLabel();
+    }
+
+
+    //Metode som gjør at bilde av produktet som velges vises i produktinfo-imageviewet
+    @FXML
+    void selectedItemEvent (MouseEvent event) {
+        Product selectedProduct  = tblExtraProduct.getSelectionModel().getSelectedItem();
+
+        // Hvis raden det klikkes på er tom - ikke gjør noe
+        if(selectedProduct == null) return;
+
+        String productImage = selectedProduct.getImageUri();
+        System.out.println(productImage);
+
+        // Forsøker å hente ut bilde og vise det
+        try {
+            File directory = new File("./");
+            System.out.println(directory.getAbsolutePath());
+
+
+
+            //FileInputStream imageStream = new FileInputStream("C:\\Git\\Semesteroppgave DATA1600\\src\\Datamaskin\\images\\mus1.jpg");
+            FileInputStream imageStream = new FileInputStream("\"./src/Datamaskin/images/mus1.jpg\"");
+            Image image = new Image(imageStream);
+            imgImageView.setImage(image);
+        } catch (FileNotFoundException e) {
+            System.err.println("Noe gikk galt ved innlasting av produktbilde. " + e.getMessage());
+        }
+
+
 
     }
 
@@ -181,7 +163,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
     public void updateTotalPriceLabel(){
         double totalPrice = 0;
 
-        for(int i = 0; i< tableviewCart.getColumns().size(); i++){
+        for(int i = 0; i< tableviewCart.getItems().size(); i++){
             String priceColumn = tableviewCart.getColumns().get(3).getCellObservableValue(i).getValue().toString();
             if(priceColumn != null) {
                 double price = Double.parseDouble(priceColumn);

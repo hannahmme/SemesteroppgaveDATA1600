@@ -5,30 +5,41 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<?import javafx.scene.control.cell.PropertyValueFactory?>
-<AnchorPane prefHeight="758.0" prefWidth="1113.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.ExtraOrderEnduserPageController">
+<AnchorPane prefHeight="758.0" prefWidth="1113.0" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.ExtraOrderEnduserPageController">
    <children>
       <SplitPane dividerPositions="0.5354896675651393" layoutY="-5.0" prefHeight="800.0" prefWidth="1140.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="769.0" prefWidth="152.0">
                <children>
                   <Button fx:id="btnGoBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="126.0" text="Gå tilbake" />
-                  <TextArea fx:id="txtExtraComponentInfo" layoutX="16.0" layoutY="448.0" prefHeight="241.0" prefWidth="548.0" />
                   <Label layoutX="146.0" layoutY="89.0" prefHeight="27.0" prefWidth="319.0" text="Trengte du noe ekstra tilbehør? Finn det her!" />
                   <Label layoutX="242.0" layoutY="427.0" prefHeight="21.0" prefWidth="96.0" text="Produktinfo: " />
                   <Button fx:id="btnSaveToCart" layoutX="155.0" layoutY="715.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="31.0" prefWidth="283.0" text="Legg til valgte produkter i handlekurv" />
-                  <TableView fx:id="tblExtraComponent" layoutX="14.0" layoutY="125.0" prefHeight="275.0" prefWidth="548.0">
+                  <TableView fx:id="tblExtraProduct" layoutX="14.0" layoutY="116.0" onMouseClicked="#selectedItemEvent" prefHeight="275.0" prefWidth="548.0">
                     <columns>
-                      <TableColumn fx:id="componentName" prefWidth="108.0" text="Komponent" />
-                      <TableColumn fx:id="componentInfo" prefWidth="323.0" text="Beskrivelse" />
-                        <TableColumn fx:id="componentPrice" prefWidth="64.0" text="Pris" />
-                        <TableColumn fx:id="componentChosen" prefWidth="52.0" text="Valgt" />
+                      <TableColumn fx:id="extraProductName" prefWidth="108.0" text="Tilbehor">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="Name" />
+                        </cellValueFactory>
+                      </TableColumn>
+                      <TableColumn fx:id="extraProductInfo" prefWidth="279.4285888671875" text="Beskrivelse">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="Description" />
+                        </cellValueFactory>
+                      </TableColumn>
+                        <TableColumn fx:id="extraProductPrice" prefWidth="74.85711669921875" text="Pris">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="Price" />
+                            </cellValueFactory>
+                        </TableColumn>
                     </columns>
                   </TableView>
                   <Button fx:id="btnGoToMainpage" layoutX="190.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToMainpage" prefHeight="31.0" prefWidth="155.0" text="Gå til hovedsiden" />
+                  <ImageView fx:id="imgImageView" fitHeight="241.0" fitWidth="548.0" layoutX="20.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="765.0" prefWidth="511.0">
@@ -58,7 +69,6 @@
                            </TableColumn>
                        </columns>
                    </TableView>
-                  <Label layoutX="-117.0" layoutY="137.0" prefHeight="17.0" prefWidth="306.0" text="Handlekurv:" />
                   <Label layoutX="15.0" layoutY="732.0" prefHeight="21.0" prefWidth="126.0" text="Totalt å betale:" />
                   <Label fx:id="lblTotalPrice" layoutX="141.0" layoutY="732.0" prefHeight="21.0" prefWidth="96.0" />
                </children>

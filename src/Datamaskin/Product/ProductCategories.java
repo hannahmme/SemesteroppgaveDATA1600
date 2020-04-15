@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ProductCategories {
-    String componentName;
-    String componentDescription;
-    int componentLifetime;
-    double componentPrice;
+    private String componentName;
+    private String componentDescription;
+    private int componentLifetime;
+    private double componentPrice;
 
     public void ProductCategories (String componentName, String componentDescription, int componentLifetime, double componentPrice){
         this.componentName = componentName;

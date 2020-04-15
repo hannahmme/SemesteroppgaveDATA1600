@@ -16,6 +16,7 @@ public class Cart {
         Register.add(etProduct);
     }
 
+    //Metode som fjerner gamle elementer i handlelisten (hører til første brukerside)
     public void deleteElements(){
         if(Register.size() != 0) {
             for (int i = 7; i > -1; i--) {

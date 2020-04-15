@@ -7,6 +7,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Product {
+    private final String MISSING_IMG_PATH = "./src/Datamaskin/images/missingImage.png";
     private SimpleStringProperty name;
     private SimpleStringProperty description;
     private SimpleIntegerProperty lifetime;
@@ -67,12 +68,22 @@ public class Product {
         this.category = new SimpleStringProperty(componentCategory);
     }
 
+    //hvis et produkt ikke har et bilde (det er valgtfritt å legge til for admin), vil "missingImage" settes i ImagesViewet.
     public String getImageUri() {
-        return imageUri.get();
+       String imgUri = MISSING_IMG_PATH;
+
+        if(imageUri != null){
+            imgUri = imageUri.get();
+        }
+        if(imgUri.isEmpty()){
+            imgUri = MISSING_IMG_PATH;
+        }
+
+        return imgUri;
     }
 
     public void setImageUri(String imageUri) {
-        this.imageUri.set(imageUri);
+        this.imageUri = new SimpleStringProperty(imageUri);
     }
 
     @Override public String toString(){

@@ -90,33 +90,15 @@ public class ExtraOrderEnduserPageController implements Initializable {
         // Hvis raden det klikkes på er tom - ikke gjør noe
         if(selectedProduct == null) return;
 
-        try {
-            String productImage = selectedProduct.getImageUri();
-            if (productImage == null) {
-                FileInputStream missingImagePath = new FileInputStream("\"./src/Datamaskin/images/missingImage.png\"");
-                Image missingImage = new Image(missingImagePath);
-                imgImageView.setImage(missingImage);
-            }
-        }catch (FileNotFoundException e){
-            System.err.println("Bildet som skal vises når et bilde mangler, mangler!!!" + e.getMessage());
-        }
-
         // Forsøker å hente ut bilde og vise det
         try {
             String productImage = selectedProduct.getImageUri();
-            File directory = new File("./");
-            System.out.println(directory.getAbsolutePath());
-            //"\"./src/Datamaskin/images/mus1.jpg\""
-
             FileInputStream imageStream = new FileInputStream(productImage);
             Image image = new Image(imageStream);
             imgImageView.setImage(image);
         } catch (FileNotFoundException e) {
             System.err.println("Noe gikk galt ved innlasting av produktbilde. " + e.getMessage());
         }
-
-
-
     }
 
 

@@ -70,7 +70,6 @@ public class EnduserPageController implements Initializable{
         for(int index = 0; index<ProductCategories.Color.size(); index++) {
             cBoxColor.getItems().add(ProductCategories.CategorynameToString(ProductCategories.Color, index));
         }
-
     }
 
 
@@ -125,7 +124,7 @@ public class EnduserPageController implements Initializable{
     public void getTotalprice(){
         double totalPrice = 0;
 
-        for(int i = 0; i<8; i++){
+        for(int i = 0; i<tableviewCart.getItems().size(); i++){
             double a = Double.parseDouble(tableviewCart.getColumns().get(3).getCellObservableValue(i).getValue().toString());
             totalPrice += a;
         }

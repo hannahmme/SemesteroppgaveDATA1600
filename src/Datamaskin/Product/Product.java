@@ -83,14 +83,14 @@ public class Product {
 
     // enhtesvalideringsmetoder
     public static String validateName(String name) throws IllegalArgumentException {
-        if (name.matches("[a-zA-Z \\-0-9]*")&& name.length()<30 && !name.equals("")) {
+        if (name.matches("[a-zA-ZæøåÆØÅ. \\-0-9]*")&& name.length()<30 && !name.equals("")) {
             return name;
         }
         throw new IllegalArgumentException("Skriv inn et gyldignavn!");
     }
 
     public static String validateDescription(String description) throws IllegalArgumentException {
-        if (description.matches("[a-zA-Z \\-0-9]*") && description.length()<200 && !description.equals("")) {
+        if (description.matches("[a-zA-ZæøåÆØÅ. \\-0-9]*") && description.length()<200 && !description.equals("")) {
             return description;
         }
         throw new IllegalArgumentException("Skriv inn en gyldig beskrivelse!");

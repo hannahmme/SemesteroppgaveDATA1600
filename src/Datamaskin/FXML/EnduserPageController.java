@@ -1,12 +1,9 @@
 // denne siden gjelder sluttbruker siden der man skal velge komponenter
 package Datamaskin.FXML;
 import Datamaskin.Cart.Cart;
-import Datamaskin.Component;
 import Datamaskin.Product.Product;
 import Datamaskin.Product.ProductCategories;
 import Datamaskin.newScene;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -104,36 +101,6 @@ public class EnduserPageController implements Initializable{
             primaryStage.show();
         }
     }
-
-// hvor hører denne til?
-    /*
-    @FXML
-    void getSelected(MouseEvent event) {
-        if (checkBox1.isSelected()) {
-
-        }
-        Component component = tableView.getSelectionModel().getSelectedItem();
-        if(component == null){
-            lblError.setText("Ingenting huket av.");
-        }else{
-            String name = component.getComponentName();
-            int price = component.getComponentPrice();
-
-            txtCart.setText("Produktnavn: "+ name + "\nPris: "+ price+",-");
-        }
-    }
-*/
-
-    // hører denne til på en annen side?
-    EventHandler checkBoxChanged = new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent event) {
-            if (event.getSource() instanceof CheckBox) {
-                CheckBox chk = (CheckBox) event.getSource();
-                System.out.println("Action performed on checkbox " + chk.getText());
-            }
-        }
-    };
 
 
     // under her er kode for å populere handlekurven

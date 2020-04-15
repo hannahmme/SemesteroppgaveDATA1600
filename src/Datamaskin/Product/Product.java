@@ -12,6 +12,7 @@ public class Product {
     private SimpleIntegerProperty lifetime;
     private SimpleDoubleProperty price;
     private SimpleStringProperty category;
+    private SimpleStringProperty imageUri;
 
     public Product(String name, String description, int lifetime, double price, String category) {
         this.name = new SimpleStringProperty(name);
@@ -19,6 +20,16 @@ public class Product {
         this.lifetime = new SimpleIntegerProperty(lifetime);
         this.price = new SimpleDoubleProperty(price);
         this.category = new SimpleStringProperty(category);
+    }
+
+    //konstruktør som også tar inn bildeSti (slik at det er valgfritt å legge til bilde)
+    public Product(String name, String description, int lifetime, double price, String category, String imageUri) {
+        this.name = new SimpleStringProperty(name);
+        this.description = new SimpleStringProperty(description);
+        this.lifetime = new SimpleIntegerProperty(lifetime);
+        this.price = new SimpleDoubleProperty(price);
+        this.category = new SimpleStringProperty(category);
+        this.imageUri = new SimpleStringProperty(imageUri);
     }
 
     public String getName() {
@@ -56,6 +67,13 @@ public class Product {
         this.category = new SimpleStringProperty(componentCategory);
     }
 
+    public String getImageUri() {
+        return imageUri.get();
+    }
+
+    public void setImageUri(String imageUri) {
+        this.imageUri.set(imageUri);
+    }
 
     @Override public String toString(){
         return "Name: " + name.getValue() + "; Description: " + description.getValue() + "; Lifetime: " + lifetime.getValue() +

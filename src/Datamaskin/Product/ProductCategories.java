@@ -1,6 +1,8 @@
 package Datamaskin.Product;
 
 import Datamaskin.FXML.ProductAdmPageController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +31,8 @@ public class ProductCategories {
     public static HashMap<String, Product> Color = new HashMap<>();     // Farge
 
     // har ikke denne i hashmap, fordi hashmap har en kapasitet på 16 plasser i listen.
-    public static ArrayList<Product> otherProducts = new ArrayList<>(); // Andre produkter som mus, tastatur, skjerm osv
+    //public static ArrayList<Product> otherProducts = new ArrayList<>(); // Andre produkter som mus, tastatur, skjerm osv
+    public static ObservableList<Product> otherProducts = FXCollections.observableArrayList(); // Andre produkter som mus, tastatur, skjerm osv
 
 
     // vurder å bruke switch case for å vise at vi kan det også
@@ -58,7 +61,7 @@ public class ProductCategories {
         else if (category.equals("Farge")){
             Color.put(navn, etProduct);
         }
-        else if (category.equals("Andre producter")){
+        else if (category.equals("Andre produkter")){
             otherProducts.add(etProduct);
         }
     }
@@ -126,7 +129,13 @@ public class ProductCategories {
         Product otherProducts1 = new Product("Tastatur 1", "Dette er vårt billigste tastatur", 3, 179, "Andre produkter");
         Product otherProducts2 = new Product("Tastatur 2", "Dette er vårt dyreste tastatur", 3, 779, "Andre produkter");
         Product otherProducts3 = new Product("Ekstern skjerm 1", "bra skjerm så man ikke får vondt i øynene", 3, 1179, "Andre produkter");
-        Product otherProducts4 = new Product("Mus 1", "Fin for hånda. Bra passform", 3, 579, "Andre produkter");
+        Product otherProducts4 = new Product("Mus 1", "Fin for hånda. Bra passform", 3, 579, "Andre produkter","./src/Datamaskin/images/mus1.jpg");
+        Product otherProducts5 = new Product("Headset 1", "Nyeste på markedet", 10,  100, "Andre produkter");
+        Product otherProducts6 = new Product("Headset 2", "Nyeste på markedet", 10,  100, "Andre produkter");
+        Product otherProducts7 = new Product("Webkamera 1", "Nå med nattmodus!", 2,299, "Andre produkter");
+        Product otherProducts8 = new Product("Webkamera 2", "Nå med nattmodus!", 2,299, "Andre produkter");
+        Product otherProducts9  = new Product("Mus 1", "Passer til alle pcer",5 ,499, "Andre produkter");
+        Product otherProducts10 = new Product("Mus 2", "Passer til alle pcer",5 ,499, "Andre produkter");
         ProductAdmPageController.aRegister.addElement(otherProducts1);
         ProductAdmPageController.aRegister.addElement(otherProducts2);
         ProductAdmPageController.aRegister.addElement(otherProducts3);

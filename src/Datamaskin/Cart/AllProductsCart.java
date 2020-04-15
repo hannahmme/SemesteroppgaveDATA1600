@@ -3,7 +3,7 @@ package Datamaskin.Cart;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-// her trenger vi bare navn på vaen og pris, siden det er alt som betyr noe når bestilleren er klar for å betale.
+// her trenger vi bare navn på varen og pris, siden det er alt som betyr noe når bestilleren er klar for å betale.
 // lurer brukeren på noe ved produktet må hun gå tilbake til forrige side for å lese mer om det
 
 public class AllProductsCart {

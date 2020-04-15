@@ -5,20 +5,25 @@ import Datamaskin.Customer;
 import Datamaskin.Exceptions.InvalidEmailException;
 import Datamaskin.Order.FinalOrder;
 import Datamaskin.Order.FinalOrderRegister;
+import Datamaskin.Product.Product;
 import Datamaskin.newScene;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class EnduserSendOrderPageController {
+public class EnduserSendOrderPageController implements Initializable {
 
     @FXML private Button btnSendOrder;
     @FXML private Button btnGoBack;
@@ -28,6 +33,23 @@ public class EnduserSendOrderPageController {
     @FXML private Label lblTotalPrice;
 
     Cart shoppingcart = new Cart();
+
+
+    // metode som setter den totale prisen basert på komponentene i arrayet
+    public void setTotalPriceLabel(){
+        double totalPrice = 0;
+
+        for(int i = 0; i< finalOrderRegister.getItems().size(); i++){
+            String priceColumn = finalOrderRegister.getColumns().get(1).getCellObservableValue(i).getValue().toString();
+            if(priceColumn != null) {
+                double price = Double.parseDouble(priceColumn);
+                totalPrice += price;
+            }
+        }
+        lblTotalPrice.setText(String.valueOf(totalPrice));
+
+    }
+
 
     // metode for å gå tilbake til hovedside
     @FXML void goToMainpage(ActionEvent event) throws IOException {
@@ -65,12 +87,27 @@ public class EnduserSendOrderPageController {
         primaryStage.show();
     }
 
+
+    //Handlekurv på høyre side
+    //@FXML private TableView<Product> tableviewCart;
     @FXML private TableView<FinalOrder> finalOrderRegister;
-    @FXML private TableColumn<FinalOrder, String> nameColumn;
-    @FXML private TableColumn<FinalOrder, String> priceColumn;
-    
+    @FXML private TableColumn<Product, String> nameColumn;
+    @FXML private TableColumn<Product, Double> priceColumn;
     
     public static FinalOrderRegister OrderRegister = new FinalOrderRegister();
+
+    @Override public void initialize(URL location, ResourceBundle resources) {
+        //Handlekurven på høyre side lastes inn når siden lastes inn
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
+
+
+        //Kobler handlekurven med tableviewet.
+        shoppingcart.addComponent(finalOrderRegister);
+
+        //Setter riktig totaltpris ved innlasting av siden
+        setTotalPriceLabel();
+    }
 
 
     @FXML void sendOrder(ActionEvent event) throws IOException, InvalidEmailException {
@@ -94,7 +131,7 @@ public class EnduserSendOrderPageController {
     public FinalOrder createOrderObjectFromGUI(){
         String orderID;
         String email;
-        int totalbeløp;
+        int totalPrice;
 
         try {
             // sjekker om input er riktig
@@ -102,7 +139,14 @@ public class EnduserSendOrderPageController {
             Customer.validateEmail(email);
 
             // henter totalbeløpet til bestillingen
-            totalbeløp = 200;
+            totalPrice = 0;
+            for(int i = 0; i< finalOrderRegister.getItems().size(); i++){
+                String priceColumn = finalOrderRegister.getColumns().get(1).getCellObservableValue(i).getValue().toString();
+                if(priceColumn != null) {
+                    double price = Double.parseDouble(priceColumn);
+                    totalPrice += price;
+                }
+            }
 
             // henter datoen
             Date date = Date.valueOf(LocalDate.now());
@@ -111,14 +155,14 @@ public class EnduserSendOrderPageController {
             orderID = generateOrderID();
             lblOrderSent.setText("Thank you for your order, here is your order ID: " + orderID);
 
-            FinalOrder anFinalOrder = new FinalOrder(orderID, email, date, totalbeløp);
+            FinalOrder anFinalOrder = new FinalOrder(orderID, email, date, totalPrice);
 
             // setter knappene som disabled fordi bestillingen er gjennomført og man må starte på nytt
             btnSendOrder.setDisable(true);
             btnGoBack.setDisable(true);
 
             // Setter totalprisen til brukers skjerm
-            lblTotalPrice.setText(String.valueOf(totalbeløp));
+            lblTotalPrice.setText(String.valueOf(totalPrice));
 
             // returnerer ordren siden alt er riktig av input osv
             return anFinalOrder;

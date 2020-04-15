@@ -1,5 +1,6 @@
 package Datamaskin.FXML;
 
+import Datamaskin.Cart.Cart;
 import Datamaskin.Customer;
 import Datamaskin.Exceptions.InvalidEmailException;
 import Datamaskin.Order.FinalOrder;
@@ -26,6 +27,8 @@ public class EnduserSendOrderPageController {
     @FXML private Label lblOrderSent;
     @FXML private Label lblTotalPrice;
 
+    Cart shoppingcart = new Cart();
+
     // metode for å gå tilbake til hovedside
     @FXML void goToMainpage(ActionEvent event) throws IOException {
 
@@ -48,6 +51,8 @@ public class EnduserSendOrderPageController {
                 Stage primaryStage = (Stage) btnGoToMainpage.getScene().getWindow();
                 Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
                 newScene.toMainpage(primaryStage, root);
+                //metode som nullstiller handlekurven om bruker avslutter handlingen
+                shoppingcart.deleteShoppingcart();
             }
         }
     }

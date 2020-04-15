@@ -54,19 +54,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
     void addToCart(ActionEvent event) {
         Product extraProduct = tblExtraProduct.getSelectionModel().getSelectedItem();
         shoppingCart.addElement(extraProduct);
-        getTotalprice();
-    }
-
-    // meotde for å hente ut verdier fra pris-kolonnen og legge de sammen, for så å sette verdien til lbl
-    //Denne er kopiert fra EnduserPageController enn så lenge. 
-    public void getTotalprice(){
-        double totalPrice = 0;
-
-        for(int i = 0; i<tableviewCart.getItems().size(); i++){
-            double a = Double.parseDouble(tableviewCart.getColumns().get(3).getCellObservableValue(i).getValue().toString());
-            totalPrice += a;
-        }
-        lblTotalPrice.setText(String.valueOf(totalPrice));
+        updateTotalPriceLabel();
     }
 
 
@@ -96,24 +84,31 @@ public class ExtraOrderEnduserPageController implements Initializable {
 
     //Metode som gjør at bilde av produktet som velges vises i produktinfo-imageviewet
     @FXML
-    void selectedItemEvent (MouseEvent event) {
+    void selectedItemEvent (MouseEvent event) throws FileNotFoundException {
         Product selectedProduct  = tblExtraProduct.getSelectionModel().getSelectedItem();
 
         // Hvis raden det klikkes på er tom - ikke gjør noe
         if(selectedProduct == null) return;
 
-        String productImage = selectedProduct.getImageUri();
-        System.out.println(productImage);
+        try {
+            String productImage = selectedProduct.getImageUri();
+            if (productImage == null) {
+                FileInputStream missingImagePath = new FileInputStream("\"./src/Datamaskin/images/missingImage.png\"");
+                Image missingImage = new Image(missingImagePath);
+                imgImageView.setImage(missingImage);
+            }
+        }catch (FileNotFoundException e){
+            System.err.println("Bildet som skal vises når et bilde mangler, mangler!!!" + e.getMessage());
+        }
 
         // Forsøker å hente ut bilde og vise det
         try {
+            String productImage = selectedProduct.getImageUri();
             File directory = new File("./");
             System.out.println(directory.getAbsolutePath());
+            //"\"./src/Datamaskin/images/mus1.jpg\""
 
-
-
-            //FileInputStream imageStream = new FileInputStream("C:\\Git\\Semesteroppgave DATA1600\\src\\Datamaskin\\images\\mus1.jpg");
-            FileInputStream imageStream = new FileInputStream("\"./src/Datamaskin/images/mus1.jpg\"");
+            FileInputStream imageStream = new FileInputStream(productImage);
             Image image = new Image(imageStream);
             imgImageView.setImage(image);
         } catch (FileNotFoundException e) {
@@ -135,7 +130,6 @@ public class ExtraOrderEnduserPageController implements Initializable {
 
     }
 
-
     // går tilbake til hovedsiden + alert
     @FXML void goToMainpage(ActionEvent event) throws IOException {
         //Man får en advarsel om at hvis man går til hovedsiden, vil bestillingen avsluttes - Hannah
@@ -153,6 +147,8 @@ public class ExtraOrderEnduserPageController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
             newScene.toMainpage(primaryStage, root);
             primaryStage.show();
+            shoppingCart.deleteShoppingcart();
+            System.out.println(Cart.Register.size());
         }
     }
 

@@ -54,6 +54,19 @@ public class ExtraOrderEnduserPageController implements Initializable {
     void addToCart(ActionEvent event) {
         Product extraProduct = tblExtraProduct.getSelectionModel().getSelectedItem();
         shoppingCart.addElement(extraProduct);
+        getTotalprice();
+    }
+
+    // meotde for å hente ut verdier fra pris-kolonnen og legge de sammen, for så å sette verdien til lbl
+    //Denne er kopiert fra EnduserPageController enn så lenge. 
+    public void getTotalprice(){
+        double totalPrice = 0;
+
+        for(int i = 0; i<tableviewCart.getItems().size(); i++){
+            double a = Double.parseDouble(tableviewCart.getColumns().get(3).getCellObservableValue(i).getValue().toString());
+            totalPrice += a;
+        }
+        lblTotalPrice.setText(String.valueOf(totalPrice));
     }
 
 

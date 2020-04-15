@@ -23,4 +23,12 @@ public class Cart {
             }
         }
     }
+
+
+    //Metode som sletter alle elementer i handlelisten (brukes når bruker skal tilbake til hovedsiden)
+    public void deleteShoppingcart(){
+        if(Register.size() != 0){
+            Register.remove(0, Register.size());
+        }
+    }
 }

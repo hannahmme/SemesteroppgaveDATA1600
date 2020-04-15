@@ -99,6 +99,9 @@ public class EnduserPageController implements Initializable{
             Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
             newScene.toMainpage(primaryStage, root);
             primaryStage.show();
+            //sletter handlekurven når bruker ønsker å avrbyte handlingen
+            aCart.deleteShoppingcart();
+
         }
     }
 

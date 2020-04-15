@@ -58,12 +58,12 @@ public class ProductAdmPageController implements Initializable{
         Product aProduct = createProductObjectFromGUI();
         if(aProduct != null) {
             aRegister.addElement(aProduct);
-            tømTxtFelt();
+            emptyTextfield();
         }
     }
 
     // nullstiller tekstfelt når det blir lagt til et nytt produkt
-    private void tømTxtFelt() {
+    private void emptyTextfield() {
         txtComponentname.setText("");
         txtDescription.setText("");
         txtLifetime.setText("");
@@ -80,9 +80,13 @@ public class ProductAdmPageController implements Initializable{
         String category;
 
         // sjekke om field er tomt/ har bare mellomrom. hvordan?
-        if (txtComponentname.getText().isEmpty() || txtDescription.getText().isEmpty() ||
-                txtLifetime.getText().isEmpty() || txtPrice.getText().isEmpty()) {
+        if (    txtComponentname.getText().isEmpty()        ||
+                txtComponentname.getText().trim().isEmpty() ||
+                txtDescription.getText().isEmpty()          ||
+                txtLifetime.getText().isEmpty()             ||
+                txtPrice.getText().isEmpty()) {
             wrongInput.setText("Remember to fill out every field");
+            System.out.println(txtComponentname.getText().isEmpty());
         } else {
             try {
                 name = txtComponentname.getText();

@@ -70,7 +70,6 @@ public class EnduserPageController implements Initializable{
         for(int index = 0; index<ProductCategories.Color.size(); index++) {
             cBoxColor.getItems().add(ProductCategories.CategorynameToString(ProductCategories.Color, index));
         }
-
     }
 
 

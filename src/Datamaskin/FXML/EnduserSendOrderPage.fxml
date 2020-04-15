@@ -20,7 +20,7 @@
                   <Text layoutX="241.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Epostadresse" />
                   <TextField fx:id="txtEpost" layoutX="160.0" layoutY="311.0" prefHeight="31.0" prefWidth="249.0" />
                   <Button fx:id="btnSendOrder" layoutX="222.0" layoutY="590.0" mnemonicParsing="false" onAction="#sendOrder" prefHeight="25.0" prefWidth="127.0" text="Send bestilling" />
-                  <Label fx:id="lblOrderSent" layoutX="160.0" layoutY="451.0" prefHeight="77.0" prefWidth="249.0" />
+                  <Label fx:id="lblOrderSent" alignment="TOP_LEFT" layoutX="160.0" layoutY="451.0" prefHeight="77.0" prefWidth="249.0" wrapText="true" />
                   <Button fx:id="btnGoBack" layoutX="109.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="31.0" prefWidth="353.0" text="Glemt noe? Klikk her for å endre handlekurven" />
                   <Button fx:id="btnGoToMainpage" layoutX="199.0" layoutY="669.0" mnemonicParsing="false" onAction="#goToMainpage" prefHeight="31.0" prefWidth="170.0" text="Gå til hovedsiden" />
                </children>

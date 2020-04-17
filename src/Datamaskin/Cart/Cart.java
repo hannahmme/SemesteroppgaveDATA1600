@@ -5,6 +5,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 
+import java.util.HashMap;
+
 public class Cart {
     public transient static ObservableList<Product> Register = FXCollections.observableArrayList();
 
@@ -12,18 +14,15 @@ public class Cart {
         tv.setItems(Register);
     }
 
-    public void addElement(Product etProduct) {
-        Register.add(etProduct);
+    public void addElement(Product aProduct) {
+        Register.add(aProduct);
     }
 
-    //Metode som fjerner gamle elementer i handlelisten (hører til første brukerside)
-    public void deleteElements(){
-        if(Register.size() != 0) {
-            for (int i = 7; i > -1; i--) {
-                Register.remove(i);
-            }
-        }
+    //Metode som fjerner gammelt element i handlelisten (hører til første brukerside) og legger til nytt
+    public void replaceElements(int i, Product newProduct){
+            Register.set(i, newProduct);
     }
+
 
     //Metode som returnerer totalsum av varer lagt til i handlekurv - Hannah
     public double getTotalPrice() {

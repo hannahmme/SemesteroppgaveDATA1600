@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="705.0" prefWidth="1017.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.EnduserSendOrderPageController">
    <children>
-      <SplitPane dividerPositions="0.5529865125240848" layoutY="-9.0" prefHeight="716.0" prefWidth="1040.0">
+      <SplitPane dividerPositions="0.5529865125240848" layoutY="-9.0" prefHeight="750.0" prefWidth="1250.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="713.0" prefWidth="607.0">
                <children>

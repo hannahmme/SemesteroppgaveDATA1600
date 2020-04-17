@@ -126,14 +126,12 @@ public class EnduserSendOrderPageController implements Initializable {
         double totalPrice;
 
         try {
-
             email = txtEpost.getText();
 
-            // sjekker om input av e-postadresse er riktig, hvis ikke kaster den exception og feilmelding til sluttbruker
+            // sjekker om input av e-postadresse er riktig, hvis ikke kaster den exception og sender feilmelding til bruker
             if(!Customer.validateEmail(email)){
-                throw new InvalidEmailException("Ordre ikke registrert, vennligst skriv inn gyldig e-postadresse");
+                throw new InvalidEmailException("Skriv inn gyldig e-postadresse");
             }
-            // hvis e-postadresse er gyldig hentes totaltpris, dato, ordrenummer genereres og en ferdig ordre blir opprettet og returnert
             else{
                 // henter totalbeløpet til bestillingen
                 totalPrice = shoppingcart.getTotalPrice();

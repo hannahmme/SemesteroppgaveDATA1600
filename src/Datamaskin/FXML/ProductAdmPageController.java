@@ -6,6 +6,7 @@ import Datamaskin.Filbehandling.SaveToBinaryFile;
 import Datamaskin.Product.ProductCategories;
 import Datamaskin.Product.ProductRegister;
 import Datamaskin.Product.Product;
+import Datamaskin.Product.ProductValidator;
 import Datamaskin.newScene;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -102,7 +103,12 @@ public class ProductAdmPageController implements Initializable{
                 Product.validateDescription(description);
 
                 lifetime = Integer.parseInt(txtLifetime.getText());
-                Product.validateLifetime(lifetime);
+                if(!ProductValidator.validateLifetime(lifetime)){
+                    throw new InvalidLifetimeException("Skriv inn et gyldig antall år");
+                }
+                else{
+
+                }
 
                 price = Double.parseDouble(txtPrice.getText());
                 Product.validatePrice(price);

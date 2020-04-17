@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
@@ -22,7 +23,7 @@ import java.util.ResourceBundle;
 public class ProductAdmPageController implements Initializable{
 
     @FXML private Button tilSuperbrukerside;
-    @FXML private Label wrongInput;
+    @FXML private Text wrongInput;
 
     // inputfields for å lage et produkt/ komponent
     @FXML private TextField txtComponentname;
@@ -36,7 +37,7 @@ public class ProductAdmPageController implements Initializable{
     @FXML private MenuItem openFromFile;
 
     // metode for å lage kategoriene
-    public void setData(){
+    private void setData(){
         cboxCategory.getItems().addAll("Skjermkort", "Minnekort",
                 "Harddisk", "Prosessor", "Strømforsyning", "Lydkort",
                 "Optisk disk" , "Farge", "Andre produkter");
@@ -71,6 +72,12 @@ public class ProductAdmPageController implements Initializable{
         wrongInput.setText("");
     }
 
+    //metode som sjekker om tekstfeltene på adminsiden er tomme eller med white-spaces - Hannah
+    private boolean isEmptyOrBlank(TextField textfield) {
+        return textfield.getText().isEmpty() || textfield.getText().trim().isEmpty();
+    }
+
+
     // sjekker inputfields for feil og legger til i array
     private Product createProductObjectFromGUI() {
         String name;
@@ -79,14 +86,13 @@ public class ProductAdmPageController implements Initializable{
         double price;
         String category;
 
-        // sjekke om field er tomt/ har bare mellomrom. hvordan?
-        if (    txtComponentname.getText().isEmpty()        ||
-                txtComponentname.getText().trim().isEmpty() ||
-                txtDescription.getText().isEmpty()          ||
-                txtLifetime.getText().isEmpty()             ||
-                txtPrice.getText().isEmpty()) {
-            wrongInput.setText("Remember to fill out every field");
-            System.out.println(txtComponentname.getText().isEmpty());
+        if (    isEmptyOrBlank(txtComponentname) ||
+                isEmptyOrBlank(txtDescription)   ||
+                isEmptyOrBlank(txtLifetime)      ||
+                isEmptyOrBlank(txtPrice)         ||
+                cboxCategory.getSelectionModel().getSelectedItem() == null) {
+            wrongInput.setText("Fyll ut alle felter over.");
+
         } else {
             try {
                 name = txtComponentname.getText();

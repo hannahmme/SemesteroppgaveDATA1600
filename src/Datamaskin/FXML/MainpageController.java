@@ -32,11 +32,12 @@ public class MainpageController implements Initializable {
     @FXML private Button btnUserOrders;
     @FXML private TextField txtEmail;
 
+    // kan denne tomme metoden slettes?
     public MainpageController() throws FileNotFoundException {
     }
 
 
-
+    // metode som åpner ordresiden for bruker med epostvalidering
     @FXML void btnUserOrders(ActionEvent event) throws IOException {
         try{
             String email = txtEmail.getText();
@@ -53,18 +54,7 @@ public class MainpageController implements Initializable {
         catch(InvalidEmailException e){
             //lblErrorMessage.setText(e.getMessage());
         }
-
-
     }
-
-    // bruke denne med try/catch for å legge til en verdi som skal brukes for å filtrere userSpecific order
-    public void checkEmail() throws InvalidEmailException {
-        String email = txtEmail.getText();
-        Customer.validateEmail(email);
-
-        eposten = txtEmail.getText();
-    }
-
 
     // metode som åpner ny scene til superbrukersiden
     @FXML void tilSluttbrukerside(ActionEvent event) throws IOException {

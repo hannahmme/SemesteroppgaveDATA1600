@@ -14,16 +14,14 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("FXML/Mainpage.fxml"));
-        primaryStage.setTitle("Konfigurasjonssystem for datamaskin");
-        primaryStage.setScene(new Scene(root, 1250, 750));
+        primaryStage.setTitle("Konfigurasjonssystem for datamaskiner");
+        primaryStage.setScene(new Scene(root, 1250, 670));
         primaryStage.show();
 
         //Setter all eksempeldata ved start av applikasjon så den ikke dupliseres
         ProductCategories.setExampleData();
         OrderExample.setExampleData();
-
     }
-
 
     public static void main(String[] args) {
         launch(args);

@@ -133,7 +133,7 @@ public class EnduserSendOrderPageController implements Initializable {
             // henter totalbeløpet til bestillingen
             totalPrice = shoppingcart.getTotalPrice();
 
-            // henter datoen
+            // henter datoen, ikke helt ferdig
             Date date = Date.valueOf(LocalDate.now());
 
             //lager en ordreID for bestillingen og viser den til bruker

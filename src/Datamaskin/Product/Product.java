@@ -90,47 +90,6 @@ public class Product {
                 "; Price: " + price.getValue() + "; Category: " + category.getValue();
     }
 
-
-    // enhtesvalideringsmetoder
-    public static String validateName(String name) throws IllegalArgumentException {
-        if (name.matches("[a-zA-ZæøåÆØÅ. \\-0-9]*")&& name.length()<30 && !name.equals("")) {
-            return name;
-        }
-        throw new IllegalArgumentException("Skriv inn et gyldignavn!");
-    }
-
-    public static String validateDescription(String description) throws IllegalArgumentException {
-        if (description.matches("[a-zA-ZæøåÆØÅ. \\-0-9]*") && description.length()<200 && !description.equals("")) {
-            return description;
-        }
-        throw new IllegalArgumentException("Skriv inn en gyldig beskrivelse!");
-    }
-
-    public static Integer validateLifetime (int lifetime) throws InvalidLifetimeException {
-        if (lifetime > 0 && lifetime < 36){
-            return lifetime;
-        }
-        throw new InvalidLifetimeException("Put in a valid number of years");
-    }
-
-    public static Double validatePrice (double price) throws InvalidPriceException {
-        if (price > 0 && price < 10000){
-            return price;
-        }
-        throw new InvalidPriceException("Put in a valid price");
-    }
-
-
-    public static String validateCategory (String category){
-        if(category.isEmpty()){
-            throw new IllegalArgumentException("Choose a category" +
-                    "!");
-        }
-        return category;
-    }
-
-
-
     // testmetoder
 
     public static boolean testPrice (double price){

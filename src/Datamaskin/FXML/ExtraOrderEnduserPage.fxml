@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="750.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.ExtraOrderEnduserPageController">
    <children>
-      <SplitPane dividerPositions="0.5745192307692307" layoutY="-5.0" prefHeight="764.0" prefWidth="1250.0">
+      <SplitPane dividerPositions="0.5" layoutY="-5.0" prefHeight="670.0" prefWidth="1250.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="769.0" prefWidth="152.0">
                <children>
@@ -27,12 +27,12 @@
                             <PropertyValueFactory property="Name" />
                         </cellValueFactory>
                       </TableColumn>
-                      <TableColumn fx:id="extraProductInfo" prefWidth="292.0" text="Beskrivelse">
+                      <TableColumn fx:id="extraProductInfo" prefWidth="411.0" text="Beskrivelse">
                         <cellValueFactory>
                             <PropertyValueFactory property="Description" />
                         </cellValueFactory>
                       </TableColumn>
-                        <TableColumn fx:id="extraProductPrice" prefWidth="94.0" text="Pris">
+                        <TableColumn fx:id="extraProductPrice" prefWidth="73.0" text="Pris">
                             <cellValueFactory>
                                 <PropertyValueFactory property="Price" />
                             </cellValueFactory>
@@ -53,26 +53,26 @@
                                    <PropertyValueFactory property="Name" />
                                </cellValueFactory>
                            </TableColumn>
-                           <TableColumn fx:id="descriptionColumn" prefWidth="214.0" text="Beskrivelse">
+                           <TableColumn fx:id="descriptionColumn" prefWidth="332.0" text="Beskrivelse">
                                <cellValueFactory>
                                    <PropertyValueFactory property="Description" />
                                </cellValueFactory>
                            </TableColumn>
-                           <TableColumn fx:id="lifetimeColumn" prefWidth="91.0" text="Levetid">
+                           <TableColumn fx:id="lifetimeColumn" prefWidth="65.0" text="Levetid">
                                <cellValueFactory>
                                    <PropertyValueFactory property="Lifetime" />
                                </cellValueFactory>
                            </TableColumn>
-                           <TableColumn fx:id="priceColumn" prefWidth="72.0" text="Pris">
+                           <TableColumn fx:id="priceColumn" prefWidth="67.0" text="Pris">
                                <cellValueFactory>
                                    <PropertyValueFactory property="Price" />
                                </cellValueFactory>
                            </TableColumn>
                        </columns>
                    </TableView>
-                  <Label layoutX="39.0" layoutY="695.0" prefHeight="21.0" prefWidth="126.0" text="Totalt å betale:" />
-                  <Label fx:id="lblTotalPrice" layoutX="145.0" layoutY="695.0" prefHeight="21.0" prefWidth="96.0" />
-                  <Text layoutX="27.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Handlekurv" />
+                  <Label layoutX="61.0" layoutY="619.0" prefHeight="21.0" prefWidth="126.0" text="Totalt å betale:" />
+                  <Label fx:id="lblTotalPrice" layoutX="187.0" layoutY="619.0" prefHeight="21.0" prefWidth="96.0" />
+                  <Text layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Handlekurv" />
                </children>
             </AnchorPane>
         </items>

@@ -119,9 +119,9 @@ public class EnduserSendOrderPageController implements Initializable {
         double totalPrice;
 
         try {
-            // sjekker om input er riktig
             email = txtEpost.getText();
 
+            // sjekker om input av e-postadresse er riktig, hvis ikke kaster den exception og sender feilmelding til bruker
             if(!Customer.validateEmail(email)){
                 throw new InvalidEmailException("Skriv inn gyldig e-postadresse");
             }
@@ -136,6 +136,7 @@ public class EnduserSendOrderPageController implements Initializable {
                 orderID = generateOrderID();
                 lblOrderSent.setText("Takk for din ordre.\nOrdrenummer: " + orderID);
 
+                //Oppretter ferdig ordre-objekt
                 FinalOrder anFinalOrder = new FinalOrder(orderID, email, date, totalPrice);
 
                 // setter knappene som disabled fordi bestillingen er gjennomført og man må starte på nytt
@@ -149,7 +150,7 @@ public class EnduserSendOrderPageController implements Initializable {
                 return anFinalOrder;
             }
         } catch (InvalidEmailException e){
-            lblOrderSent.setText("Ordre ikke registrert, vennligst skriv inn gyldig e-postadresse");
+            lblOrderSent.setText(e.getMessage());
         }
         return null;
 

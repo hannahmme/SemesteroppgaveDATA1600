@@ -4,6 +4,7 @@ import Datamaskin.Customer;
 import Datamaskin.Exceptions.InvalidEmailException;
 import Datamaskin.newScene;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,11 +38,26 @@ public class MainpageController implements Initializable {
     public MainpageController() throws FileNotFoundException {
     }
 
+
+
     @FXML void btnUserOrders(ActionEvent event) throws IOException {
-        Stage primaryStage = (Stage) btnUserOrders.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("UserspesificOrder.fxml"));
-        newScene.toUserspesificOrder(primaryStage, root);
-        primaryStage.show();
+        try{
+            String email = txtEmail.getText();
+
+            if(!Customer.validateEmail(email)){
+                throw new InvalidEmailException("Skriv inn gyldig e-postadresse");
+            } else {
+                Stage primaryStage = (Stage) btnUserOrders.getScene().getWindow();
+                Parent root = FXMLLoader.load(getClass().getResource("UserspesificOrder.fxml"));
+                newScene.toUserspesificOrder(primaryStage, root);
+                primaryStage.show();
+            }
+        }
+        catch(InvalidEmailException e){
+            //lblErrorMessage.setText(e.getMessage());
+        }
+
+
     }
 
     // bruke denne med try/catch for å legge til en verdi som skal brukes for å filtrere userSpecific order

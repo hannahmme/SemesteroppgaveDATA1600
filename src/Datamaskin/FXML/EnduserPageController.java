@@ -5,7 +5,6 @@ import Datamaskin.Product.Product;
 import Datamaskin.Product.ProductCategories;
 import Datamaskin.newScene;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -44,6 +43,8 @@ public class EnduserPageController implements Initializable{
     @FXML private ChoiceBox<String> cBoxOpticaldisk;
     @FXML private ChoiceBox<String> cBoxColor;
 
+    private static Cart aCart = new Cart();
+
     // metode som setter verdier til choicebox
     public void setValuesToChoicebox(){
         for(int index = 0; index<ProductCategories.GraphicCard.size(); index++) {
@@ -71,7 +72,6 @@ public class EnduserPageController implements Initializable{
             cBoxColor.getItems().add(ProductCategories.CategorynameToString(ProductCategories.Color, index));
         }
     }
-
 
     // knapp som sender bruker til neste side
     @FXML void loadPayment(ActionEvent event) throws IOException {
@@ -104,21 +104,14 @@ public class EnduserPageController implements Initializable{
         }
     }
 
-
-    // under her er kode for å populere handlekurven
-    private static Cart aCart = new Cart();
-    // må nullstille dette arrayet hvis bruker avbryter handleturen
-
-
     @FXML void addToCart(ActionEvent event) {
-        if(checkIfCboxValuesIsEmpty()){
+        if(checkIfCboxValuesAreEmpty()){
             lblError.setText("Husk å velge en komponent i alle choiceboksene!");
         } else {
             createCartObjectsFromGUI();
             getTotalprice();
         }
     }
-
 
     // meotde for å hente ut verdier fra pris-kolonnen og legge de sammen, for så å sette verdien til lbl
     public void getTotalprice(){
@@ -133,14 +126,27 @@ public class EnduserPageController implements Initializable{
 
     // metode for å slette gamle objekter og for å lage nye objekter som kommer an på valg i choiceboksene
     private void createCartObjectsFromGUI() {
-        // sjekke om handlekurven allerede har komponenter, da må de slettes for å legge til nye komponenter som bruker vil endre til
-        if (!Cart.Register.isEmpty()) {
-            aCart.deleteElements();
+        updateCart();                   // oppdater alltid handlekurven ut fra det som er i choicebox
+        if (Cart.Register.isEmpty()) {  // kun hvis handlekurven er tom skal det lages helt nye produkter som legges til
+            createProducts();
         }
-        createProducts();
     }
 
-    // metode som oppretter produkter fra hver choicebox
+    // sjekke om handlekurven allerede har komponenter, da må de slettes for å legge til nye komponenter som bruker vil endre til
+    public void updateCart(){
+        if (!Cart.Register.isEmpty()) {
+            aCart.replaceElements(0, addProduct(cBoxGraphicCard.getValue(), ProductCategories.GraphicCard));
+            aCart.replaceElements(1, addProduct(cBoxMemorycard.getValue(), ProductCategories.Memorycard));
+            aCart.replaceElements(2, addProduct(cBoxHarddrive.getValue(), ProductCategories.Harddrive));
+            aCart.replaceElements(3, addProduct(cBoxProcessor.getValue(), ProductCategories.Processor));
+            aCart.replaceElements(4, addProduct(cBoxPower.getValue(), ProductCategories.Power));
+            aCart.replaceElements(5, addProduct(cBoxSoundcard.getValue(), ProductCategories.Soundcard));
+            aCart.replaceElements(6, addProduct(cBoxOpticaldisk.getValue(), ProductCategories.OpticalDisk));
+            aCart.replaceElements(7, addProduct(cBoxColor.getValue(), ProductCategories.Color));
+        }
+    }
+
+    // metode som oppretter produkter fra hver choicebox (hver stirng representerer navnet på produktet)
     public void createProducts(){
         String graphicCard = cBoxGraphicCard.getValue();
         String memoryCard = cBoxMemorycard.getValue();
@@ -151,27 +157,26 @@ public class EnduserPageController implements Initializable{
         String opticalDisk = cBoxOpticaldisk.getValue();
         String color = cBoxColor.getValue();
 
-        addProduct(graphicCard, ProductCategories.GraphicCard);
-        addProduct(memoryCard, ProductCategories.Memorycard);
-        addProduct(harddrive, ProductCategories.Harddrive);
-        addProduct(processor, ProductCategories.Processor);
-        addProduct(power, ProductCategories.Power);
-        addProduct(soundcard, ProductCategories.Soundcard);
-        addProduct(opticalDisk, ProductCategories.OpticalDisk);
-        addProduct(color, ProductCategories.Color);
+        aCart.addElement(addProduct(graphicCard, ProductCategories.GraphicCard));
+        aCart.addElement(addProduct(memoryCard, ProductCategories.Memorycard));
+        aCart.addElement(addProduct(harddrive, ProductCategories.Harddrive));
+        aCart.addElement(addProduct(processor, ProductCategories.Processor));
+        aCart.addElement(addProduct(power, ProductCategories.Power));
+        aCart.addElement(addProduct(soundcard, ProductCategories.Soundcard));
+        aCart.addElement(addProduct(opticalDisk, ProductCategories.OpticalDisk));
+        aCart.addElement(addProduct(color, ProductCategories.Color));
     }
 
     // metode for å hente frem riktig produkt fra listen(hashmappen) og legge til produktet i handlekurven
-    public void addProduct(String aString, HashMap<String, Product> aHashMap){
+    public Product addProduct(String productname, HashMap<String, Product> categoryList){
         Product aProduct = null;
-        for(int i = 0; i<aHashMap.size(); i++){
-            if(aString.equals(aHashMap.keySet().toArray()[i].toString())){
-                aProduct = aHashMap.get(aString);
+        for(int i = 0; i<categoryList.size(); i++){
+            if(productname.equals(categoryList.keySet().toArray()[i].toString())){
+                aProduct = categoryList.get(productname);
             }
         }
-        aCart.addElement(aProduct);
+        return aProduct;
     }
-
 
     // metode som kjøres umiddelbart hver gang denne scenen blir laget
     @Override public void initialize(URL url, ResourceBundle rb) {
@@ -192,7 +197,6 @@ public class EnduserPageController implements Initializable{
         }
     }
 
-
     // metoder for å sette choicebox til riktig verdi utifra det brukeren allerede har valgt
     public String setAllChosenChoiceboxes(int i){
         String cBoxValue = tableviewCart.getColumns().get(0).getCellObservableValue(i).getValue().toString();
@@ -212,7 +216,7 @@ public class EnduserPageController implements Initializable{
     }
 
     // metode for å sjekke om alle choiceboksene er valgt
-    public boolean checkIfCboxValuesIsEmpty(){
+    public boolean checkIfCboxValuesAreEmpty(){
         if(cBoxGraphicCard.getValue().equals("") || cBoxMemorycard.getValue().equals("") || cBoxHarddrive.getValue().equals("") ||
         cBoxProcessor.getValue().equals("") || cBoxPower.getValue().equals("") || cBoxSoundcard.getValue().equals("") ||
         cBoxOpticaldisk.getValue().equals("") || cBoxColor.getValue().equals("")){
@@ -220,5 +224,4 @@ public class EnduserPageController implements Initializable{
         }
         return false;
     }
-
 }

@@ -52,22 +52,11 @@ public class EnduserSendOrderPageController implements Initializable {
             newScene.toMainpage(primaryStage, root);
         } else {
             //Man får en advarsel om at hvis man går til hovedsiden, vil bestillingen avsluttes - Hannah
-            Alert alert = new Alert(Alert.AlertType.NONE);
-            alert.setTitle("Vent litt...");
-            alert.setContentText("Ønsker du å avslutte din bestilling og gå til hovedsiden?");
-            ButtonType buttonYes = new ButtonType("Ja, det ønsker jeg");
-            ButtonType buttonNo = new ButtonType("Nei");
-            alert.getButtonTypes().addAll(buttonYes, buttonNo);
-            Optional<ButtonType> userAnswer = alert.showAndWait();
+            shoppingcart.alertWhenMainpage(btnGoToMainpage);
 
-            if (userAnswer.get() == buttonYes) {
-                Stage primaryStage = (Stage) btnGoToMainpage.getScene().getWindow();
-                Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
-                newScene.toMainpage(primaryStage, root);
                 //metode som nullstiller handlekurven om bruker avslutter handlingen
                 shoppingcart.deleteShoppingcart();
             }
-        }
     }
 
     // metode for å gå tilbake til forrige side

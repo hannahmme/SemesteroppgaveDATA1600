@@ -38,8 +38,6 @@ public class MainpageController implements Initializable {
     public MainpageController() throws FileNotFoundException {
     }
 
-
-
     @FXML void btnUserOrders(ActionEvent event) throws IOException {
         try{
             String email = txtEmail.getText();
@@ -56,8 +54,6 @@ public class MainpageController implements Initializable {
         catch(InvalidEmailException e){
             //lblErrorMessage.setText(e.getMessage());
         }
-
-
     }
 
     // bruke denne med try/catch for å legge til en verdi som skal brukes for å filtrere userSpecific order
@@ -84,7 +80,7 @@ public class MainpageController implements Initializable {
         if (event.getCode().equals(KeyCode.ENTER)) {
             Stage primaryStage = (Stage) btnUserOrders.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("UserspesificOrder.fxml"));
-            newScene.toSuperuserpage(primaryStage, root);
+            newScene.toUserspesificOrder(primaryStage, root);
         }
     }
 
@@ -93,7 +89,7 @@ public class MainpageController implements Initializable {
         if (event.getCode().equals(KeyCode.ENTER)) {
             Stage primaryStage = (Stage) tilSluttbrukerside.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("EnduserPage.fxml"));
-            newScene.toSuperuserpage(primaryStage, root);
+            newScene.toEnduserPage(primaryStage, root);
         }
     }
 
@@ -146,8 +142,7 @@ public class MainpageController implements Initializable {
     //metode som oppretter et bilde via path og returnerer et bilde
     private Image createImage(String path) throws FileNotFoundException {
         FileInputStream imageStream = new FileInputStream(path);
-        Image image = new Image(imageStream);
-        return image;
+        return new Image(imageStream);
     }
     //metode som kobler imageviewet med bildet - hannah
     private void setImageView(ImageView iv, Image image){
@@ -158,6 +153,7 @@ public class MainpageController implements Initializable {
     private DropShadow shadowEffect = new DropShadow();
 
 
+    //Bilder settes i ImageViewet når siden lastes inn, samt effekt på bildet
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setImageView(orderImageView, orderImage);

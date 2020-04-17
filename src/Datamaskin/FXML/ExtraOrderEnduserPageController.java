@@ -11,10 +11,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -57,6 +60,11 @@ public class ExtraOrderEnduserPageController implements Initializable {
         updateTotalPriceLabel();
     }
 
+    // Metode som oppdaterer label med totalsum
+    private void updateTotalPriceLabel(){
+        double totalPrice = shoppingCart.getTotalPrice();
+        lblTotalPrice.setText(String.valueOf(totalPrice));
+    }
 
     @Override public void initialize(URL location, ResourceBundle resources) {
         //Tableview på venstre side med ekstra tilbehør
@@ -115,24 +123,10 @@ public class ExtraOrderEnduserPageController implements Initializable {
     // går tilbake til hovedsiden + alert
     @FXML void goToMainpage(ActionEvent event) throws IOException {
         //Man får en advarsel om at hvis man går til hovedsiden, vil bestillingen avsluttes - Hannah
-        Alert alert = new Alert(Alert.AlertType.NONE);
-        alert.setTitle("Vent litt...");
-        alert.setContentText("Ønsker du å avslutte din bestilling og gå til hovedsiden?");
-        ButtonType buttonYes = new ButtonType("Ja, det ønsker jeg");
-        ButtonType buttonNo = new ButtonType("Nei");
-        alert.getButtonTypes().addAll(buttonYes, buttonNo);
-        Optional<ButtonType> userAnswer = alert.showAndWait();
-
-        if (userAnswer.get() == buttonYes) {
-
-            Stage primaryStage = (Stage) btnGoToMainpage.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
-            newScene.toMainpage(primaryStage, root);
-            primaryStage.show();
+            shoppingCart.alertWhenMainpage(btnGoToMainpage);
             shoppingCart.deleteShoppingcart();
             System.out.println(Cart.Register.size());
         }
-    }
 
 
     // går videre til betalingssiden
@@ -143,10 +137,33 @@ public class ExtraOrderEnduserPageController implements Initializable {
         primaryStage.show();
     }
 
-    // Metode som oppdaterer label med totalsum
-    private void updateTotalPriceLabel(){
-        double totalPrice = shoppingCart.getTotalPrice();
-        lblTotalPrice.setText(String.valueOf(totalPrice));
+    @FXML
+    void btnAddEnter(KeyEvent event) {
+
+    }
+
+    @FXML
+    void btnGoBackEnter(KeyEvent event) throws IOException {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            newScene.toThisPage("Konfigurer essensielle deler til din datamaskin",
+                    btnGoBack, "EnduserPage.fxml");
+        }
+    }
+    @FXML
+    void btnGoPayEnter(KeyEvent event) throws IOException {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            Stage primaryStage = (Stage) btnGoToPay.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("EnduserSendOrderPage.fxml"));
+            newScene.toEnduserSendOrderPage(primaryStage, root);
+        }
+    }
+    @FXML
+    void btnToMainpageEnter(KeyEvent event) throws IOException {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            Stage primaryStage = (Stage) btnGoToMainpage.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
+            newScene.toMainpage(primaryStage, root);
+        }
     }
 
 

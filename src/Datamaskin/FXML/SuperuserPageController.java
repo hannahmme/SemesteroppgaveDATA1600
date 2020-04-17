@@ -32,43 +32,15 @@ public class SuperuserPageController implements Initializable {
     public SuperuserPageController() throws FileNotFoundException {
     }
 
-    @FXML
-    void btnAllOrdersEnter(KeyEvent event) throws IOException {
-        if (event.getCode().equals(KeyCode.ENTER)) {
-            Stage primaryStage = (Stage) tilOrdreside.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("AllOrders.fxml"));
-            newScene.toSuperuserpage(primaryStage, root);
-        }
-    }
-
-    @FXML
-    void btnChangeEnter(KeyEvent event) throws IOException {
-        if (event.getCode().equals(KeyCode.ENTER)) {
-            Stage primaryStage = (Stage) tilKomponentside.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("ProductAdmPage.fxml"));
-            newScene.toSuperuserpage(primaryStage, root);
-        }
-    }
-
-    @FXML
-    void btnLogOutEnter(KeyEvent event) throws IOException {
-        if (event.getCode().equals(KeyCode.ENTER)) {
-            Stage primaryStage = (Stage) tilHovedside.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
-            newScene.toSuperuserpage(primaryStage, root);
-        }
-    }
-
-    //metode som kobler bildet og imageViewet sammen.
+    //metode som kobler bildet og imageViewet sammen - Hannah
     private void setImageView(ImageView iv, Image image){
         iv.setImage(image);
     }
 
-    //metode som oppretter et bilde via path og returnerer et bilde
+    //metode som oppretter et bilde via path og returnerer et bilde - Hannah
     private Image createImage(String path) throws FileNotFoundException {
         FileInputStream imageStream = new FileInputStream(path);
-        Image image = new Image(imageStream);
-        return image;
+        return new Image(imageStream);
     }
 
     @FXML
@@ -84,6 +56,7 @@ public class SuperuserPageController implements Initializable {
     private Image allOrdersImage = createImage("./src/Datamaskin/images/order.png");
 
 
+    //Kobler ImageViewet med bildene når siden lastes inn
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setImageView(logOutImageView, logOutImage);
@@ -104,19 +77,39 @@ public class SuperuserPageController implements Initializable {
     @FXML void tilKomponentside(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) tilKomponentside.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("ProductAdmPage.fxml"));
-        primaryStage.setTitle("Å lage eller ikke lage nye komponenter");
-        primaryStage.setScene(new Scene(root, 1200, 800));
-        primaryStage.show();
+        newScene.toProductAdminPage(primaryStage, root);
     }
-
-
 
     @FXML void tilOrdreside(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) tilOrdreside.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("AllOrders.fxml"));
-        primaryStage.setTitle("Ordre som har blitt laget av brukere");
-        primaryStage.setScene(new Scene(root, 1200, 800));
-        primaryStage.show();
+        newScene.toAllOrdersPage(primaryStage, root);
+    }
+
+    //metoder som sender deg til neste side ved å trykke "Enter" - Hannah
+    @FXML
+    void btnAllOrdersEnter(KeyEvent event) throws IOException {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            Stage primaryStage = (Stage) tilOrdreside.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("AllOrders.fxml"));
+            newScene.toAllOrdersPage(primaryStage, root);
+        }
+    }
+    @FXML
+    void btnChangeEnter(KeyEvent event) throws IOException {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            Stage primaryStage = (Stage) tilKomponentside.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("ProductAdmPage.fxml"));
+            newScene.toProductAdminPage(primaryStage, root);
+        }
+    }
+    @FXML
+    void btnLogOutEnter(KeyEvent event) throws IOException {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            Stage primaryStage = (Stage) tilHovedside.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
+            newScene.toMainpage(primaryStage, root);
+        }
     }
 
 }

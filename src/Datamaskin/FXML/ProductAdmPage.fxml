@@ -11,10 +11,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="699.0" prefWidth="1083.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.ProductAdmPageController">
+<AnchorPane prefHeight="699.0" prefWidth="1083.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.ProductAdmPageController">
    <children>
-      <Button layoutX="29.0" layoutY="646.0" mnemonicParsing="false" onAction="#addComponent" prefHeight="25.0" prefWidth="187.0" text="Legg til komponent" />
-      <Button fx:id="tilSuperbrukerside" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#tilSuperbrukerside" text="Tilbake til menysiden" />
+      <Button layoutX="29.0" layoutY="646.0" mnemonicParsing="false" onAction="#addComponent" onKeyPressed="#btnAddProdEnter" prefHeight="25.0" prefWidth="187.0" text="Legg til komponent" />
+      <Button fx:id="tilSuperbrukerside" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#tilSuperbrukerside" onKeyPressed="#btnGoBackEnter" text="Tilbake til menysiden" />
       <TableView fx:id="componentTableview" layoutX="272.0" layoutY="90.0" prefHeight="582.0" prefWidth="788.0">
         <columns>
           <TableColumn fx:id="nameColumn" prefWidth="155.0" text="Componentname">
@@ -54,7 +54,7 @@
       <Text layoutX="23.0" layoutY="427.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pris (i KR)" />
       <ChoiceBox fx:id="cboxCategory" layoutX="26.0" layoutY="507.0" prefHeight="31.0" prefWidth="187.0" />
       <Text layoutX="26.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kategori" />
-      <MenuButton fx:id="menuDropdown" layoutX="953.0" layoutY="14.0" mnemonicParsing="false" text="Menyvalg">
+      <MenuButton fx:id="menuDropdown" layoutX="953.0" layoutY="14.0" mnemonicParsing="false" onKeyPressed="#btnMenuEnter" text="Menyvalg">
         <items>
           <MenuItem fx:id="saveToFile" mnemonicParsing="false" onAction="#saveToFile" text="Lagre til fil" />
           <MenuItem fx:id="openFromFile" mnemonicParsing="false" onAction="#openFromFile" text="Importer fra fil" />

@@ -14,6 +14,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -76,7 +78,6 @@ public class ProductAdmPageController implements Initializable{
     private boolean isEmptyOrBlank(TextField textfield) {
         return textfield.getText().isEmpty() || textfield.getText().trim().isEmpty();
     }
-
 
     // sjekker inputfields for feil og legger til i array
     private Product createProductObjectFromGUI() {
@@ -149,6 +150,34 @@ public class ProductAdmPageController implements Initializable{
         newScene.toSuperuserpage(primaryStage, root);
     }
 
+
+    @FXML
+    void btnAddProdEnter(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            Product aProduct = createProductObjectFromGUI();
+            if(aProduct != null) {
+                aRegister.addElement(aProduct);
+                emptyTextfield();
+            }
+        }
+    }
+
+    @FXML
+    void btnGoBackEnter(KeyEvent event) throws IOException {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            Stage primaryStage = (Stage) tilSuperbrukerside.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
+            newScene.toSuperuserpage(primaryStage, root);
+        }
+    }
+
+    @FXML
+    void btnMenuEnter(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            menuDropdown.show();
+            menuDropdown.fire();
+        }
+    }
 
 
     // litt enkel filbehandling her, lagre til binære filer? og lage for ordre også

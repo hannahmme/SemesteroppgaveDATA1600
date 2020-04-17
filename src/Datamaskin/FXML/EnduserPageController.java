@@ -11,6 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
@@ -73,39 +75,8 @@ public class EnduserPageController implements Initializable{
         }
     }
 
-    // knapp som sender bruker til neste side
-    @FXML void loadPayment(ActionEvent event) throws IOException {
-        Stage primaryStage = (Stage) btnGoToPay.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("ExtraOrderEnduserPage.fxml"));
-        newScene.toExtraOrderEnduserPage(primaryStage, root);
-        primaryStage.show();
-    }
-
-    // knapp som sender bruker til forrige side + advarsel om å avslutte
-    @FXML void goBack(ActionEvent event) throws IOException {
-        //Man får en advarsel om at hvis man går til hovedsiden, vil bestillingen avsluttes - Hannah
-        Alert alert = new Alert(Alert.AlertType.NONE);
-        alert.setTitle("Vent litt...");
-        alert.setContentText("Ønsker du å avslutte din bestilling og gå til hovedsiden?");
-        ButtonType buttonYes = new ButtonType("Ja, det ønsker jeg");
-        ButtonType buttonNo = new ButtonType("Nei");
-        alert.getButtonTypes().addAll(buttonYes, buttonNo);
-        Optional<ButtonType> userAnswer = alert.showAndWait();
-
-        if (userAnswer.get() == buttonYes) {
-            //legger inn metoden for å åpne tidligere side (forside) - Hannah
-            Stage primaryStage = (Stage) btnGoBack.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
-            newScene.toMainpage(primaryStage, root);
-            primaryStage.show();
-            //sletter handlekurven når bruker ønsker å avrbyte handlingen
-            aCart.deleteShoppingcart();
-
-        }
-    }
-
     @FXML void addToCart(ActionEvent event) {
-        if(checkIfCboxValuesAreEmpty()){
+        if(checkBoxesAreEmpty()){
             lblError.setText("Husk å velge en komponent i alle choiceboksene!");
         } else {
             createCartObjectsFromGUI();
@@ -114,13 +85,8 @@ public class EnduserPageController implements Initializable{
     }
 
     // meotde for å hente ut verdier fra pris-kolonnen og legge de sammen, for så å sette verdien til lbl
-    public void getTotalprice(){
-        double totalPrice = 0;
-
-        for(int i = 0; i<tableviewCart.getItems().size(); i++){
-            double a = Double.parseDouble(tableviewCart.getColumns().get(3).getCellObservableValue(i).getValue().toString());
-            totalPrice += a;
-        }
+    private void getTotalprice(){
+        double totalPrice = aCart.getTotalPrice();
         lblTotalPrice.setText(String.valueOf(totalPrice));
     }
 
@@ -133,7 +99,7 @@ public class EnduserPageController implements Initializable{
     }
 
     // sjekke om handlekurven allerede har komponenter, da må de slettes for å legge til nye komponenter som bruker vil endre til
-    public void updateCart(){
+    private void updateCart(){
         if (!Cart.Register.isEmpty()) {
             aCart.replaceElements(0, addProduct(cBoxGraphicCard.getValue(), ProductCategories.GraphicCard));
             aCart.replaceElements(1, addProduct(cBoxMemorycard.getValue(), ProductCategories.Memorycard));
@@ -147,7 +113,7 @@ public class EnduserPageController implements Initializable{
     }
 
     // metode som oppretter produkter fra hver choicebox (hver stirng representerer navnet på produktet)
-    public void createProducts(){
+    private void createProducts(){
         String graphicCard = cBoxGraphicCard.getValue();
         String memoryCard = cBoxMemorycard.getValue();
         String harddrive = cBoxHarddrive.getValue();
@@ -168,7 +134,7 @@ public class EnduserPageController implements Initializable{
     }
 
     // metode for å hente frem riktig produkt fra listen(hashmappen) og legge til produktet i handlekurven
-    public Product addProduct(String productname, HashMap<String, Product> categoryList){
+    private Product addProduct(String productname, HashMap<String, Product> categoryList){
         Product aProduct = null;
         for(int i = 0; i<categoryList.size(); i++){
             if(productname.equals(categoryList.keySet().toArray()[i].toString())){
@@ -198,13 +164,13 @@ public class EnduserPageController implements Initializable{
     }
 
     // metoder for å sette choicebox til riktig verdi utifra det brukeren allerede har valgt
-    public String setAllChosenChoiceboxes(int i){
+    private String setAllChosenChoiceboxes(int i){
         String cBoxValue = tableviewCart.getColumns().get(0).getCellObservableValue(i).getValue().toString();
         return cBoxValue;
     }
 
     // metode som bruker metoden over til å sette verdier til hver cBox
-    public void setChosenChoicebox(){ ;
+    private void setChosenChoicebox(){ ;
         cBoxGraphicCard.setValue(setAllChosenChoiceboxes(0));
         cBoxMemorycard.setValue(setAllChosenChoiceboxes(1));
         cBoxHarddrive.setValue(setAllChosenChoiceboxes(2));
@@ -216,12 +182,70 @@ public class EnduserPageController implements Initializable{
     }
 
     // metode for å sjekke om alle choiceboksene er valgt
-    public boolean checkIfCboxValuesAreEmpty(){
-        if(cBoxGraphicCard.getValue().equals("") || cBoxMemorycard.getValue().equals("") || cBoxHarddrive.getValue().equals("") ||
-        cBoxProcessor.getValue().equals("") || cBoxPower.getValue().equals("") || cBoxSoundcard.getValue().equals("") ||
-        cBoxOpticaldisk.getValue().equals("") || cBoxColor.getValue().equals("")){
+    private boolean checkBoxesAreEmpty(){
+    if(     cBoxGraphicCard.getValue()  == null ||
+            cBoxMemorycard.getValue()   == null ||
+            cBoxHarddrive.getValue()    == null ||
+            cBoxProcessor.getValue()    == null ||
+            cBoxPower.getValue()        == null ||
+            cBoxSoundcard.getValue()    == null ||
+            cBoxOpticaldisk.getValue()  == null ||
+            cBoxColor.getValue()        == null){
             return true;
         }
         return false;
     }
+
+    // knapp som sender bruker til neste side
+    @FXML void loadPayment(ActionEvent event) throws IOException {
+        if (checkBoxesAreEmpty()) {
+            lblError.setText("Du har ikke valgt alle nødvendige komponenter til din datamaskin.");
+            return;
+        }
+        Stage primaryStage = (Stage) btnGoToPay.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("ExtraOrderEnduserPage.fxml"));
+        newScene.toExtraOrderEnduserPage(primaryStage, root);
+        primaryStage.show();
+    }
+
+    // knapp som sender bruker til forrige side + advarsel om å avslutte
+    @FXML void goBack(ActionEvent event) throws IOException {
+        //Man får en advarsel om at hvis man går til hovedsiden, vil bestillingen avsluttes - Hannah
+        aCart.alertWhenMainpage(btnGoBack);
+        aCart.deleteShoppingcart();
+
+        }
+
+
+    //Metoder som sender bruker videre eller tilbake ved å trykke på "Enter"-knappen
+    @FXML
+    void btnAddEnter(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            if(checkBoxesAreEmpty()){
+                lblError.setText("Husk å velge en komponent i alle choiceboksene!");
+            } else {
+                createCartObjectsFromGUI();
+                getTotalprice();
+            }
+        }
+    }
+
+    @FXML
+    void btnGoBackEnter(KeyEvent event) throws IOException {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            Stage primaryStage = (Stage) btnGoBack.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
+            newScene.toMainpage(primaryStage, root);
+        }
+    }
+
+    @FXML
+    void btnNextPageEnter(KeyEvent event) throws IOException {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            Stage primaryStage = (Stage) btnGoToPay.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("ExtraOrderEnduserPage.fxml"));
+            newScene.toExtraOrderEnduserPage(primaryStage, root);
+        }
+    }
+
 }

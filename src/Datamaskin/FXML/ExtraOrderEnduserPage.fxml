@@ -10,17 +10,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="750.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.ExtraOrderEnduserPageController">
+<AnchorPane prefHeight="663.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.ExtraOrderEnduserPageController">
    <children>
       <SplitPane dividerPositions="0.5" layoutY="-5.0" prefHeight="670.0" prefWidth="1250.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="769.0" prefWidth="152.0">
                <children>
                   <Button fx:id="btnGoBack" layoutX="190.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" onKeyPressed="#btnGoBackEnter" prefHeight="31.0" prefWidth="155.0" text="Gå til forrige side" />
-                  <Label layoutX="197.0" layoutY="81.0" prefHeight="27.0" prefWidth="319.0" text="Trenger du noe ekstra tilbehør? Finn det her!" />
-                  <Label layoutX="297.0" layoutY="473.0" prefHeight="21.0" prefWidth="96.0" text="Produktinfo: " />
-                  <Button fx:id="btnSaveToCart" layoutX="215.0" layoutY="695.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="31.0" prefWidth="283.0" text="Legg til valgt produkt i handlekurven" />
-                  <TableView fx:id="tblExtraProduct" layoutX="109.0" layoutY="108.0" onMouseClicked="#selectedItemEvent" prefHeight="323.0" prefWidth="495.0">
+                  <Label layoutX="20.0" layoutY="70.0" prefHeight="27.0" prefWidth="319.0" text="Trenger du noe ekstra tilbehør? Finn det her!" />
+                  <Label layoutX="26.0" layoutY="450.0" prefHeight="21.0" prefWidth="96.0" text="Produktinfo: " />
+                  <Button fx:id="btnSaveToCart" layoutX="431.0" layoutY="521.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="72.0" prefWidth="172.0" text="Legg til i handlekurven" />
+                  <TableView fx:id="tblExtraProduct" layoutX="13.0" layoutY="97.0" onMouseClicked="#selectedItemEvent" prefHeight="323.0" prefWidth="594.0">
                     <columns>
                       <TableColumn fx:id="extraProductName" prefWidth="108.0" text="Tilbehor">
                         <cellValueFactory>
@@ -40,13 +40,13 @@
                     </columns>
                   </TableView>
                   <Button fx:id="btnGoToMainpage" layoutX="20.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToMainpage" onKeyPressed="#btnToMainpageEnter" prefHeight="31.0" prefWidth="155.0" text="Gå til forsiden" />
-                  <ImageView fx:id="imgImageView" fitHeight="183.0" fitWidth="495.0" layoutX="109.0" layoutY="494.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgImageView" fitHeight="171.0" fitWidth="411.0" layoutX="20.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="525.0">
                <children>
-                  <Button fx:id="btnGoToPay" layoutX="387.0" layoutY="690.0" mnemonicParsing="false" onAction="#goToPay" onKeyPressed="#btnGoPayEnter" prefHeight="25.0" prefWidth="126.0" text="Gå til betaling" />
-                   <TableView fx:id="tableviewCart" layoutX="7.0" layoutY="58.0" prefHeight="580.0" prefWidth="514.0">
+                  <Button fx:id="btnGoToPay" layoutX="480.0" layoutY="614.0" mnemonicParsing="false" onAction="#goToPay" onKeyPressed="#btnGoPayEnter" prefHeight="25.0" prefWidth="126.0" text="Gå til betaling" />
+                   <TableView fx:id="tableviewCart" layoutX="9.0" layoutY="35.0" prefHeight="573.0" prefWidth="602.0">
                        <columns>
                            <TableColumn fx:id="nameColumn" prefWidth="136.0" text="Produktnavn">
                                <cellValueFactory>

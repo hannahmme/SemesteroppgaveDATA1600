@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="822.0" prefWidth="751.0" xmlns="http://javafx.com/fxml/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.UserspesificOrderController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.UserspesificOrderController">
     <children>
         <Text layoutX="281.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hei sluttbruker. Her kan du se alle ordre som er gjennomført. Gjerne sorter etter dato om du vil" />
         <TableView fx:id="allOrders" layoutX="281.0" layoutY="141.0" prefHeight="496.0" prefWidth="628.0">
@@ -37,8 +37,8 @@
                 </TableColumn>
             </columns>
         </TableView>
-        <Button fx:id="toMainpage" layoutX="57.0" layoutY="23.0" mnemonicParsing="false" onAction="#toMainpage" onKeyPressed="#btnToMainpageEnter" text="Back to mainpage" />
-        <TextField layoutX="506.0" layoutY="141.0" />
-        <Text layoutX="428.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search" />
+        <Button fx:id="toMainpage" layoutX="57.0" layoutY="23.0" mnemonicParsing="false" onAction="#toMainpage" onKeyPressed="#btnToMainpageEnter" text="Gå til forsiden" />
+        <TextField layoutX="722.0" layoutY="83.0" />
+        <Text layoutX="666.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Søk" />
     </children>
 </AnchorPane>

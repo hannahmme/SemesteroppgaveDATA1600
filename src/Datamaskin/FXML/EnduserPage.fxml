@@ -17,7 +17,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="705.0" prefWidth="712.0">
                <children>
-                  <Label layoutX="213.0" layoutY="3.0" prefHeight="54.0" prefWidth="440.0" text="Her velger du essensielle deler til din datamaskin">
+                  <Label layoutX="178.0" layoutY="4.0" prefHeight="54.0" prefWidth="440.0" text="Her velger du essensielle deler til din datamaskin">
                      <font>
                         <Font size="20.0" />
                      </font></Label>
@@ -37,11 +37,11 @@
                   <ChoiceBox fx:id="cBoxColor" layoutX="16.0" layoutY="605.0" prefWidth="150.0" />
                   <Label layoutX="17.0" layoutY="584.0" prefHeight="17.0" prefWidth="149.0" text="Farge" />
                   <Label layoutX="17.0" layoutY="377.0" prefHeight="17.0" prefWidth="149.0" text="Strømforsyning" />
-                  <Button fx:id="btnAddToCart" layoutX="213.0" layoutY="564.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="82.0" prefWidth="398.0" text="Bygg pc med valgte komponenter/ oppdater handlekurv" />
-                  <TextArea layoutX="213.0" layoutY="133.0" prefHeight="212.0" prefWidth="398.0" />
-                  <Label layoutX="338.0" layoutY="113.0" prefHeight="21.0" prefWidth="149.0" text="Produktinformasjon:" />
+                  <Button fx:id="btnAddToCart" layoutX="199.0" layoutY="554.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="82.0" prefWidth="398.0" text="Bygg pc med valgte komponenter/ oppdater handlekurv" />
+                  <TextArea layoutX="199.0" layoutY="133.0" prefHeight="212.0" prefWidth="398.0" />
+                  <Label layoutX="324.0" layoutY="113.0" prefHeight="21.0" prefWidth="149.0" text="Produktinformasjon:" />
                   <Label fx:id="lblError" layoutX="239.0" layoutY="379.0" prefHeight="134.0" prefWidth="347.0" />
-                  <Button fx:id="btnGoBack" layoutX="10.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" onKeyPressed="#btnGoBackEnter" prefHeight="33.0" prefWidth="163.0" text="Tilbake til forside" />
+                  <Button fx:id="btnGoBack" layoutX="10.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" onKeyPressed="#btnGoBackEnter" prefHeight="33.0" prefWidth="163.0" text="Gå til forsiden" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="668.0" prefWidth="573.0">
@@ -71,9 +71,9 @@
                     </columns>
                   </TableView>
                   <Label layoutX="16.0" layoutY="14.0" prefHeight="33.0" prefWidth="247.0" text="Handlekurv" />
-                  <Label layoutX="16.0" layoutY="628.0" prefHeight="21.0" prefWidth="109.0" text="Totalt å betale:" />
-                  <Button fx:id="btnGoToPay" layoutX="369.0" layoutY="612.0" mnemonicParsing="false" onAction="#loadPayment" onKeyPressed="#btnNextPageEnter" prefHeight="33.0" prefWidth="177.0" text="Gå til betaling" />
-                  <Label fx:id="lblTotalPrice" layoutX="139.0" layoutY="684.0" prefHeight="21.0" prefWidth="59.0" />
+                  <Label layoutX="85.0" layoutY="591.0" prefHeight="21.0" prefWidth="109.0" text="Totalt å betale:" />
+                  <Button fx:id="btnGoToPay" layoutX="429.0" layoutY="585.0" mnemonicParsing="false" onAction="#loadPayment" onKeyPressed="#btnNextPageEnter" prefHeight="33.0" prefWidth="177.0" text="Gå til betaling" />
+                  <Label fx:id="lblTotalPrice" layoutX="204.0" layoutY="591.0" prefHeight="21.0" prefWidth="59.0" />
                </children>
             </AnchorPane>
         </items>

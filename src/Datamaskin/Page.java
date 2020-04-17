@@ -75,14 +75,14 @@ public class Page {
     public static void toAllOrdersPage(Stage primaryStage, Parent FXMLString) throws IOException {
         Parent root = FXMLString;
         primaryStage.setTitle("Alle ordre");
-        primaryStage.setScene(new Scene(root, 1250, 750));
+        primaryStage.setScene(new Scene(root, 1250, 670));
         primaryStage.show();
     }
 
     public static void toProductAdminPage(Stage primaryStage, Parent FXMLString) throws IOException {
         Parent root = FXMLString;
         primaryStage.setTitle("Opprett eller endre komponenter");
-        primaryStage.setScene(new Scene(root, 1250, 750));
+        primaryStage.setScene(new Scene(root, 1250, 670));
         primaryStage.show();
     }
 

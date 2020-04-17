@@ -9,32 +9,32 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="705.0" prefWidth="1017.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.EnduserSendOrderPageController">
+<AnchorPane prefHeight="664.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.EnduserSendOrderPageController">
    <children>
-      <SplitPane dividerPositions="0.5529865125240848" layoutY="-9.0" prefHeight="750.0" prefWidth="1250.0">
+      <SplitPane dividerPositions="0.5400641025641025" layoutY="-9.0" prefHeight="670.0" prefWidth="1250.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="713.0" prefWidth="607.0">
                <children>
             
-                  <Text layoutX="127.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Legg inn din epostadresse og send bestillingen!" />
-                  <Text layoutX="241.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Epostadresse" />
-                  <TextField fx:id="txtEpost" layoutX="160.0" layoutY="311.0" prefHeight="31.0" prefWidth="249.0" />
-                  <Button fx:id="btnSendOrder" layoutX="222.0" layoutY="590.0" mnemonicParsing="false" onAction="#sendOrder" prefHeight="25.0" prefWidth="127.0" text="Send bestilling" />
-                  <Label fx:id="lblOrderSent" alignment="TOP_LEFT" layoutX="160.0" layoutY="451.0" prefHeight="77.0" prefWidth="249.0" wrapText="true" />
-                  <Button fx:id="btnGoBack" layoutX="109.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="31.0" prefWidth="353.0" text="Glemt noe? Klikk her for å endre handlekurven" />
-                  <Button fx:id="btnGoToMainpage" layoutX="199.0" layoutY="669.0" mnemonicParsing="false" onAction="#goToMainpage" prefHeight="31.0" prefWidth="170.0" text="Gå til hovedsiden" />
+                  <Text layoutX="177.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Legg inn din epostadresse og send bestillingen!" />
+                  <Text layoutX="291.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Epostadresse" />
+                  <TextField fx:id="txtEpost" layoutX="211.0" layoutY="197.0" prefHeight="31.0" prefWidth="249.0" />
+                  <Button fx:id="btnSendOrder" layoutX="272.0" layoutY="559.0" mnemonicParsing="false" onAction="#sendOrder" prefHeight="25.0" prefWidth="127.0" text="Send bestilling" />
+                  <Label fx:id="lblOrderSent" alignment="TOP_LEFT" layoutX="210.0" layoutY="436.0" prefHeight="77.0" prefWidth="249.0" wrapText="true" />
+                  <Button fx:id="btnGoBack" layoutX="303.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="31.0" prefWidth="353.0" text="Glemt noe? Klikk her for å endre handlekurven" />
+                  <Button fx:id="btnGoToMainpage" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToMainpage" prefHeight="31.0" prefWidth="170.0" text="Gå til hovedsiden" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="731.0" prefWidth="415.0">
                <children>
-                  <TableView fx:id="finalOrderRegister" layoutX="29.0" layoutY="22.0" prefHeight="637.0" prefWidth="403.0">
+                  <TableView fx:id="finalOrderRegister" layoutX="84.0" layoutY="42.0" prefHeight="510.0" prefWidth="403.0">
                     <columns>
                       <TableColumn fx:id="nameColumn" prefWidth="249.0" text="Navn" />
                       <TableColumn fx:id="priceColumn" prefWidth="153.0" text="Pris" />
                     </columns>
                   </TableView>
-                  <Label fx:id="lblTotalPrice" layoutX="262.0" layoutY="679.0" prefHeight="21.0" prefWidth="170.0" />
-                  <Text layoutX="136.0" layoutY="695.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Totalpris" />
+                  <Label fx:id="lblTotalPrice" layoutX="268.0" layoutY="567.0" prefHeight="21.0" prefWidth="127.0" />
+                  <Text layoutX="188.0" layoutY="583.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Totalpris" />
                </children>
             </AnchorPane>
         </items>

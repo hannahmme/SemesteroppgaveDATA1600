@@ -27,7 +27,7 @@ public class newScene {
     public static void toSuperuserpage(Stage primaryStage, Parent FXMLString) throws IOException {
         Parent root = FXMLString;
         primaryStage.setTitle("Hei Superbruker");
-        primaryStage.setScene(new Scene(root, 1200, 800));
+        primaryStage.setScene(new Scene(root, 1000, 600));
         primaryStage.show();
     }
 

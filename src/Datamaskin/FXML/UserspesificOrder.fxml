@@ -10,35 +10,35 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="822.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.UserspesificOrderController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.UserspesificOrderController">
     <children>
-        <Text layoutX="57.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hei superbruker. Her kan du se alle ordre som er gjennomført. Gjerne sorter etter dato om du vil" />
-        <TableView fx:id="allOrders" layoutX="57.0" layoutY="189.0" prefHeight="590.0" prefWidth="636.0">
+        <Text layoutX="281.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hei sluttbruker. Her kan du se alle ordre som er gjennomført. Gjerne sorter etter dato om du vil" />
+        <TableView fx:id="allOrders" layoutX="281.0" layoutY="141.0" prefHeight="496.0" prefWidth="628.0">
             <columns>
-                <TableColumn fx:id="emailColumn" prefWidth="212.0" text="E-mail">
+                <TableColumn fx:id="emailColumn" prefWidth="212.0" text="E-post">
                     <cellValueFactory>
                         <PropertyValueFactory property="Email" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn fx:id="orderIDColumn" prefWidth="145.0" text="OrderID">
+                <TableColumn fx:id="orderIDColumn" prefWidth="145.0" text="OrdreID">
                     <cellValueFactory>
                         <PropertyValueFactory property="OrderID" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn fx:id="orderDateColumn" prefWidth="144.0" text="Date of order">
+                <TableColumn fx:id="orderDateColumn" prefWidth="144.0" text="Bestillingsdato">
                     <cellValueFactory>
                         <PropertyValueFactory property="OrderDate" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn fx:id="totalPriceColumn" prefWidth="134.0" text="Total price">
+                <TableColumn fx:id="totalPriceColumn" prefWidth="126.0" text="Totalpris">
                     <cellValueFactory>
                         <PropertyValueFactory property="TotalPrice" />
                     </cellValueFactory>
                 </TableColumn>
             </columns>
         </TableView>
-        <Button fx:id="toMainpage" layoutX="57.0" layoutY="23.0" mnemonicParsing="false" onAction="#toMainpage" text="Back to mainpage" />
-        <TextField layoutX="506.0" layoutY="141.0" />
-        <Text layoutX="428.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search" />
+        <Button fx:id="toMainpage" layoutX="57.0" layoutY="23.0" mnemonicParsing="false" onAction="#toMainpage" text="Gå til forsiden" />
+        <TextField layoutX="722.0" layoutY="83.0" />
+        <Text layoutX="666.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Søk" />
     </children>
 </AnchorPane>

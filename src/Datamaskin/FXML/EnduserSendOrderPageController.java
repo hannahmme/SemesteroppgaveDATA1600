@@ -6,7 +6,7 @@ import Datamaskin.Exceptions.InvalidEmailException;
 import Datamaskin.Order.FinalOrder;
 import Datamaskin.Order.FinalOrderRegister;
 import Datamaskin.Product.Product;
-import Datamaskin.newScene;
+import Datamaskin.Page;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +32,7 @@ public class EnduserSendOrderPageController implements Initializable {
     @FXML private Label lblOrderSent;
     @FXML private Label lblTotalPrice;
 
+    private Page scene = new Page();
     private Cart shoppingcart = new Cart();
 
 
@@ -49,21 +50,24 @@ public class EnduserSendOrderPageController implements Initializable {
         if(btnSendOrder.isDisabled()){
             Stage primaryStage = (Stage) btnGoToMainpage.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
-            newScene.toMainpage(primaryStage, root);
+            Page.toMainpage(primaryStage, root);
         } else {
             //Man får en advarsel om at hvis man går til hovedsiden, vil bestillingen avsluttes - Hannah
-            shoppingcart.alertWhenMainpage(btnGoToMainpage);
-
-                //metode som nullstiller handlekurven om bruker avslutter handlingen
+            boolean goBackIsConfirmed = scene.comfirmNavigationToMainpage();
+            if(goBackIsConfirmed){
+                Stage primaryStage = (Stage) btnGoToMainpage.getScene().getWindow();
+                Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
+                Page.toMainpage(primaryStage, root);
                 shoppingcart.deleteShoppingcart();
             }
+        }
     }
 
     // metode for å gå tilbake til forrige side
     @FXML void goBack(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) btnGoBack.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("ExtraOrderEnduserPage.fxml"));
-        newScene.toExtraOrderEnduserPage(primaryStage, root);
+        Page.toExtraOrderEnduserPage(primaryStage, root);
         primaryStage.show();
     }
 
@@ -74,7 +78,7 @@ public class EnduserSendOrderPageController implements Initializable {
     @FXML private TableColumn<Product, String> nameColumn;
     @FXML private TableColumn<Product, Double> priceColumn;
     
-    public static FinalOrderRegister OrderRegister = new FinalOrderRegister();
+    static FinalOrderRegister OrderRegister = new FinalOrderRegister();
 
     @Override public void initialize(URL location, ResourceBundle resources) {
         //Handlekurven på høyre side lastes inn når siden lastes inn

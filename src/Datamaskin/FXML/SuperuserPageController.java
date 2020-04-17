@@ -2,7 +2,7 @@
 package Datamaskin.FXML;
 
 
-import Datamaskin.newScene;
+import Datamaskin.Page;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -69,7 +69,7 @@ public class SuperuserPageController implements Initializable {
     @FXML void tilHovedside(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) tilHovedside.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
-        newScene.toMainpage(primaryStage, root);
+        Page.toMainpage(primaryStage, root);
     }
 
 
@@ -77,13 +77,13 @@ public class SuperuserPageController implements Initializable {
     @FXML void tilKomponentside(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) tilKomponentside.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("ProductAdmPage.fxml"));
-        newScene.toProductAdminPage(primaryStage, root);
+        Page.toProductAdminPage(primaryStage, root);
     }
 
     @FXML void tilOrdreside(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) tilOrdreside.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("AllOrders.fxml"));
-        newScene.toAllOrdersPage(primaryStage, root);
+        Page.toAllOrdersPage(primaryStage, root);
     }
 
     //metoder som sender deg til neste side ved å trykke "Enter" - Hannah
@@ -92,7 +92,7 @@ public class SuperuserPageController implements Initializable {
         if (event.getCode().equals(KeyCode.ENTER)) {
             Stage primaryStage = (Stage) tilOrdreside.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("AllOrders.fxml"));
-            newScene.toAllOrdersPage(primaryStage, root);
+            Page.toAllOrdersPage(primaryStage, root);
         }
     }
     @FXML
@@ -100,7 +100,7 @@ public class SuperuserPageController implements Initializable {
         if (event.getCode().equals(KeyCode.ENTER)) {
             Stage primaryStage = (Stage) tilKomponentside.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("ProductAdmPage.fxml"));
-            newScene.toProductAdminPage(primaryStage, root);
+            Page.toProductAdminPage(primaryStage, root);
         }
     }
     @FXML
@@ -108,7 +108,7 @@ public class SuperuserPageController implements Initializable {
         if (event.getCode().equals(KeyCode.ENTER)) {
             Stage primaryStage = (Stage) tilHovedside.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
-            newScene.toMainpage(primaryStage, root);
+            Page.toMainpage(primaryStage, root);
         }
     }
 

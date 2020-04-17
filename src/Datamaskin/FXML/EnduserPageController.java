@@ -3,7 +3,7 @@ package Datamaskin.FXML;
 import Datamaskin.Cart.Cart;
 import Datamaskin.Product.Product;
 import Datamaskin.Product.ProductCategories;
-import Datamaskin.newScene;
+import Datamaskin.Page;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class EnduserPageController implements Initializable{
+public class EnduserPageController implements Initializable {
 
     @FXML private Button btnGoBack;
     @FXML private Button btnGoToPay;
@@ -45,38 +45,40 @@ public class EnduserPageController implements Initializable{
     @FXML private ChoiceBox<String> cBoxOpticaldisk;
     @FXML private ChoiceBox<String> cBoxColor;
 
+    private Page scene = new Page();
     private static Cart aCart = new Cart();
 
     // metode som setter verdier til choicebox
-    public void setValuesToChoicebox(){
-        for(int index = 0; index<ProductCategories.GraphicCard.size(); index++) {
+    private void setValuesToChoicebox() {
+        for (int index = 0; index < ProductCategories.GraphicCard.size(); index++) {
             cBoxGraphicCard.getItems().add(ProductCategories.CategorynameToString(ProductCategories.GraphicCard, index));
         }
-        for(int index = 0; index<ProductCategories.Memorycard.size(); index++) {
+        for (int index = 0; index < ProductCategories.Memorycard.size(); index++) {
             cBoxMemorycard.getItems().add(ProductCategories.CategorynameToString(ProductCategories.Memorycard, index));
         }
-        for(int index = 0; index<ProductCategories.Harddrive.size(); index++) {
+        for (int index = 0; index < ProductCategories.Harddrive.size(); index++) {
             cBoxHarddrive.getItems().add(ProductCategories.CategorynameToString(ProductCategories.Harddrive, index));
         }
-        for(int index = 0; index<ProductCategories.Processor.size(); index++) {
+        for (int index = 0; index < ProductCategories.Processor.size(); index++) {
             cBoxProcessor.getItems().add(ProductCategories.CategorynameToString(ProductCategories.Processor, index));
         }
-        for(int index = 0; index<ProductCategories.Power.size(); index++) {
+        for (int index = 0; index < ProductCategories.Power.size(); index++) {
             cBoxPower.getItems().add(ProductCategories.CategorynameToString(ProductCategories.Power, index));
         }
-        for(int index = 0; index<ProductCategories.Soundcard.size(); index++) {
+        for (int index = 0; index < ProductCategories.Soundcard.size(); index++) {
             cBoxSoundcard.getItems().add(ProductCategories.CategorynameToString(ProductCategories.Soundcard, index));
         }
-        for(int index = 0; index<ProductCategories.OpticalDisk.size(); index++) {
+        for (int index = 0; index < ProductCategories.OpticalDisk.size(); index++) {
             cBoxOpticaldisk.getItems().add(ProductCategories.CategorynameToString(ProductCategories.OpticalDisk, index));
         }
-        for(int index = 0; index<ProductCategories.Color.size(); index++) {
+        for (int index = 0; index < ProductCategories.Color.size(); index++) {
             cBoxColor.getItems().add(ProductCategories.CategorynameToString(ProductCategories.Color, index));
         }
     }
 
-    @FXML void addToCart(ActionEvent event) {
-        if(checkBoxesAreEmpty()){
+    @FXML
+    void addToCart(ActionEvent event) {
+        if (checkBoxesAreEmpty()) {
             lblError.setText("Husk å velge en komponent i alle choiceboksene!");
         } else {
             createCartObjectsFromGUI();
@@ -85,7 +87,7 @@ public class EnduserPageController implements Initializable{
     }
 
     // meotde for å hente ut verdier fra pris-kolonnen og legge de sammen, for så å sette verdien til lbl
-    private void getTotalprice(){
+    private void getTotalprice() {
         double totalPrice = aCart.getTotalPrice();
         lblTotalPrice.setText(String.valueOf(totalPrice));
     }
@@ -99,7 +101,7 @@ public class EnduserPageController implements Initializable{
     }
 
     // sjekke om handlekurven allerede har komponenter, da må de slettes for å legge til nye komponenter som bruker vil endre til
-    private void updateCart(){
+    private void updateCart() {
         if (!Cart.Register.isEmpty()) {
             aCart.replaceElements(0, addProduct(cBoxGraphicCard.getValue(), ProductCategories.GraphicCard));
             aCart.replaceElements(1, addProduct(cBoxMemorycard.getValue(), ProductCategories.Memorycard));
@@ -113,7 +115,7 @@ public class EnduserPageController implements Initializable{
     }
 
     // metode som oppretter produkter fra hver choicebox (hver stirng representerer navnet på produktet)
-    private void createProducts(){
+    private void createProducts() {
         String graphicCard = cBoxGraphicCard.getValue();
         String memoryCard = cBoxMemorycard.getValue();
         String harddrive = cBoxHarddrive.getValue();
@@ -134,10 +136,10 @@ public class EnduserPageController implements Initializable{
     }
 
     // metode for å hente frem riktig produkt fra listen(hashmappen) og legge til produktet i handlekurven
-    private Product addProduct(String productname, HashMap<String, Product> categoryList){
+    private Product addProduct(String productname, HashMap<String, Product> categoryList) {
         Product aProduct = null;
-        for(int i = 0; i<categoryList.size(); i++){
-            if(productname.equals(categoryList.keySet().toArray()[i].toString())){
+        for (int i = 0; i < categoryList.size(); i++) {
+            if (productname.equals(categoryList.keySet().toArray()[i].toString())) {
                 aProduct = categoryList.get(productname);
             }
         }
@@ -145,7 +147,8 @@ public class EnduserPageController implements Initializable{
     }
 
     // metode som kjøres umiddelbart hver gang denne scenen blir laget
-    @Override public void initialize(URL url, ResourceBundle rb) {
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
         lifetimeColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
@@ -157,20 +160,21 @@ public class EnduserPageController implements Initializable{
         setValuesToChoicebox();
 
         // kaller metode for å velge riktige choicebokser når man går tilbake
-        if(!Cart.Register.isEmpty()) {
+        if (!Cart.Register.isEmpty()) {
             setChosenChoicebox();
             getTotalprice();
         }
     }
 
     // metoder for å sette choicebox til riktig verdi utifra det brukeren allerede har valgt
-    private String setAllChosenChoiceboxes(int i){
+    private String setAllChosenChoiceboxes(int i) {
         String cBoxValue = tableviewCart.getColumns().get(0).getCellObservableValue(i).getValue().toString();
         return cBoxValue;
     }
 
     // metode som bruker metoden over til å sette verdier til hver cBox
-    private void setChosenChoicebox(){ ;
+    private void setChosenChoicebox() {
+        ;
         cBoxGraphicCard.setValue(setAllChosenChoiceboxes(0));
         cBoxMemorycard.setValue(setAllChosenChoiceboxes(1));
         cBoxHarddrive.setValue(setAllChosenChoiceboxes(2));
@@ -182,39 +186,32 @@ public class EnduserPageController implements Initializable{
     }
 
     // metode for å sjekke om alle choiceboksene er valgt
-    private boolean checkBoxesAreEmpty(){
-    if(     cBoxGraphicCard.getValue()  == null ||
-            cBoxMemorycard.getValue()   == null ||
-            cBoxHarddrive.getValue()    == null ||
-            cBoxProcessor.getValue()    == null ||
-            cBoxPower.getValue()        == null ||
-            cBoxSoundcard.getValue()    == null ||
-            cBoxOpticaldisk.getValue()  == null ||
-            cBoxColor.getValue()        == null){
+    private boolean checkBoxesAreEmpty() {
+        if (cBoxGraphicCard.getValue()      == null ||
+                cBoxMemorycard.getValue()   == null ||
+                cBoxHarddrive.getValue()    == null ||
+                cBoxProcessor.getValue()    == null ||
+                cBoxPower.getValue()        == null ||
+                cBoxSoundcard.getValue()    == null ||
+                cBoxOpticaldisk.getValue()  == null ||
+                cBoxColor.getValue()        == null) {
             return true;
         }
         return false;
     }
 
     // knapp som sender bruker til neste side
-    @FXML void loadPayment(ActionEvent event) throws IOException {
+    @FXML
+    void loadPayment(ActionEvent event) throws IOException {
         if (checkBoxesAreEmpty()) {
             lblError.setText("Du har ikke valgt alle nødvendige komponenter til din datamaskin.");
             return;
         }
         Stage primaryStage = (Stage) btnGoToPay.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("ExtraOrderEnduserPage.fxml"));
-        newScene.toExtraOrderEnduserPage(primaryStage, root);
+        Page.toExtraOrderEnduserPage(primaryStage, root);
         primaryStage.show();
     }
-
-    // knapp som sender bruker til forrige side + advarsel om å avslutte
-    @FXML void goBack(ActionEvent event) throws IOException {
-        //Man får en advarsel om at hvis man går til hovedsiden, vil bestillingen avsluttes - Hannah
-        aCart.alertWhenMainpage(btnGoBack);
-        aCart.deleteShoppingcart();
-
-        }
 
 
     //Metoder som sender bruker videre eller tilbake ved å trykke på "Enter"-knappen
@@ -230,21 +227,40 @@ public class EnduserPageController implements Initializable{
         }
     }
 
+    // knapp som sender bruker til forrige side + advarsel om å avslutte
+    @FXML
+    void goBack(ActionEvent event) throws IOException {
+        //Man får en advarsel om at hvis man går til hovedsiden, vil bestillingen avsluttes - Hannah
+        boolean goBackIsConfirmed = scene.comfirmNavigationToMainpage();
+        if (goBackIsConfirmed) {
+            Stage primaryStage = (Stage) btnGoBack.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
+            Page.toMainpage(primaryStage, root);
+        }
+    }
     @FXML
     void btnGoBackEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            Stage primaryStage = (Stage) btnGoBack.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
-            newScene.toMainpage(primaryStage, root);
+            boolean goBackIsConfirmed = scene.comfirmNavigationToMainpage();
+            if (goBackIsConfirmed) {
+                Stage primaryStage = (Stage) btnGoBack.getScene().getWindow();
+                Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
+                Page.toMainpage(primaryStage, root);
+                aCart.deleteShoppingcart();
+            }
         }
     }
 
     @FXML
     void btnNextPageEnter(KeyEvent event) throws IOException {
+        if (checkBoxesAreEmpty()) {
+            lblError.setText("Du har ikke valgt alle nødvendige komponenter til din datamaskin.");
+            return;
+        }
         if (event.getCode().equals(KeyCode.ENTER)) {
             Stage primaryStage = (Stage) btnGoToPay.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("ExtraOrderEnduserPage.fxml"));
-            newScene.toExtraOrderEnduserPage(primaryStage, root);
+            Page.toExtraOrderEnduserPage(primaryStage, root);
         }
     }
 

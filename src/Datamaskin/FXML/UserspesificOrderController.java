@@ -1,7 +1,7 @@
 package Datamaskin.FXML;
 
 import Datamaskin.Order.FinalOrder;
-import Datamaskin.newScene;
+import Datamaskin.Page;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -40,7 +40,7 @@ public class UserspesificOrderController implements Initializable {
         @FXML
         void toMainpage(ActionEvent event) throws IOException {
                 Stage primaryStage = (Stage) toMainpage.getScene().getWindow();
-                newScene.toMainpage(primaryStage, FXMLLoader.load(getClass().getResource("Mainpage.fxml")));
+                Page.toMainpage(primaryStage, FXMLLoader.load(getClass().getResource("Mainpage.fxml")));
         }
 
         // metoder for å legge inn ordreregisteret på denne siden
@@ -59,7 +59,7 @@ public class UserspesificOrderController implements Initializable {
         if (event.getCode().equals(KeyCode.ENTER)) {
                 Stage primaryStage = (Stage) toMainpage.getScene().getWindow();
                 Parent root = FXMLLoader.load(getClass().getResource("ProductAdmPage.fxml"));
-                newScene.toMainpage(primaryStage, root);
+                Page.toMainpage(primaryStage, root);
         }
 
 

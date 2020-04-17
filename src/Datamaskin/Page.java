@@ -1,27 +1,33 @@
 package Datamaskin;
 
+import Datamaskin.Cart.Cart;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
-public class newScene {
+public class Page {
 
-    //en generell metode som lar deg gå til den siden du ønsker - hannah
-    public static void toThisPage(String windowTitle, Button btn, String fxmlpage) throws IOException {
-        double scenewidth = 750.0;
-        double sceneheight = 1250.0;
-        Stage primarystage = (Stage) btn.getScene().getWindow();
-        Parent root = FXMLLoader.load(newScene.class.getResource(fxmlpage));
-        Scene scene = new Scene(root, scenewidth, sceneheight);
-        primarystage.setTitle(windowTitle);
-        primarystage.setScene(scene);
-        primarystage.show();
+
+    //Generell metode som gir alert hvis man skal gå til hovedsiden - Hannah
+    public boolean comfirmNavigationToMainpage() throws IOException {
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Vent litt...");
+        alert.setContentText("Ønsker du å avslutte din bestilling og gå til hovedsiden?");
+        ButtonType buttonYes = new ButtonType("Ja, det ønsker jeg");
+        ButtonType buttonNo = new ButtonType("Nei");
+        alert.getButtonTypes().addAll(buttonYes, buttonNo);
+        Optional<ButtonType> userAnswer = alert.showAndWait();
+
+        return userAnswer.get() == buttonYes;
     }
-
+    
     // metode for å lage en ny scene.
     public static void toMainpage(Stage primaryStage, Parent FXMLString) throws IOException {
         Parent root = FXMLString;
@@ -58,6 +64,7 @@ public class newScene {
         primaryStage.show();
     }
 
+
     public static void toEnduserSendOrderPage(Stage primaryStage, Parent FXMLString) throws IOException {
         Parent root = FXMLString;
         primaryStage.setTitle("Fullfør bestilling");
@@ -78,4 +85,5 @@ public class newScene {
         primaryStage.setScene(new Scene(root, 1250, 750));
         primaryStage.show();
     }
+
 }

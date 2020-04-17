@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="699.0" prefWidth="1083.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.ProductAdmPageController">
+<AnchorPane prefHeight="699.0" prefWidth="1083.0" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.ProductAdmPageController">
    <children>
       <Button layoutX="29.0" layoutY="646.0" mnemonicParsing="false" onAction="#addComponent" onKeyPressed="#btnAddProdEnter" prefHeight="25.0" prefWidth="187.0" text="Legg til komponent" />
       <Button fx:id="tilSuperbrukerside" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#tilSuperbrukerside" onKeyPressed="#btnGoBackEnter" text="Tilbake til menysiden" />

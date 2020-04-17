@@ -1,7 +1,7 @@
 package Datamaskin.FXML;
 
 import Datamaskin.Order.FinalOrder;
-import Datamaskin.newScene;
+import Datamaskin.Page;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +29,7 @@ public class AllOrdersController implements Initializable {
     @FXML void toSuperuserpage(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) toSuperuserpage.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
-        newScene.toSuperuserpage(primaryStage, root);
+        Page.toSuperuserpage(primaryStage, root);
     }
 
     // metoder for å legge inn ordreregisteret på denne siden

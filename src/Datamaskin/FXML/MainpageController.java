@@ -2,7 +2,7 @@ package Datamaskin.FXML;
 
 import Datamaskin.Customer;
 import Datamaskin.Exceptions.InvalidEmailException;
-import Datamaskin.newScene;
+import Datamaskin.Page;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -47,7 +47,7 @@ public class MainpageController implements Initializable {
             } else {
                 Stage primaryStage = (Stage) btnUserOrders.getScene().getWindow();
                 Parent root = FXMLLoader.load(getClass().getResource("UserspesificOrder.fxml"));
-                newScene.toUserspesificOrder(primaryStage, root);
+                Page.toUserspesificOrder(primaryStage, root);
                 primaryStage.show();
             }
         }
@@ -71,7 +71,7 @@ public class MainpageController implements Initializable {
         if (event.getCode().equals(KeyCode.ENTER)) {
             Stage primaryStage = (Stage) tilSuperbrukerside.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
-            newScene.toSuperuserpage(primaryStage, root);
+            Page.toSuperuserpage(primaryStage, root);
         }
     }
 
@@ -80,7 +80,7 @@ public class MainpageController implements Initializable {
         if (event.getCode().equals(KeyCode.ENTER)) {
             Stage primaryStage = (Stage) btnUserOrders.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("UserspesificOrder.fxml"));
-            newScene.toUserspesificOrder(primaryStage, root);
+            Page.toUserspesificOrder(primaryStage, root);
         }
     }
 
@@ -89,7 +89,7 @@ public class MainpageController implements Initializable {
         if (event.getCode().equals(KeyCode.ENTER)) {
             Stage primaryStage = (Stage) tilSluttbrukerside.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("EnduserPage.fxml"));
-            newScene.toEnduserPage(primaryStage, root);
+            Page.toEnduserPage(primaryStage, root);
         }
     }
 
@@ -97,7 +97,7 @@ public class MainpageController implements Initializable {
     @FXML void tilSluttbrukerside(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) tilSluttbrukerside.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("EnduserPage.fxml"));
-        newScene.toEnduserPage(primaryStage, root);
+        Page.toEnduserPage(primaryStage, root);
     }
 
     // metode som åpner ny scene til sluttbrukersiden
@@ -115,7 +115,7 @@ public class MainpageController implements Initializable {
             try {
                 Stage primaryStage = (Stage) tilSuperbrukerside.getScene().getWindow();
                 Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
-                newScene.toSuperuserpage(primaryStage, root);
+                Page.toSuperuserpage(primaryStage, root);
             } catch (Exception e) {
                 e.printStackTrace();
             }

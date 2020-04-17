@@ -128,30 +128,33 @@ public class EnduserSendOrderPageController implements Initializable {
         try {
             // sjekker om input er riktig
             email = txtEpost.getText();
-            Customer.validateEmail(email);
 
-            // henter totalbeløpet til bestillingen
-            totalPrice = shoppingcart.getTotalPrice();
+            if(!Customer.validateEmail(email)){
+                throw new InvalidEmailException("Skriv inn gyldig e-postadresse");
+            }
+            else{
+                // henter totalbeløpet til bestillingen
+                totalPrice = shoppingcart.getTotalPrice();
 
-            // henter datoen, ikke helt ferdig
-            Date date = Date.valueOf(LocalDate.now());
+                // henter datoen, ikke helt ferdig
+                Date date = Date.valueOf(LocalDate.now());
 
-            //lager en ordreID for bestillingen og viser den til bruker
-            orderID = generateOrderID();
-            lblOrderSent.setText("Takk for din ordre.\nOrdrenummer: " + orderID);
+                //lager en ordreID for bestillingen og viser den til bruker
+                orderID = generateOrderID();
+                lblOrderSent.setText("Takk for din ordre.\nOrdrenummer: " + orderID);
 
-            FinalOrder anFinalOrder = new FinalOrder(orderID, email, date, totalPrice);
+                FinalOrder anFinalOrder = new FinalOrder(orderID, email, date, totalPrice);
 
-            // setter knappene som disabled fordi bestillingen er gjennomført og man må starte på nytt
-            btnSendOrder.setDisable(true);
-            btnGoBack.setDisable(true);
+                // setter knappene som disabled fordi bestillingen er gjennomført og man må starte på nytt
+                btnSendOrder.setDisable(true);
+                btnGoBack.setDisable(true);
 
-            // Setter totalprisen til brukers skjerm
-            lblTotalPrice.setText(String.valueOf(totalPrice));
+                // Setter totalprisen til brukers skjerm
+                lblTotalPrice.setText(String.valueOf(totalPrice));
 
-            // returnerer ordren siden alt er riktig av input osv
-            return anFinalOrder;
-
+                // returnerer ordren siden alt er riktig av input osv
+                return anFinalOrder;
+            }
         } catch (InvalidEmailException e){
             lblOrderSent.setText("Ordre ikke registrert, vennligst skriv inn gyldig e-postadresse");
         }

@@ -96,11 +96,13 @@ public class ProductAdmPageController implements Initializable{
 
         } else {
             try {
+
+                //Todo: Carro! Måtte kommentere ut et par ting for å få det til å kjøre
                 name = txtComponentname.getText();
-                Product.validateName(name);
+               // Product.validateName(name);
 
                 description = txtDescription.getText();
-                Product.validateDescription(description);
+                //Product.validateDescription(description);
 
                 lifetime = Integer.parseInt(txtLifetime.getText());
                 if(!ProductValidator.validateLifetime(lifetime)){
@@ -111,10 +113,10 @@ public class ProductAdmPageController implements Initializable{
                 }
 
                 price = Double.parseDouble(txtPrice.getText());
-                Product.validatePrice(price);
+                //Product.validatePrice(price);
 
                 category = cboxCategory.getSelectionModel().getSelectedItem();
-                Product.validateCategory(category);
+                //Product.validateCategory(category);
 
                 //oppretter produktet med alle riktige attributter etter at de er sjekket for feil
                 Product aProduct = new Product(name, description, lifetime, price, category);
@@ -126,7 +128,7 @@ public class ProductAdmPageController implements Initializable{
                 return aProduct;
 
 
-            } catch (InvalidPriceException | IllegalArgumentException | InvalidLifetimeException e) {
+            } catch (/*InvalidPriceException |*/ IllegalArgumentException | InvalidLifetimeException e) {
                 wrongInput.setText(e.getMessage());
             }
         }

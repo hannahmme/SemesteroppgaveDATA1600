@@ -21,11 +21,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class EnduserPageController implements Initializable {
-
     @FXML private Button btnGoBack;
     @FXML private Button btnGoToPay;
-
-    // label som vi setter lik total pris på det som er valgt av essensielle komponenter
     @FXML private Label lblTotalPrice;
     @FXML private Label lblError;
 
@@ -76,11 +73,12 @@ public class EnduserPageController implements Initializable {
         }
     }
 
-    @FXML
-    void addToCart(ActionEvent event) {
+    // metode som kaller på andre metoder for å legge til produkter i handlekurven
+    @FXML void addToCart(ActionEvent event) {
         if (checkBoxesAreEmpty()) {
             lblError.setText("Husk å velge en komponent i alle choiceboksene!");
         } else {
+            lblError.setText("");
             createCartObjectsFromGUI();
             getTotalprice();
         }
@@ -147,8 +145,7 @@ public class EnduserPageController implements Initializable {
     }
 
     // metode som kjøres umiddelbart hver gang denne scenen blir laget
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    @Override public void initialize(URL url, ResourceBundle rb) {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
         lifetimeColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
@@ -201,8 +198,7 @@ public class EnduserPageController implements Initializable {
     }
 
     // knapp som sender bruker til neste side
-    @FXML
-    void loadPayment(ActionEvent event) throws IOException {
+    @FXML void loadPayment(ActionEvent event) throws IOException {
         if (checkBoxesAreEmpty()) {
             lblError.setText("Du har ikke valgt alle nødvendige komponenter til din datamaskin.");
             return;
@@ -213,10 +209,8 @@ public class EnduserPageController implements Initializable {
         primaryStage.show();
     }
 
-
     //Metoder som sender bruker videre eller tilbake ved å trykke på "Enter"-knappen
-    @FXML
-    void btnAddEnter(KeyEvent event) {
+    @FXML void btnAddEnter(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             if(checkBoxesAreEmpty()){
                 lblError.setText("Husk å velge en komponent i alle choiceboksene!");
@@ -228,8 +222,7 @@ public class EnduserPageController implements Initializable {
     }
 
     // knapp som sender bruker til forrige side + advarsel om å avslutte
-    @FXML
-    void goBack(ActionEvent event) throws IOException {
+    @FXML void goBack(ActionEvent event) throws IOException {
         //Man får en advarsel om at hvis man går til hovedsiden, vil bestillingen avsluttes - Hannah
         boolean goBackIsConfirmed = scene.comfirmNavigationToMainpage();
         if (goBackIsConfirmed) {
@@ -238,8 +231,9 @@ public class EnduserPageController implements Initializable {
             Page.toMainpage(primaryStage, root);
         }
     }
-    @FXML
-    void btnGoBackEnter(KeyEvent event) throws IOException {
+
+    // metode for å gå tilbake til hovedsiden
+    @FXML void btnGoBackEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             boolean goBackIsConfirmed = scene.comfirmNavigationToMainpage();
             if (goBackIsConfirmed) {
@@ -251,17 +245,15 @@ public class EnduserPageController implements Initializable {
         }
     }
 
-    @FXML
-    void btnNextPageEnter(KeyEvent event) throws IOException {
+    // metode for å gå til neste side
+    @FXML void btnNextPageEnter(KeyEvent event) throws IOException {
         if (checkBoxesAreEmpty()) {
             lblError.setText("Du har ikke valgt alle nødvendige komponenter til din datamaskin.");
             return;
-        }
-        if (event.getCode().equals(KeyCode.ENTER)) {
+        } if (event.getCode().equals(KeyCode.ENTER)) {
             Stage primaryStage = (Stage) btnGoToPay.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("ExtraOrderEnduserPage.fxml"));
             Page.toExtraOrderEnduserPage(primaryStage, root);
         }
     }
-
 }

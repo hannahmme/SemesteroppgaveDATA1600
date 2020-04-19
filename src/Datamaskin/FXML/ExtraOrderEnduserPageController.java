@@ -49,14 +49,11 @@ public class ExtraOrderEnduserPageController implements Initializable {
     @FXML private Label lblTotalPrice;
     @FXML private ImageView imgImageView;
 
-
     private Page scene = new Page();
     private Cart shoppingCart = new Cart();
 
-
     //metode som legger til elementer i handlekurven, dersom de er huket av. (Funker ikke helt enda)
-    @FXML
-    void addToCart(ActionEvent event) {
+    @FXML void addToCart(ActionEvent event) {
         Product extraProduct = tblExtraProduct.getSelectionModel().getSelectedItem();
         shoppingCart.addElement(extraProduct);
         updateTotalPriceLabel();
@@ -77,13 +74,11 @@ public class ExtraOrderEnduserPageController implements Initializable {
         extraProductInfo.setCellValueFactory(new PropertyValueFactory<>("Description"));
         extraProductPrice.setCellValueFactory(new PropertyValueFactory<>("Price"));
 
-
         //Handlekurven på høyre side lastes inn når siden lastes inn
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
         lifetimeColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
-
 
         //Kobler handlekurven med tableviewet.
         shoppingCart.attachTableview(tableviewCart);
@@ -114,8 +109,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
 
 
     // går tilbake til forrige side for å se på valgte komponenter
-    @FXML
-    void goBack(ActionEvent event) throws IOException {
+    @FXML void goBack(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) btnGoBack.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("EnduserPage.fxml"));
         Page.toEnduserPage(primaryStage, root);
@@ -123,9 +117,8 @@ public class ExtraOrderEnduserPageController implements Initializable {
 
     }
 
-    // går tilbake til hovedsiden + alert
-    @FXML
-    void goToMainpage(ActionEvent event) throws IOException {
+    // går tilbake til hovedsiden hvis yes på alert + sletter handlekurven
+    @FXML void goToMainpage(ActionEvent event) throws IOException {
         //Man får en advarsel om at hvis man går til hovedsiden, vil bestillingen avsluttes - Hannah
         boolean goBackIsConfirmed = scene.comfirmNavigationToMainpage();
         if (goBackIsConfirmed) {
@@ -136,10 +129,8 @@ public class ExtraOrderEnduserPageController implements Initializable {
         }
     }
 
-
     // går videre til betalingssiden
-    @FXML
-    void goToPay(ActionEvent event) throws IOException {
+    @FXML void goToPay(ActionEvent event) throws IOException {
         Stage primaryStage = (Stage) btnGoToPay.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("EnduserSendOrderPage.fxml"));
         Page.toEnduserSendOrderPage(primaryStage, root);
@@ -151,21 +142,21 @@ public class ExtraOrderEnduserPageController implements Initializable {
 
     }
 
-    @FXML
-    void btnGoBackEnter(KeyEvent event) throws IOException {
+    @FXML void btnGoBackEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             Stage primaryStage = (Stage) btnGoBack.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("ExtraOrderEnduserPage.fxml"));
             Page.toExtraOrderEnduserPage(primaryStage, root);
+            primaryStage.show();
         }
     }
 
-    @FXML
-    void btnGoPayEnter(KeyEvent event) throws IOException {
+    @FXML void btnGoPayEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             Stage primaryStage = (Stage) btnGoToPay.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("EnduserSendOrderPage.fxml"));
             Page.toEnduserSendOrderPage(primaryStage, root);
+            primaryStage.show();
         }
     }
 
@@ -178,6 +169,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
                 Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
                 Page.toMainpage(primaryStage, root);
                 shoppingCart.deleteShoppingcart();
+                primaryStage.show();
             }
         }
     }

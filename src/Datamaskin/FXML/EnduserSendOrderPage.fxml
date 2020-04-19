@@ -30,7 +30,7 @@
                   <TableView fx:id="finalOrderRegister" layoutX="84.0" layoutY="42.0" prefHeight="510.0" prefWidth="403.0">
                     <columns>
                       <TableColumn fx:id="nameColumn" prefWidth="249.0" text="Navn" />
-                      <TableColumn fx:id="priceColumn" prefWidth="153.0" text="Pris" />
+                      <TableColumn fx:id="priceColumn" prefWidth="152.0" text="Pris" />
                     </columns>
                   </TableView>
                   <Label fx:id="lblTotalPrice" layoutX="268.0" layoutY="567.0" prefHeight="21.0" prefWidth="127.0" />

@@ -38,6 +38,12 @@ public class ProductAdmPageController implements Initializable{
     @FXML private MenuButton menuDropdown;
     @FXML private MenuItem saveToFile;
     @FXML private MenuItem openFromFile;
+    @FXML private Button btnDeleteComponent;
+
+    @FXML
+    void deleteComponent(ActionEvent event) {
+
+    }
 
     // metode for å lage kategoriene
     private void setData(){
@@ -149,7 +155,6 @@ public class ProductAdmPageController implements Initializable{
         return null;
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -208,6 +213,5 @@ public class ProductAdmPageController implements Initializable{
 
     @FXML void saveToFile(ActionEvent event) {
 
-        SaveToBinaryFile.readFile("Hei");
     }
 }

@@ -11,33 +11,33 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="699.0" prefWidth="1083.0" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.ProductAdmPageController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.ProductAdmPageController">
    <children>
-      <Button layoutX="29.0" layoutY="646.0" mnemonicParsing="false" onAction="#addComponent" onKeyPressed="#btnAddProdEnter" prefHeight="25.0" prefWidth="187.0" text="Legg til komponent" />
+      <Button layoutX="26.0" layoutY="618.0" mnemonicParsing="false" onAction="#addComponent" onKeyPressed="#btnAddProdEnter" prefHeight="25.0" prefWidth="187.0" text="Legg til komponent" />
       <Button fx:id="tilSuperbrukerside" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#tilSuperbrukerside" onKeyPressed="#btnGoBackEnter" text="Tilbake til menysiden" />
-      <TableView fx:id="componentTableview" layoutX="272.0" layoutY="90.0" prefHeight="582.0" prefWidth="788.0">
+      <TableView fx:id="componentTableview" layoutX="271.0" layoutY="67.0" prefHeight="532.0" prefWidth="935.0">
         <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="155.0" text="Componentname">
+          <TableColumn fx:id="nameColumn" prefWidth="191.0" text="Komponentnavn">
             <cellValueFactory>
                 <PropertyValueFactory property="name" />
             </cellValueFactory>
           </TableColumn>
-          <TableColumn fx:id="descriptionColumn" prefWidth="317.0" text="Description">
+          <TableColumn fx:id="descriptionColumn" prefWidth="373.0" text="Beskrivelse">
               <cellValueFactory>
                   <PropertyValueFactory property="Description" />
               </cellValueFactory>
           </TableColumn>
-            <TableColumn fx:id="lifetimeColumn" prefWidth="97.0" text="Lifetime">
+            <TableColumn fx:id="lifetimeColumn" prefWidth="124.0" text="Levetid">
                 <cellValueFactory>
                     <PropertyValueFactory property="Lifetime" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="89.0" text="Price">
+            <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="87.0" text="Pris">
                 <cellValueFactory>
                     <PropertyValueFactory property="Price" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="categoryColumn" prefWidth="129.0" text="Category">
+            <TableColumn fx:id="categoryColumn" prefWidth="158.0" text="Kategori">
                 <cellValueFactory>
                     <PropertyValueFactory property="Category" />
                 </cellValueFactory>
@@ -54,12 +54,13 @@
       <Text layoutX="23.0" layoutY="427.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pris (i KR)" />
       <ChoiceBox fx:id="cboxCategory" layoutX="26.0" layoutY="507.0" prefHeight="31.0" prefWidth="187.0" />
       <Text layoutX="26.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kategori" />
-      <MenuButton fx:id="menuDropdown" layoutX="953.0" layoutY="14.0" mnemonicParsing="false" onKeyPressed="#btnMenuEnter" text="Menyvalg">
+      <MenuButton fx:id="menuDropdown" layoutX="1100.0" layoutY="14.0" mnemonicParsing="false" onKeyPressed="#btnMenuEnter" text="Menyvalg">
         <items>
           <MenuItem fx:id="saveToFile" mnemonicParsing="false" onAction="#saveToFile" text="Lagre til fil" />
           <MenuItem fx:id="openFromFile" mnemonicParsing="false" onAction="#openFromFile" text="Importer fra fil" />
         </items>
       </MenuButton>
       <Text fx:id="wrongInput" layoutX="7.0" layoutY="597.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="264.42243576049805" />
+      <Button fx:id="btnDeleteComponent" layoutX="1038.0" layoutY="618.0" mnemonicParsing="false" onAction="#deleteComponent" text="Slett valgt komponent" />
    </children>
 </AnchorPane>

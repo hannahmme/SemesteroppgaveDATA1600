@@ -84,7 +84,9 @@ public class ProductAdmPageController implements Initializable{
     private Product createProductObjectFromGUI() {
         String name;
         String description;
+        String lifetimeString;
         int lifetime;
+        String priceString;
         double price;
         String category;
 
@@ -98,26 +100,37 @@ public class ProductAdmPageController implements Initializable{
         } else {
             try {
 
-                //Todo: Carro! Måtte kommentere ut et par ting for å få det til å kjøre
+                //Todo: Carro! Måtte kommentere ut et par ting for å få det til å kjøre - nuuuuuull stress hahah
                 name = txtComponentname.getText();
-               // Product.validateName(name);
+                if(!ProductValidator.validateName(name)){
+                    throw new IllegalArgumentException("Skriv inn et gyldig komponentnavn");
+                }
 
                 description = txtDescription.getText();
-                //Product.validateDescription(description);
+                if(!ProductValidator.validateDescription(description)){
+                    throw new IllegalArgumentException("Skriv inn en gyldig beskrivelse");
+                }
 
-                lifetime = Integer.parseInt(txtLifetime.getText());
-                if(!ProductValidator.validateLifetime(lifetime)){
+                lifetimeString = txtLifetime.getText();
+                if(!ProductValidator.validateLifetime(lifetimeString)){
                     throw new InvalidLifetimeException("Skriv inn et gyldig antall år");
                 }
                 else{
-
+                    lifetime = Integer.parseInt(txtLifetime.getText());
                 }
 
-                price = Double.parseDouble(txtPrice.getText());
-                //Product.validatePrice(price);
+                priceString = txtPrice.getText();
+                if(!ProductValidator.validatePrice(priceString)){
+                    throw new InvalidPriceException("Skriv inn en gyldig pris");
+                }
+                else{
+                    price = Double.parseDouble(txtPrice.getText());
+                }
 
                 category = cboxCategory.getSelectionModel().getSelectedItem();
-                //Product.validateCategory(category);
+                if(!ProductValidator.validateCategory(category)){
+                    throw new IllegalArgumentException("Vennligst velg kategori");
+                }
 
                 //oppretter produktet med alle riktige attributter etter at de er sjekket for feil
                 Product aProduct = new Product(name, description, lifetime, price, category);
@@ -129,7 +142,7 @@ public class ProductAdmPageController implements Initializable{
                 return aProduct;
 
 
-            } catch (/*InvalidPriceException |*/ IllegalArgumentException | InvalidLifetimeException e) {
+            } catch (InvalidPriceException | IllegalArgumentException | InvalidLifetimeException e) {
                 wrongInput.setText(e.getMessage());
             }
         }

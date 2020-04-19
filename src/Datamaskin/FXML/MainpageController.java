@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -33,6 +34,7 @@ public class MainpageController implements Initializable {
     @FXML private TextField txtPassword;
     @FXML private Button btnUserOrders;
     @FXML private TextField txtEmail;
+    @FXML private Label lblErrorEmail;
 
 
     public MainpageController() throws FileNotFoundException {
@@ -52,7 +54,7 @@ public class MainpageController implements Initializable {
             }
         }
         catch(InvalidEmailException e){
-            //lblErrorMessage.setText(e.getMessage());
+            lblErrorEmail.setText(e.getMessage());
         }
     }
 

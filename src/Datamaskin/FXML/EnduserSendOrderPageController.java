@@ -1,7 +1,7 @@
 package Datamaskin.FXML;
 
 import Datamaskin.Cart.Cart;
-import Datamaskin.Customer;
+import Datamaskin.CustomerValidator;
 import Datamaskin.Exceptions.InvalidEmailException;
 import Datamaskin.orders.FinalOrderOverview;
 import Datamaskin.orders.FinalOrderOverviewRegister;
@@ -37,8 +37,8 @@ public class EnduserSendOrderPageController implements Initializable {
     private Cart shoppingcart = new Cart();
 
     // et register for overordnet info + et register for ordrespesifikk info
-    private FinalOrderSpecificRegister SpecificOrderRegister= new FinalOrderSpecificRegister();
-    private FinalOrderOverviewRegister OrderRegister = new FinalOrderOverviewRegister();
+    static FinalOrderSpecificRegister SpecificOrderRegister= new FinalOrderSpecificRegister();
+    static FinalOrderOverviewRegister OrderRegister = new FinalOrderOverviewRegister();
 
     // metode som setter den totale prisen basert på komponentene i arrayet
     public void setTotalPriceLabel(){
@@ -90,8 +90,8 @@ public class EnduserSendOrderPageController implements Initializable {
         return aFinalOrderSpecific;
     }*/
 
-    // metode for å generere ordreID, tenker det er greit å starte på 100? Så kan eksempler være før 100.
-    private static int orderID = 100;
+    // metode for å generere ordreID
+    private static int orderID = 10;
     public String generateOrderID (){
         orderID++;
         return "#"+orderID;
@@ -104,15 +104,12 @@ public class EnduserSendOrderPageController implements Initializable {
 
         try {
             email = txtEpost.getText();
-            if(!Customer.validateEmail(email)){
+            if(!CustomerValidator.validateEmail(email)){
                 throw new InvalidEmailException("Skriv inn gyldig e-postadresse");
             }
             else{
-                // henter totalbeløpet til bestillingen
                 totalPrice = shoppingcart.getTotalPrice();
-
-                // henter datoen, ikke helt ferdig, usikker på hvordan fremgangsmåte videre
-                Date date = Date.valueOf(LocalDate.now());
+                String date = String.valueOf(LocalDate.now());
 
                 //lager en ordreID for bestillingen og viser den til bruker
                 lblOrderSent.setText("Takk for din ordre.\nOrdrenummer: " + orderID);

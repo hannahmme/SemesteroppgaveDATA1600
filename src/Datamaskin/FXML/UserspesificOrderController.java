@@ -20,20 +20,21 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class UserspesificOrderController implements Initializable {
+        @FXML private Button toMainpage;
+        @FXML private TableView<FinalOrderOverview> allOrders;
+        @FXML private TableColumn<FinalOrderOverview, String> emailColumn;
+        @FXML private TableColumn<FinalOrderOverview, String> orderIDColumn;
+        @FXML private TableColumn<FinalOrderOverview, LocalDate> orderDateColumn;
+        @FXML private TableColumn<FinalOrderOverview, Double> totalPriceColumn;
+        @FXML private Button btnOrderDetails;
+
 
         @FXML
-        private Button toMainpage;
+        void orderDetails(ActionEvent event) {
 
-        @FXML
-        private TableView<FinalOrderOverview> allOrders;
-        @FXML
-        private TableColumn<FinalOrderOverview, String> emailColumn;
-        @FXML
-        private TableColumn<FinalOrderOverview, String> orderIDColumn;
-        @FXML
-        private TableColumn<FinalOrderOverview, LocalDate> orderDateColumn;
-        @FXML
-        private TableColumn<FinalOrderOverview, Double> totalPriceColumn;
+        }
+
+
 
         //knappen "tilbake" tar brukeren med tilbake til menysiden for superbruker
         @FXML
@@ -53,6 +54,7 @@ public class UserspesificOrderController implements Initializable {
                 EnduserSendOrderPageController.OrderRegister.addOrder(allOrders);
         }
 
+        // metode så man kommer til hovedsiden ved å trykke enter
         @FXML
         void btnToMainpageEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {

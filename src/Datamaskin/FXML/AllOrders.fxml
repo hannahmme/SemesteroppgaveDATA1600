@@ -8,10 +8,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="779.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.AllOrdersController">
+<AnchorPane prefHeight="670.0" prefWidth="1251.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.AllOrdersController">
    <children>
       <Text layoutX="313.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hei superbruker. Her kan du se alle ordre som er gjennomført. Gjerne sorter etter dato om du vil" />
-      <TableView fx:id="allOrders" layoutX="307.0" layoutY="189.0" prefHeight="535.0" prefWidth="636.0">
+      <TableView fx:id="allOrders" layoutX="308.0" layoutY="114.0" prefHeight="535.0" prefWidth="636.0">
         <columns>
           <TableColumn fx:id="emailColumn" prefWidth="212.0" text="E-post">
               <cellValueFactory>
@@ -36,7 +36,7 @@
         </columns>
       </TableView>
       <Button fx:id="toSuperuserpage" layoutX="57.0" layoutY="23.0" mnemonicParsing="false" onAction="#toSuperuserpage" text="Gå til forrige side" />
-      <TextField layoutX="762.0" layoutY="131.0" />
-      <Text layoutX="702.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search" />
+      <TextField layoutX="762.0" layoutY="62.0" />
+      <Text layoutX="717.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Søk" />
    </children>
 </AnchorPane>

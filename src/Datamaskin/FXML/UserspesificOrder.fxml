@@ -40,5 +40,6 @@
         <Button fx:id="toMainpage" layoutX="57.0" layoutY="23.0" mnemonicParsing="false" onAction="#toMainpage" onKeyPressed="#btnToMainpageEnter" text="Gå til forsiden" />
         <TextField layoutX="722.0" layoutY="83.0" />
         <Text layoutX="666.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Søk" />
+      <Button fx:id="btnOrderDetails" layoutX="1017.0" layoutY="606.0" mnemonicParsing="false" onAction="#orderDetails" text="Se ordredetaljer" />
     </children>
 </AnchorPane>

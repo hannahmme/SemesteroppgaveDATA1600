@@ -53,17 +53,17 @@
                                    <PropertyValueFactory property="Name" />
                                </cellValueFactory>
                            </TableColumn>
-                           <TableColumn fx:id="descriptionColumn" prefWidth="332.0" text="Beskrivelse">
+                           <TableColumn fx:id="descriptionColumn" prefWidth="308.0" text="Beskrivelse">
                                <cellValueFactory>
                                    <PropertyValueFactory property="Description" />
                                </cellValueFactory>
                            </TableColumn>
-                           <TableColumn fx:id="lifetimeColumn" prefWidth="65.0" text="Levetid">
+                           <TableColumn fx:id="lifetimeColumn" prefWidth="61.0" text="Levetid">
                                <cellValueFactory>
                                    <PropertyValueFactory property="Lifetime" />
                                </cellValueFactory>
                            </TableColumn>
-                           <TableColumn fx:id="priceColumn" prefWidth="67.0" text="Pris">
+                           <TableColumn fx:id="priceColumn" prefWidth="95.0" text="Pris">
                                <cellValueFactory>
                                    <PropertyValueFactory property="Price" />
                                </cellValueFactory>

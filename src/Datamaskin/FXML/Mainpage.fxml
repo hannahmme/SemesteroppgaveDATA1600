@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
@@ -19,7 +20,7 @@
       <Button fx:id="tilSluttbrukerside" layoutX="695.0" layoutY="549.0" mnemonicParsing="false" onAction="#tilSluttbrukerside" onKeyPressed="#btnBuildEnter" prefHeight="88.0" prefWidth="331.0" text="Sett opp din egen pc her!" />
       <Line endX="1149.0" endY="-1.0" layoutX="101.0" layoutY="107.0" startX="-100.0" startY="-1.0000076293945312" />
       <Text layoutX="59.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ønsker du å se dine tidligere bestillinger? " wrappingWidth="324.92919921875" />
-      <Button fx:id="btnUserOrders" layoutX="170.0" layoutY="460.0" mnemonicParsing="false" onAction="#btnUserOrders" onKeyPressed="#btnUserOrdersEnter" text="Se dine ordre" />
+      <Button fx:id="btnUserOrders" layoutX="168.0" layoutY="475.0" mnemonicParsing="false" onAction="#btnUserOrders" onKeyPressed="#btnUserOrdersEnter" text="Se dine ordre" />
       <TextField fx:id="txtEmail" layoutX="59.0" layoutY="409.0" prefHeight="31.0" prefWidth="331.0" />
       <Text layoutX="59.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Epostadresse" wrappingWidth="109.00001287460327" />
       <ImageView fx:id="buildImageView" fitHeight="46.0" fitWidth="50.0" layoutX="963.0" layoutY="570.0" pickOnBounds="true" preserveRatio="true" />
@@ -28,5 +29,6 @@
       <Line endX="339.99993896484375" endY="343.0" layoutX="144.0" layoutY="327.0" startX="339.9999694824219" startY="-220.5" />
       <ImageView fx:id="orderImageView" fitHeight="100.0" fitWidth="128.0" layoutX="59.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="hardwareImageView" fitHeight="349.0" fitWidth="551.0" layoutX="585.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="lblErrorEmail" layoutX="59.0" layoutY="451.0" prefHeight="17.0" prefWidth="331.0" />
    </children>
 </AnchorPane>

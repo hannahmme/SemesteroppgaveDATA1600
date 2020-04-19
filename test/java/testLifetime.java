@@ -1,4 +1,4 @@
-import Datamaskin.Customer;
+import Datamaskin.CustomerValidator;
 import Datamaskin.Exceptions.InvalidEmailException;
 import Datamaskin.Exceptions.InvalidLifetimeException;
 import Datamaskin.Product.ProductValidator;

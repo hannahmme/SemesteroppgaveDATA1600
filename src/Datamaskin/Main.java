@@ -1,7 +1,6 @@
 package Datamaskin;
 
-import Datamaskin.FXML.ProductAdmPageController;
-import Datamaskin.Order.OrderExample;
+import Datamaskin.orders.OrderExample;
 import Datamaskin.Product.ProductCategories;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

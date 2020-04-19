@@ -1,5 +1,4 @@
-import Datamaskin.Customer;
-import Datamaskin.Exceptions.InvalidEmailException;
+import Datamaskin.CustomerValidator;
 import org.junit.Test;
 
 
@@ -9,19 +8,19 @@ public class testEmail {
 
     @Test
     public void testValidEmail() {
-        assertTrue(Customer.validateEmail("henrik.lieng@oslomet.no"));
-        assertTrue(Customer.validateEmail("example@example.com"));
-        assertTrue(Customer.validateEmail("uk@domain.co.uk"));
+        assertTrue(CustomerValidator.validateEmail("henrik.lieng@oslomet.no"));
+        assertTrue(CustomerValidator.validateEmail("example@example.com"));
+        assertTrue(CustomerValidator.validateEmail("uk@domain.co.uk"));
     }
 
     @Test
     public void testInvalidEmail() {
-        assertFalse(Customer.validateEmail(""));
-        assertFalse(Customer.validateEmail("henrik.lieng"));
-        assertFalse(Customer.validateEmail("@oslomet.no"));
-        assertFalse(Customer.validateEmail("henrik.lieng@invalid"));
-        assertFalse(Customer.validateEmail("test@"));
-        assertFalse(Customer.validateEmail(";bot@evil.com"));
+        assertFalse(CustomerValidator.validateEmail(""));
+        assertFalse(CustomerValidator.validateEmail("henrik.lieng"));
+        assertFalse(CustomerValidator.validateEmail("@oslomet.no"));
+        assertFalse(CustomerValidator.validateEmail("henrik.lieng@invalid"));
+        assertFalse(CustomerValidator.validateEmail("test@"));
+        assertFalse(CustomerValidator.validateEmail(";bot@evil.com"));
     }
 
 }

@@ -1,7 +1,7 @@
 package Datamaskin.FXML;
 
 import Datamaskin.Cart.Cart;
-import Datamaskin.Customer;
+import Datamaskin.CustomerValidator;
 import Datamaskin.Exceptions.InvalidEmailException;
 import Datamaskin.orders.FinalOrderOverview;
 import Datamaskin.orders.FinalOrderOverviewRegister;
@@ -104,7 +104,7 @@ public class EnduserSendOrderPageController implements Initializable {
 
         try {
             email = txtEpost.getText();
-            if(!Customer.validateEmail(email)){
+            if(!CustomerValidator.validateEmail(email)){
                 throw new InvalidEmailException("Skriv inn gyldig e-postadresse");
             }
             else{

@@ -1,6 +1,6 @@
 package Datamaskin.FXML;
 
-import Datamaskin.Customer;
+import Datamaskin.CustomerValidator;
 import Datamaskin.Exceptions.InvalidEmailException;
 import Datamaskin.Page;
 
@@ -44,7 +44,7 @@ public class MainpageController implements Initializable {
         try{
             String email = txtEmail.getText();
 
-            if(!Customer.validateEmail(email)){
+            if(!CustomerValidator.validateEmail(email)){
                 throw new InvalidEmailException("Skriv inn gyldig e-postadresse");
             } else {
                 Stage primaryStage = (Stage) btnUserOrders.getScene().getWindow();
@@ -61,7 +61,7 @@ public class MainpageController implements Initializable {
     // bruke denne med try/catch for å legge til en verdi som skal brukes for å filtrere userSpecific order
     public void checkEmail() throws InvalidEmailException {
         String email = txtEmail.getText();
-        Customer.validateEmail(email);
+        CustomerValidator.validateEmail(email);
 
         eposten = txtEmail.getText();
     }

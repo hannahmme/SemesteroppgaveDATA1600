@@ -1,7 +1,5 @@
 package Datamaskin.Product;
 
-import Datamaskin.Exceptions.InvalidLifetimeException;
-import Datamaskin.Exceptions.InvalidPriceException;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -89,16 +87,4 @@ public class Product {
         return "Name: " + name.getValue() + "; Description: " + description.getValue() + "; Lifetime: " + lifetime.getValue() +
                 "; Price: " + price.getValue() + "; Category: " + category.getValue();
     }
-
-    // testmetoder
-
-    public static boolean testPrice (double price){
-        if (price > 0 && price < 10000){
-            return true;
-        }
-        return false;
-    }
-
-
-
 }

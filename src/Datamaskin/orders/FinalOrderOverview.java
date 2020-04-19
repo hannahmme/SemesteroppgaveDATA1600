@@ -1,14 +1,11 @@
-package Datamaskin.Order;
+package Datamaskin.orders;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 
-public class FinalOrder {
+public class FinalOrderOverview {
 
     private transient SimpleStringProperty orderID;
     private transient SimpleStringProperty email;
@@ -17,7 +14,7 @@ public class FinalOrder {
 
     // DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
-    public FinalOrder(String orderID, String email, Date orderDate, double totalPrice){
+    public FinalOrderOverview(String orderID, String email, Date orderDate, double totalPrice){
         this.orderID = new SimpleStringProperty(orderID);
         this.email = new SimpleStringProperty(email);
         this.orderDate = orderDate;

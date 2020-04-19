@@ -3,10 +3,12 @@ package Datamaskin.FXML;
 import Datamaskin.Cart.Cart;
 import Datamaskin.Customer;
 import Datamaskin.Exceptions.InvalidEmailException;
-import Datamaskin.Order.FinalOrder;
-import Datamaskin.Order.FinalOrderRegister;
+import Datamaskin.orders.FinalOrderOverview;
+import Datamaskin.orders.FinalOrderOverviewRegister;
 import Datamaskin.Product.Product;
 import Datamaskin.Page;
+import Datamaskin.orders.FinalOrderSpecific;
+import Datamaskin.orders.FinalOrderSpecificRegister;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +22,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class EnduserSendOrderPageController implements Initializable {
@@ -35,6 +36,9 @@ public class EnduserSendOrderPageController implements Initializable {
     private Page scene = new Page();
     private Cart shoppingcart = new Cart();
 
+    // et register for overordnet info + et register for ordrespesifikk info
+    private FinalOrderSpecificRegister SpecificOrderRegister= new FinalOrderSpecificRegister();
+    private FinalOrderOverviewRegister OrderRegister = new FinalOrderOverviewRegister();
 
     // metode som setter den totale prisen basert på komponentene i arrayet
     public void setTotalPriceLabel(){
@@ -42,11 +46,97 @@ public class EnduserSendOrderPageController implements Initializable {
         lblTotalPrice.setText(String.valueOf(totalPrice));
     }
 
+    //Handlekurven på høyre side
+    @FXML private TableView<FinalOrderOverview> finalOrderRegister;
+    @FXML private TableColumn<Product, String> nameColumn;
+    @FXML private TableColumn<Product, Double> priceColumn;
 
+
+    @Override public void initialize(URL location, ResourceBundle resources) {
+        //Handlekurven på høyre side lastes inn når siden lastes inn
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
+
+        //Kobler handlekurven med tableviewet.
+        shoppingcart.attachTableview(finalOrderRegister);
+
+        //Setter riktig totaltpris ved innlasting av siden
+        setTotalPriceLabel();
+    }
+
+    @FXML void sendOrder(ActionEvent event) throws IOException, InvalidEmailException {
+        // legge ordreIDen her så man kan få tak i riktig ordreID ved lagring til fil av handlekurven
+        String orderID = generateOrderID();
+        FinalOrderOverview aFinalOrderOverview = createOrderObjectFromGUI(orderID);
+
+        if(aFinalOrderOverview != null) {
+            OrderRegister.addElement(aFinalOrderOverview);
+            //FinalOrderSpecific aFinalOrderSpecific = createSpecificOrderObject(orderID);
+            //SpecificOrderRegister.addElement(aFinalOrderSpecific);
+            txtEpost.setText("");
+            shoppingcart.deleteShoppingcart();
+        }
+    }
+
+    /*// metode som lagrer ordren i en fil og binder den opp med ordreIDen?
+    public FinalOrderSpecific createSpecificOrderObject(String orderID){
+        String name;
+        String description;
+        int lifetime;
+        double price;
+
+        FinalOrderSpecific aFinalOrderSpecific = new FinalOrderSpecific(orderID, name, description, lifetime, price);
+
+        return aFinalOrderSpecific;
+    }*/
+
+    // metode for å generere ordreID, tenker det er greit å starte på 100? Så kan eksempler være før 100.
+    private static int orderID = 100;
+    public String generateOrderID (){
+        orderID++;
+        return "#"+orderID;
+    }
+
+    // metode for å generere en ordre og legget il ordreID og epost i array
+    public FinalOrderOverview createOrderObjectFromGUI(String orderID){
+        String email;
+        double totalPrice;
+
+        try {
+            email = txtEpost.getText();
+            if(!Customer.validateEmail(email)){
+                throw new InvalidEmailException("Skriv inn gyldig e-postadresse");
+            }
+            else{
+                // henter totalbeløpet til bestillingen
+                totalPrice = shoppingcart.getTotalPrice();
+
+                // henter datoen, ikke helt ferdig, usikker på hvordan fremgangsmåte videre
+                Date date = Date.valueOf(LocalDate.now());
+
+                //lager en ordreID for bestillingen og viser den til bruker
+                lblOrderSent.setText("Takk for din ordre.\nOrdrenummer: " + orderID);
+
+                //Oppretter ferdig ordre-objekt
+                FinalOrderOverview anFinalOrderOverview = new FinalOrderOverview(orderID, email, date, totalPrice);
+
+                // setter knappene som disabled fordi bestillingen er gjennomført og man må starte på nytt
+                btnSendOrder.setDisable(true);
+                btnGoBack.setDisable(true);
+
+                // Setter totalprisen til brukers skjerm
+                lblTotalPrice.setText(String.valueOf(totalPrice));
+
+                // returnerer ordren siden alt er riktig av input osv
+                return anFinalOrderOverview;
+            }
+        } catch (InvalidEmailException e){
+            lblOrderSent.setText(e.getMessage());
+        }
+        return null;
+    }
     // metode for å gå tilbake til hovedside
     @FXML void goToMainpage(ActionEvent event) throws IOException {
-
-        // legger inn en if-setning, hvis bruker har sendt bestillingen med suksess, får man ikke opp denne alerten - Amalie
         if(btnSendOrder.isDisabled()){
             Stage primaryStage = (Stage) btnGoToMainpage.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
@@ -71,101 +161,4 @@ public class EnduserSendOrderPageController implements Initializable {
         primaryStage.show();
     }
 
-
-    //Handlekurv på høyre side
-    //@FXML private TableView<Product> tableviewCart;
-    @FXML private TableView<FinalOrder> finalOrderRegister;
-    @FXML private TableColumn<Product, String> nameColumn;
-    @FXML private TableColumn<Product, Double> priceColumn;
-    
-    static FinalOrderRegister OrderRegister = new FinalOrderRegister();
-
-    @Override public void initialize(URL location, ResourceBundle resources) {
-        //Handlekurven på høyre side lastes inn når siden lastes inn
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
-
-
-        //Kobler handlekurven med tableviewet.
-        shoppingcart.attachTableview(finalOrderRegister);
-
-        //Setter riktig totaltpris ved innlasting av siden
-        setTotalPriceLabel();
-    }
-
-
-    @FXML void sendOrder(ActionEvent event) throws IOException, InvalidEmailException {
-        FinalOrder anFinalOrder = createOrderObjectFromGUI();
-
-        if(anFinalOrder != null) {
-            OrderRegister.addElement(anFinalOrder);
-            txtEpost.setText("");
-            shoppingcart.deleteShoppingcart();
-        }
-    }
-
-
-    // metode for å generere ordreID, tenker det er greit å starte på 100? Så kan eksempler være før 100.
-    private static int orderID = 100;
-    public String generateOrderID (){
-        orderID++;
-        return "#"+orderID;
-    }
-
-    // metode for å generere en ordre og legget il ordreID og epost i array
-    public FinalOrder createOrderObjectFromGUI(){
-        String orderID;
-        String email;
-        double totalPrice;
-
-        try {
-            email = txtEpost.getText();
-
-            // sjekker om input av e-postadresse er riktig, hvis ikke kaster den exception og sender feilmelding til bruker
-            if(!Customer.validateEmail(email)){
-                throw new InvalidEmailException("Skriv inn gyldig e-postadresse");
-            }
-            else{
-                // henter totalbeløpet til bestillingen
-                totalPrice = shoppingcart.getTotalPrice();
-
-                // henter datoen, ikke helt ferdig
-                Date date = Date.valueOf(LocalDate.now());
-
-                //lager en ordreID for bestillingen og viser den til bruker
-                orderID = generateOrderID();
-                lblOrderSent.setText("Takk for din ordre.\nOrdrenummer: " + orderID);
-
-                //Oppretter ferdig ordre-objekt
-                FinalOrder anFinalOrder = new FinalOrder(orderID, email, date, totalPrice);
-
-                // setter knappene som disabled fordi bestillingen er gjennomført og man må starte på nytt
-                btnSendOrder.setDisable(true);
-                btnGoBack.setDisable(true);
-
-                // Setter totalprisen til brukers skjerm
-                lblTotalPrice.setText(String.valueOf(totalPrice));
-
-                // returnerer ordren siden alt er riktig av input osv
-                return anFinalOrder;
-            }
-        } catch (InvalidEmailException e){
-            lblOrderSent.setText(e.getMessage());
-        }
-        return null;
-
-    }
-
-
-
-
-
 }
-
-/* Mye av den koden vi trenger her kan finnes fra enduserpagecontroller-siden*/
-
-/* legge til bestillingen gjort på forrige side i et array over fullførte bestillinger.
-        Den bør allerede ligge i et "midlertidig" array fra forrige side, i tilfelle bruker vil se handlekurven igjen før bestilling.
-        Dermed kan ordren hentes ut fra det midlertidige arrayet og legges til i et endelig array med alle ordre, og slettes
-        fra det midlertidige arrayet
-        */

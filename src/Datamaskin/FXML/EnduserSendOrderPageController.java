@@ -7,7 +7,6 @@ import Datamaskin.orders.FinalOrderOverview;
 import Datamaskin.orders.FinalOrderOverviewRegister;
 import Datamaskin.Product.Product;
 import Datamaskin.Page;
-import Datamaskin.orders.FinalOrderSpecific;
 import Datamaskin.orders.FinalOrderSpecificRegister;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,10 +16,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -29,18 +26,13 @@ public class EnduserSendOrderPageController implements Initializable {
     @FXML private Button btnSendOrder;
     @FXML private Button btnGoBack;
     @FXML private Button btnGoToMainpage;
-    @FXML private Button btnNewUser;
+    @FXML private Button btnNewUser; //slettes?
     @FXML private TextField txtEpost;
     @FXML private Label lblOrderSent;
     @FXML private Label lblTotalPrice;
 
     private Page scene = new Page();
     private Cart shoppingcart = new Cart();
-
-    // metode som lagrer en ny bruker
-    @FXML void newUser(ActionEvent event) {
-
-    }
 
     // et register for overordnet info + et register for ordrespesifikk info
     static FinalOrderSpecificRegister SpecificOrderRegister= new FinalOrderSpecificRegister();
@@ -138,6 +130,7 @@ public class EnduserSendOrderPageController implements Initializable {
         }
         return null;
     }
+
     // metode for å gå tilbake til hovedside
     @FXML void goToMainpage(ActionEvent event) throws IOException {
         if(btnSendOrder.isDisabled()){
@@ -162,6 +155,14 @@ public class EnduserSendOrderPageController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("ExtraOrderEnduserPage.fxml"));
         Page.toExtraOrderEnduserPage(primaryStage, root);
         primaryStage.show();
+    }
+
+    // metode som åpner siden der man kan lage en ny bruker
+    @FXML void newUser(ActionEvent event) throws IOException {
+        Stage newStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("NewUser.fxml"));
+        Page.tonewUserPage(newStage, root);
+        newStage.show();
     }
 
 }

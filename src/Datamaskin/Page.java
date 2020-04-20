@@ -86,4 +86,12 @@ public class Page {
         primaryStage.show();
     }
 
+    public static void tonewUserPage(Stage newStage, Parent FXMLString) throws IOException {
+        Parent root = FXMLString;
+        newStage.setTitle("Opprett en ny bruker");
+        newStage.setScene(new Scene(root, 600, 350));
+        newStage.show();
+
+    }
+
 }

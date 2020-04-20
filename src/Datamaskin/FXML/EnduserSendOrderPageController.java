@@ -29,12 +29,18 @@ public class EnduserSendOrderPageController implements Initializable {
     @FXML private Button btnSendOrder;
     @FXML private Button btnGoBack;
     @FXML private Button btnGoToMainpage;
+    @FXML private Button btnNewUser;
     @FXML private TextField txtEpost;
     @FXML private Label lblOrderSent;
     @FXML private Label lblTotalPrice;
 
     private Page scene = new Page();
     private Cart shoppingcart = new Cart();
+
+    // metode som lagrer en ny bruker
+    @FXML void newUser(ActionEvent event) {
+
+    }
 
     // et register for overordnet info + et register for ordrespesifikk info
     static FinalOrderSpecificRegister SpecificOrderRegister= new FinalOrderSpecificRegister();

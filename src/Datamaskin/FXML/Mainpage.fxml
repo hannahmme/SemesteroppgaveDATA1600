@@ -11,24 +11,26 @@
 
 <AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.MainpageController">
    <children>
-      <TextField fx:id="txtUsername" layoutX="484.0" layoutY="48.0" />
-      <PasswordField fx:id="txtPassword" layoutX="695.0" layoutY="48.0" />
       <Text layoutX="224.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Er du administrator? Logg inn her!" />
       <Text layoutX="483.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brukernavn" />
+      <TextField fx:id="txtUsername" layoutX="484.0" layoutY="48.0" />
       <Text layoutX="695.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" />
-      <Button fx:id="tilSuperbrukerside" layoutX="942.0" layoutY="48.0" mnemonicParsing="false" onAction="#tilSuperbrukerside" onKeyPressed="#btnLoginEnter" prefHeight="25.0" prefWidth="141.0" text="Logg inn" />
-      <Button fx:id="tilSluttbrukerside" layoutX="695.0" layoutY="549.0" mnemonicParsing="false" onAction="#tilSluttbrukerside" onKeyPressed="#btnBuildEnter" prefHeight="88.0" prefWidth="331.0" text="Sett opp din egen pc her!" />
-      <Line endX="1149.0" endY="-1.0" layoutX="101.0" layoutY="107.0" startX="-100.0" startY="-1.0000076293945312" />
-      <Text layoutX="59.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ønsker du å se dine tidligere bestillinger? " wrappingWidth="324.92919921875" />
-      <Button fx:id="btnUserOrders" layoutX="168.0" layoutY="475.0" mnemonicParsing="false" onAction="#btnUserOrders" onKeyPressed="#btnUserOrdersEnter" text="Se dine ordre" />
-      <TextField fx:id="txtEmail" layoutX="59.0" layoutY="409.0" prefHeight="31.0" prefWidth="331.0" />
-      <Text layoutX="59.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Epostadresse" wrappingWidth="109.00001287460327" />
-      <ImageView fx:id="buildImageView" fitHeight="46.0" fitWidth="50.0" layoutX="963.0" layoutY="570.0" pickOnBounds="true" preserveRatio="true" />
+      <PasswordField fx:id="txtPassword" layoutX="695.0" layoutY="48.0" />
+      <Button fx:id="toSuperUserPage" layoutX="942.0" layoutY="48.0" mnemonicParsing="false" onAction="#toSuperUserPage" onKeyPressed="#btnLoginEnter" prefHeight="25.0" prefWidth="141.0" text="Logg inn" />
       <ImageView fx:id="adminImageView" fitHeight="20.0" fitWidth="25.0" layoutX="1051.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" />
-      <Text layoutX="59.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skriv inn eposten din og klikk på knappen!" wrappingWidth="247.282958984375" />
+      <Line endX="1149.0" endY="-1.0" layoutX="101.0" layoutY="107.0" startX="-100.0" startY="-1.0000076293945312" />
+      <ImageView fx:id="orderImageView" fitHeight="100.0" fitWidth="128.0" layoutX="337.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true" />
+      <Text layoutX="59.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ønsker du å se dine tidligere bestillinger? " wrappingWidth="281.2829754952727" />
+      <Text layoutX="59.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logg inn her!" wrappingWidth="281.282958984375" />
+      <Text layoutX="59.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Epostadresse" wrappingWidth="87.59910463861524" />
+      <TextField fx:id="txtUserEmail" layoutX="183.0" layoutY="331.0" prefHeight="31.0" prefWidth="187.0" />
+      <Text layoutX="59.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" wrappingWidth="87.59910463861524" />
+      <PasswordField fx:id="txtUserPassword" layoutX="183.0" layoutY="383.0" />
+      <Label fx:id="lblErrorEmail" layoutX="59.0" layoutY="438.0" prefHeight="21.0" prefWidth="311.0" />
+      <Button fx:id="btnUserOrders" layoutX="183.0" layoutY="495.0" mnemonicParsing="false" onAction="#btnUserOrders" onKeyPressed="#btnUserOrdersEnter" text="Se dine ordre" />
       <Line endX="339.99993896484375" endY="343.0" layoutX="144.0" layoutY="327.0" startX="339.9999694824219" startY="-220.5" />
-      <ImageView fx:id="orderImageView" fitHeight="100.0" fitWidth="128.0" layoutX="59.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="hardwareImageView" fitHeight="349.0" fitWidth="551.0" layoutX="585.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="lblErrorEmail" layoutX="59.0" layoutY="451.0" prefHeight="17.0" prefWidth="331.0" />
+      <Button fx:id="toEnduserPage" layoutX="695.0" layoutY="549.0" mnemonicParsing="false" onAction="#toEnduserPage" onKeyPressed="#btnBuildEnter" prefHeight="88.0" prefWidth="331.0" text="Sett opp din egen pc her!" />
+      <ImageView fx:id="buildImageView" fitHeight="46.0" fitWidth="50.0" layoutX="963.0" layoutY="570.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

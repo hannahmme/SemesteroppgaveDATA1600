@@ -26,14 +26,16 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainpageController implements Initializable {
-    public String eposten;
+    @FXML private Button toEnduserPage;
 
-    @FXML private Button tilSluttbrukerside;
-    @FXML private Button tilSuperbrukerside;
     @FXML private TextField txtUsername;
     @FXML private TextField txtPassword;
+    @FXML private Button toSuperuserPage;
+
+    @FXML private TextField txtUserEmail;
+    @FXML private TextField txtUserPassword;
     @FXML private Button btnUserOrders;
-    @FXML private TextField txtEmail;
+
     @FXML private Label lblErrorEmail;
 
 
@@ -42,7 +44,7 @@ public class MainpageController implements Initializable {
 
     @FXML void btnUserOrders(ActionEvent event) throws IOException {
         try{
-            String email = txtEmail.getText();
+            String email = txtUserEmail.getText();
 
             if(!CustomerValidator.validateEmail(email)){
                 throw new InvalidEmailException("Skriv inn gyldig e-postadresse");
@@ -60,10 +62,8 @@ public class MainpageController implements Initializable {
 
     // bruke denne med try/catch for å legge til en verdi som skal brukes for å filtrere userSpecific order
     public void checkEmail() throws InvalidEmailException {
-        String email = txtEmail.getText();
+        String email = txtUserEmail.getText();
         CustomerValidator.validateEmail(email);
-
-        eposten = txtEmail.getText();
     }
 
 
@@ -71,7 +71,7 @@ public class MainpageController implements Initializable {
     @FXML
     void btnLoginEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            Stage primaryStage = (Stage) tilSuperbrukerside.getScene().getWindow();
+            Stage primaryStage = (Stage) toSuperuserPage.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
             Page.toSuperuserpage(primaryStage, root);
         }
@@ -89,21 +89,21 @@ public class MainpageController implements Initializable {
     @FXML
     void btnBuildEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            Stage primaryStage = (Stage) tilSluttbrukerside.getScene().getWindow();
+            Stage primaryStage = (Stage) toEnduserPage.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("EnduserPage.fxml"));
             Page.toEnduserPage(primaryStage, root);
         }
     }
 
     // metode som åpner ny scene til superbrukersiden
-    @FXML void tilSluttbrukerside(ActionEvent event) throws IOException {
-        Stage primaryStage = (Stage) tilSluttbrukerside.getScene().getWindow();
+    @FXML void toEnduserPage(ActionEvent event) throws IOException {
+        Stage primaryStage = (Stage) toEnduserPage.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("EnduserPage.fxml"));
         Page.toEnduserPage(primaryStage, root);
     }
 
     // metode som åpner ny scene til sluttbrukersiden
-    @FXML void tilSuperbrukerside(ActionEvent event) throws IOException {
+    @FXML void toSuperUserPage(ActionEvent event) throws IOException {
         String username = null;
         String password = null;
         try {
@@ -115,7 +115,7 @@ public class MainpageController implements Initializable {
 
         if (username.matches("admin") && password.matches("admin")) {
             try {
-                Stage primaryStage = (Stage) tilSuperbrukerside.getScene().getWindow();
+                Stage primaryStage = (Stage) toSuperuserPage.getScene().getWindow();
                 Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
                 Page.toSuperuserpage(primaryStage, root);
             } catch (Exception e) {
@@ -125,20 +125,17 @@ public class MainpageController implements Initializable {
     }
 
 
-    @FXML
-    private ImageView hardwareImageView;
+    // kode for bildene som ligger på hovedsiden
+    @FXML private ImageView hardwareImageView;
     private Image hardwareImage = createImage("./src/Datamaskin/images/hardware.jpg");
 
-    @FXML
-    private ImageView orderImageView;
+    @FXML private ImageView orderImageView;
     private Image orderImage = createImage("./src/Datamaskin/images/order.png");
 
-    @FXML
-    private ImageView buildImageView;
+    @FXML private ImageView buildImageView;
     private Image hammerImage = createImage("./src/Datamaskin/images/hammer.png");
 
-    @FXML
-    private ImageView adminImageView;
+    @FXML private ImageView adminImageView;
     private Image adminImage = createImage("./src/Datamaskin/images/admin.png");
 
     //metode som oppretter et bilde via path og returnerer et bilde
@@ -146,6 +143,7 @@ public class MainpageController implements Initializable {
         FileInputStream imageStream = new FileInputStream(path);
         return new Image(imageStream);
     }
+
     //metode som kobler imageviewet med bildet - hannah
     private void setImageView(ImageView iv, Image image){
         iv.setImage(image);
@@ -153,7 +151,6 @@ public class MainpageController implements Initializable {
 
     //Effekt for å blurre bilde på mainpage (det blå bildet)
     private DropShadow shadowEffect = new DropShadow();
-
 
     //Bilder settes i ImageViewet når siden lastes inn, samt effekt på bildet
     @Override
@@ -166,6 +163,5 @@ public class MainpageController implements Initializable {
         shadowEffect.setWidth(50);
         shadowEffect.setHeight(25);
         hardwareImageView.setEffect(shadowEffect);
-
     }
 }

@@ -7,11 +7,11 @@ import javafx.scene.control.TableView;
 public class ProductRegister {
     public transient static ObservableList<Product> Register = FXCollections.observableArrayList();
 
-    public void leggTilKomponent(TableView tv) {
+    public void setComponentToTV(TableView tv) {
         tv.setItems(Register);
     }
 
-    public void addElement(Product etProduct) {
-        Register.add(etProduct);
+    public void addElement(Product aProduct) {
+        Register.add(aProduct);
     }
 }

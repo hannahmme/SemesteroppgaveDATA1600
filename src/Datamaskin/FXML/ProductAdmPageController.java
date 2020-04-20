@@ -163,7 +163,7 @@ public class ProductAdmPageController implements Initializable{
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("Category"));
 
-        aRegister.leggTilKomponent(componentTableview);
+        aRegister.setComponentToTV(componentTableview);
 
         // for å ha kategoriene i nedtrekkslista fra før av
         setData();

@@ -42,7 +42,7 @@
                   <Button fx:id="btnGoToMainpage" layoutX="20.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToMainpage" onKeyPressed="#btnToMainpageEnter" prefHeight="31.0" prefWidth="155.0" text="Gå til forsiden" />
                   <ImageView fx:id="imgImageView" fitHeight="171.0" fitWidth="411.0" layoutX="20.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true" />
                   <Text fx:id="txtWarning" layoutX="165.0" layoutY="446.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="437.5652160644531" />
-                  <ImageView fx:id="mainpageImageView" fitHeight="21.0" fitWidth="35.0" layoutX="136.0" layoutY="18.0" onMouseClicked="#imgToMainPage" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="mainpageImageView" fitHeight="21.0" fitWidth="35.0" layoutX="136.0" layoutY="18.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="525.0">

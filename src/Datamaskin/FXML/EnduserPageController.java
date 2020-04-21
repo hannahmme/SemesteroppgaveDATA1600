@@ -241,9 +241,4 @@ public class EnduserPageController implements Initializable {
             loadPayment();
         }
     }
-    //hvis bildet trykkes på
-    @FXML
-    void imgToMainPage(MouseEvent event) throws IOException {
-        goBack();
-    }
 }

@@ -28,7 +28,7 @@
                   <Label fx:id="lblOrderSent" alignment="TOP_LEFT" layoutX="211.0" layoutY="464.0" prefHeight="77.0" prefWidth="249.0" wrapText="true" />
                   <Button fx:id="btnSendOrder" layoutX="272.0" layoutY="559.0" mnemonicParsing="false" onAction="#sendOrder" onKeyPressed="#btnSendOrderEnter" prefHeight="25.0" prefWidth="127.0" text="Send bestilling" />
                   <Button fx:id="btnNewUser" layoutX="439.0" layoutY="127.0" mnemonicParsing="false" onAction="#newUser" onKeyPressed="#btnNewUserEnter" text="Opprett ny bruker" />
-                  <ImageView fx:id="mainpageImageView" fitHeight="24.0" fitWidth="37.0" layoutX="139.0" layoutY="18.0" onMouseClicked="#imgToMainPage" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="mainpageImageView" fitHeight="24.0" fitWidth="37.0" layoutX="139.0" layoutY="18.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="731.0" prefWidth="415.0">

@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Datamaskin.FXML.MainpageController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.MainpageController">
    <children>
       <Text layoutX="224.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Er du administrator? Logg inn her!" />
       <Text layoutX="483.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brukernavn" />
@@ -17,7 +17,7 @@
       <Text layoutX="695.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" />
       <PasswordField fx:id="txtPassword" layoutX="695.0" layoutY="48.0" />
       <Button fx:id="btnSuperuserPage" layoutX="942.0" layoutY="48.0" mnemonicParsing="false" onAction="#toSuperUserPage" onKeyPressed="#btnSuperUserPage" prefHeight="25.0" prefWidth="141.0" text="Logg inn" />
-      <ImageView fx:id="adminImageView" fitHeight="20.0" fitWidth="25.0" layoutX="1046.0" layoutY="51.0" onMouseClicked="#imgSuperUserPage" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="adminImageView" fitHeight="20.0" fitWidth="25.0" layoutX="1046.0" layoutY="51.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
       <Line endX="1149.0" endY="-1.0" layoutX="101.0" layoutY="107.0" startX="-100.0" startY="-1.0000076293945312" />
       <ImageView fx:id="orderImageView" fitHeight="100.0" fitWidth="128.0" layoutX="337.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true" />
       <Text layoutX="59.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ønsker du å se dine tidligere bestillinger? " wrappingWidth="281.2829754952727" />
@@ -31,6 +31,6 @@
       <Line endX="339.99993896484375" endY="343.0" layoutX="144.0" layoutY="327.0" startX="339.9999694824219" startY="-220.5" />
       <ImageView fx:id="hardwareImageView" fitHeight="349.0" fitWidth="551.0" layoutX="585.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="btnEnduserPage" layoutX="695.0" layoutY="549.0" mnemonicParsing="false" onAction="#toEnduserPage" onKeyPressed="#btnEnduserPageEnter" prefHeight="88.0" prefWidth="331.0" text="Sett opp din egen pc her!" />
-      <ImageView fx:id="buildImageView" fitHeight="46.0" fitWidth="50.0" layoutX="963.0" layoutY="570.0" onMouseClicked="#imgEnduserPage" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="buildImageView" fitHeight="46.0" fitWidth="50.0" layoutX="963.0" layoutY="570.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

@@ -26,13 +26,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SuperuserPageController implements Initializable {
-
     @FXML private Button toSuperUserProductPage;
     @FXML private Button toSuperUserOrderPage;
     @FXML private Button toMainPage;
-
     private ImageClass image = new ImageClass();
-
     //Denne er pga bildene som lages
     public SuperuserPageController() throws FileNotFoundException {}
 
@@ -45,7 +42,6 @@ public class SuperuserPageController implements Initializable {
     @FXML
     private ImageView allOrdersImageView;
     private Image allOrdersImage = image.createImage("./src/Datamaskin/images/order.png");
-
 
     //Kobler ImageViewet med bildene når siden lastes inn
     @Override
@@ -95,20 +91,5 @@ public class SuperuserPageController implements Initializable {
             toMainPage();
         }
     }
-    //Metodene under gjør at bildene kan trykkes på
-    @FXML
-    void imgCreateProd(MouseEvent event) throws IOException {
-        toSuperUserProductPage();
-    }
-    @FXML
-    void imgAllOrdersPage(MouseEvent event) throws IOException {
-        toSuperUserOrderPage();
-    }
-    @FXML
-    void imgMainPage(MouseEvent event) throws IOException {
-        toMainPage();
-    }
-
-
 }
 

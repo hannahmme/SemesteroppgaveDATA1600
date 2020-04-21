@@ -44,6 +44,7 @@ public class EnduserSendOrderPageController implements Initializable {
     @FXML private Label lblTotalPrice;
     @FXML private ImageView mainpageImageView;
 
+    private FileSaverTxt filesaver = new FileSaverTxt();
     private ImageClass image = new ImageClass();
     private Image homeImage = image.createImage("./src/Datamaskin/images/mainpage.png");
     private Cart shoppingcart = new Cart();
@@ -90,7 +91,7 @@ public class EnduserSendOrderPageController implements Initializable {
 
         if(aFinalOrderOverview != null) {
             OrderRegister.addElement(aFinalOrderOverview);
-            /*FinalOrderSpecific aFinalOrderSpecific = createSpecificOrderObject(orderID);
+/*            FinalOrderSpecific aFinalOrderSpecific = createSpecificOrderObject(orderID);
             SpecificOrderRegister.addElement(aFinalOrderSpecific);*/
             txtEpost.setText("");
             Path sentOrderPath = Paths.get("./src/Datamaskin/sentOrdersPath/"+orderID+".csv");

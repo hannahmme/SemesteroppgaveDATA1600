@@ -3,6 +3,8 @@ package Datamaskin.FXML;
 import Datamaskin.Cart.Cart;
 import Datamaskin.Exceptions.InvalidLifetimeException;
 import Datamaskin.Exceptions.InvalidPriceException;
+import Datamaskin.Filbehandling.ProductFormatter;
+import Datamaskin.Filbehandling.SaveComponentsToFile;
 import Datamaskin.Filbehandling.SaveToBinaryFile;
 import Datamaskin.Page;
 import Datamaskin.Product.ProductCategories;
@@ -22,12 +24,17 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 public class ProductAdmPageController implements Initializable{
 
     @FXML private Button toSuperUserPage;
     @FXML private Text wrongInput;
+    private SaveComponentsToFile filesaver = new SaveComponentsToFile();
 
     // inputfields for å lage et produkt/ komponent
     @FXML private TextField txtComponentname;
@@ -216,7 +223,19 @@ public class ProductAdmPageController implements Initializable{
 
     }
 
+    //lagre til binær fil - den lagrer til fil, men jeg kan lese den. Skal vel komme kun tall?
     @FXML void saveToFile(ActionEvent event) {
+        Path pathString = Paths.get("productreg.txt");
+        Path path = Paths.get("productRegBinary.txt");
+        String formatted = ProductFormatter.formatListOfProductsToString(ProductRegister.Register);
+        byte[] bytes = formatted.getBytes(StandardCharsets.UTF_8);
 
+        try {
+            filesaver.saveToFile(formatted, pathString);
+            Files.write(path, bytes);
+            //lblFeilmelding.setText("Lagringen er vellykket");
+        } catch (IOException e) {
+            //lblFeilmelding.setText(e.getMessage());
+        }
     }
 }

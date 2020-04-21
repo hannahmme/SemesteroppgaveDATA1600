@@ -98,15 +98,6 @@ public class MainpageController implements Initializable {
         }
     }
 
-//Kode gjør at bildet kan trykkes på og gå videre til neste side
-    @FXML
-    void imgSuperUserPage(MouseEvent event) throws IOException {
-        toSuperUserPage();
-    }
-    @FXML
-    void imgEnduserPage(MouseEvent event) throws IOException {
-        toEnduserPage();
-    }
     @FXML
     void btnUserOrdersEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {

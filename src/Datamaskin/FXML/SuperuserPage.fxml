@@ -19,8 +19,8 @@
       <Button fx:id="toMainPage" alignment="CENTER" contentDisplay="RIGHT" layoutX="820.0" layoutY="29.0" mnemonicParsing="false" onAction="#toMainPage" onKeyPressed="#btnLogOutEnter" prefHeight="33.0" prefWidth="157.0" text="Logg ut" />
       <Line endX="588.21435546875" layoutX="389.0" layoutY="80.0" startX="-374.1428527832031" />
       <Line endX="-4.78564453125" endY="528.0" layoutX="500.0" layoutY="80.0" startX="-4.78564453125" startY="1.5" />
-      <ImageView fx:id="createProdImageView" onMouseClicked="#imgCreateProd" fitHeight="230.0" fitWidth="362.0" layoutX="62.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="allOrdersImageView" onMouseClicked="#imgAllOrdersPage" fitHeight="256.0" fitWidth="329.0" layoutX="580.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="logOutImageView" onMouseClicked="#imgMainPage" fitHeight="24.0" fitWidth="32.0" layoutX="936.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="createProdImageView" mouseTransparent="true" fitHeight="230.0" fitWidth="362.0" layoutX="62.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="allOrdersImageView" mouseTransparent="true" fitHeight="256.0" fitWidth="329.0" layoutX="580.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="logOutImageView" mouseTransparent="true" fitHeight="24.0" fitWidth="32.0" layoutX="936.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

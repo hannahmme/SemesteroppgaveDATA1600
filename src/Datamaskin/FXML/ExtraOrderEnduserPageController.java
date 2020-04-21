@@ -183,9 +183,6 @@ public class ExtraOrderEnduserPageController implements Initializable {
             goToMainpage();
             }
         }
-    @FXML
-    void imgToMainPage(MouseEvent event) throws IOException {
-        goToMainpage();
-        }
+
     }
 

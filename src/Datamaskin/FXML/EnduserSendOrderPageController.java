@@ -215,10 +215,7 @@ public class EnduserSendOrderPageController implements Initializable {
             goBack();
         }
     }
-    @FXML
-    void imgToMainPage(MouseEvent event) throws IOException {
-        goToMainpage();
-    }
+
 
 
 }

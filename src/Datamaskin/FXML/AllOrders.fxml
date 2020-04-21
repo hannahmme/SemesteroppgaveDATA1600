@@ -35,7 +35,7 @@
             </TableColumn>
         </columns>
       </TableView>
-      <Button fx:id="toSuperuserpage" layoutX="57.0" layoutY="23.0" mnemonicParsing="false" onAction="#toSuperuserpage" text="Gå til forrige side" />
+      <Button fx:id="toSuperuserpage" layoutX="57.0" layoutY="23.0" mnemonicParsing="false" onAction="#toSuperuserpage" onKeyPressed="#btnSuperUserPageEnter" text="Gå til forrige side" />
       <TextField layoutX="762.0" layoutY="62.0" />
       <Text layoutX="717.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Søk" />
    </children>

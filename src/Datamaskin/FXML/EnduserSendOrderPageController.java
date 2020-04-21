@@ -3,6 +3,7 @@ package Datamaskin.FXML;
 import Datamaskin.Cart.Cart;
 import Datamaskin.CustomerValidator;
 import Datamaskin.Exceptions.InvalidEmailException;
+import Datamaskin.images.ImageClass;
 import Datamaskin.orders.FinalOrderOverview;
 import Datamaskin.orders.FinalOrderOverviewRegister;
 import Datamaskin.Product.Product;
@@ -15,7 +16,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -30,16 +38,22 @@ public class EnduserSendOrderPageController implements Initializable {
     @FXML private TextField txtEpost;
     @FXML private Label lblOrderSent;
     @FXML private Label lblTotalPrice;
+    @FXML private ImageView mainpageImageView;
 
-    private Page scene = new Page();
+    private ImageClass image = new ImageClass();
+    private Image homeImage = image.createImage("./src/Datamaskin/images/mainpage.png");
     private Cart shoppingcart = new Cart();
 
     // et register for overordnet info + et register for ordrespesifikk info
     static FinalOrderSpecificRegister SpecificOrderRegister= new FinalOrderSpecificRegister();
     static FinalOrderOverviewRegister OrderRegister = new FinalOrderOverviewRegister();
 
+    //denne kastes fordi image.createImage kalles
+    public EnduserSendOrderPageController() throws FileNotFoundException {
+    }
+
     // metode som setter den totale prisen basert på komponentene i arrayet
-    public void setTotalPriceLabel(){
+    private void setTotalPriceLabel(){
         double totalPrice = shoppingcart.getTotalPrice();
         lblTotalPrice.setText(String.valueOf(totalPrice));
     }
@@ -60,9 +74,11 @@ public class EnduserSendOrderPageController implements Initializable {
 
         //Setter riktig totaltpris ved innlasting av siden
         setTotalPriceLabel();
+
+        image.setImageView(mainpageImageView, homeImage);
     }
 
-    @FXML void sendOrder(ActionEvent event) throws IOException, InvalidEmailException {
+    @FXML void sendOrder() throws IOException, InvalidEmailException {
         // legge ordreIDen her så man kan få tak i riktig ordreID ved lagring til fil av handlekurven
         String orderID = generateOrderID();
         FinalOrderOverview aFinalOrderOverview = createOrderObjectFromGUI(orderID);
@@ -90,13 +106,13 @@ public class EnduserSendOrderPageController implements Initializable {
 
     // metode for å generere ordreID
     private static int orderID = 10;
-    public String generateOrderID (){
+    private String generateOrderID(){
         orderID++;
         return "#"+orderID;
     }
 
     // metode for å generere en ordre og legget il ordreID og epost i array
-    public FinalOrderOverview createOrderObjectFromGUI(String orderID){
+    private FinalOrderOverview createOrderObjectFromGUI(String orderID){
         String email;
         double totalPrice;
 
@@ -132,14 +148,14 @@ public class EnduserSendOrderPageController implements Initializable {
     }
 
     // metode for å gå tilbake til hovedside
-    @FXML void goToMainpage(ActionEvent event) throws IOException {
+    @FXML void goToMainpage() throws IOException {
         if(btnSendOrder.isDisabled()){
             Stage primaryStage = (Stage) btnGoToMainpage.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
             Page.toMainpage(primaryStage, root);
         } else {
             //Man får en advarsel om at hvis man går til hovedsiden, vil bestillingen avsluttes - Hannah
-            boolean goBackIsConfirmed = scene.comfirmNavigationToMainpage();
+            boolean goBackIsConfirmed = Page.comfirmNavigationToMainpage();
             if(goBackIsConfirmed){
                 Stage primaryStage = (Stage) btnGoToMainpage.getScene().getWindow();
                 Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
@@ -150,7 +166,7 @@ public class EnduserSendOrderPageController implements Initializable {
     }
 
     // metode for å gå tilbake til forrige side
-    @FXML void goBack(ActionEvent event) throws IOException {
+    @FXML void goBack() throws IOException {
         Stage primaryStage = (Stage) btnGoBack.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("ExtraOrderEnduserPage.fxml"));
         Page.toExtraOrderEnduserPage(primaryStage, root);
@@ -158,11 +174,42 @@ public class EnduserSendOrderPageController implements Initializable {
     }
 
     // metode som åpner siden der man kan lage en ny bruker
-    @FXML void newUser(ActionEvent event) throws IOException {
+    @FXML void newUser() throws IOException {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("NewUser.fxml"));
         Page.tonewUserPage(newStage, root);
         newStage.show();
     }
+
+    //Enter-funksjon på buttons
+    @FXML
+    void btnNewUserEnter(KeyEvent event) throws IOException {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            newUser();
+        }
+    }
+    @FXML
+    void btnSendOrderEnter(KeyEvent event) throws IOException {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            sendOrder();
+        }
+    }
+    @FXML
+    void btnMainPageEnter(KeyEvent event) throws IOException {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            goToMainpage();
+        }
+    }
+    @FXML
+    void btnGoBackEnter(KeyEvent event) throws IOException {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            goBack();
+        }
+    }
+    @FXML
+    void imgToMainPage(MouseEvent event) throws IOException {
+        goToMainpage();
+    }
+
 
 }

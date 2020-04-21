@@ -34,11 +34,9 @@ public class UserspesificOrderController implements Initializable {
 
         }
 
-
-
         //knappen "tilbake" tar brukeren med tilbake til menysiden for superbruker
         @FXML
-        void toMainpage(ActionEvent event) throws IOException {
+        void toMainpage() throws IOException {
                 Stage primaryStage = (Stage) toMainpage.getScene().getWindow();
                 Page.toMainpage(primaryStage, FXMLLoader.load(getClass().getResource("Mainpage.fxml")));
         }
@@ -58,13 +56,11 @@ public class UserspesificOrderController implements Initializable {
         @FXML
         void btnToMainpageEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
-                Stage primaryStage = (Stage) toMainpage.getScene().getWindow();
-                Parent root = FXMLLoader.load(getClass().getResource("ProductAdmPage.fxml"));
-                Page.toMainpage(primaryStage, root);
+                toMainpage();
         }
 
 
-                // for å søke etter emailen til bruker skjult, så bare brukerens ordre kommer opp
+        // for å søke etter emailen til bruker skjult, så bare brukerens ordre kommer opp
 
 
     /*// kode for filtrering

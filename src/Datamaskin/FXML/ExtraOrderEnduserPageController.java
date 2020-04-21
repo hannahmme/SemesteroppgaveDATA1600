@@ -4,6 +4,7 @@ import Datamaskin.Cart.Cart;
 import Datamaskin.Product.Product;
 import Datamaskin.Product.ProductCategories;
 import Datamaskin.Page;
+import Datamaskin.images.ImageClass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
@@ -48,15 +50,32 @@ public class ExtraOrderEnduserPageController implements Initializable {
     @FXML private Button btnGoToMainpage;
     @FXML private Label lblTotalPrice;
     @FXML private ImageView imgImageView;
+    @FXML private Text txtWarning;
+    @FXML private ImageView mainpageImageView;
 
+    private ImageClass image = new ImageClass();
+    private Image homeImage = image.createImage("./src/Datamaskin/images/mainpage.png");
     private Page scene = new Page();
     private Cart shoppingCart = new Cart();
 
+    public ExtraOrderEnduserPageController() throws FileNotFoundException {
+    }
+
     //metode som legger til elementer i handlekurven, dersom de er huket av. (Funker ikke helt enda)
-    @FXML void addToCart(ActionEvent event) {
-        Product extraProduct = tblExtraProduct.getSelectionModel().getSelectedItem();
-        shoppingCart.addElement(extraProduct);
-        updateTotalPriceLabel();
+    @FXML void addToCart() throws NullPointerException {
+        try {
+            Product extraProduct = tblExtraProduct.getSelectionModel().getSelectedItem();
+            if (extraProduct == null) {
+                throw new NullPointerException("Velg et produkt for å legge det til i handlekurven.");
+            } else {
+                shoppingCart.addElement(extraProduct);
+                updateTotalPriceLabel();
+                txtWarning.setText("");
+            }
+
+        } catch (NullPointerException nullpointer){
+            txtWarning.setText(nullpointer.getMessage());
+        }
     }
 
     // Metode som oppdaterer label med totalsum
@@ -85,6 +104,8 @@ public class ExtraOrderEnduserPageController implements Initializable {
 
         //Setter riktig totaltpris ved innlasting av siden
         updateTotalPriceLabel();
+
+        image.setImageView(mainpageImageView, homeImage);
     }
 
 
@@ -109,7 +130,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
 
 
     // går tilbake til forrige side for å se på valgte komponenter
-    @FXML void goBack(ActionEvent event) throws IOException {
+    @FXML void goBack() throws IOException {
         Stage primaryStage = (Stage) btnGoBack.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("EnduserPage.fxml"));
         Page.toEnduserPage(primaryStage, root);
@@ -118,59 +139,53 @@ public class ExtraOrderEnduserPageController implements Initializable {
     }
 
     // går tilbake til hovedsiden hvis yes på alert + sletter handlekurven
-    @FXML void goToMainpage(ActionEvent event) throws IOException {
+    @FXML void goToMainpage() throws IOException {
         //Man får en advarsel om at hvis man går til hovedsiden, vil bestillingen avsluttes - Hannah
         boolean goBackIsConfirmed = scene.comfirmNavigationToMainpage();
         if (goBackIsConfirmed) {
             Stage primaryStage = (Stage) btnGoToMainpage.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
             Page.toMainpage(primaryStage, root);
+            primaryStage.show();
             shoppingCart.deleteShoppingcart();
         }
     }
 
     // går videre til betalingssiden
-    @FXML void goToPay(ActionEvent event) throws IOException {
+    @FXML void goToPay() throws IOException {
         Stage primaryStage = (Stage) btnGoToPay.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("EnduserSendOrderPage.fxml"));
         Page.toEnduserSendOrderPage(primaryStage, root);
         primaryStage.show();
     }
 
+
+    //Metoder som trigges ved "Enter"
     @FXML
     void btnAddEnter(KeyEvent event) {
-
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            addToCart();
+        }
     }
-
     @FXML void btnGoBackEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            Stage primaryStage = (Stage) btnGoBack.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("ExtraOrderEnduserPage.fxml"));
-            Page.toExtraOrderEnduserPage(primaryStage, root);
-            primaryStage.show();
+            goBack();
         }
     }
-
     @FXML void btnGoPayEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            Stage primaryStage = (Stage) btnGoToPay.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("EnduserSendOrderPage.fxml"));
-            Page.toEnduserSendOrderPage(primaryStage, root);
-            primaryStage.show();
+            goToPay();
         }
     }
-
     @FXML
     void btnToMainpageEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            boolean goBackIsConfirmed = scene.comfirmNavigationToMainpage();
-            if (goBackIsConfirmed) {
-                Stage primaryStage = (Stage) btnGoToMainpage.getScene().getWindow();
-                Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
-                Page.toMainpage(primaryStage, root);
-                shoppingCart.deleteShoppingcart();
-                primaryStage.show();
+            goToMainpage();
             }
         }
+    @FXML
+    void imgToMainPage(MouseEvent event) throws IOException {
+        goToMainpage();
+        }
     }
-}
+

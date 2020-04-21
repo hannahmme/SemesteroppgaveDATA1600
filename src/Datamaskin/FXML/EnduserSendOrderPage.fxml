@@ -7,17 +7,18 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="664.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.EnduserSendOrderPageController">
+<AnchorPane prefHeight="664.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Datamaskin.FXML.EnduserSendOrderPageController">
    <children>
       <SplitPane dividerPositions="0.5" layoutY="-9.0" prefHeight="670.0" prefWidth="1250.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="713.0" prefWidth="607.0">
                <children>
-                  <Button fx:id="btnGoToMainpage" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToMainpage" prefHeight="31.0" prefWidth="170.0" text="Gå til forsiden" />
-                  <Button fx:id="btnGoBack" layoutX="253.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="31.0" prefWidth="353.0" text="Glemt noe? Klikk her for å endre handlekurven" />
+                  <Button fx:id="btnGoToMainpage" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToMainpage" onKeyPressed="#btnMainPageEnter" prefHeight="31.0" prefWidth="170.0" text="Gå til forsiden" />
+                  <Button fx:id="btnGoBack" layoutX="253.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" onKeyPressed="#btnGoBackEnter" prefHeight="31.0" prefWidth="353.0" text="Glemt noe? Klikk her for å endre handlekurven" />
             
                   <Text layoutX="14.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Har du handlet her før? Logg inn og send bestillingen!" />
                   <Text layoutX="14.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Epostadresse" />
@@ -25,8 +26,9 @@
                   <Text layoutX="14.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" wrappingWidth="86.74073964357376" />
                   <PasswordField layoutX="117.0" layoutY="222.0" />
                   <Label fx:id="lblOrderSent" alignment="TOP_LEFT" layoutX="211.0" layoutY="464.0" prefHeight="77.0" prefWidth="249.0" wrapText="true" />
-                  <Button fx:id="btnSendOrder" layoutX="272.0" layoutY="559.0" mnemonicParsing="false" onAction="#sendOrder" prefHeight="25.0" prefWidth="127.0" text="Send bestilling" />
-                  <Button fx:id="btnNewUser" layoutX="439.0" layoutY="127.0" mnemonicParsing="false" onAction="#newUser" text="Opprett ny bruker" />
+                  <Button fx:id="btnSendOrder" layoutX="272.0" layoutY="559.0" mnemonicParsing="false" onAction="#sendOrder" onKeyPressed="#btnSendOrderEnter" prefHeight="25.0" prefWidth="127.0" text="Send bestilling" />
+                  <Button fx:id="btnNewUser" layoutX="439.0" layoutY="127.0" mnemonicParsing="false" onAction="#newUser" onKeyPressed="#btnNewUserEnter" text="Opprett ny bruker" />
+                  <ImageView fx:id="mainpageImageView" fitHeight="24.0" fitWidth="37.0" layoutX="139.0" layoutY="18.0" onMouseClicked="#imgToMainPage" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="731.0" prefWidth="415.0">

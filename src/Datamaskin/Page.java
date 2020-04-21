@@ -16,7 +16,7 @@ public class Page {
 
 
     //Generell metode som gir alert hvis man skal gå til hovedsiden - Hannah
-    public boolean comfirmNavigationToMainpage() throws IOException {
+    public static boolean comfirmNavigationToMainpage() throws IOException {
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle("Vent litt...");
         alert.setContentText("Ønsker du å avslutte din bestilling og gå til hovedsiden?");

@@ -8,10 +8,11 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.EnduserPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Datamaskin.FXML.EnduserPageController">
    <children>
       <SplitPane dividerPositions="0.5" prefHeight="670.0" prefWidth="1250.0">
         <items>
@@ -38,10 +39,11 @@
                   <Label layoutX="17.0" layoutY="600.0" prefHeight="17.0" prefWidth="149.0" text="Farge" />
                   <Label layoutX="17.0" layoutY="393.0" prefHeight="17.0" prefWidth="149.0" text="Strømforsyning" />
                   <Button fx:id="btnAddToCart" layoutX="266.0" layoutY="569.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="82.0" prefWidth="340.0" text="Oppdater handlekurv med valgte komponenter" />
-                  <TextArea layoutX="266.0" layoutY="255.0" prefHeight="208.0" prefWidth="340.0" />
-                  <Label layoutX="353.0" layoutY="229.0" prefHeight="21.0" prefWidth="149.0" text="Produktinformasjon:" />
-                  <Label fx:id="lblError" layoutX="266.0" layoutY="490.0" prefHeight="54.0" prefWidth="340.0" />
+                  <TextArea layoutX="266.0" layoutY="189.0" prefHeight="307.0" prefWidth="340.0" />
+                  <Label layoutX="457.0" layoutY="132.0" prefHeight="21.0" prefWidth="149.0" text="Produktinformasjon:" />
+                  <Label fx:id="lblError" layoutX="207.0" layoutY="507.0" prefHeight="54.0" prefWidth="413.0" />
                   <Button fx:id="btnGoBack" layoutX="10.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" onKeyPressed="#btnGoBackEnter" prefHeight="33.0" prefWidth="163.0" text="Gå til forsiden" />
+                  <ImageView fx:id="mainpageImageView" fitHeight="32.0" fitWidth="27.0" layoutX="139.0" layoutY="15.0" onMouseClicked="#imgToMainPage" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="668.0" prefWidth="573.0">
@@ -73,7 +75,7 @@
                   <Label layoutX="16.0" layoutY="14.0" prefHeight="33.0" prefWidth="247.0" text="Handlekurv" />
                   <Label layoutX="85.0" layoutY="602.0" prefHeight="21.0" prefWidth="109.0" text="Totalt å betale:" />
                   <Button fx:id="btnGoToPay" layoutX="429.0" layoutY="596.0" mnemonicParsing="false" onAction="#loadPayment" onKeyPressed="#btnNextPageEnter" prefHeight="33.0" prefWidth="177.0" text="Gå til betaling" />
-                  <Label fx:id="lblTotalPrice" layoutX="204.0" layoutY="591.0" prefHeight="21.0" prefWidth="59.0" />
+                  <Label fx:id="lblTotalPrice" layoutX="175.0" layoutY="602.0" prefHeight="21.0" prefWidth="95.0" />
                </children>
             </AnchorPane>
         </items>

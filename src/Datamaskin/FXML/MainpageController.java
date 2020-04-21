@@ -1,6 +1,7 @@
 package Datamaskin.FXML;
 
-import Datamaskin.CustomerValidator;
+import Datamaskin.customer.CustomerRegister;
+import Datamaskin.customer.CustomerValidator;
 import Datamaskin.Exceptions.InvalidEmailException;
 import Datamaskin.Page;
 
@@ -20,7 +21,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -43,24 +43,31 @@ public class MainpageController implements Initializable {
     public MainpageController() throws FileNotFoundException {
     }
 
-    //Todo: SKal denne brukes noe sted? - Hannah
-    // bruke denne med try/catch for å legge til en verdi som skal brukes for å filtrere userSpecific order
-    public void checkEmail() throws InvalidEmailException {
-        String email = txtUserEmail.getText();
-        CustomerValidator.validateEmail(email);
-    }
-
-    @FXML
-    void toUserOrders() throws IOException {
+    // metode som sender brukeren til ordresiden for bruker, må valideres med epost og passord
+    @FXML void toUserOrders() throws IOException {
         try {
             String email = txtUserEmail.getText();
+            String password = txtUserPassword.getText();
+
+            // sortingKey gir oss eposten til brukeren dersom det er skrevet inn riktig epost + passord. Se kommentar i docs
+            String sortingKey = CustomerRegister.checkCredentials(email, password);
+
             if (!CustomerValidator.validateEmail(email)) {
                 throw new InvalidEmailException("Skriv inn gyldig e-postadresse");
-            } else {
+            }
+
+            /*else if(){
+                throw new InvalidPasswordException("Skriv inn et gyldig passord")
+            } else if(){
+                throw new ... ("Skriv inn gyldige innloggingsdetaljer")
+            }*/
+
+            else {
                 Stage primaryStage = (Stage) btnUserOrders.getScene().getWindow();
                 Parent root = FXMLLoader.load(getClass().getResource("UserspesificOrder.fxml"));
                 Page.toUserspesificOrder(primaryStage, root);
                 primaryStage.show();
+                // kode som setter sorteringen
             }
         } catch (InvalidEmailException e) {
             lblErrorEmail.setText(e.getMessage());
@@ -98,15 +105,6 @@ public class MainpageController implements Initializable {
         }
     }
 
-//Kode gjør at bildet kan trykkes på og gå videre til neste side
-    @FXML
-    void imgSuperUserPage(MouseEvent event) throws IOException {
-        toSuperUserPage();
-    }
-    @FXML
-    void imgEnduserPage(MouseEvent event) throws IOException {
-        toEnduserPage();
-    }
     @FXML
     void btnUserOrdersEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {

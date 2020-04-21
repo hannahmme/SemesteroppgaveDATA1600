@@ -2,6 +2,7 @@ package Datamaskin.FXML;
 
 import Datamaskin.orders.FinalOrderOverview;
 import Datamaskin.Page;
+import Datamaskin.orders.FinalOrderOverviewRegister;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,21 +30,18 @@ public class UserspesificOrderController implements Initializable {
         @FXML private Button btnOrderDetails;
 
 
-        @FXML
-        void orderDetails(ActionEvent event) {
+        @FXML void orderDetails(ActionEvent event) {
 
         }
 
         //knappen "tilbake" tar brukeren med tilbake til menysiden for superbruker
-        @FXML
-        void toMainpage() throws IOException {
+        @FXML void toMainpage() throws IOException {
                 Stage primaryStage = (Stage) toMainpage.getScene().getWindow();
                 Page.toMainpage(primaryStage, FXMLLoader.load(getClass().getResource("Mainpage.fxml")));
         }
 
         // metoder for å legge inn ordreregisteret på denne siden
-        @Override
-        public void initialize(URL url, ResourceBundle rb) {
+        @Override public void initialize(URL url, ResourceBundle rb) {
                 emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
                 orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("OrderID"));
                 orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("OrderDate"));
@@ -53,8 +51,7 @@ public class UserspesificOrderController implements Initializable {
         }
 
         // metode så man kommer til hovedsiden ved å trykke enter
-        @FXML
-        void btnToMainpageEnter(KeyEvent event) throws IOException {
+        @FXML void btnToMainpageEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
                 toMainpage();
         }

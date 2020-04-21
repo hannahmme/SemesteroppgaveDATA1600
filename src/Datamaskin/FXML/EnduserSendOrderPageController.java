@@ -1,15 +1,17 @@
 package Datamaskin.FXML;
 
 import Datamaskin.Cart.Cart;
-import Datamaskin.CustomerValidator;
+import Datamaskin.customer.CustomerValidator;
 import Datamaskin.Exceptions.InvalidEmailException;
+import Datamaskin.Filbehandling.FileSaverTxt;
+import Datamaskin.Filbehandling.OrderFormatter;
 import Datamaskin.images.ImageClass;
 import Datamaskin.orders.FinalOrderOverview;
 import Datamaskin.orders.FinalOrderOverviewRegister;
 import Datamaskin.Product.Product;
 import Datamaskin.Page;
+import Datamaskin.orders.FinalOrderSpecific;
 import Datamaskin.orders.FinalOrderSpecificRegister;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,6 +28,8 @@ import javafx.stage.Stage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -43,6 +47,7 @@ public class EnduserSendOrderPageController implements Initializable {
     private ImageClass image = new ImageClass();
     private Image homeImage = image.createImage("./src/Datamaskin/images/mainpage.png");
     private Cart shoppingcart = new Cart();
+    private FileSaverTxt filesaver = new FileSaverTxt();
 
     // et register for overordnet info + et register for ordrespesifikk info
     static FinalOrderSpecificRegister SpecificOrderRegister= new FinalOrderSpecificRegister();
@@ -85,9 +90,14 @@ public class EnduserSendOrderPageController implements Initializable {
 
         if(aFinalOrderOverview != null) {
             OrderRegister.addElement(aFinalOrderOverview);
-            //FinalOrderSpecific aFinalOrderSpecific = createSpecificOrderObject(orderID);
-            //SpecificOrderRegister.addElement(aFinalOrderSpecific);
+            /*FinalOrderSpecific aFinalOrderSpecific = createSpecificOrderObject(orderID);
+            SpecificOrderRegister.addElement(aFinalOrderSpecific);*/
             txtEpost.setText("");
+            Path sentOrderPath = Paths.get("./src/Datamaskin/sentOrdersPath/"+orderID+".csv");
+            String formattedList = OrderFormatter.formatListOfProductToString(Cart.Register);
+            filesaver.saveToFile(formattedList, sentOrderPath);
+
+            //sletter handlekurven *etter* å ha lagret til fil - //todo: kanskje lage exception i tilfelle ikke klarer å lese til filstien (så ikke handlekurven slettes før det faktisk er blitt lagret) - hannah
             shoppingcart.deleteShoppingcart();
         }
     }
@@ -108,7 +118,7 @@ public class EnduserSendOrderPageController implements Initializable {
     private static int orderID = 10;
     private String generateOrderID(){
         orderID++;
-        return "#"+orderID;
+        return "ordre-"+orderID;
     }
 
     // metode for å generere en ordre og legget il ordreID og epost i array
@@ -182,32 +192,27 @@ public class EnduserSendOrderPageController implements Initializable {
     }
 
     //Enter-funksjon på buttons
-    @FXML
-    void btnNewUserEnter(KeyEvent event) throws IOException {
+    @FXML void btnNewUserEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             newUser();
         }
     }
-    @FXML
-    void btnSendOrderEnter(KeyEvent event) throws IOException {
+    @FXML void btnSendOrderEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             sendOrder();
         }
     }
-    @FXML
-    void btnMainPageEnter(KeyEvent event) throws IOException {
+    @FXML void btnMainPageEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             goToMainpage();
         }
     }
-    @FXML
-    void btnGoBackEnter(KeyEvent event) throws IOException {
+    @FXML void btnGoBackEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             goBack();
         }
     }
-    @FXML
-    void imgToMainPage(MouseEvent event) throws IOException {
+    @FXML void imgToMainPage(MouseEvent event) throws IOException {
         goToMainpage();
     }
 

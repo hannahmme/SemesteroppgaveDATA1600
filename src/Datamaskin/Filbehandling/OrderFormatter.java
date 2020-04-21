@@ -5,7 +5,7 @@ import Datamaskin.Product.Product;
 import java.util.List;
 
 public class OrderFormatter {
-    private static String DELIMITER = " ¤ ";
+    private static String DELIMITER = ";";
 
     //metode som tar imot en liste av produkter (her regnes det som en ferdig ordre som sendes inn)
     //metoden gjør om hvert produkt i listen til en String og "appender" det til en større String.

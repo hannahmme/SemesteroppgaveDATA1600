@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="608.0" prefWidth="997.0" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.SuperuserPageController">
+<AnchorPane prefHeight="608.0" prefWidth="997.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Datamaskin.FXML.SuperuserPageController">
    <children>
       <Button fx:id="toSuperUserProductPage" layoutX="59.0" layoutY="129.0" mnemonicParsing="false" onAction="#toSuperUserProductPage" onKeyPressed="#btnChangeEnter" prefHeight="25.0" prefWidth="368.0" text="Lag nye eller endre på komponenter">
          <font>

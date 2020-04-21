@@ -7,13 +7,14 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.UserspesificOrderController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Datamaskin.FXML.UserspesificOrderController">
     <children>
         <Text layoutX="281.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hei sluttbruker. Her kan du se alle ordre som er gjennomført. Gjerne sorter etter dato om du vil" />
-        <TableView fx:id="allOrders" layoutX="281.0" layoutY="141.0" prefHeight="496.0" prefWidth="628.0">
+        <TableView fx:id="allOrders" layoutX="26.0" layoutY="135.0" onMouseClicked="#selectedOrderItemEvent" prefHeight="489.0" prefWidth="628.0">
             <columns>
                 <TableColumn fx:id="emailColumn" prefWidth="212.0" text="E-post">
                     <cellValueFactory>
@@ -37,9 +38,40 @@
                 </TableColumn>
             </columns>
         </TableView>
-        <Button fx:id="toMainpage" layoutX="57.0" layoutY="23.0" mnemonicParsing="false" onAction="#toMainpage" onKeyPressed="#btnToMainpageEnter" text="Gå til forsiden" />
-        <TextField layoutX="722.0" layoutY="83.0" />
-        <Text layoutX="666.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Søk" />
-      <Button fx:id="btnOrderDetails" layoutX="1017.0" layoutY="606.0" mnemonicParsing="false" onAction="#orderDetails" text="Se ordredetaljer" />
+        <Button fx:id="toMainpage" layoutX="57.0" layoutY="27.0" mnemonicParsing="false" onAction="#toMainpage" onKeyPressed="#btnToMainpageEnter" prefHeight="25.0" prefWidth="166.0" text="Gå til forsiden" />
+        <TextField layoutX="66.0" layoutY="100.0" />
+        <Text layoutX="26.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Søk:" wrappingWidth="37.97265625" />
+      <Button fx:id="btnOrderDetails" layoutX="231.0" layoutY="100.0" mnemonicParsing="false" onAction="#orderDetails" text="Se ordredetaljer" />
+      <ImageView fitHeight="23.0" fitWidth="37.0" layoutX="179.0" layoutY="28.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
+      <TableView fx:id="tblOrderInfo" layoutX="661.0" layoutY="135.0" prefHeight="489.0" prefWidth="584.0">
+        <columns>
+            <TableColumn fx:id="productName" prefWidth="106.857177734375" text="Produktnavn">
+                <cellValueFactory>
+                    <PropertyValueFactory property="Name" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="productInfo" prefWidth="184.5714111328125" text="Beskrivelse">
+                <cellValueFactory>
+                    <PropertyValueFactory property="Description" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="productLifetime" prefWidth="77.7142333984375" text="Levetid">
+                <cellValueFactory>
+                    <PropertyValueFactory property="Lifetime" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="productPrice" prefWidth="82.857177734375" text="Pris">
+                <cellValueFactory>
+                    <PropertyValueFactory property="Price" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="productCategory" prefWidth="132.0" text="Kategori">
+                <cellValueFactory>
+                    <PropertyValueFactory property="Category" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+      </TableView>
+      <Text layoutX="661.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ordreinnhold" wrappingWidth="180.4224853515625" />
     </children>
 </AnchorPane>

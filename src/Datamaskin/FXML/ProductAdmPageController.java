@@ -1,5 +1,6 @@
 package Datamaskin.FXML;
 
+import Datamaskin.Cart.Cart;
 import Datamaskin.Exceptions.InvalidLifetimeException;
 import Datamaskin.Exceptions.InvalidPriceException;
 import Datamaskin.Filbehandling.SaveToBinaryFile;
@@ -25,7 +26,7 @@ import java.util.ResourceBundle;
 
 public class ProductAdmPageController implements Initializable{
 
-    @FXML private Button tilSuperbrukerside;
+    @FXML private Button toSuperUserPage;
     @FXML private Text wrongInput;
 
     // inputfields for å lage et produkt/ komponent
@@ -38,12 +39,6 @@ public class ProductAdmPageController implements Initializable{
     @FXML private MenuButton menuDropdown;
     @FXML private MenuItem saveToFile;
     @FXML private MenuItem openFromFile;
-    @FXML private Button btnDeleteComponent;
-
-    @FXML
-    void deleteComponent(ActionEvent event) {
-
-    }
 
     // metode for å lage kategoriene
     private void setData(){
@@ -105,8 +100,6 @@ public class ProductAdmPageController implements Initializable{
 
         } else {
             try {
-
-                //Todo: Carro! Måtte kommentere ut et par ting for å få det til å kjøre - nuuuuuull stress hahah
                 name = txtComponentname.getText();
                 if(!ProductValidator.validateName(name)){
                     throw new IllegalArgumentException("Skriv inn et gyldig komponentnavn");
@@ -155,6 +148,20 @@ public class ProductAdmPageController implements Initializable{
         return null;
     }
 
+    @FXML
+    void btnDeleteComponentEnter(KeyEvent event){
+        if(event.getCode().equals(KeyCode.ENTER)){
+            deleteComponent();
+        }
+    }
+    @FXML
+    void deleteComponent() {
+        Product deleteItem = componentTableview.getSelectionModel().getSelectedItem();
+        ProductRegister.deleteElement(deleteItem);
+        System.out.println(ProductRegister.Register.size());
+    }
+
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -170,13 +177,12 @@ public class ProductAdmPageController implements Initializable{
     }
 
     // kode for å komme tilbake til hovedmenyen for superbruker
-    @FXML void tilSuperbrukerside(ActionEvent event) throws IOException {
-        Stage primaryStage = (Stage) tilSuperbrukerside.getScene().getWindow();
+    @FXML void toSuperUserPage() throws IOException {
+        Stage primaryStage = (Stage) toSuperUserPage.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
         Page.toSuperuserpage(primaryStage, root);
     }
-
-
+    
     @FXML
     void btnAddProdEnter(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
@@ -191,12 +197,11 @@ public class ProductAdmPageController implements Initializable{
     @FXML
     void btnGoBackEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            Stage primaryStage = (Stage) tilSuperbrukerside.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
-            Page.toSuperuserpage(primaryStage, root);
+            toSuperUserPage();
         }
     }
 
+    //
     @FXML
     void btnMenuEnter(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {

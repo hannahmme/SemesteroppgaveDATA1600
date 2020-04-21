@@ -3,6 +3,7 @@ package Datamaskin.FXML;
 
 
 import Datamaskin.Page;
+import Datamaskin.images.ImageClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -25,63 +27,51 @@ import java.util.ResourceBundle;
 
 public class SuperuserPageController implements Initializable {
 
-    @FXML private Button tilKomponentside;
-    @FXML private Button tilOrdreside;
-    @FXML private Button tilHovedside;
+    @FXML private Button toSuperUserProductPage;
+    @FXML private Button toSuperUserOrderPage;
+    @FXML private Button toMainPage;
 
-    public SuperuserPageController() throws FileNotFoundException {
-    }
+    private ImageClass image = new ImageClass();
 
-    //metode som kobler bildet og imageViewet sammen - Hannah
-    private void setImageView(ImageView iv, Image image){
-        iv.setImage(image);
-    }
-
-    //metode som oppretter et bilde via path og returnerer et bilde - Hannah
-    private Image createImage(String path) throws FileNotFoundException {
-        FileInputStream imageStream = new FileInputStream(path);
-        return new Image(imageStream);
-    }
+    //Denne er pga bildene som lages
+    public SuperuserPageController() throws FileNotFoundException {}
 
     @FXML
     private ImageView logOutImageView;
-    private Image logOutImage = createImage("./src/Datamaskin/images/logout.png");
-
+    private Image logOutImage = image.createImage("./src/Datamaskin/images/logout.png");
     @FXML
     private ImageView createProdImageView;
-    private Image createProdImage = createImage("./src/Datamaskin/images/createProd.jpg");
-
+    private Image createProdImage = image.createImage("./src/Datamaskin/images/createProd.jpg");
     @FXML
     private ImageView allOrdersImageView;
-    private Image allOrdersImage = createImage("./src/Datamaskin/images/order.png");
+    private Image allOrdersImage = image.createImage("./src/Datamaskin/images/order.png");
 
 
     //Kobler ImageViewet med bildene når siden lastes inn
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        setImageView(logOutImageView, logOutImage);
-        setImageView(createProdImageView, createProdImage);
-        setImageView(allOrdersImageView, allOrdersImage);
+        image.setImageView(logOutImageView, logOutImage);
+        image.setImageView(createProdImageView, createProdImage);
+        image.setImageView(allOrdersImageView, allOrdersImage);
     }
 
-
-    //knapp som sender bruker tilbake til hovedsiden
-    @FXML void tilHovedside(ActionEvent event) throws IOException {
-        Stage primaryStage = (Stage) tilHovedside.getScene().getWindow();
+    //metode som sender bruker tilbake til hovedsiden
+    @FXML void toMainPage() throws IOException {
+        Stage primaryStage = (Stage) toMainPage.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
         Page.toMainpage(primaryStage, root);
     }
 
-
-    //knapp som sender brukeren til siden hvor man kan administrere komponenter
-    @FXML void tilKomponentside(ActionEvent event) throws IOException {
-        Stage primaryStage = (Stage) tilKomponentside.getScene().getWindow();
+    //knapp som sender superbrukeren til siden hvor man kan administrere komponenter
+    @FXML void toSuperUserProductPage() throws IOException {
+        Stage primaryStage = (Stage) toSuperUserProductPage.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("ProductAdmPage.fxml"));
         Page.toProductAdminPage(primaryStage, root);
     }
 
-    @FXML void tilOrdreside(ActionEvent event) throws IOException {
-        Stage primaryStage = (Stage) tilOrdreside.getScene().getWindow();
+    //sender superbruker til alle ordre-siden
+    @FXML void toSuperUserOrderPage() throws IOException {
+        Stage primaryStage = (Stage) toSuperUserOrderPage.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("AllOrders.fxml"));
         Page.toAllOrdersPage(primaryStage, root);
     }
@@ -90,27 +80,35 @@ public class SuperuserPageController implements Initializable {
     @FXML
     void btnAllOrdersEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            Stage primaryStage = (Stage) tilOrdreside.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("AllOrders.fxml"));
-            Page.toAllOrdersPage(primaryStage, root);
+            toSuperUserOrderPage();
         }
     }
     @FXML
     void btnChangeEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            Stage primaryStage = (Stage) tilKomponentside.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("ProductAdmPage.fxml"));
-            Page.toProductAdminPage(primaryStage, root);
+            toSuperUserProductPage();
         }
     }
     @FXML
     void btnLogOutEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            Stage primaryStage = (Stage) tilHovedside.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
-            Page.toMainpage(primaryStage, root);
+            toMainPage();
         }
     }
+    //Metodene under gjør at bildene kan trykkes på
+    @FXML
+    void imgCreateProd(MouseEvent event) throws IOException {
+        toSuperUserProductPage();
+    }
+    @FXML
+    void imgAllOrdersPage(MouseEvent event) throws IOException {
+        toSuperUserOrderPage();
+    }
+    @FXML
+    void imgMainPage(MouseEvent event) throws IOException {
+        toMainPage();
+    }
+
 
 }
 

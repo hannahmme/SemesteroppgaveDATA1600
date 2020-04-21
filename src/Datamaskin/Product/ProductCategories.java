@@ -31,7 +31,6 @@ public class ProductCategories {
     public static HashMap<String, Product> Color = new HashMap<>();     // Farge
 
     // har ikke denne i hashmap, fordi hashmap har en kapasitet på 16 plasser i listen.
-    //public static ArrayList<Product> otherProducts = new ArrayList<>(); // Andre produkter som mus, tastatur, skjerm osv
     public static ObservableList<Product> otherProducts = FXCollections.observableArrayList(); // Andre produkter som mus, tastatur, skjerm osv
 
 
@@ -146,16 +145,9 @@ public class ProductCategories {
         ProductAdmPageController.aRegister.addElement(otherProducts8);
         ProductAdmPageController.aRegister.addElement(otherProducts9);
         ProductAdmPageController.aRegister.addElement(otherProducts10);
-        otherProducts.add(otherProducts1);
-        otherProducts.add(otherProducts2);
-        otherProducts.add(otherProducts3);
-        otherProducts.add(otherProducts4);
-        otherProducts.add(otherProducts5);
-        otherProducts.add(otherProducts6);
-        otherProducts.add(otherProducts7);
-        otherProducts.add(otherProducts8);
-        otherProducts.add(otherProducts9);
-        otherProducts.add(otherProducts10);
+        otherProducts.addAll(otherProducts1, otherProducts2, otherProducts3, otherProducts4, otherProducts5,
+                otherProducts7,otherProducts8, otherProducts9, otherProducts10);
+
     }
 
 

@@ -12,8 +12,8 @@ public class Cart {
         tv.setItems(Register);
     }
 
-    public void addElement(Product aProduct) {
-        Register.add(aProduct);
+    public void addElement(Product aProduct){
+            Register.add(aProduct);
     }
 
     //Metode som fjerner gammelt element i handlelisten (hører til første brukerside) og legger til nytt
@@ -30,6 +30,17 @@ public class Cart {
         return totalSum;
     }
 
+    //metode som gjør det mulig å slette et produkt i listen
+    public static void deleteElement(Product itemToDelete){
+        if(itemToDelete == null){
+            return;
+        }
+        for(int i = 0; i < Register.size(); i++){
+            if (itemToDelete.equals(Register.get(i))) {
+                Register.remove(Register.get(i));
+            }
+        }
+    }
 
     //Metode som sletter alle elementer i handlelisten (brukes når bruker skal tilbake til hovedsiden) - Hannah
     public void deleteShoppingcart(){

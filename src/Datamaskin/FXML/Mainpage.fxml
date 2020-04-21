@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.MainpageController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.MainpageController">
    <children>
       <Text layoutX="224.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Er du administrator? Logg inn her!" />
       <Text layoutX="483.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brukernavn" />

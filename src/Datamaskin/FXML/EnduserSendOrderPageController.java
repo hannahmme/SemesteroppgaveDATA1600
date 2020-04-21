@@ -48,7 +48,7 @@ public class EnduserSendOrderPageController implements Initializable {
     private ImageClass image = new ImageClass();
     private Image homeImage = image.createImage("./src/Datamaskin/images/mainpage.png");
     private Cart shoppingcart = new Cart();
-    private FileSaverTxt filesaver = new FileSaverTxt();
+    //private FileSaverTxt filesaver = new FileSaverTxt();
 
     // et register for overordnet info + et register for ordrespesifikk info
     static FinalOrderSpecificRegister SpecificOrderRegister= new FinalOrderSpecificRegister();

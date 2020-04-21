@@ -1,4 +1,4 @@
 package Datamaskin.Filbehandling;
 
-public interface FileSaver {
+public interface iFileOpenerOrders {
 }

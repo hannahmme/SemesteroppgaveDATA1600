@@ -8,8 +8,8 @@ import java.util.List;
 //fileSaverTxt implementerer metoden fra interfaces iFileSaver, og fyller method-body her.
 public class FileSaverTxt implements iFileSaver{
     @Override
-    public void saveToFile(List<?> listToSave, Path path) throws IOException {
-        Files.write(path, listToSave.toString().getBytes());
+    public void saveToFile(String orderToSave, Path path) throws IOException {
+        Files.write(path, orderToSave.getBytes());
     }
 
 }

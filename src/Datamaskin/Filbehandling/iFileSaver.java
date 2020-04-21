@@ -7,5 +7,5 @@ import java.util.List;
 
 //hensikten med interfacet er at denne metoden kan implementeres der den trengs
 public interface iFileSaver {
-    public void saveToFile(List<?> listToSave, Path path) throws IOException;
+    public void saveToFile(String string, Path path) throws IOException;
 }

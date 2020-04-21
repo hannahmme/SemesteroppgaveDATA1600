@@ -3,13 +3,14 @@ package Datamaskin.FXML;
 import Datamaskin.Cart.Cart;
 import Datamaskin.CustomerValidator;
 import Datamaskin.Exceptions.InvalidEmailException;
+import Datamaskin.Filbehandling.FileSaverTxt;
+import Datamaskin.Filbehandling.OrderFormatter;
 import Datamaskin.images.ImageClass;
 import Datamaskin.orders.FinalOrderOverview;
 import Datamaskin.orders.FinalOrderOverviewRegister;
 import Datamaskin.Product.Product;
 import Datamaskin.Page;
 import Datamaskin.orders.FinalOrderSpecificRegister;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,6 +27,8 @@ import javafx.stage.Stage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -40,6 +43,7 @@ public class EnduserSendOrderPageController implements Initializable {
     @FXML private Label lblTotalPrice;
     @FXML private ImageView mainpageImageView;
 
+    private FileSaverTxt filesaver = new FileSaverTxt();
     private ImageClass image = new ImageClass();
     private Image homeImage = image.createImage("./src/Datamaskin/images/mainpage.png");
     private Cart shoppingcart = new Cart();
@@ -85,9 +89,14 @@ public class EnduserSendOrderPageController implements Initializable {
 
         if(aFinalOrderOverview != null) {
             OrderRegister.addElement(aFinalOrderOverview);
-            //FinalOrderSpecific aFinalOrderSpecific = createSpecificOrderObject(orderID);
-            //SpecificOrderRegister.addElement(aFinalOrderSpecific);
+/*            FinalOrderSpecific aFinalOrderSpecific = createSpecificOrderObject(orderID);
+            SpecificOrderRegister.addElement(aFinalOrderSpecific);*/
             txtEpost.setText("");
+            Path sentOrderPath = Paths.get("./src/Datamaskin/sentOrdersPath/"+orderID+".csv");
+            String formattedList = OrderFormatter.formatListOfProductToString(Cart.Register);
+            filesaver.saveToFile(formattedList, sentOrderPath);
+
+            //sletter handlekurven *etter* å ha lagret til fil - //todo: kanskje lage exception i tilfelle ikke klarer å lese til filstien (så ikke handlekurven slettes før det faktisk er blitt lagret) - hannah
             shoppingcart.deleteShoppingcart();
         }
     }
@@ -108,7 +117,7 @@ public class EnduserSendOrderPageController implements Initializable {
     private static int orderID = 10;
     private String generateOrderID(){
         orderID++;
-        return "#"+orderID;
+        return "ordre-"+orderID;
     }
 
     // metode for å generere en ordre og legget il ordreID og epost i array

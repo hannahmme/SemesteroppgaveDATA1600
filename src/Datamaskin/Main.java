@@ -1,5 +1,6 @@
 package Datamaskin;
 
+import Datamaskin.customer.CustomerRegister;
 import Datamaskin.orders.OrderExample;
 import Datamaskin.Product.ProductCategories;
 import javafx.application.Application;
@@ -20,6 +21,7 @@ public class Main extends Application {
         //Setter all eksempeldata ved start av applikasjon så den ikke dupliseres
         ProductCategories.setExampleData();
         OrderExample.setExampleData();
+        CustomerRegister.setExampleCustomers();
     }
 
     public static void main(String[] args) {

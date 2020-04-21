@@ -1,4 +1,4 @@
-package Datamaskin;
+package Datamaskin.customer;
 
 import Datamaskin.Exceptions.InvalidEmailException;
 

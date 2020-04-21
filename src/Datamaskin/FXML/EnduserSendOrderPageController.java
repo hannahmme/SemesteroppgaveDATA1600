@@ -1,7 +1,7 @@
 package Datamaskin.FXML;
 
 import Datamaskin.Cart.Cart;
-import Datamaskin.CustomerValidator;
+import Datamaskin.customer.CustomerValidator;
 import Datamaskin.Exceptions.InvalidEmailException;
 import Datamaskin.Filbehandling.FileSaverTxt;
 import Datamaskin.Filbehandling.OrderFormatter;
@@ -10,6 +10,7 @@ import Datamaskin.orders.FinalOrderOverview;
 import Datamaskin.orders.FinalOrderOverviewRegister;
 import Datamaskin.Product.Product;
 import Datamaskin.Page;
+import Datamaskin.orders.FinalOrderSpecific;
 import Datamaskin.orders.FinalOrderSpecificRegister;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,6 +48,7 @@ public class EnduserSendOrderPageController implements Initializable {
     private ImageClass image = new ImageClass();
     private Image homeImage = image.createImage("./src/Datamaskin/images/mainpage.png");
     private Cart shoppingcart = new Cart();
+    //private FileSaverTxt filesaver = new FileSaverTxt();
 
     // et register for overordnet info + et register for ordrespesifikk info
     static FinalOrderSpecificRegister SpecificOrderRegister= new FinalOrderSpecificRegister();
@@ -191,26 +193,22 @@ public class EnduserSendOrderPageController implements Initializable {
     }
 
     //Enter-funksjon på buttons
-    @FXML
-    void btnNewUserEnter(KeyEvent event) throws IOException {
+    @FXML void btnNewUserEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             newUser();
         }
     }
-    @FXML
-    void btnSendOrderEnter(KeyEvent event) throws IOException {
+    @FXML void btnSendOrderEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             sendOrder();
         }
     }
-    @FXML
-    void btnMainPageEnter(KeyEvent event) throws IOException {
+    @FXML void btnMainPageEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             goToMainpage();
         }
     }
-    @FXML
-    void btnGoBackEnter(KeyEvent event) throws IOException {
+    @FXML void btnGoBackEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             goBack();
         }

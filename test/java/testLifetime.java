@@ -1,5 +1,3 @@
-import Datamaskin.CustomerValidator;
-import Datamaskin.Exceptions.InvalidEmailException;
 import Datamaskin.Exceptions.InvalidLifetimeException;
 import Datamaskin.Product.ProductValidator;
 import org.junit.Test;

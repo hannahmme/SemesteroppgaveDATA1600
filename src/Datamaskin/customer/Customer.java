@@ -1,5 +1,6 @@
 package Datamaskin.customer;
 
+import Datamaskin.Exceptions.InvalidEmailException;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Customer {
@@ -24,4 +25,5 @@ public class Customer {
     public void setPassword(String password) {
         this.password = new SimpleStringProperty(password);
     }
+
 }

@@ -1,4 +1,4 @@
-import Datamaskin.CustomerValidator;
+import Datamaskin.customer.CustomerValidator;
 import org.junit.Test;
 
 

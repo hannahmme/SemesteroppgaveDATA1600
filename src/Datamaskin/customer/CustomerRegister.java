@@ -8,9 +8,10 @@ import javafx.scene.control.TableView;
 public class CustomerRegister {
     public transient static ObservableList<Customer> CustomerRegister = FXCollections.observableArrayList();
 
-    public void setCustomerToTV(TableView tv) {
+    // todo: muligens legge kundene til i et TV som kan bli sett av admin?
+    /*public void setCustomerToTV(TableView tv) {
         tv.setItems(CustomerRegister);
-    }
+    }*/
 
     public void addCustomer(Customer aCustomer) {
         CustomerRegister.add(aCustomer);

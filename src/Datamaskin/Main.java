@@ -1,7 +1,6 @@
 package Datamaskin;
 
 import Datamaskin.customer.CustomerRegister;
-import Datamaskin.orders.OrderExample;
 import Datamaskin.Product.ProductCategories;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,9 +17,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 1250, 670));
         primaryStage.show();
 
-        //Setter all eksempeldata ved start av applikasjon så den ikke dupliseres
         ProductCategories.setExampleData();
-        OrderExample.setExampleData();
         CustomerRegister.setExampleCustomers();
     }
 

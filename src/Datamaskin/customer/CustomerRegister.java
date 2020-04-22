@@ -12,7 +12,7 @@ public class CustomerRegister {
         tv.setItems(CustomerRegister);
     }
 
-    public void addElement(Customer aCustomer) {
+    public void addCustomer(Customer aCustomer) {
         CustomerRegister.add(aCustomer);
     }
 

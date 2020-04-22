@@ -173,7 +173,6 @@ public class EnduserPageController implements Initializable {
 
     // metode som bruker metoden over til å sette verdier til hver cBox
     private void setChosenChoicebox() {
-        ;
         cBoxGraphicCard.setValue(setAllChosenChoiceboxes(0));
         cBoxMemorycard.setValue(setAllChosenChoiceboxes(1));
         cBoxHarddrive.setValue(setAllChosenChoiceboxes(2));

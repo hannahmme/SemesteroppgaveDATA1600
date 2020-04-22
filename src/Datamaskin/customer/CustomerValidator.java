@@ -11,5 +11,13 @@ public class CustomerValidator {
         return false;
     }
 
+    // todo: må lages en test-metode for denne også
+    public static boolean validatePassword(String password) {
+        if (password.matches("[a-zA-Z0-9._%+-a-zA-Z0-9]{3,}") && !password.isEmpty() && password != null && !password.equals("")){
+            return true;
+        }
+        return false;
+    }
+
 
 }

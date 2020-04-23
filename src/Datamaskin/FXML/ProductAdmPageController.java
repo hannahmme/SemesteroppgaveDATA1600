@@ -160,18 +160,21 @@ public class ProductAdmPageController implements Initializable{
     }
 
     @FXML
-    void btnDeleteComponentEnter(KeyEvent event){
+    void btnDeleteComponentEnter(KeyEvent event) throws IOException {
         if(event.getCode().equals(KeyCode.ENTER)){
             deleteComponent();
         }
     }
     @FXML
-    void deleteComponent() {
+    void deleteComponent() throws IOException {
         Product deleteItem = componentTableview.getSelectionModel().getSelectedItem();
-        ProductRegister.deleteElement(deleteItem);
+        boolean deleteConfirmed = Page.alertConfirmed("Ønsker du å slette "+deleteItem.getName() + " fra listen?");
+        if(deleteConfirmed) {
+            ProductRegister.deleteElement(deleteItem);
 
-        // her slettes elementet også fra arrayet
-        deleteFromRegister(deleteItem);
+            // her slettes elementet også fra arrayet
+            deleteFromRegister(deleteItem);
+        }
     }
 
     // elementet som slettes i TV slettes fra riktig array/ hashmap så det ikke kommer opp i choiceboksene hos sluttbruker

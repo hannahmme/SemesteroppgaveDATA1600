@@ -166,7 +166,7 @@ public class EnduserSendOrderPageController implements Initializable {
             Page.toMainpage(primaryStage, root);
         } else {
             //Man får en advarsel om at hvis man går til hovedsiden, vil bestillingen avsluttes - Hannah
-            boolean goBackIsConfirmed = Page.comfirmNavigationToMainpage();
+            boolean goBackIsConfirmed = Page.alertConfirmed("Ønsker du å avslutte din bestilling og gå til hovedsiden?");
             if(goBackIsConfirmed){
                 Stage primaryStage = (Stage) btnGoToMainpage.getScene().getWindow();
                 Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));

@@ -143,12 +143,11 @@ public class ExtraOrderEnduserPageController implements Initializable {
     // går tilbake til hovedsiden hvis yes på alert + sletter handlekurven
     @FXML void goToMainpage() throws IOException {
         //Man får en advarsel om at hvis man går til hovedsiden, vil bestillingen avsluttes - Hannah
-        boolean goBackIsConfirmed = scene.comfirmNavigationToMainpage();
+        boolean goBackIsConfirmed = Page.alertConfirmed("Ønsker du å avslutte din bestilling og gå til hovedsiden?");
         if (goBackIsConfirmed) {
             Stage primaryStage = (Stage) btnGoToMainpage.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
             Page.toMainpage(primaryStage, root);
-            primaryStage.show();
             shoppingCart.deleteShoppingcart();
         }
     }

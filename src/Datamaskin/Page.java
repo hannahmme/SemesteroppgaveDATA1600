@@ -16,10 +16,10 @@ public class Page {
 
 
     //Generell metode som gir alert hvis man skal gå til hovedsiden - Hannah
-    public static boolean comfirmNavigationToMainpage() throws IOException {
+    public static boolean alertConfirmed(String content) throws IOException {
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle("Vent litt...");
-        alert.setContentText("Ønsker du å avslutte din bestilling og gå til hovedsiden?");
+        alert.setContentText(content);
         ButtonType buttonYes = new ButtonType("Ja, det ønsker jeg");
         ButtonType buttonNo = new ButtonType("Nei");
         alert.getButtonTypes().addAll(buttonYes, buttonNo);

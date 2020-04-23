@@ -181,18 +181,16 @@ public class EnduserPageController implements Initializable {
         Stage primaryStage = (Stage) btnGoToPay.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("ExtraOrderEnduserPage.fxml"));
         Page.toExtraOrderEnduserPage(primaryStage, root);
-        primaryStage.show();
     }
 
     // knapp som sender bruker til forrige side + advarsel om å avslutte
     @FXML void goBack() throws IOException {
         //Man får en advarsel om at hvis man går til hovedsiden, vil bestillingen avsluttes - Hannah
-        boolean goBackIsConfirmed = Page.comfirmNavigationToMainpage();
+        boolean goBackIsConfirmed = Page.alertConfirmed("Ønsker du å avslutte din bestilling og gå til hovedsiden?");
         if (goBackIsConfirmed) {
             Stage primaryStage = (Stage) btnGoBack.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("Mainpage.fxml"));
             Page.toMainpage(primaryStage, root);
-            primaryStage.show();
             aCart.deleteShoppingcart();
         }
     }

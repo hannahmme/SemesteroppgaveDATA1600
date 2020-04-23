@@ -4,6 +4,7 @@ import Datamaskin.Cart.Cart;
 import Datamaskin.Product.Product;
 import Datamaskin.Product.ProductCategories;
 import Datamaskin.Page;
+import Datamaskin.Product.ProductRegister;
 import Datamaskin.images.ImageClass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -87,10 +88,11 @@ public class ExtraOrderEnduserPageController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //Tableview på venstre side med ekstra tilbehør
-        tblExtraProduct.getItems().addAll(ProductCategories.otherProducts);
-        tblExtraProduct.setItems(ProductCategories.otherProducts);
+        tblExtraProduct.getItems().addAll(ProductRegister.Register);
+        tblExtraProduct.setItems(ProductRegister.Register);
         extraProductName.setCellValueFactory(new PropertyValueFactory<>("Name"));
         extraProductInfo.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        //extraProductLifetime.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
         extraProductPrice.setCellValueFactory(new PropertyValueFactory<>("Price"));
 
         //Handlekurven på høyre side lastes inn når siden lastes inn

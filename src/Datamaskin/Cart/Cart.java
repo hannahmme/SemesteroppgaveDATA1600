@@ -4,6 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 
+import java.util.HashMap;
+
 
 public class Cart {
     public transient static ObservableList<Product> Register = FXCollections.observableArrayList();
@@ -48,4 +50,30 @@ public class Cart {
             Register.remove(0, Register.size());
         }
     }
+
+    // finner indeksen til produktkategorien
+    public static int findIndex(String category){
+        int index = 0;
+        for(Product aProduct: Cart.Register){
+            if(aProduct.getCategory().equals(category)){
+                index =Cart.Register.indexOf(aProduct);
+            }
+        }
+        return index;
+    }
+
+    // metode for å hente frem riktig produkt fra listen(hashmappen) og legge til produktet i handlekurven
+    public static Product addProduct(String productname, HashMap<String, Product> categoryList) {
+        Product aProduct = null;
+        for (int i = 0; i < categoryList.size(); i++) {
+            if (productname.equals(categoryList.keySet().toArray()[i].toString())) {
+                aProduct = categoryList.get(productname);
+            }
+        }
+        return aProduct;
+    }
+
+
+
+
 }

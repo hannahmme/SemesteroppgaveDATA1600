@@ -91,7 +91,13 @@ public class Page {
         newStage.setTitle("Opprett en ny bruker");
         newStage.setScene(new Scene(root, 600, 350));
         newStage.show();
+    }
 
+    public static void toAllUsersPage(Stage newStage, Parent FXMLString) throws IOException {
+        Parent root = FXMLString;
+        newStage.setTitle("Alle brukere");
+        newStage.setScene(new Scene(root, 1000, 700));
+        newStage.show();
     }
 
 }

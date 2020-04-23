@@ -1,6 +1,4 @@
-// Tilhører siden med to knapper for superbruker, der admin kan velge mellom å lage nye komponenter eller å se alle ordre
 package Datamaskin.FXML;
-
 
 import Datamaskin.Page;
 import Datamaskin.images.ImageClass;
@@ -29,18 +27,19 @@ public class SuperuserPageController implements Initializable {
     @FXML private Button toSuperUserProductPage;
     @FXML private Button toSuperUserOrderPage;
     @FXML private Button toMainPage;
+    @FXML private Button btnadministrateUsers;
     private ImageClass image = new ImageClass();
+
     //Denne er pga bildene som lages
     public SuperuserPageController() throws FileNotFoundException {}
 
-    @FXML
-    private ImageView logOutImageView;
+    @FXML private ImageView logOutImageView;
     private Image logOutImage = image.createImage("./src/Datamaskin/images/logout.png");
-    @FXML
-    private ImageView createProdImageView;
+
+    @FXML private ImageView createProdImageView;
     private Image createProdImage = image.createImage("./src/Datamaskin/images/createProd.jpg");
-    @FXML
-    private ImageView allOrdersImageView;
+
+    @FXML private ImageView allOrdersImageView;
     private Image allOrdersImage = image.createImage("./src/Datamaskin/images/order.png");
 
     //Kobler ImageViewet med bildene når siden lastes inn
@@ -91,5 +90,15 @@ public class SuperuserPageController implements Initializable {
             toMainPage();
         }
     }
+
+    // knappen skal ta deg med til en side der man kan se alle brukere som er i systemet
+    @FXML void btnadministrateUsers() throws IOException {
+        Stage primaryStage = (Stage) btnadministrateUsers.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("AllUsers.fxml"));
+        Page.toAllUsersPage(primaryStage, root);
+
+    }
+
+
 }
 

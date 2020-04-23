@@ -166,6 +166,30 @@ public class ProductAdmPageController implements Initializable{
         Product deleteItem = componentTableview.getSelectionModel().getSelectedItem();
         ProductRegister.deleteElement(deleteItem);
         System.out.println(ProductRegister.Register.size());
+
+        // her slettes elementet også fra arrayet
+        deleteFromRegister(deleteItem);
+    }
+
+    // elementet som slettes i TV slettes fra riktig array/ hashmap så det ikke kommer opp i choiceboksene hos sluttbruker
+    private void deleteFromRegister(Product aProduct){
+        if(ProductCategories.GraphicCard.containsValue(aProduct)){
+            ProductCategories.GraphicCard.remove(aProduct.getName());
+        } else if(ProductCategories.Memorycard.containsValue(aProduct)){
+            ProductCategories.Memorycard.remove(aProduct.getName());
+        } else if(ProductCategories.Harddrive.containsValue(aProduct)){
+            ProductCategories.Harddrive.remove(aProduct.getName());
+        } else if(ProductCategories.Processor.containsValue(aProduct)){
+            ProductCategories.Processor.remove(aProduct.getName());
+        } else if(ProductCategories.Power.containsValue(aProduct)){
+            ProductCategories.Power.remove(aProduct.getName());
+        } else if(ProductCategories.Soundcard.containsValue(aProduct)){
+            ProductCategories.Soundcard.remove(aProduct.getName());
+        } else if(ProductCategories.OpticalDisk.containsValue(aProduct)){
+            ProductCategories.OpticalDisk.remove(aProduct.getName());
+        } else if(ProductCategories.Color.containsValue(aProduct)){
+            ProductCategories.Color.remove(aProduct.getName());
+        }
     }
 
 

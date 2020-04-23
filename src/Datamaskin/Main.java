@@ -1,5 +1,6 @@
 package Datamaskin;
 
+import Datamaskin.FXML.EnduserPageController;
 import Datamaskin.customer.CustomerRegister;
 import Datamaskin.Product.ProductCategories;
 import javafx.application.Application;

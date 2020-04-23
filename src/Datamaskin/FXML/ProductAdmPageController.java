@@ -165,7 +165,6 @@ public class ProductAdmPageController implements Initializable{
     void deleteComponent() {
         Product deleteItem = componentTableview.getSelectionModel().getSelectedItem();
         ProductRegister.deleteElement(deleteItem);
-        System.out.println(ProductRegister.Register.size());
 
         // her slettes elementet også fra arrayet
         deleteFromRegister(deleteItem);

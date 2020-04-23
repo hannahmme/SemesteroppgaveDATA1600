@@ -3,6 +3,7 @@ package Datamaskin.FXML;
 import Datamaskin.Cart.Cart;
 import Datamaskin.Exceptions.InvalidLifetimeException;
 import Datamaskin.Exceptions.InvalidPriceException;
+import Datamaskin.Filbehandling.FileSaver;
 import Datamaskin.Filbehandling.ProductFormatter;
 import Datamaskin.Filbehandling.SaveComponentsToFile;
 import Datamaskin.Filbehandling.SaveToBinaryFile;
@@ -22,6 +23,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -225,17 +229,38 @@ public class ProductAdmPageController implements Initializable{
 
     //lagre til binær fil - den lagrer til fil, men jeg kan lese den. Skal vel komme kun tall?
     @FXML void saveToFile(ActionEvent event) {
-        Path pathString = Paths.get("productreg.txt");
+        /*Path pathString = Paths.get("productreg.txt");
         Path path = Paths.get("productRegBinary.txt");
+        Path path = Paths.get("productRegJobj.jobj");*//*
         String formatted = ProductFormatter.formatListOfProductsToString(ProductRegister.Register);
-        byte[] bytes = formatted.getBytes(StandardCharsets.UTF_8);
+        *//*byte[] bytes = formatted.getBytes(StandardCharsets.UTF_8);
 
         try {
-            filesaver.saveToFile(formatted, pathString);
+            filesaver.saveToJobj(aRegister, path);
             Files.write(path, bytes);
             //lblFeilmelding.setText("Lagringen er vellykket");
         } catch (IOException e) {
             //lblFeilmelding.setText(e.getMessage());
+        }*//*
+
+        File file = new File("productReg.jobj");
+        byte[] data = formatted.getBytes(StandardCharsets.UTF_8);
+
+        try(FileOutputStream fos = new FileOutputStream(file)) {
+            fos.write(data);
+            System.out.println("Skrev ut data til fil");
+        } catch (IOException e){
+            e.printStackTrace();
+        }*/
+        FileSaver saver = new SaveComponentsToFile();
+        Path path = Paths.get("productReg.jobj");
+        if(saver != null) {
+            try {
+                saver.saveToJobj(aRegister, path);
+                System.out.println("Registeret ble lagret!");
+            } catch (IOException e) {
+                System.out.println("Lagring til fil feilet. Grunn: " + e.getMessage());
+            }
         }
     }
 }

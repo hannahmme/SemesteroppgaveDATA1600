@@ -5,7 +5,6 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.AllUsersController">
    <children>
       <TableView fx:id="customerTV" layoutX="64.0" layoutY="90.0" prefHeight="585.0" prefWidth="557.0">
@@ -15,6 +14,6 @@
         </columns>
       </TableView>
       <Button layoutX="662.0" layoutY="644.0" mnemonicParsing="false" text="Slett bruker" />
-      <Button fx:id="btnGoBack" layoutX="64.0" layoutY="26.0" mnemonicParsing="false" onAction="#GoBack" text="Gå tilbake" />
+      <Button fx:id="toSuperuserpage" layoutX="64.0" layoutY="26.0" mnemonicParsing="false" onAction="#toSuperuserpage" onMouseDragEntered="#btnSuperUserPageEnter" text="Gå tilbake" />
    </children>
 </AnchorPane>

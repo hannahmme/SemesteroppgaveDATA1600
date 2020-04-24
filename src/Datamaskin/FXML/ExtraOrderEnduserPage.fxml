@@ -17,11 +17,11 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="769.0" prefWidth="152.0">
                <children>
-                  <Button fx:id="btnGoToMainpage" layoutX="20.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToMainpage" onKeyPressed="#btnToMainpageEnter" prefHeight="31.0" prefWidth="155.0" text="Gå til forsiden" />
+                  <Button fx:id="btnGoToMainpage" layoutX="13.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToMainpage" onKeyPressed="#btnToMainpageEnter" prefHeight="31.0" prefWidth="155.0" text="Gå til forsiden" />
                   <ImageView fx:id="mainpageImageView" fitHeight="21.0" fitWidth="35.0" layoutX="136.0" layoutY="18.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
                   <Button fx:id="btnGoBack" layoutX="190.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" onKeyPressed="#btnGoBackEnter" prefHeight="31.0" prefWidth="155.0" text="Gå til forrige side" />
-                  <Label layoutX="20.0" layoutY="70.0" prefHeight="27.0" prefWidth="319.0" text="Trenger du noe ekstra tilbehør? Finn det her!" />
-                  <TableView fx:id="tblExtraProduct" layoutX="13.0" layoutY="97.0" onMouseClicked="#selectedItemEvent" prefHeight="323.0" prefWidth="594.0">
+                  <Label layoutX="16.0" layoutY="70.0" prefHeight="27.0" prefWidth="319.0" text="Trenger du ekstra tilbehør? Finn det her!" />
+                  <TableView fx:id="tblExtraProduct" layoutX="13.0" layoutY="97.0" onMouseClicked="#selectedItemEvent" prefHeight="340.0" prefWidth="600.0">
                     <columns>
                       <TableColumn fx:id="extraProductName" prefWidth="108.0" text="Tilbehor">
                         <cellValueFactory>
@@ -34,26 +34,25 @@
                         </cellValueFactory>
                       </TableColumn>
                         <TableColumn fx:id="extraProductLifetime" prefWidth="68.0" text="Levetid" />
-                        <TableColumn fx:id="extraProductPrice" prefWidth="95.0" text="Pris">
+                        <TableColumn fx:id="extraProductPrice" prefWidth="101.0" text="Pris">
                             <cellValueFactory>
                                 <PropertyValueFactory property="Price" />
                             </cellValueFactory>
                         </TableColumn>
                     </columns>
                   </TableView>
-                  <Label layoutX="26.0" layoutY="450.0" prefHeight="21.0" prefWidth="96.0" text="Produktinfo: " />
-                  <Text fx:id="txtWarning" layoutX="165.0" layoutY="446.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="437.5652160644531" />
-                  <Button fx:id="btnSaveToCart" layoutX="431.0" layoutY="521.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="72.0" prefWidth="172.0" text="Legg til i handlekurven" />
-                  <ImageView fx:id="imgImageView" fitHeight="171.0" fitWidth="411.0" layoutX="20.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true" />
+                  <Text fx:id="txtWarning" layoutX="13.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="599.9999865889549" />
+                  <Button fx:id="btnSaveToCart" layoutX="324.0" layoutY="553.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="44.0" prefWidth="282.0" style="-fx-background-color: steelblue;" text="Legg til valgt produkt" textFill="WHITE" wrapText="true" />
+                  <ImageView fx:id="imgImageView" fitHeight="175.0" fitWidth="282.0" layoutX="14.0" layoutY="487.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="525.0">
                <children>
-                  <Text layoutX="13.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Handlekurv" textAlignment="CENTER" wrappingWidth="593.9999863039702">
+                  <Text layoutX="13.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Handlekurv" textAlignment="CENTER" wrappingWidth="593.9999863039702">
                      <font>
                         <Font name="Arial Bold" size="24.0" />
                      </font></Text>
-                   <TableView fx:id="tableviewCart" layoutX="9.0" layoutY="54.0" prefHeight="554.0" prefWidth="602.0">
+                   <TableView fx:id="tableviewCart" layoutX="10.0" layoutY="97.0" prefHeight="340.0" prefWidth="600.0">
                        <columns>
                            <TableColumn fx:id="nameColumn" prefWidth="136.0" text="Produktnavn">
                                <cellValueFactory>
@@ -70,15 +69,16 @@
                                    <PropertyValueFactory property="Lifetime" />
                                </cellValueFactory>
                            </TableColumn>
-                           <TableColumn fx:id="priceColumn" prefWidth="95.0" text="Pris">
+                           <TableColumn fx:id="priceColumn" prefWidth="90.0" text="Pris">
                                <cellValueFactory>
                                    <PropertyValueFactory property="Price" />
                                </cellValueFactory>
                            </TableColumn>
                        </columns>
                    </TableView>
-                  <Label layoutX="61.0" layoutY="619.0" prefHeight="21.0" prefWidth="126.0" text="Totalt å betale:" />
-                  <Label fx:id="lblTotalPrice" layoutX="187.0" layoutY="619.0" prefHeight="21.0" prefWidth="96.0" />
+                  <Label layoutX="13.0" layoutY="619.0" prefHeight="21.0" prefWidth="106.0" text="Totalt å betale:" />
+                  <Label fx:id="lblTotalPrice" layoutX="131.0" layoutY="619.0" prefHeight="21.0" prefWidth="115.0" />
+                  <Button layoutX="169.0" layoutY="454.0" mnemonicParsing="false" onAction="#deleteFromCart" prefHeight="44.0" prefWidth="282.0" style="-fx-background-color: steelblue;" text="Slett valgt produkt fra handlekurven" textFill="WHITE" />
                   <Button fx:id="btnGoToPay" layoutX="480.0" layoutY="614.0" mnemonicParsing="false" onAction="#goToPay" onKeyPressed="#btnGoPayEnter" prefHeight="25.0" prefWidth="126.0" text="Gå til betaling" />
                </children>
             </AnchorPane>

@@ -62,7 +62,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
     public ExtraOrderEnduserPageController() throws FileNotFoundException {
     }
 
-    //metode som legger til elementer i handlekurven, dersom de er huket av. (Funker ikke helt enda)
+    //todo: metode som legger til elementer i handlekurven, dersom de er huket av. (Funker ikke helt enda)
     @FXML void addToCart() throws NullPointerException {
         try {
             Product extraProduct = tblExtraProduct.getSelectionModel().getSelectedItem();
@@ -84,6 +84,22 @@ public class ExtraOrderEnduserPageController implements Initializable {
         double totalPrice = shoppingCart.getTotalPrice();
         lblTotalPrice.setText(String.valueOf(totalPrice));
     }
+
+    @FXML void deleteFromCart(ActionEvent event) throws IOException {
+        Product chosenProduct = tableviewCart.getSelectionModel().getSelectedItem();
+        if(chosenProduct!=null) {
+            if (chosenProduct.getCategory().equals("Andre produkter")) {
+                shoppingCart.deleteOneProductFromCart(chosenProduct);
+            } else {
+
+                //todo: denne funker ikke
+                Page.alertInformation("Du kan ikke slette essensielle komponenter, gå tilbake til forrige side for å endre disse.");
+            }
+        }
+    }
+
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -110,10 +126,8 @@ public class ExtraOrderEnduserPageController implements Initializable {
         image.setImageView(mainpageImageView, homeImage);
     }
 
-
     //Metode som gjør at bilde av produktet som velges vises i produktinfo-imageviewet
-    @FXML
-    void selectedItemEvent(MouseEvent event) throws FileNotFoundException {
+    @FXML void selectedItemEvent(MouseEvent event) throws FileNotFoundException {
         Product selectedProduct = tblExtraProduct.getSelectionModel().getSelectedItem();
 
         // Hvis raden det klikkes på er tom - ikke gjør noe
@@ -129,7 +143,6 @@ public class ExtraOrderEnduserPageController implements Initializable {
             System.err.println("Noe gikk galt ved innlasting av produktbilde. " + e.getMessage());
         }
     }
-
 
     // går tilbake til forrige side for å se på valgte komponenter
     @FXML void goBack() throws IOException {
@@ -160,10 +173,8 @@ public class ExtraOrderEnduserPageController implements Initializable {
         primaryStage.show();
     }
 
-
     //Metoder som trigges ved "Enter"
-    @FXML
-    void btnAddEnter(KeyEvent event) {
+    @FXML void btnAddEnter(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             addToCart();
         }
@@ -178,12 +189,10 @@ public class ExtraOrderEnduserPageController implements Initializable {
             goToPay();
         }
     }
-    @FXML
-    void btnToMainpageEnter(KeyEvent event) throws IOException {
+    @FXML void btnToMainpageEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             goToMainpage();
             }
         }
-
-    }
+}
 

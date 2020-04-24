@@ -73,6 +73,10 @@ public class Cart {
         return aProduct;
     }
 
+    public void deleteOneProductFromCart(Product aProduct){
+        Register.remove(aProduct);
+    }
+
 
 
 

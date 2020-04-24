@@ -1,11 +1,8 @@
 package Datamaskin;
 
-import Datamaskin.Cart.Cart;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
@@ -22,6 +19,18 @@ public class Page {
         alert.setContentText(content);
         ButtonType buttonYes = new ButtonType("Ja, det ønsker jeg");
         ButtonType buttonNo = new ButtonType("Nei");
+        alert.getButtonTypes().addAll(buttonYes, buttonNo);
+        Optional<ButtonType> userAnswer = alert.showAndWait();
+
+        return userAnswer.get() == buttonYes;
+    }
+
+    public static boolean alertInformation (String content){
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Vent litt...");
+        alert.setContentText(content);
+        ButtonType buttonYes = new ButtonType("Ta meg med til forrige side");
+        ButtonType buttonNo = new ButtonType("Bli på denne siden");
         alert.getButtonTypes().addAll(buttonYes, buttonNo);
         Optional<ButtonType> userAnswer = alert.showAndWait();
 

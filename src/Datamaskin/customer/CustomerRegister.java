@@ -36,5 +36,14 @@ public class CustomerRegister {
         return null;
     }
 
+    public static boolean checkAvailability (String email){
+        for(Customer aCustomer : CustomerRegister){
+            if(email.equals(aCustomer.getEmail())){
+                return false;
+            }
+        }
+        return true;
+    }
+
 
 }

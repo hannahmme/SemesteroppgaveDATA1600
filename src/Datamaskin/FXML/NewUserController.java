@@ -6,7 +6,6 @@ import Datamaskin.customer.CustomerValidator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -28,13 +27,11 @@ public class NewUserController {
         }
     }
 
-
     // metode som lukker vinduet automatisk når det er laget en ny bruker
     public void closeWindow(ActionEvent event){
         ((Node)(event.getSource())).getScene().getWindow().hide();
     }
 
-    // todo: passordvalidering må fikses på muligens
     // metode som lager en ny bruker hvis den møter kravene
     public boolean createCustomerFromGUI() throws Exception {
         try{
@@ -42,18 +39,19 @@ public class NewUserController {
             String password = txtPassword.getText();
             String password2 = txtPassword2.getText();
 
-            if(CustomerValidator.validateEmail(email) && password.equals(password2) && CustomerValidator.validatePassword(password)) {
-                Customer aCustomer = new Customer(email, password);
-
-                aCustomerRegister.addCustomer(aCustomer);
-                return true;
-
-            } else if(!password.equals(password2)){
+            if(!CustomerRegister.checkAvailability(email)){
+                lblErrorEmail.setText("Denne epostadressen er allerede tilknyttet en kunde");
+            }  else if(!password.equals(password2)){
                 lblErrorPassword.setText("Passordene du har skrevet inn er ikke like!");
             } else if(!CustomerValidator.validatePassword(password)){
                 lblErrorPassword.setText("Passordet må fylle følgende krav: Minst 3 tegn langt");
             } else if(CustomerValidator.validateEmail(email)){
                 lblErrorEmail.setText("Skriv inn en gyldig epostadresse");
+            } else if(CustomerValidator.validateEmail(email) && CustomerValidator.validatePassword(password)) {
+                Customer aCustomer = new Customer(email, password);
+
+                aCustomerRegister.addCustomer(aCustomer);
+                return true;
             }
         } catch (Exception e){
             e.printStackTrace();

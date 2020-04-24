@@ -43,31 +43,26 @@ public class MainpageController implements Initializable {
     public MainpageController() throws FileNotFoundException {
     }
 
+    public String sortingKey;
+
     // metode som sender brukeren til ordresiden for bruker, må valideres med epost og passord
     @FXML void toUserOrders() throws IOException {
         try {
             String email = txtUserEmail.getText();
             String password = txtUserPassword.getText();
 
-            // sortingKey gir oss eposten til brukeren dersom det er skrevet inn riktig epost + passord. Se kommentar i docs
-            String sortingKey = CustomerRegister.checkCredentials(email, password);
+            sortingKey = CustomerRegister.checkCredentials(email, password);
 
             if (!CustomerValidator.validateEmail(email)) {
                 throw new InvalidEmailException("Skriv inn gyldig e-postadresse");
+            } else if(!sortingKey.equals(email)){
+                throw new InvalidEmailException("Du har ingen tidligere bestillinger registrert");
             }
-
-            /*else if(){
-                throw new InvalidPasswordException("Skriv inn et gyldig passord")
-            } else if(){
-                throw new ... ("Skriv inn gyldige innloggingsdetaljer")
-            }*/
-
             else {
                 Stage primaryStage = (Stage) btnUserOrders.getScene().getWindow();
                 Parent root = FXMLLoader.load(getClass().getResource("UserspesificOrder.fxml"));
                 Page.toUserspesificOrder(primaryStage, root);
                 primaryStage.show();
-                // kode som setter sorteringen
             }
         } catch (InvalidEmailException e) {
             lblErrorEmail.setText(e.getMessage());

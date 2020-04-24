@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.AllOrdersController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Datamaskin.FXML.AllOrdersController">
    <children>
       <Button fx:id="toSuperuserpage" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#toSuperuserpage" onKeyPressed="#btnSuperUserPageEnter" text="Gå til forrige side" />
       <Text layoutX="1077.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logget inn som admin" wrappingWidth="158.9599609375" />

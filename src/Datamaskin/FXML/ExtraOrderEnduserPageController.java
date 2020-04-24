@@ -2,18 +2,14 @@ package Datamaskin.FXML;
 
 import Datamaskin.Cart.Cart;
 import Datamaskin.Product.Product;
-import Datamaskin.Product.ProductCategories;
 import Datamaskin.Page;
 import Datamaskin.Product.ProductRegister;
 import Datamaskin.images.ImageClass;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -23,11 +19,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-
 import java.io.*;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ExtraOrderEnduserPageController implements Initializable {
@@ -62,7 +55,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
     public ExtraOrderEnduserPageController() throws FileNotFoundException {
     }
 
-    //todo: metode som legger til elementer i handlekurven, dersom de er huket av. (Funker ikke helt enda)
+    //metode som legger til elementer i handlekurven, dersom de er huket av
     @FXML void addToCart() throws NullPointerException {
         try {
             Product extraProduct = tblExtraProduct.getSelectionModel().getSelectedItem();
@@ -91,15 +84,16 @@ public class ExtraOrderEnduserPageController implements Initializable {
             if (chosenProduct.getCategory().equals("Andre produkter")) {
                 shoppingCart.deleteOneProductFromCart(chosenProduct);
             } else {
-
-                //todo: denne funker ikke
-                Page.alertInformation("Du kan ikke slette essensielle komponenter, gå tilbake til forrige side for å endre disse.");
+                boolean goBackIsConfirmed = Page.alertInformation("Du kan ikke slette essensielle komponenter, gå tilbake til forrige side for å endre disse.");
+                if (goBackIsConfirmed){
+                    Stage primaryStage = (Stage) btnGoBack.getScene().getWindow();
+                    Parent root = FXMLLoader.load(getClass().getResource("EnduserPage.fxml"));
+                    Page.toEnduserPage(primaryStage, root);
+                    primaryStage.show();
+                }
             }
         }
     }
-
-
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

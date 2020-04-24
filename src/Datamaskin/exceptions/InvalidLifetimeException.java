@@ -1,4 +1,4 @@
-package Datamaskin.Exceptions;
+package Datamaskin.exceptions;
 
 import java.io.IOException;
 

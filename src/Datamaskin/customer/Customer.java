@@ -1,6 +1,5 @@
 package Datamaskin.customer;
 
-import Datamaskin.Exceptions.InvalidEmailException;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Customer {

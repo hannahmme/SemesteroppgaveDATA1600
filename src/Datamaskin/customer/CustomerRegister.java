@@ -1,6 +1,6 @@
 package Datamaskin.customer;
 
-import Datamaskin.Exceptions.InvalidEmailException;
+import Datamaskin.exceptions.InvalidEmailException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;

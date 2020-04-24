@@ -1,7 +1,6 @@
-package Datamaskin.Filbehandling;
+package Datamaskin.filbehandling;
 
-import Datamaskin.Product.Product;
-import Datamaskin.Product.ProductRegister;
+import Datamaskin.product.Product;
 
 import java.util.List;
 

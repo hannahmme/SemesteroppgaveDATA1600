@@ -1,4 +1,4 @@
-package Datamaskin.Cart;
+package Datamaskin.cart;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;

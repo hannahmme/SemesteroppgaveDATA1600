@@ -1,8 +1,8 @@
 // denne siden gjelder sluttbruker siden der man skal velge komponenter
-package Datamaskin.FXML;
-import Datamaskin.Cart.Cart;
-import Datamaskin.Product.Product;
-import Datamaskin.Product.ProductCategories;
+package Datamaskin.fxml;
+import Datamaskin.cart.Cart;
+import Datamaskin.product.Product;
+import Datamaskin.product.ProductCategories;
 import Datamaskin.Page;
 import Datamaskin.images.ImageClass;
 import javafx.fxml.FXML;
@@ -21,8 +21,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
-import static Datamaskin.Cart.Cart.addProduct;
-import static Datamaskin.Cart.Cart.findIndex;
+import static Datamaskin.cart.Cart.addProduct;
+import static Datamaskin.cart.Cart.findIndex;
 
 public class EnduserPageController implements Initializable {
     @FXML private Button btnGoBack;

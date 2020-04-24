@@ -9,9 +9,9 @@ public class CustomerRegister {
     public transient static ObservableList<Customer> CustomerRegister = FXCollections.observableArrayList();
 
     // todo: muligens legge kundene til i et TV som kan bli sett av admin?
-    /*public void setCustomerToTV(TableView tv) {
+    public void setCustomerToTV(TableView tv) {
         tv.setItems(CustomerRegister);
-    }*/
+    }
 
     public void addCustomer(Customer aCustomer) {
         CustomerRegister.add(aCustomer);

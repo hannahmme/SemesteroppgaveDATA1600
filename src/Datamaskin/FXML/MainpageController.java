@@ -75,17 +75,14 @@ public class MainpageController implements Initializable {
     }
 
     // metode som åpner ny scene til superbrukersiden
-    @FXML
-    void toEnduserPage() throws IOException {
+    @FXML void toEnduserPage() throws IOException {
         Stage primaryStage = (Stage) btnEnduserPage.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("EnduserPage.fxml"));
         Page.toEnduserPage(primaryStage, root);
         primaryStage.show();
     }
-
     // metode som åpner ny scene til sluttbrukersiden (endret versjon av metoden) - hannah
-    @FXML
-    void toSuperUserPage() throws IOException {
+    @FXML void toSuperUserPage() throws IOException {
         try {
            String username = txtUsername.getText();
            String password = txtPassword.getText();
@@ -104,21 +101,17 @@ public class MainpageController implements Initializable {
             System.err.println(npe.getMessage());
         }
     }
-
-    @FXML
-    void btnUserOrdersEnter(KeyEvent event) throws IOException {
+    @FXML void btnUserOrdersEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             toUserOrders();
         }
     }
-    @FXML
-    void btnEnduserPageEnter(KeyEvent event) throws IOException {
+    @FXML void btnEnduserPageEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             toEnduserPage();
         }
     }
-    @FXML
-    void btnSuperUserPage(KeyEvent event) throws IOException {
+    @FXML void btnSuperUserPage(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             toSuperUserPage();
         }

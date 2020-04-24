@@ -15,7 +15,6 @@ public class NewUserController {
     @FXML private TextField txtEmail;
     @FXML private TextField txtPassword;
     @FXML private TextField txtPassword2;
-    @FXML private Button btnMakeNewUser;
     @FXML private Label lblErrorEmail;
     @FXML private Label lblErrorPassword;
 

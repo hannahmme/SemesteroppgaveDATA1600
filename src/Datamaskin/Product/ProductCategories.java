@@ -3,8 +3,6 @@ package Datamaskin.Product;
 import Datamaskin.FXML.ProductAdmPageController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ProductCategories {
@@ -151,7 +149,7 @@ public class ProductCategories {
     }
 
 
-    // bør lage en to string metode så man får skrevet ut år etter levetid og kroner etter prisMap.Entry<String, Product> entry
+    // todo: bør lage en to string metode så man får skrevet ut år etter levetid og kroner etter prisMap.Entry<String, Product> entry
 
 
 

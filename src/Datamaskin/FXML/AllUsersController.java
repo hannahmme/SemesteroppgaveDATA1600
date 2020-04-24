@@ -22,6 +22,9 @@ public class AllUsersController {
     @FXML private TableColumn<String, Customer> passwordColumn;
     @FXML private Button toSuperuserpage;
 
+    @FXML void deleteUser(){
+        
+    }
 
     //knappen "tilbake" tar brukeren med tilbake til menysiden for superbruker
     @FXML void toSuperuserpage() throws IOException {

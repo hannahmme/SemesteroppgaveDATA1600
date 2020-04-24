@@ -10,40 +10,43 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Datamaskin.FXML.EnduserPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.EnduserPageController">
    <children>
       <SplitPane dividerPositions="0.5" prefHeight="670.0" prefWidth="1250.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="705.0" prefWidth="712.0">
                <children>
-                  <Label layoutX="199.0" layoutY="4.0" prefHeight="54.0" prefWidth="401.0" text="Her velger du essensielle deler til din datamaskin">
-                     <font>
-                        <Font size="18.0" />
-                     </font></Label>
-                  <ChoiceBox id="Velg her" fx:id="cBoxGraphicCard" layoutX="16.0" layoutY="153.0" prefWidth="150.0" />
-                  <ChoiceBox fx:id="cBoxMemorycard" layoutX="16.0" layoutY="214.0" prefWidth="150.0" />
-                  <Label layoutX="17.0" layoutY="132.0" prefHeight="21.0" prefWidth="86.0" text="Skjermkort" />
-                  <Label layoutX="17.0" layoutY="193.0" prefHeight="17.0" prefWidth="149.0" text="Minnekort" />
-                  <ChoiceBox fx:id="cBoxHarddrive" layoutX="16.0" layoutY="282.0" prefWidth="150.0" />
-                  <Label layoutX="18.0" layoutY="261.0" prefHeight="17.0" prefWidth="149.0" text="Harddisk" />
-                  <ChoiceBox fx:id="cBoxProcessor" layoutX="16.0" layoutY="344.0" prefWidth="150.0" />
-                  <Label layoutX="17.0" layoutY="324.0" prefHeight="17.0" prefWidth="149.0" text="Prosessor" />
-                  <ChoiceBox fx:id="cBoxPower" layoutX="17.0" layoutY="414.0" prefWidth="150.0" />
-                  <ChoiceBox fx:id="cBoxSoundcard" layoutX="17.0" layoutY="486.0" prefWidth="150.0" />
-                  <Label layoutX="17.0" layoutY="463.0" prefHeight="17.0" prefWidth="149.0" text="Lydkort" />
-                  <ChoiceBox fx:id="cBoxOpticaldisk" layoutX="16.0" layoutY="554.0" prefWidth="150.0" />
-                  <Label layoutX="16.0" layoutY="534.0" prefHeight="17.0" prefWidth="150.0" text="Optisk disk" />
-                  <ChoiceBox fx:id="cBoxColor" layoutX="16.0" layoutY="620.0" prefWidth="150.0" />
-                  <Label layoutX="17.0" layoutY="600.0" prefHeight="17.0" prefWidth="149.0" text="Farge" />
-                  <Label layoutX="17.0" layoutY="393.0" prefHeight="17.0" prefWidth="149.0" text="Strømforsyning" />
-                  <Button fx:id="btnAddToCart" layoutX="266.0" layoutY="569.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="82.0" prefWidth="340.0" text="Oppdater handlekurv med valgte komponenter" />
-                  <TextArea layoutX="266.0" layoutY="189.0" prefHeight="307.0" prefWidth="340.0" />
-                  <Label layoutX="457.0" layoutY="132.0" prefHeight="21.0" prefWidth="149.0" text="Produktinformasjon:" />
-                  <Label fx:id="lblError" layoutX="207.0" layoutY="507.0" prefHeight="54.0" prefWidth="413.0" />
                   <Button fx:id="btnGoBack" layoutX="10.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" onKeyPressed="#btnGoBackEnter" prefHeight="33.0" prefWidth="163.0" text="Gå til forsiden" />
-                  <ImageView fx:id="mainpageImageView" fitHeight="32.0" fitWidth="27.0" layoutX="139.0" layoutY="15.0" mouseTransparent="true"  pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="mainpageImageView" fitHeight="32.0" fitWidth="27.0" layoutX="139.0" layoutY="15.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
+                  <Text layoutX="12.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Velg hver spesifikke pc-del" />
+                  <Label layoutX="17.0" layoutY="132.0" prefHeight="21.0" prefWidth="86.0" text="Skjermkort" />
+                  <ChoiceBox id="Velg her" fx:id="cBoxGraphicCard" layoutX="16.0" layoutY="153.0" prefWidth="150.0" />
+                  <Label layoutX="17.0" layoutY="193.0" prefHeight="17.0" prefWidth="149.0" text="Minnekort" />
+                  <ChoiceBox fx:id="cBoxMemorycard" layoutX="16.0" layoutY="214.0" prefWidth="150.0" />
+                  <Label layoutX="18.0" layoutY="261.0" prefHeight="17.0" prefWidth="149.0" text="Harddisk" />
+                  <ChoiceBox fx:id="cBoxHarddrive" layoutX="16.0" layoutY="282.0" prefWidth="150.0" />
+                  <Label layoutX="17.0" layoutY="324.0" prefHeight="17.0" prefWidth="149.0" text="Prosessor" />
+                  <ChoiceBox fx:id="cBoxProcessor" layoutX="16.0" layoutY="344.0" prefWidth="150.0" />
+                  <Label layoutX="17.0" layoutY="393.0" prefHeight="17.0" prefWidth="149.0" text="Strømforsyning" />
+                  <ChoiceBox fx:id="cBoxPower" layoutX="17.0" layoutY="414.0" prefWidth="150.0" />
+                  <Label layoutX="17.0" layoutY="463.0" prefHeight="17.0" prefWidth="149.0" text="Lydkort" />
+                  <ChoiceBox fx:id="cBoxSoundcard" layoutX="17.0" layoutY="486.0" prefWidth="150.0" />
+                  <Label layoutX="16.0" layoutY="534.0" prefHeight="17.0" prefWidth="150.0" text="Optisk disk" />
+                  <ChoiceBox fx:id="cBoxOpticaldisk" layoutX="16.0" layoutY="554.0" prefWidth="150.0" />
+                  <Label layoutX="17.0" layoutY="600.0" prefHeight="17.0" prefWidth="149.0" text="Farge" />
+                  <ChoiceBox fx:id="cBoxColor" layoutX="16.0" layoutY="620.0" prefWidth="150.0" />
+                  <Line endY="-47.0" layoutX="207.0" layoutY="125.0" startY="525.0" />
+                  <Text layoutX="220.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Eller velg en ferdig bygd pc" />
+                  <ChoiceBox fx:id="cBoxComputer" layoutX="436.0" layoutY="88.0" prefWidth="150.0" />
+                  <Line endX="517.0" layoutX="103.0" layoutY="125.0" startX="103.5" />
+                  <Label layoutX="339.0" layoutY="169.0" prefHeight="21.0" prefWidth="149.0" text="Produktinformasjon" />
+                  <TextArea layoutX="246.0" layoutY="198.0" prefHeight="294.0" prefWidth="340.0" />
+                  <Button fx:id="btnAddToCart" layoutX="244.0" layoutY="570.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="82.0" prefWidth="340.0" text="Oppdater handlekurv med valgte komponenter" />
+                  <Label fx:id="lblError" layoutX="207.0" layoutY="507.0" prefHeight="54.0" prefWidth="413.0" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="668.0" prefWidth="573.0">
@@ -72,10 +75,13 @@
                       </TableColumn>
                     </columns>
                   </TableView>
-                  <Label layoutX="16.0" layoutY="14.0" prefHeight="33.0" prefWidth="247.0" text="Handlekurv" />
-                  <Label layoutX="85.0" layoutY="602.0" prefHeight="21.0" prefWidth="109.0" text="Totalt å betale:" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="14.0" prefHeight="33.0" prefWidth="603.0" text="Handlekurv">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font></Label>
+                  <Label layoutX="14.0" layoutY="602.0" prefHeight="21.0" prefWidth="109.0" text="Totalt å betale:" />
                   <Button fx:id="btnGoToPay" layoutX="429.0" layoutY="596.0" mnemonicParsing="false" onAction="#loadPayment" onKeyPressed="#btnNextPageEnter" prefHeight="33.0" prefWidth="177.0" text="Gå til betaling" />
-                  <Label fx:id="lblTotalPrice" layoutX="175.0" layoutY="602.0" prefHeight="21.0" prefWidth="95.0" />
+                  <Label fx:id="lblTotalPrice" layoutX="123.0" layoutY="602.0" prefHeight="21.0" prefWidth="141.0" />
                </children>
             </AnchorPane>
         </items>

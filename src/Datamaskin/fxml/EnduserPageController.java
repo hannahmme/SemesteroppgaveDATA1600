@@ -47,9 +47,6 @@ public class EnduserPageController implements Initializable {
     @FXML private ChoiceBox<String> cBoxOpticaldisk;
     @FXML private ChoiceBox<String> cBoxColor;
 
-// cBox med forhåndsdefinerte komponenter (alle de beste/ alle de billigste osv)
-    @FXML private ChoiceBox<?> cBoxComputer;
-
 
     // metode som kaller på andre metoder for å legge til produkter i handlekurven
     @FXML void addToCart() {

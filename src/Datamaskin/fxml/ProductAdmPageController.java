@@ -188,6 +188,8 @@ public class ProductAdmPageController implements Initializable{
             ProductCategories.OpticalDisk.remove(aProduct.getName());
         } else if(ProductCategories.Color.containsValue(aProduct)){
             ProductCategories.Color.remove(aProduct.getName());
+        } else if(ProductCategories.otherProducts.contains(aProduct)){
+            ProductCategories.otherProducts.remove(aProduct);
         }
     }
 

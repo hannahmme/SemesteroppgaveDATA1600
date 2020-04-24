@@ -3,6 +3,7 @@ package Datamaskin.FXML;
 import Datamaskin.Cart.Cart;
 import Datamaskin.Product.Product;
 import Datamaskin.Page;
+import Datamaskin.Product.ProductCategories;
 import Datamaskin.Product.ProductRegister;
 import Datamaskin.images.ImageClass;
 import javafx.event.ActionEvent;
@@ -98,8 +99,9 @@ public class ExtraOrderEnduserPageController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //Tableview på venstre side med ekstra tilbehør
-        tblExtraProduct.getItems().addAll(ProductRegister.Register);
-        tblExtraProduct.setItems(ProductRegister.Register);
+        tblExtraProduct.getItems().addAll(ProductCategories.otherProducts);
+        tblExtraProduct.setItems(ProductCategories.otherProducts);
+
         extraProductName.setCellValueFactory(new PropertyValueFactory<>("Name"));
         extraProductInfo.setCellValueFactory(new PropertyValueFactory<>("Description"));
         extraProductLifetime.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));

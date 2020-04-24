@@ -37,7 +37,6 @@ public class EnduserSendOrderPageController implements Initializable {
     @FXML private Button btnSendOrder;
     @FXML private Button btnGoBack;
     @FXML private Button btnGoToMainpage;
-    @FXML private Button btnNewUser; //slettes?
     @FXML private TextField txtEpost;
     @FXML private Label lblOrderSent;
     @FXML private Label lblTotalPrice;
@@ -51,8 +50,7 @@ public class EnduserSendOrderPageController implements Initializable {
     private Cart shoppingcart = new Cart();
     //private FileSaverTxt filesaver = new FileSaverTxt();
 
-    // et register for overordnet info + et register for ordrespesifikk info
-    static FinalOrderSpecificRegister SpecificOrderRegister= new FinalOrderSpecificRegister();
+    // et register for overordnet info
     static FinalOrderOverviewRegister OrderRegister = new FinalOrderOverviewRegister();
 
     //denne kastes fordi image.createImage kalles
@@ -86,9 +84,7 @@ public class EnduserSendOrderPageController implements Initializable {
     }
 
     @FXML void sendOrder() throws IOException, InvalidEmailException {
-        // legge ordreIDen her så man kan få tak i riktig ordreID ved lagring til fil av handlekurven
-        String orderID = generateOrderID();
-        FinalOrderOverview aFinalOrderOverview = createOrderObjectFromGUI(orderID);
+        FinalOrderOverview aFinalOrderOverview = createOrderObjectFromGUI();
 
         if(aFinalOrderOverview != null) {
             OrderRegister.addElement(aFinalOrderOverview);
@@ -117,7 +113,7 @@ public class EnduserSendOrderPageController implements Initializable {
     }
 
     // metode for å generere en ordre og legget il ordreID og epost i array
-    private FinalOrderOverview createOrderObjectFromGUI(String orderID){
+    private FinalOrderOverview createOrderObjectFromGUI(){
         String email;
         String password;
         double totalPrice;
@@ -132,6 +128,7 @@ public class EnduserSendOrderPageController implements Initializable {
                 throw new InvalidEmailException("Du har skrevet inn ugyldige innloggingsdetaljer!");
             }
             else{
+                String orderID = generateOrderID();
                 totalPrice = shoppingcart.getTotalPrice();
                 String date = String.valueOf(LocalDate.now());
 

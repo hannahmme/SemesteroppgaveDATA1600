@@ -92,7 +92,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
         tblExtraProduct.setItems(ProductRegister.Register);
         extraProductName.setCellValueFactory(new PropertyValueFactory<>("Name"));
         extraProductInfo.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        //extraProductLifetime.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
+        extraProductLifetime.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
         extraProductPrice.setCellValueFactory(new PropertyValueFactory<>("Price"));
 
         //Handlekurven på høyre side lastes inn når siden lastes inn

@@ -1,6 +1,7 @@
 package Datamaskin.FXML;
 
 import Datamaskin.Cart.Cart;
+import Datamaskin.customer.CustomerRegister;
 import Datamaskin.customer.CustomerValidator;
 import Datamaskin.Exceptions.InvalidEmailException;
 import Datamaskin.Filbehandling.FileSaverTxt;
@@ -10,7 +11,6 @@ import Datamaskin.orders.FinalOrderOverview;
 import Datamaskin.orders.FinalOrderOverviewRegister;
 import Datamaskin.Product.Product;
 import Datamaskin.Page;
-import Datamaskin.orders.FinalOrderSpecific;
 import Datamaskin.orders.FinalOrderSpecificRegister;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,15 +22,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class EnduserSendOrderPageController implements Initializable {
@@ -43,6 +42,8 @@ public class EnduserSendOrderPageController implements Initializable {
     @FXML private Label lblOrderSent;
     @FXML private Label lblTotalPrice;
     @FXML private ImageView mainpageImageView;
+    @FXML private TextField txtDiscount;
+    @FXML private PasswordField txtPassword;
 
     private FileSaverTxt filesaver = new FileSaverTxt();
     private ImageClass image = new ImageClass();
@@ -91,9 +92,14 @@ public class EnduserSendOrderPageController implements Initializable {
 
         if(aFinalOrderOverview != null) {
             OrderRegister.addElement(aFinalOrderOverview);
-/*            FinalOrderSpecific aFinalOrderSpecific = createSpecificOrderObject(orderID);
+
+     // todo: kan dette slettes?
+            /*FinalOrderSpecific aFinalOrderSpecific = createSpecificOrderObject(orderID);
             SpecificOrderRegister.addElement(aFinalOrderSpecific);*/
+
             txtEpost.setText("");
+            txtPassword.setText("");
+
             Path sentOrderPath = Paths.get("./src/Datamaskin/sentOrdersPath/"+orderID+".csv");
             String formattedList = OrderFormatter.formatListOfProductToString(Cart.Register);
             filesaver.saveToFile(formattedList, sentOrderPath);
@@ -102,18 +108,6 @@ public class EnduserSendOrderPageController implements Initializable {
             shoppingcart.deleteShoppingcart();
         }
     }
-
-    /*// metode som lagrer ordren i en fil og binder den opp med ordreIDen?
-    public FinalOrderSpecific createSpecificOrderObject(String orderID){
-        String name;
-        String description;
-        int lifetime;
-        double price;
-
-        FinalOrderSpecific aFinalOrderSpecific = new FinalOrderSpecific(orderID, name, description, lifetime, price);
-
-        return aFinalOrderSpecific;
-    }*/
 
     // metode for å generere ordreID
     private static int orderID = 10;
@@ -125,12 +119,17 @@ public class EnduserSendOrderPageController implements Initializable {
     // metode for å generere en ordre og legget il ordreID og epost i array
     private FinalOrderOverview createOrderObjectFromGUI(String orderID){
         String email;
+        String password;
         double totalPrice;
 
         try {
             email = txtEpost.getText();
+            password = txtPassword.getText();
+
             if(!CustomerValidator.validateEmail(email)){
                 throw new InvalidEmailException("Skriv inn gyldig e-postadresse");
+            } else if(!Objects.equals(CustomerRegister.checkCredentials(email, password), email)){
+                throw new InvalidEmailException("Du har skrevet inn ugyldige innloggingsdetaljer!");
             }
             else{
                 totalPrice = shoppingcart.getTotalPrice();

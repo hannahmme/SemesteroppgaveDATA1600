@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.FXML.AllUsersController">
    <children>
@@ -14,7 +14,8 @@
           <TableColumn fx:id="passwordColumn" prefWidth="263.0" text="Passord" />
         </columns>
       </TableView>
-      <Button layoutX="662.0" layoutY="644.0" mnemonicParsing="false" text="Slett bruker" />
-      <Button fx:id="btnGoBack" layoutX="64.0" layoutY="26.0" mnemonicParsing="false" onAction="#GoBack" text="Gå tilbake" />
+      <Button layoutX="662.0" layoutY="644.0" mnemonicParsing="false" onAction="#deleteUser" text="Slett bruker" />
+      <Button fx:id="toSuperuserpage" layoutX="21.0" layoutY="21.0" mnemonicParsing="false" onAction="#toSuperuserpage" onMouseDragEntered="#btnSuperUserPageEnter" text="Gå tilbake" />
+      <Text layoutX="837.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logget inn som admin" />
    </children>
 </AnchorPane>

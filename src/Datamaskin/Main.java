@@ -1,8 +1,7 @@
 package Datamaskin;
 
-import Datamaskin.FXML.EnduserPageController;
 import Datamaskin.customer.CustomerRegister;
-import Datamaskin.Product.ProductCategories;
+import Datamaskin.product.ProductCategories;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,7 +12,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("FXML/Mainpage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/Mainpage.fxml"));
         primaryStage.setTitle("Konfigurasjonssystem for datamaskiner");
         primaryStage.setScene(new Scene(root, 1250, 670));
         primaryStage.show();

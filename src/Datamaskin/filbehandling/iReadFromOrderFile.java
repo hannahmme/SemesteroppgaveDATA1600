@@ -1,6 +1,6 @@
-package Datamaskin.Filbehandling;
+package Datamaskin.filbehandling;
 
-import Datamaskin.Product.Product;
+import Datamaskin.product.Product;
 
 
 import java.io.IOException;

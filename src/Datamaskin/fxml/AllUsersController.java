@@ -1,8 +1,7 @@
-package Datamaskin.FXML;
+package Datamaskin.fxml;
 
 import Datamaskin.Page;
 import Datamaskin.customer.Customer;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

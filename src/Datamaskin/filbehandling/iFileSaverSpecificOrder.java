@@ -1,6 +1,4 @@
-package Datamaskin.Filbehandling;
-
-import javafx.collections.ObservableList;
+package Datamaskin.filbehandling;
 
 import java.io.IOException;
 import java.nio.file.Files;

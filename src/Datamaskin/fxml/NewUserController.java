@@ -1,4 +1,4 @@
-package Datamaskin.FXML;
+package Datamaskin.fxml;
 
 import Datamaskin.customer.Customer;
 import Datamaskin.customer.CustomerRegister;

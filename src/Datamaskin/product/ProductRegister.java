@@ -1,4 +1,4 @@
-package Datamaskin.Product;
+package Datamaskin.product;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

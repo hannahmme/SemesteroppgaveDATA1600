@@ -1,6 +1,6 @@
-package Datamaskin.Product;
+package Datamaskin.product;
 
-import Datamaskin.FXML.ProductAdmPageController;
+import Datamaskin.fxml.ProductAdmPageController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.util.HashMap;

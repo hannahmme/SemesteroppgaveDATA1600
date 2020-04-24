@@ -1,8 +1,7 @@
-package Datamaskin.FXML;
+package Datamaskin.fxml;
 
 import Datamaskin.orders.FinalOrderOverview;
 import Datamaskin.Page;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

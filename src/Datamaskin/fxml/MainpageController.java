@@ -1,8 +1,8 @@
-package Datamaskin.FXML;
+package Datamaskin.fxml;
 
 import Datamaskin.customer.CustomerRegister;
 import Datamaskin.customer.CustomerValidator;
-import Datamaskin.Exceptions.InvalidEmailException;
+import Datamaskin.exceptions.InvalidEmailException;
 import Datamaskin.Page;
 
 import Datamaskin.images.ImageClass;
@@ -18,7 +18,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;

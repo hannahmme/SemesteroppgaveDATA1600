@@ -1,17 +1,16 @@
-package Datamaskin.FXML;
+package Datamaskin.fxml;
 
-import Datamaskin.Cart.Cart;
+import Datamaskin.cart.Cart;
 import Datamaskin.customer.CustomerRegister;
 import Datamaskin.customer.CustomerValidator;
-import Datamaskin.Exceptions.InvalidEmailException;
-import Datamaskin.Filbehandling.FileSaverTxt;
-import Datamaskin.Filbehandling.OrderFormatter;
+import Datamaskin.exceptions.InvalidEmailException;
+import Datamaskin.filbehandling.FileSaverTxt;
+import Datamaskin.filbehandling.OrderFormatter;
 import Datamaskin.images.ImageClass;
 import Datamaskin.orders.FinalOrderOverview;
 import Datamaskin.orders.FinalOrderOverviewRegister;
-import Datamaskin.Product.Product;
+import Datamaskin.product.Product;
 import Datamaskin.Page;
-import Datamaskin.orders.FinalOrderSpecificRegister;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

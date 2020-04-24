@@ -1,4 +1,4 @@
-package Datamaskin.Exceptions;
+package Datamaskin.exceptions;
 
 public class InvalidPriceException extends Exception{
     public InvalidPriceException (String msg){

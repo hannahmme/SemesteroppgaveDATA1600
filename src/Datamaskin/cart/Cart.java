@@ -1,5 +1,5 @@
-package Datamaskin.Cart;
-import Datamaskin.Product.Product;
+package Datamaskin.cart;
+import Datamaskin.product.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;

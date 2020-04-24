@@ -1,4 +1,4 @@
-package Datamaskin.Product;
+package Datamaskin.product;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;

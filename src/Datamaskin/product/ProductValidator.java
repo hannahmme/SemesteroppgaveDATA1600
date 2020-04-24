@@ -1,4 +1,4 @@
-package Datamaskin.Product;
+package Datamaskin.product;
 
 public class ProductValidator {
     public static boolean validateName(String name) throws IllegalArgumentException {

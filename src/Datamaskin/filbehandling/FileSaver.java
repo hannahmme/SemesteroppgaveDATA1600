@@ -1,8 +1,6 @@
-package Datamaskin.Filbehandling;
+package Datamaskin.filbehandling;
 
-import Datamaskin.Product.Product;
-import Datamaskin.Product.ProductRegister;
-import javafx.collections.ObservableList;
+import Datamaskin.product.ProductRegister;
 
 import java.io.IOException;
 import java.nio.file.Path;

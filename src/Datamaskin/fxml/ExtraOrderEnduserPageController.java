@@ -1,10 +1,9 @@
-package Datamaskin.FXML;
+package Datamaskin.fxml;
 
-import Datamaskin.Cart.Cart;
-import Datamaskin.Product.Product;
+import Datamaskin.cart.Cart;
+import Datamaskin.product.Product;
 import Datamaskin.Page;
-import Datamaskin.Product.ProductCategories;
-import Datamaskin.Product.ProductRegister;
+import Datamaskin.product.ProductCategories;
 import Datamaskin.images.ImageClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

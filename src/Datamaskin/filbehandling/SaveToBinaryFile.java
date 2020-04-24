@@ -1,4 +1,4 @@
-package Datamaskin.Filbehandling;
+package Datamaskin.filbehandling;
 
 import java.io.IOException;
 import java.nio.file.Files;

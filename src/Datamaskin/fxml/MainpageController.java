@@ -34,6 +34,7 @@ public class MainpageController implements Initializable {
     @FXML private TextField txtUserPassword;
     @FXML private Button btnUserOrders;
     @FXML private Label lblErrorEmail;
+    @FXML private Label lblAdminError;
 
 
     private ImageClass image = new ImageClass();
@@ -81,10 +82,12 @@ public class MainpageController implements Initializable {
            String username = txtUsername.getText();
            String password = txtPassword.getText();
             if(username == null || password == null){
+                lblAdminError.setText("Feil innloggingsdetaljer");
                 throw new NullPointerException("Noe gikk galt ved innlasting av brukernavn/passord");
             } else{
                 boolean isMatching = username.matches("admin") && password.matches("admin");
                 if(isMatching){
+                    lblAdminError.setText("");
                     Stage primaryStage = (Stage) btnSuperuserPage.getScene().getWindow();
                     Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
                     Page.toSuperuserpage(primaryStage, root);

@@ -17,7 +17,7 @@ public class NewUserController {
     @FXML private Label lblErrorEmail;
     @FXML private Label lblErrorPassword;
 
-    CustomerRegister aCustomerRegister = new CustomerRegister();
+    public static CustomerRegister aCustomerRegister = new CustomerRegister();
 
     // når knappen trykkes kalles metoden for å lage ny bruker og for at vinduet skal lukkes hvis vellykket
     @FXML void makeNewUser(ActionEvent event) throws Exception {
@@ -39,20 +39,25 @@ public class NewUserController {
             String password = txtPassword.getText();
             String password2 = txtPassword2.getText();
 
-            if(!CustomerRegister.checkAvailability(email)){
-                lblErrorEmail.setText("Denne epostadressen er allerede tilknyttet en kunde");
-            }  else if(!password.equals(password2)){
-                lblErrorPassword.setText("Passordene du har skrevet inn er ikke like!");
-            } else if(!CustomerValidator.validatePassword(password)){
-                lblErrorPassword.setText("Passordet må fylle følgende krav: Minst 3 tegn langt");
-            } else if(CustomerValidator.validateEmail(email)){
-                lblErrorEmail.setText("Skriv inn en gyldig epostadresse");
-            } else if(CustomerValidator.validateEmail(email) && CustomerValidator.validatePassword(password)) {
-                Customer aCustomer = new Customer(email, password);
+            // validerer epost og passord og sjekker om de er i riktig format/ lengde
+            if(!CustomerValidator.validatePassword(password)){ // false returneres om passordet er for kort
+                lblErrorPassword.setText("Passordet må fylle følgende krav: Minst 3 tegn langt");}
+            else if(!CustomerValidator.validateEmail(email)){ // false returneres om eposten er ugyldig
+                lblErrorEmail.setText("Skriv inn en gyldig epostadresse");}
 
+            // sjekker om eposten finnes fra før og om passordene er like
+            else if(CustomerValidator.validateAvailability(email)){ // true returneres om eposten finnes fra før
+                lblErrorEmail.setText("Epostadressen er allerede tilknyttet en kunde");}
+            else if(!password.equals(password2)){ // false returneres om passordene er ulike
+                lblErrorPassword.setText("Passordene du har skrevet inn er ikke like!");}
+
+            // hvis epost og passord er i riktig format, og de andre if-ene ikke slår inn lages en ny kunde
+            else if(CustomerValidator.validateEmail(email) && CustomerValidator.validatePassword(password)) {
+                Customer aCustomer = new Customer(email, password);
                 aCustomerRegister.addCustomer(aCustomer);
                 return true;
             }
+
         } catch (Exception e){
             e.printStackTrace();
         }

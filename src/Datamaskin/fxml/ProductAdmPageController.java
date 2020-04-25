@@ -205,15 +205,8 @@ public class ProductAdmPageController implements Initializable{
         setData();
     }
 
-    // kode for å komme tilbake til hovedmenyen for superbruker
-    @FXML void toSuperUserPage() throws IOException {
-        Stage primaryStage = (Stage) toSuperUserPage.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
-        Page.toSuperuserpage(primaryStage, root);
-    }
-    
-    @FXML
-    void btnAddProdEnter(KeyEvent event) {
+    // metode for å legge til produktet ved å trykke enter
+    @FXML void btnAddProdEnter(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             Product aProduct = createProductObjectFromGUI();
             if(aProduct != null) {
@@ -223,16 +216,20 @@ public class ProductAdmPageController implements Initializable{
         }
     }
 
-    @FXML
-    void btnGoBackEnter(KeyEvent event) throws IOException {
+    // kode for å komme tilbake til hovedmenyen for superbruker
+    @FXML void toSuperUserPage() throws IOException {
+        Stage primaryStage = (Stage) toSuperUserPage.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
+        Page.toSuperuserpage(primaryStage, root);
+    }
+
+    @FXML void btnGoBackEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             toSuperUserPage();
         }
     }
 
-    //
-    @FXML
-    void btnMenuEnter(KeyEvent event) {
+    @FXML void btnMenuEnter(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             menuDropdown.show();
             menuDropdown.fire();
@@ -245,6 +242,7 @@ public class ProductAdmPageController implements Initializable{
 
     }
 
+    // todo: kan mye av dette slettes? får feilmelding når jeg prøver å lagre filen
     //lagre til binær fil - den lagrer til fil, men jeg kan lese den. Skal vel komme kun tall?
     @FXML void saveToFile(ActionEvent event) {
         /*Path pathString = Paths.get("productreg.txt");

@@ -17,5 +17,14 @@ public class CustomerValidator {
         return false;
     }
 
+    // her sjekkes det om emailen allerede er i bruk
+    public static boolean validateAvailability (String email){
+        for(Customer aCustomer : CustomerRegister.CustomerRegister){
+            if(email.equals(aCustomer.getEmail())){
+                return true; // returnerer true hvis emailen finnes fra før
+            }
+        }
+        return false;
+    }
 
 }

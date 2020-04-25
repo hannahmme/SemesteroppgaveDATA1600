@@ -6,12 +6,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Datamaskin.fxml.AllUsersController">
    <children>
       <TableView fx:id="customerTV" layoutX="64.0" layoutY="90.0" prefHeight="585.0" prefWidth="557.0">
         <columns>
-          <TableColumn fx:id="emailColumn" prefWidth="293.0" text="Epostadresse" />
-          <TableColumn fx:id="passwordColumn" prefWidth="263.0" text="Passord" />
+          <TableColumn fx:id="emailColumn" prefWidth="293.0" text="Epostadresse" >
+            <cellValueFactory>
+                <PropertyValueFactory property="email" />
+            </cellValueFactory>
+          </TableColumn>
+          <TableColumn fx:id="passwordColumn" prefWidth="263.0" text="Passord" >
+            <cellValueFactory>
+                <PropertyValueFactory property="password" />
+            </cellValueFactory>
+          </TableColumn>
         </columns>
       </TableView>
       <Button layoutX="662.0" layoutY="644.0" mnemonicParsing="false" onAction="#deleteUser" text="Slett bruker" />

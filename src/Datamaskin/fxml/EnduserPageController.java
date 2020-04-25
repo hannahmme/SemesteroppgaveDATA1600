@@ -82,9 +82,10 @@ public class EnduserPageController implements Initializable {
 
     // metode for å slette gamle objekter og for å lage nye objekter som kommer an på valg i choiceboksene
     private void createCartObjectsFromGUI() {
-        updateCart();                   // oppdater alltid handlekurven ut fra det som er i choicebox
         if (Cart.Register.isEmpty()) {  // kun hvis handlekurven er tom skal det lages helt nye produkter som legges til
             createProducts();
+        } else {
+            updateCart();               // oppdater alltid handlekurven ut fra det som er i choicebox
         }
     }
 

@@ -21,8 +21,8 @@ public class NewUserController {
 
     // når knappen trykkes kalles metoden for å lage ny bruker og for at vinduet skal lukkes hvis vellykket
     @FXML void makeNewUser(ActionEvent event) throws Exception {
-        createCustomerFromGUI();
         if(createCustomerFromGUI()){
+            createCustomerFromGUI();
             closeWindow(event);
         }
     }
@@ -52,7 +52,8 @@ public class NewUserController {
                 lblErrorPassword.setText("Passordene du har skrevet inn er ikke like!");}
 
             // hvis epost og passord er i riktig format, og de andre if-ene ikke slår inn lages en ny kunde
-            else if(CustomerValidator.validateEmail(email) && CustomerValidator.validatePassword(password)) {
+            else if(CustomerValidator.validateEmail(email) && CustomerValidator.validatePassword(password) &&
+                    !CustomerValidator.validateAvailability(email)) {
                 Customer aCustomer = new Customer(email, password);
                 aCustomerRegister.addCustomer(aCustomer);
                 return true;
@@ -63,7 +64,4 @@ public class NewUserController {
         }
         return false;
     }
-
-
-
 }

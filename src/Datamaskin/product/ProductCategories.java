@@ -118,7 +118,7 @@ public class ProductCategories {
         Product color2 = new Product("Svart som olje", "En tøff oljesvart farge med glans.", 10, 499, "Farge");
         ProductAdmPageController.aRegister.addElement(color1);
         ProductAdmPageController.aRegister.addElement(color2);
-        Color.put("Vaniljerød", color1);
+        Color.put("Rød", color1);
         Color.put("Svart som olje", color2);
 
 

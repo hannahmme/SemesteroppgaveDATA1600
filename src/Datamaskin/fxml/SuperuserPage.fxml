@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="608.0" prefWidth="997.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Datamaskin.fxml.SuperuserPageController">
+<AnchorPane prefHeight="608.0" prefWidth="997.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.fxml.SuperuserPageController">
    <children>
       <Text layoutX="14.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Velkommen superbruker" wrappingWidth="496.08837890625">
          <font>
@@ -30,6 +30,6 @@
       <ImageView fx:id="allOrdersImageView" fitHeight="164.0" fitWidth="329.0" layoutX="580.0" layoutY="167.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
       <Line endX="606.0" layoutX="389.0" layoutY="345.0" startX="104.71435546875" />
       <ImageView fx:id="allOrdersImageView1" fitHeight="164.0" fitWidth="329.0" layoutX="580.0" layoutY="364.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="btnadministrateUsers" layoutX="668.0" layoutY="547.0" mnemonicParsing="false" onAction="#btnadministrateUsers" text="Administrer brukere" />
+      <Button fx:id="btnadministrateUsers" layoutX="668.0" layoutY="547.0" mnemonicParsing="false" onAction="#toAllUsersPage" onKeyTyped="#btnadministrateUsers" text="Administrer brukere" />
    </children>
 </AnchorPane>

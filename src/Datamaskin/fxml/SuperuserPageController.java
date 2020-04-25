@@ -67,31 +67,36 @@ public class SuperuserPageController implements Initializable {
     }
 
     //metoder som sender deg til neste side ved å trykke "Enter" - Hannah
-    @FXML
-    void btnAllOrdersEnter(KeyEvent event) throws IOException {
+    @FXML void btnAllOrdersEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             toSuperUserOrderPage();
         }
     }
-    @FXML
-    void btnChangeEnter(KeyEvent event) throws IOException {
+
+    @FXML void btnChangeEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             toSuperUserProductPage();
         }
     }
-    @FXML
-    void btnLogOutEnter(KeyEvent event) throws IOException {
+
+    @FXML void btnLogOutEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             toMainPage();
         }
     }
 
     // knappen skal ta deg med til en side der man kan se alle brukere som er i systemet
-    @FXML void btnadministrateUsers() throws IOException {
+    @FXML void toAllUsersPage() throws IOException {
         Stage primaryStage = (Stage) btnadministrateUsers.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("AllUsers.fxml"));
         Page.toAllUsersPage(primaryStage, root);
+    }
 
+    @FXML
+    void btnadministrateUsers(KeyEvent event) throws IOException {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            toAllUsersPage();
+        }
     }
 
 

@@ -9,39 +9,42 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Datamaskin.fxml.UserspesificOrderController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Datamaskin.fxml.UserspesificOrderController">
     <children>
-        <Text layoutX="281.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hei sluttbruker. Her kan du se alle ordre som er gjennomført. Gjerne sorter etter dato om du vil" />
-        <TableView fx:id="allOrders" layoutX="26.0" layoutY="135.0" onMouseClicked="#selectedOrderItemEvent" prefHeight="489.0" prefWidth="628.0">
+        <Text layoutX="419.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dine tidligere ordre" textAlignment="CENTER" wrappingWidth="411.14794921875" AnchorPane.bottomAnchor="629.58984375" AnchorPane.leftAnchor="419.0" AnchorPane.rightAnchor="419.85205078125" AnchorPane.topAnchor="19.41015625">
+         <font>
+            <Font name="Arial Bold" size="36.0" />
+         </font></Text>
+        <TableView fx:id="allOrders" layoutX="26.0" layoutY="135.0" onMouseClicked="#selectedOrderItemEvent" prefHeight="489.0" prefWidth="595.0">
             <columns>
-                <TableColumn fx:id="emailColumn" prefWidth="212.0" text="E-post">
+                <TableColumn fx:id="emailColumn" prefWidth="226.0" text="E-post">
                     <cellValueFactory>
                         <PropertyValueFactory property="Email" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn fx:id="orderIDColumn" prefWidth="145.0" text="OrdreID">
+                <TableColumn fx:id="orderIDColumn" prefWidth="138.0" text="OrdreID">
                     <cellValueFactory>
                         <PropertyValueFactory property="OrderID" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn fx:id="orderDateColumn" prefWidth="144.0" text="Bestillingsdato">
+                <TableColumn fx:id="orderDateColumn" prefWidth="122.0" text="Bestillingsdato">
                     <cellValueFactory>
                         <PropertyValueFactory property="OrderDate" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn fx:id="totalPriceColumn" prefWidth="126.0" text="Totalpris">
+                <TableColumn fx:id="totalPriceColumn" prefWidth="106.0" text="Totalpris">
                     <cellValueFactory>
                         <PropertyValueFactory property="TotalPrice" />
                     </cellValueFactory>
                 </TableColumn>
             </columns>
         </TableView>
-        <Button fx:id="toMainpage" layoutX="57.0" layoutY="27.0" mnemonicParsing="false" onAction="#toMainpage" onKeyPressed="#btnToMainpageEnter" prefHeight="25.0" prefWidth="166.0" text="Gå til forsiden" />
-        <TextField layoutX="66.0" layoutY="100.0" />
-        <Text layoutX="26.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Søk:" wrappingWidth="37.97265625" />
-      <Button fx:id="btnOrderDetails" layoutX="231.0" layoutY="100.0" mnemonicParsing="false" onAction="#orderDetails" text="Se ordredetaljer" />
+        <Button fx:id="toMainpage" layoutX="26.0" layoutY="23.0" mnemonicParsing="false" onAction="#toMainpage" onKeyPressed="#btnToMainpageEnter" prefHeight="25.0" prefWidth="166.0" text="Gå til forsiden" />
+        <TextField fx:id="txtFilter" layoutX="434.0" layoutY="95.0" onKeyTyped="#filterData" />
+        <Text layoutX="381.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filtrer" wrappingWidth="37.97265625" />
       <ImageView fitHeight="23.0" fitWidth="37.0" layoutX="179.0" layoutY="28.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
       <TableView fx:id="tblOrderInfo" layoutX="661.0" layoutY="135.0" prefHeight="489.0" prefWidth="584.0">
         <columns>
@@ -50,24 +53,19 @@
                     <PropertyValueFactory property="Name" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="productInfo" prefWidth="184.5714111328125" text="Beskrivelse">
+            <TableColumn fx:id="productInfo" prefWidth="307.0" text="Beskrivelse">
                 <cellValueFactory>
                     <PropertyValueFactory property="Description" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="productLifetime" prefWidth="77.7142333984375" text="Levetid">
+            <TableColumn fx:id="productLifetime" prefWidth="65.0" text="Levetid">
                 <cellValueFactory>
                     <PropertyValueFactory property="Lifetime" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="productPrice" prefWidth="82.857177734375" text="Pris">
+            <TableColumn fx:id="productPrice" prefWidth="104.0" text="Pris">
                 <cellValueFactory>
                     <PropertyValueFactory property="Price" />
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="productCategory" prefWidth="132.0" text="Kategori">
-                <cellValueFactory>
-                    <PropertyValueFactory property="Category" />
                 </cellValueFactory>
             </TableColumn>
         </columns>

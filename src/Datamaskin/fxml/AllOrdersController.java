@@ -2,6 +2,8 @@ package Datamaskin.fxml;
 
 import Datamaskin.orders.FinalOrderOverview;
 import Datamaskin.Page;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
@@ -34,6 +36,8 @@ public class AllOrdersController implements Initializable {
 
     // kode for filtrering
     @FXML void filteredByInput(KeyEvent event) {
+
+
         FilteredList<FinalOrderOverview> filteredData = new FilteredList<>(OrderRegister, p -> true);
 
         //hver gang verdien endres skjer følgende

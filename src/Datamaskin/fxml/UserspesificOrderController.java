@@ -4,20 +4,22 @@ import Datamaskin.filbehandling.ReadFromOrderFile;
 import Datamaskin.product.Product;
 import Datamaskin.orders.FinalOrderOverview;
 import Datamaskin.Page;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -31,13 +33,15 @@ public class UserspesificOrderController implements Initializable {
     @FXML private TableColumn<FinalOrderOverview, String> orderIDColumn;
     @FXML private TableColumn<FinalOrderOverview, LocalDate> orderDateColumn;
     @FXML private TableColumn<FinalOrderOverview, Double> totalPriceColumn;
-    @FXML private Button btnOrderDetails;
     @FXML private TableView<Product> tblOrderInfo;
     @FXML private TableColumn<Product, String> productName;
     @FXML private TableColumn<Product, String> productInfo;
     @FXML private TableColumn<Product, Integer> productLifetime;
     @FXML private TableColumn<Product, Double> productPrice;
-    @FXML    private TableColumn<Product, String> productCategory;
+    @FXML private TextField txtFilter;
+
+    // todo: må populere denne listen utifra eposten som ble skrevet inn på mainpage
+    public transient static ObservableList<FinalOrderOverview> aCustomerOrderRegister = FXCollections.observableArrayList();
 
     private ReadFromOrderFile reader = new ReadFromOrderFile();
 
@@ -53,17 +57,51 @@ public class UserspesificOrderController implements Initializable {
             productInfo.setCellValueFactory(new PropertyValueFactory<>("Description"));
             productLifetime.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
             productPrice.setCellValueFactory(new PropertyValueFactory<>("Price"));
-            productCategory.setCellValueFactory(new PropertyValueFactory<>("Category"));
 
         }catch(FileNotFoundException e){
             System.err.println("Noe gikk galt ved innlasting av filstien" + e.getMessage());
         }
     }
 
+    @FXML void filterData(KeyEvent event) {
+        FilteredList<FinalOrderOverview> filteredData = new FilteredList<>(aCustomerOrderRegister, p -> true);
 
-    @FXML void orderDetails(ActionEvent event) {
+        //hver gang verdien endres skjer følgende
+        txtFilter.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(finalOrderOverview -> {
 
+                String smallLetters = newValue.toLowerCase();
+
+
+                if (newValue.matches("[a-zA-Z. -_0-9()@]*")) {    //
+                    // Hvis feltet er tomt skal alle personer vises
+                    if (newValue.isEmpty()) {
+                        return true;
+                    }
+
+                    // Sammenligner alle kolonner med filtertekst
+                    if (finalOrderOverview.getEmail().toLowerCase().contains(smallLetters)) {
+                        return true;
+                    } else if (finalOrderOverview.getOrderID().toLowerCase().contains(smallLetters)) {
+                        return true;
+                    } else if (String.valueOf(finalOrderOverview.getOrderDate()).matches(smallLetters)) {
+                        return true;
+                        // todo: sortere etter totalpris funker ikke
+                    } else if (String.valueOf(finalOrderOverview.getTotalPrice()).matches(smallLetters)) {
+                        return true;
+                    } return false;
+                } return  false;
+            });
+        });
+
+        // oppretter en sortert liste binder den sammen med tabellen
+        SortedList<FinalOrderOverview> sortertData = new SortedList<>(filteredData);
+        sortertData.comparatorProperty().bind(allOrders.comparatorProperty());
+
+        // legger til sotrert og filtert data til tabellen
+        allOrders.setItems(sortertData);
     }
+
 
     //knappen "tilbake" tar brukeren med tilbake til menysiden for superbruker
     @FXML void toMainpage() throws IOException {

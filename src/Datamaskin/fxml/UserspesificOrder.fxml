@@ -18,7 +18,7 @@
          <font>
             <Font name="Arial Bold" size="36.0" />
          </font></Text>
-        <TableView fx:id="allOrders" layoutX="26.0" layoutY="135.0" onMouseClicked="#selectedOrderItemEvent" prefHeight="489.0" prefWidth="595.0">
+        <TableView fx:id="tblAllOrders" layoutX="26.0" layoutY="135.0" onMouseClicked="#selectedOrderItemEvent" prefHeight="489.0" prefWidth="595.0">
             <columns>
                 <TableColumn fx:id="emailColumn" prefWidth="226.0" text="E-post">
                     <cellValueFactory>

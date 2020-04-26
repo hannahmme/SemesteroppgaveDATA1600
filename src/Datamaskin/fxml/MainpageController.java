@@ -44,6 +44,7 @@ public class MainpageController implements Initializable {
     // nøkkel for å sortere ordrelisten for sluttbruker, er eposten som skrives inn
     public static String sortingKey;
 
+    // todo: funker ikke helt
     // metode som sender brukeren til ordresiden for bruker, må valideres med epost og passord
     @FXML void toUserOrders() throws IOException {
         try {

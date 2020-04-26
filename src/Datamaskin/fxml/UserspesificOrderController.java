@@ -2,6 +2,7 @@ package Datamaskin.fxml;
 
 import Datamaskin.filbehandling.ReadFromOrderFile;
 import Datamaskin.filbehandling.ReadFromOrderOverviewFile;
+import Datamaskin.orders.FinalOrderOverviewRegister;
 import Datamaskin.product.Product;
 import Datamaskin.orders.FinalOrderOverview;
 import Datamaskin.Page;
@@ -28,7 +29,7 @@ import java.util.ResourceBundle;
 
 public class UserspesificOrderController implements Initializable {
     @FXML private Button toMainpage;
-    @FXML private TableView<FinalOrderOverview> allOrders;
+    @FXML private TableView<FinalOrderOverview> tblAllOrders;
     @FXML private TableColumn<FinalOrderOverview, String> emailColumn;
     @FXML private TableColumn<FinalOrderOverview, String> orderIDColumn;
     @FXML private TableColumn<FinalOrderOverview, LocalDate> orderDateColumn;
@@ -40,36 +41,31 @@ public class UserspesificOrderController implements Initializable {
     @FXML private TableColumn<Product, Double> productPrice;
     @FXML private TextField txtFilter;
 
-    // todo: må populere denne listen utifra eposten som ble skrevet inn på mainpage
-    public static ObservableList<FinalOrderOverview> aCustomerOrderRegister = FXCollections.observableArrayList();
-
     // kode for å lese ordrelisten til venstre fra fil
     private ReadFromOrderOverviewFile reader2 = new ReadFromOrderOverviewFile();
 
-    private void readOrderOverviewCSV(){
+    private void readOrderOverviewCSV() throws IOException {
         try {
-            ObservableList<FinalOrderOverview> listOfOrders = reader2.readFromOrderOverviewFile("./src/Datamaskin/sentOrdersPath/allOrders.csv");
-
-            allOrders.getItems().addAll(listOfOrders);
-            allOrders.setItems(listOfOrders);
-
+            String path = "./src/Datamaskin/sentOrdersPath/allOrders.csv";
+            ObservableList<FinalOrderOverview> listOfOrders = reader2.readFromOrderOverviewFile(path);
+            tblAllOrders.getItems().addAll(listOfOrders);
+            tblAllOrders.setItems(listOfOrders);
             emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
             orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("OrderID"));
             orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("OrderDate"));
             totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
 
-        } catch(IOException e){
-        System.err.println("Noe gikk galt ved innlasting av filstien" + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Noe gikk galt ved innlasting av filstien" + e.getMessage());
         }
     }
-
 
     // kode for å lese ordrelisten til høyre fra fil
     private ReadFromOrderFile reader = new ReadFromOrderFile();
 
     //Metode som viser innholdet i orderen når bruker trykker på en ordre
     @FXML void selectedOrderItemEvent(MouseEvent event) throws IOException {
-        FinalOrderOverview order = allOrders.getSelectionModel().getSelectedItem();
+        FinalOrderOverview order = tblAllOrders.getSelectionModel().getSelectedItem();
 
         if (order == null) return;
         try {
@@ -87,17 +83,19 @@ public class UserspesificOrderController implements Initializable {
         }
     }
 
-    // todo: filtrering etter beløp fungerer ikke
+    // todo: filtrering etter beløp fungerer ikke og må sortere utifra riktig tabell
     @FXML void filterData(KeyEvent event) {
-        FilteredList<FinalOrderOverview> filteredData = new FilteredList<>(aCustomerOrderRegister, p -> true);
+        FilteredList<FinalOrderOverview> filteredData = new FilteredList<>(FinalOrderOverviewRegister.OrderRegister, p -> true);
+        // todo: henter ut fra register med alle ordre, må sortere etter sortingkey
 
         //hver gang verdien endres skjer følgende
         txtFilter.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(finalOrderOverview -> {
 
                 String smallLetters = newValue.toLowerCase();
+                /*if(finalOrderOverview.getEmail().equals(MainpageController.sortingKey)){
 
-
+                }*/
                 if (newValue.matches("[a-zA-Z. -_0-9()@]*")) {    //
                     // Hvis feltet er tomt skal alle personer vises
                     if (newValue.isEmpty()) {
@@ -116,15 +114,16 @@ public class UserspesificOrderController implements Initializable {
                         return true;
                     } return false;
                 } return  false;
+
             });
         });
 
         // oppretter en sortert liste binder den sammen med tabellen
         SortedList<FinalOrderOverview> sortertData = new SortedList<>(filteredData);
-        sortertData.comparatorProperty().bind(allOrders.comparatorProperty());
+        sortertData.comparatorProperty().bind(tblAllOrders.comparatorProperty());
 
         // legger til sotrert og filtert data til tabellen
-        allOrders.setItems(sortertData);
+        tblAllOrders.setItems(sortertData);
     }
 
 
@@ -136,7 +135,11 @@ public class UserspesificOrderController implements Initializable {
 
     // metoder for å legge inn ordreregisteret på denne siden
     @Override public void initialize(URL url, ResourceBundle rb) {
-        //readOrderOverviewCSV();
+        /*try {
+            readOrderOverviewCSV();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
     }
 
     // metode så man kommer til hovedsiden ved å trykke enter

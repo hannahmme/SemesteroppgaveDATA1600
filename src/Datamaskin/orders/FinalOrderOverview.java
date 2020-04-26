@@ -13,11 +13,11 @@ public class FinalOrderOverview {
     private transient SimpleStringProperty orderDate;
     private transient SimpleDoubleProperty totalPrice;
 
-    public FinalOrderOverview(String orderID, String email, String date, double totalPrice){
+    public FinalOrderOverview(String orderID, String email, String orderDate, double totalPrice){
         this.orderID = new SimpleStringProperty(orderID);
         this.email = new SimpleStringProperty(email);
+        this.orderDate = new SimpleStringProperty(orderDate);
         this.totalPrice = new SimpleDoubleProperty(totalPrice);
-        this.orderDate = new SimpleStringProperty(date);
     }
 
     public String getOrderID() {

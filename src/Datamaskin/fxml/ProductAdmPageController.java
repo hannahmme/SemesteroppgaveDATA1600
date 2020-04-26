@@ -258,7 +258,7 @@ public class ProductAdmPageController implements Initializable{
                 saver.saveToJobj(ProductRegister.Register, path);
                 System.out.println("Registeret ble lagret!");
             } catch (IOException e) {
-                System.out.println("Lagring til fil feilet. Grunn: " + e.getMessage());
+                System.out.println("Lagring til fil feilet. Årsak: " + e.getMessage());
             }
         }
     }

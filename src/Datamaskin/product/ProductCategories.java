@@ -3,9 +3,13 @@ package Datamaskin.product;
 import Datamaskin.fxml.ProductAdmPageController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class ProductCategories {
+public class ProductCategories implements Serializable {
+    private static final long serialVersionUID = 1;
+
     private String componentName;
     private String componentDescription;
     private int componentLifetime;

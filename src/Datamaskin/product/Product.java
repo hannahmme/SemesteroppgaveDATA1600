@@ -4,7 +4,11 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
+    private static final long serialVersionUID = 1;
+
     private final String MISSING_IMG_PATH = "./src/Datamaskin/images/missingImage.png";
     private SimpleStringProperty name;
     private SimpleStringProperty description;

@@ -4,7 +4,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 
-public class ProductRegister {
+import java.io.Serializable;
+
+public class ProductRegister implements Serializable {
+    private static final long serialVersionUID = 1;
+
     public transient static ObservableList<Product> Register = FXCollections.observableArrayList();
 
     public void setComponentToTV(TableView tv) {

@@ -249,37 +249,13 @@ public class ProductAdmPageController implements Initializable{
 
     }
 
-    // todo: kan mye av dette slettes? får feilmelding når jeg prøver å lagre filen
     //lagre til binær fil - den lagrer til fil, men jeg kan lese den. Skal vel komme kun tall?
     @FXML void saveToFile(ActionEvent event) {
-        /*Path pathString = Paths.get("productreg.txt");
-        Path path = Paths.get("productRegBinary.txt");
-        Path path = Paths.get("productRegJobj.jobj");*//*
-        String formatted = ProductFormatter.formatListOfProductsToString(ProductRegister.Register);
-        *//*byte[] bytes = formatted.getBytes(StandardCharsets.UTF_8);
-
-        try {
-            filesaver.saveToJobj(aRegister, path);
-            Files.write(path, bytes);
-            //lblFeilmelding.setText("Lagringen er vellykket");
-        } catch (IOException e) {
-            //lblFeilmelding.setText(e.getMessage());
-        }*//*
-
-        File file = new File("productReg.jobj");
-        byte[] data = formatted.getBytes(StandardCharsets.UTF_8);
-
-        try(FileOutputStream fos = new FileOutputStream(file)) {
-            fos.write(data);
-            System.out.println("Skrev ut data til fil");
-        } catch (IOException e){
-            e.printStackTrace();
-        }*/
         FileSaver saver = new SaveComponentsToFile();
         Path path = Paths.get("productReg.jobj");
         if(saver != null) {
             try {
-                saver.saveToJobj(aRegister, path);
+                saver.saveToJobj(ProductRegister.Register, path);
                 System.out.println("Registeret ble lagret!");
             } catch (IOException e) {
                 System.out.println("Lagring til fil feilet. Grunn: " + e.getMessage());

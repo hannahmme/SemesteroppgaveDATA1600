@@ -4,7 +4,6 @@ import Datamaskin.customer.CustomerRegister;
 import Datamaskin.customer.CustomerValidator;
 import Datamaskin.exceptions.InvalidEmailException;
 import Datamaskin.Page;
-
 import Datamaskin.images.ImageClass;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +18,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -43,7 +41,8 @@ public class MainpageController implements Initializable {
     public MainpageController() throws FileNotFoundException {
     }
 
-    public String sortingKey;
+    // nøkkel for å sortere ordrelisten for sluttbruker, er eposten som skrives inn
+    public static String sortingKey;
 
     // metode som sender brukeren til ordresiden for bruker, må valideres med epost og passord
     @FXML void toUserOrders() throws IOException {

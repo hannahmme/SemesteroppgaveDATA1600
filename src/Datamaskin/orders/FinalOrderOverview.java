@@ -47,4 +47,34 @@ public class FinalOrderOverview {
     public void setTotalPrice(double Price) {
         this.totalPrice = new SimpleDoubleProperty(Price);
     }
+
+    public static String checkEmail(String email) {
+        if (email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}") && !email.isEmpty() && email != null && !email.equals("")){
+            return email;
+        }
+        throw new IllegalArgumentException("Ugyldig ordrenummer!");
+    }
+
+    public static String checkOrderID(String orderID){
+        if (orderID.matches("[order-]+[0-9]+[0-9]*")) {
+            return orderID;
+        }
+        throw new IllegalArgumentException("Ugyldig ordrenummer!");
+    }
+
+    public static String checkDate(String orderID){
+        if (orderID.matches("[order-]+[0-9]+[0-9]*")) {
+            return orderID;
+        }
+        throw new IllegalArgumentException("Ugyldig ordrenummer!");
+    }
+
+    public static double checkTotalPrice(double totalPrice){
+        if (totalPrice>0 && totalPrice<=100000) {
+            return totalPrice;
+        }
+        throw new IllegalArgumentException("Ugyldig ordrenummer!");
+    }
+
+
 }

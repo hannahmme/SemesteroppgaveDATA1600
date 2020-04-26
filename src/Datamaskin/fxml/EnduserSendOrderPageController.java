@@ -50,7 +50,7 @@ public class EnduserSendOrderPageController implements Initializable {
     //private FileSaverTxt filesaver = new FileSaverTxt();
 
     // et register for overordnet info
-    static FinalOrderOverviewRegister OrderRegister = new FinalOrderOverviewRegister();
+    public static FinalOrderOverviewRegister OrderRegister = new FinalOrderOverviewRegister();
 
     //denne kastes fordi image.createImage kalles
     public EnduserSendOrderPageController() throws FileNotFoundException {

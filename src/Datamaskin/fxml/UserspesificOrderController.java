@@ -1,6 +1,7 @@
 package Datamaskin.fxml;
 
 import Datamaskin.filbehandling.ReadFromOrderFile;
+import Datamaskin.filbehandling.ReadFromOrderOverviewFile;
 import Datamaskin.product.Product;
 import Datamaskin.orders.FinalOrderOverview;
 import Datamaskin.Page;
@@ -20,8 +21,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -41,12 +41,36 @@ public class UserspesificOrderController implements Initializable {
     @FXML private TextField txtFilter;
 
     // todo: må populere denne listen utifra eposten som ble skrevet inn på mainpage
-    public transient static ObservableList<FinalOrderOverview> aCustomerOrderRegister = FXCollections.observableArrayList();
+    public static ObservableList<FinalOrderOverview> aCustomerOrderRegister = FXCollections.observableArrayList();
 
+    // kode for å lese ordrelisten til venstre fra fil
+    private ReadFromOrderOverviewFile reader2 = new ReadFromOrderOverviewFile();
+
+    private void readOrderOverviewCSV(){
+        try {
+            ObservableList<FinalOrderOverview> listOfOrders = reader2.readFromOrderOverviewFile("./src/Datamaskin/sentOrdersPath/allOrders.csv");
+
+            allOrders.getItems().addAll(listOfOrders);
+            allOrders.setItems(listOfOrders);
+
+            emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
+            orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("OrderID"));
+            orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("OrderDate"));
+            totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
+
+        } catch(IOException e){
+        System.err.println("Noe gikk galt ved innlasting av filstien" + e.getMessage());
+        }
+    }
+
+
+    // kode for å lese ordrelisten til høyre fra fil
     private ReadFromOrderFile reader = new ReadFromOrderFile();
 
     //Metode som viser innholdet i orderen når bruker trykker på en ordre
-    @FXML void selectedOrderItemEvent(MouseEvent event) throws IOException { FinalOrderOverview order = allOrders.getSelectionModel().getSelectedItem();
+    @FXML void selectedOrderItemEvent(MouseEvent event) throws IOException {
+        FinalOrderOverview order = allOrders.getSelectionModel().getSelectedItem();
+
         if (order == null) return;
         try {
             String path = "./src/Datamaskin/sentOrdersPath/" + order.getOrderID() + ".csv";
@@ -63,6 +87,7 @@ public class UserspesificOrderController implements Initializable {
         }
     }
 
+    // todo: filtrering etter beløp fungerer ikke
     @FXML void filterData(KeyEvent event) {
         FilteredList<FinalOrderOverview> filteredData = new FilteredList<>(aCustomerOrderRegister, p -> true);
 
@@ -111,12 +136,7 @@ public class UserspesificOrderController implements Initializable {
 
     // metoder for å legge inn ordreregisteret på denne siden
     @Override public void initialize(URL url, ResourceBundle rb) {
-        emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
-        orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("OrderID"));
-        orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("OrderDate"));
-        totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
-
-        EnduserSendOrderPageController.OrderRegister.addOrder(allOrders);
+        readOrderOverviewCSV();
     }
 
     // metode så man kommer til hovedsiden ved å trykke enter

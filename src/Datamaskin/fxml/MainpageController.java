@@ -31,7 +31,7 @@ public class MainpageController implements Initializable {
     @FXML private TextField txtUserEmail;
     @FXML private TextField txtUserPassword;
     @FXML private Button btnUserOrders;
-    @FXML private Label lblErrorEmail;
+    @FXML private Label lblUserError;
     @FXML private Label lblAdminError;
 
 
@@ -44,7 +44,6 @@ public class MainpageController implements Initializable {
     // nøkkel for å sortere ordrelisten for sluttbruker, er eposten som skrives inn
     public static String sortingKey;
 
-    // todo: funker ikke helt
     // metode som sender brukeren til ordresiden for bruker, må valideres med epost og passord
     @FXML void toUserOrders() throws IOException {
         try {
@@ -55,8 +54,8 @@ public class MainpageController implements Initializable {
 
             if (!CustomerValidator.validateEmail(email)) {
                 throw new InvalidEmailException("Skriv inn gyldig e-postadresse");
-            } else if(!sortingKey.equals(email)){
-                throw new InvalidEmailException("Du har ingen tidligere bestillinger registrert");
+            } else if(sortingKey == null){
+                lblUserError.setText("Du har skrevet inn feil kombinasjon av epost og passord");
             }
             else {
                 Stage primaryStage = (Stage) btnUserOrders.getScene().getWindow();
@@ -65,7 +64,7 @@ public class MainpageController implements Initializable {
                 primaryStage.show();
             }
         } catch (InvalidEmailException e) {
-            lblErrorEmail.setText(e.getMessage());
+            lblUserError.setText(e.getMessage());
             }
     }
 

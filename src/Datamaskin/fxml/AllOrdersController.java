@@ -2,6 +2,7 @@ package Datamaskin.fxml;
 
 import Datamaskin.orders.FinalOrderOverview;
 import Datamaskin.Page;
+import Datamaskin.orders.Order;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -96,9 +97,6 @@ public class AllOrdersController implements Initializable {
         orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("OrderDate"));
         totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
 
-        EnduserSendOrderPageController.OrderRegister.addOrder(allOrders);
-
-
-
+        Order.OrderRegister.addOrder(allOrders);
     }
 }

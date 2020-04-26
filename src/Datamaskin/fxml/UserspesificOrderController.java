@@ -1,12 +1,11 @@
 package Datamaskin.fxml;
 
 import Datamaskin.filbehandling.ReadFromOrderFile;
-import Datamaskin.filbehandling.ReadFromOrderOverviewFile;
-import Datamaskin.orders.FinalOrderOverviewRegister;
+import Datamaskin.orders.FinalOrderCustomerOverviewRegister;
+import Datamaskin.orders.Order;
 import Datamaskin.product.Product;
 import Datamaskin.orders.FinalOrderOverview;
 import Datamaskin.Page;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -24,16 +23,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.io.*;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
+import static Datamaskin.fxml.MainpageController.sortingKey;
 
 public class UserspesificOrderController implements Initializable {
     @FXML private Button toMainpage;
     @FXML private TableView<FinalOrderOverview> tblAllOrders;
     @FXML private TableColumn<FinalOrderOverview, String> emailColumn;
     @FXML private TableColumn<FinalOrderOverview, String> orderIDColumn;
-    @FXML private TableColumn<FinalOrderOverview, LocalDate> orderDateColumn;
+    @FXML private TableColumn<FinalOrderOverview, String> orderDateColumn;
     @FXML private TableColumn<FinalOrderOverview, Double> totalPriceColumn;
+
     @FXML private TableView<Product> tblOrderInfo;
     @FXML private TableColumn<Product, String> productName;
     @FXML private TableColumn<Product, String> productInfo;
@@ -41,26 +41,6 @@ public class UserspesificOrderController implements Initializable {
     @FXML private TableColumn<Product, Double> productPrice;
     @FXML private TextField txtFilter;
 
-    // kode for å lese ordrelisten til venstre fra fil
-    private ReadFromOrderOverviewFile reader2 = new ReadFromOrderOverviewFile();
-
-    private void readOrderOverviewCSV() throws IOException {
-        try {
-            String path = "./src/Datamaskin/sentOrdersPath/allOrders.csv";
-            ObservableList<FinalOrderOverview> listOfOrders = reader2.readFromOrderOverviewFile(path);
-            tblAllOrders.getItems().addAll(listOfOrders);
-            tblAllOrders.setItems(listOfOrders);
-            emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
-            orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("OrderID"));
-            orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("OrderDate"));
-            totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
-
-        } catch (IOException e) {
-            System.err.println("Noe gikk galt ved innlasting av filstien" + e.getMessage());
-        }
-    }
-
-    // kode for å lese ordrelisten til høyre fra fil
     private ReadFromOrderFile reader = new ReadFromOrderFile();
 
     //Metode som viser innholdet i orderen når bruker trykker på en ordre
@@ -83,10 +63,9 @@ public class UserspesificOrderController implements Initializable {
         }
     }
 
-    // todo: filtrering etter beløp fungerer ikke og må sortere utifra riktig tabell
+    // todo: filtrering etter beløp fungerer ikke
     @FXML void filterData(KeyEvent event) {
-        FilteredList<FinalOrderOverview> filteredData = new FilteredList<>(FinalOrderOverviewRegister.OrderRegister, p -> true);
-        // todo: henter ut fra register med alle ordre, må sortere etter sortingkey
+        FilteredList<FinalOrderOverview> filteredData = new FilteredList<>(FinalOrderCustomerOverviewRegister.OrderRegister, p -> true);
 
         //hver gang verdien endres skjer følgende
         txtFilter.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -126,23 +105,21 @@ public class UserspesificOrderController implements Initializable {
         tblAllOrders.setItems(sortertData);
     }
 
-
-    //knappen "tilbake" tar brukeren med tilbake til menysiden for superbruker
-    @FXML void toMainpage() throws IOException {
-        Stage primaryStage = (Stage) toMainpage.getScene().getWindow();
-        Page.toMainpage(primaryStage, FXMLLoader.load(getClass().getResource("Mainpage.fxml")));
-    }
-
     // metoder for å legge inn ordreregisteret på denne siden
     @Override public void initialize(URL url, ResourceBundle rb) {
-        /*try {
-            readOrderOverviewCSV();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+        Order.deleteCustomerInfo();                 // sletter elementer i kunderegisteret for ny bruk
+        Order.addCustomerOverviewInfo(sortingKey);  // legger til elementer basert på hva som er sortingKey
+
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
+        orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("OrderID"));
+        orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("OrderDate"));
+        totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
+
+        Order.aCustomersOrderRegister.addOrder(tblAllOrders);
     }
 
-    // metode så man kommer til hovedsiden ved å trykke enter
+
+    // Knapper som tar brukeren med tilbake til hovedsiden
     @FXML void btnToMainpageEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             toMainpage();
@@ -186,6 +163,10 @@ public class UserspesificOrderController implements Initializable {
 		tabell1.setItems(sortertData);
 	}
 */
+    }
+    @FXML void toMainpage() throws IOException {
+        Stage primaryStage = (Stage) toMainpage.getScene().getWindow();
+        Page.toMainpage(primaryStage, FXMLLoader.load(getClass().getResource("Mainpage.fxml")));
     }
 }
 

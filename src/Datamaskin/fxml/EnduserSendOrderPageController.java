@@ -10,6 +10,7 @@ import Datamaskin.images.ImageClass;
 import Datamaskin.orders.FinalOrderOverview;
 import Datamaskin.orders.FinalOrderOverviewRegister;
 import Datamaskin.orders.FinalOrderSpecific;
+import Datamaskin.orders.Order;
 import Datamaskin.product.Product;
 import Datamaskin.Page;
 import javafx.fxml.FXML;
@@ -50,9 +51,6 @@ public class EnduserSendOrderPageController implements Initializable {
     private Cart shoppingcart = new Cart();
     //private FileSaverTxt filesaver = new FileSaverTxt();
 
-    // et register for overordnet info
-    public static FinalOrderOverviewRegister OrderRegister = new FinalOrderOverviewRegister();
-
     //denne kastes fordi image.createImage kalles
     public EnduserSendOrderPageController() throws FileNotFoundException {
     }
@@ -88,7 +86,7 @@ public class EnduserSendOrderPageController implements Initializable {
         FinalOrderOverview aFinalOrderOverview = createOrderObjectFromGUI(orderID);
 
         if(aFinalOrderOverview != null) {
-            OrderRegister.addElement(aFinalOrderOverview);
+            Order.OrderRegister.addElement(aFinalOrderOverview);
 
      // todo: kan dette slettes?
             /*FinalOrderSpecific aFinalOrderSpecific = createSpecificOrderObject(orderID);

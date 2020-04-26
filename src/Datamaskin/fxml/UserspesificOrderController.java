@@ -136,7 +136,7 @@ public class UserspesificOrderController implements Initializable {
 
     // metoder for å legge inn ordreregisteret på denne siden
     @Override public void initialize(URL url, ResourceBundle rb) {
-        readOrderOverviewCSV();
+        //readOrderOverviewCSV();
     }
 
     // metode så man kommer til hovedsiden ved å trykke enter

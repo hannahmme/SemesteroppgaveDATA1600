@@ -41,7 +41,6 @@ public class ReadFromOrderOverviewFile implements iReadFromOrderOverviewFile{
         String orderDate    = FinalOrderOverview.checkDate((splitOrder[2]));
         double totalPrice   = FinalOrderOverview.checkTotalPrice(parseToDouble(splitOrder[3], "Totalpris (felt 4) er ikke et tall"));
 
-
         return new FinalOrderOverview(email, orderID, orderDate, totalPrice);
     }
 

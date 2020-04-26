@@ -9,6 +9,7 @@ import Datamaskin.filbehandling.OrderFormatter;
 import Datamaskin.images.ImageClass;
 import Datamaskin.orders.FinalOrderOverview;
 import Datamaskin.orders.FinalOrderOverviewRegister;
+import Datamaskin.orders.FinalOrderSpecific;
 import Datamaskin.product.Product;
 import Datamaskin.Page;
 import javafx.fxml.FXML;
@@ -83,7 +84,8 @@ public class EnduserSendOrderPageController implements Initializable {
     }
 
     @FXML void sendOrder() throws IOException, InvalidEmailException {
-        FinalOrderOverview aFinalOrderOverview = createOrderObjectFromGUI();
+        String orderID = generateOrderID();
+        FinalOrderOverview aFinalOrderOverview = createOrderObjectFromGUI(orderID);
 
         if(aFinalOrderOverview != null) {
             OrderRegister.addElement(aFinalOrderOverview);
@@ -94,6 +96,7 @@ public class EnduserSendOrderPageController implements Initializable {
 
             txtEpost.setText("");
             txtPassword.setText("");
+            txtDiscount.setText("");
 
             Path sentOrderPath = Paths.get("./src/Datamaskin/sentOrdersPath/"+orderID+".csv");
             String formattedList = OrderFormatter.formatListOfProductToString(Cart.Register);
@@ -112,7 +115,7 @@ public class EnduserSendOrderPageController implements Initializable {
     }
 
     // metode for å generere en ordre og legget il ordreID og epost i array
-    private FinalOrderOverview createOrderObjectFromGUI(){
+    private FinalOrderOverview createOrderObjectFromGUI(String orderID){
         String email;
         String password;
         double totalPrice;
@@ -127,12 +130,12 @@ public class EnduserSendOrderPageController implements Initializable {
                 throw new InvalidEmailException("Du har skrevet inn ugyldige innloggingsdetaljer!");
             }
             else{
-                String orderID = generateOrderID();
                 totalPrice = shoppingcart.getTotalPrice();
                 String date = String.valueOf(LocalDate.now());
 
                 //lager en ordreID for bestillingen og viser den til bruker
                 lblOrderSent.setText("Takk for din ordre.\nOrdrenummer: " + orderID);
+                System.out.println(orderID);
 
                 //Oppretter ferdig ordre-objekt
                 FinalOrderOverview anFinalOrderOverview = new FinalOrderOverview(orderID, email, date, totalPrice);

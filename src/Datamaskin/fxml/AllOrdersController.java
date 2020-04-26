@@ -36,8 +36,6 @@ public class AllOrdersController implements Initializable {
 
     // kode for filtrering
     @FXML void filteredByInput(KeyEvent event) {
-
-
         FilteredList<FinalOrderOverview> filteredData = new FilteredList<>(OrderRegister, p -> true);
 
         //hver gang verdien endres skjer følgende
@@ -61,7 +59,7 @@ public class AllOrdersController implements Initializable {
                     } else if (String.valueOf(finalOrderOverview.getOrderDate()).matches(smallLetters)) {
                         return true;
                         // todo: sortere etter totalpris funker ikke
-                    } else if (String.valueOf(finalOrderOverview.getTotalPrice()).matches(smallLetters)) {
+                    }else if (finalOrderOverview.getTotalPrice() == Double.parseDouble(smallLetters)) {
                         return true;
                     } return false;
                 } return  false;

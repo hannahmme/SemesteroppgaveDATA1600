@@ -22,7 +22,29 @@ public class ProductRegister {
             }
         }
     }
+
     public void addElement(Product aProduct) {
         Register.add(aProduct);
     }
+
+    public static boolean checkIfCategoryIsPresent(String category){
+        for(Product aProduct : Register){
+            if(aProduct.getCategory().equals(category)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean allCategoriesArePresent(){
+        if(checkIfCategoryIsPresent("Skjermkort") && checkIfCategoryIsPresent("Minnekort")
+                && checkIfCategoryIsPresent("Harddisk") && checkIfCategoryIsPresent("Prosessor")
+                && checkIfCategoryIsPresent("Strømforsyning") && checkIfCategoryIsPresent("Lydkort")
+                && checkIfCategoryIsPresent("Optisk disk") && checkIfCategoryIsPresent("Farge")){
+            return true;
+        }
+        return false;
+    }
+
+
 }

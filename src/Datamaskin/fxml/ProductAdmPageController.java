@@ -17,7 +17,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
@@ -41,7 +40,7 @@ public class ProductAdmPageController implements Initializable{
     @FXML private MenuItem saveToFile;
     @FXML private MenuItem openFromFile;
 
-    // metode for å lage kategoriene
+    // metode for å lage kategoriene i cboksene, så admin må velge en av de
     private void setData(){
         cboxCategory.getItems().addAll("Skjermkort", "Minnekort",
                 "Harddisk", "Prosessor", "Strømforsyning", "Lydkort",
@@ -149,14 +148,13 @@ public class ProductAdmPageController implements Initializable{
         return null;
     }
 
-    @FXML
-    void btnDeleteComponentEnter(KeyEvent event) throws IOException {
+    // knapp for å slette komponent fra produktlista
+    @FXML void btnDeleteComponentEnter(KeyEvent event) throws IOException {
         if(event.getCode().equals(KeyCode.ENTER)){
             deleteComponent();
         }
     }
-    @FXML
-    void deleteComponent() throws IOException {
+    @FXML void deleteComponent() throws IOException {
         Product deleteItem = componentTableview.getSelectionModel().getSelectedItem();
         boolean deleteConfirmed = Page.alertConfirmed("Ønsker du å slette "+deleteItem.getName() + " fra listen?");
         if(deleteConfirmed) {
@@ -190,9 +188,7 @@ public class ProductAdmPageController implements Initializable{
         }
     }
 
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    @Override public void initialize(URL url, ResourceBundle rb) {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
         lifetimeColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
@@ -218,21 +214,32 @@ public class ProductAdmPageController implements Initializable{
 
     // kode for å komme tilbake til hovedmenyen for superbruker
     @FXML void toSuperUserPage() throws IOException {
-        Stage primaryStage = (Stage) toSuperUserPage.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
-        Page.toSuperuserpage(primaryStage, root);
+        if(ProductRegister.allCategoriesArePresent()) {
+            Stage primaryStage = (Stage) toSuperUserPage.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
+            Page.toSuperuserpage(primaryStage, root);
+        }
+        else {
+            Page.simpleAlertInformation("Du kan ikke forlate siden enda! Produkter innenfor en av kategoriene mangler," +
+                    " og sluttbruker kan da ikke fullføre handelen sin!");
+        }
     }
 
     @FXML void btnGoBackEnter(KeyEvent event) throws IOException {
-        if (event.getCode().equals(KeyCode.ENTER)) {
-            toSuperUserPage();
+        if(ProductRegister.allCategoriesArePresent()) {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                toSuperUserPage();
+            }
+        } else {
+            Page.simpleAlertInformation("Du kan ikke forlate siden enda! Produkter innenfor en av kategoriene mangler," +
+                " og sluttbruker kan da ikke fullføre handelen sin!");
         }
     }
 
     @FXML void btnMenuEnter(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            menuDropdown.show();
-            menuDropdown.fire();
+                menuDropdown.show();
+                menuDropdown.fire();
         }
     }
 

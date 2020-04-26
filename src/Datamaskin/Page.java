@@ -36,6 +36,17 @@ public class Page {
 
         return userAnswer.get() == buttonYes;
     }
+
+    public static boolean simpleAlertInformation (String content){
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Vent litt...");
+        alert.setContentText(content);
+        ButtonType buttonOK = new ButtonType("OK");
+        alert.getButtonTypes().addAll(buttonOK);
+        Optional<ButtonType> userAnswer = alert.showAndWait();
+
+        return userAnswer.get() == buttonOK;
+    }
     
     // metode for å lage en ny scene.
     public static void toMainpage(Stage primaryStage, Parent FXMLString) throws IOException {

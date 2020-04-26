@@ -1,7 +1,6 @@
 package Datamaskin.customer;
 
 import Datamaskin.exceptions.InvalidEmailException;
-import Datamaskin.product.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
@@ -35,15 +34,8 @@ public class CustomerRegister {
 
     //metode som gjør det mulig å slette en kunde
     public static void deleteCustomer(Customer customerToDelete){
-        if(customerToDelete == null){
-            return;
-        }
-        for(int i = 0; i < CustomerRegister.size(); i++){
-            if (CustomerRegister.equals(CustomerRegister.get(i))) {
-                CustomerRegister.remove(CustomerRegister.get(i));
-            }
+        if(!(customerToDelete == null)){
+            CustomerRegister.remove(customerToDelete);
         }
     }
-
-
 }

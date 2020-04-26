@@ -39,6 +39,9 @@ public class ProductAdmPageController implements Initializable{
     @FXML private MenuButton menuDropdown;
     @FXML private MenuItem saveToFile;
     @FXML private MenuItem openFromFile;
+    @FXML private Label txtSearch;
+    @FXML private Button btnSearch;
+
 
     // metode for å lage kategoriene i cboksene, så admin må velge en av de
     private void setData(){

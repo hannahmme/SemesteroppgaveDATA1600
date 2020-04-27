@@ -1,8 +1,12 @@
 package datamaskin.fxml;
 
+import datamaskin.filbehandling.ReadFromAllOrdersFile;
+import datamaskin.filbehandling.ReadFromOrderFile;
 import datamaskin.orders.FinalOrderOverview;
 import datamaskin.Page;
 import datamaskin.orders.Order;
+import datamaskin.product.Product;
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
@@ -16,9 +20,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Observable;
 import java.util.ResourceBundle;
 
 import static datamaskin.orders.FinalOrderOverviewRegister.OrderRegister;
@@ -32,6 +41,16 @@ public class AllOrdersController implements Initializable {
     @FXML private TableColumn<Double, FinalOrderOverview> totalPriceColumn;
     @FXML private Button toSuperuserpage;
     @FXML private TextField txtFiltering;
+
+    private ReadFromAllOrdersFile readFromAllOrdersFile = new ReadFromAllOrdersFile();
+    private ReadFromOrderFile readFromOrderFile = new ReadFromOrderFile();
+
+
+    @FXML private TableView<Product> tblOrderContent;
+    @FXML private TableColumn<String, Product> productName;
+    @FXML private TableColumn<String, Product> productInfo;
+    @FXML private TableColumn<Integer, Product> productLifetime;
+    @FXML private TableColumn<Double, Product> productPrice;
 
     // kode for filtrering
     @FXML void filteredByInput(KeyEvent event) {
@@ -90,11 +109,37 @@ public class AllOrdersController implements Initializable {
     // metoder for å legge inn ordreregisteret på denne siden
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        try {
+            ObservableList<FinalOrderOverview> allOrdersList = readFromAllOrdersFile.readFromAllOrdersFile("./src/Datamaskin/sentOrdersPath/allOrders.csv");
+            allOrders.getItems().addAll(allOrdersList);
+            allOrders.setItems(allOrdersList);
+        } catch (IOException e) {
+            System.out.println("Filsti ikke funnet " + e.getMessage());
+        }
+
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
         orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("OrderID"));
         orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("OrderDate"));
         totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
 
-        Order.OrderRegister.addOrder(allOrders);
+        //Order.OrderRegister.addOrder(allOrders);
     }
+
+
+    //metode som gjør det mulig for admin å trykke på en ordre og se hva den inneholder
+    @FXML
+    void selectedItemEvent(MouseEvent event) throws IOException {
+        FinalOrderOverview finalOrder = allOrders.getSelectionModel().getSelectedItem();
+        String orderID = finalOrder.getOrderID();
+        String orderIdPath = "./src/Datamaskin/sentOrdersPath/" + orderID + ".csv";
+        ObservableList<Product> listOfProducts = readFromOrderFile.readFromOrderFile(orderIdPath);
+
+        tblOrderContent.getItems().addAll(listOfProducts);
+        tblOrderContent.setItems(listOfProducts);
+
+
+
+
+    }
+
 }

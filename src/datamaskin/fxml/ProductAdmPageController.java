@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 public class ProductAdmPageController implements Initializable{
 
     @FXML private Button toSuperUserPage;
-    @FXML private Text wrongInput;
+    @FXML private Label wrongInput;
     private SaveComponentsToFile filesaver = new SaveComponentsToFile();
 
     // inputfields for å lage et produkt/ komponent

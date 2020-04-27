@@ -22,6 +22,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -94,20 +96,37 @@ public class EnduserSendOrderPageController implements Initializable {
             txtPassword.setText("");
             txtDiscount.setText("");
 
+            //kode som lagrer orderen til forhåndsdefinert filsti med generert ordreID.
             Path sentOrderPath = Paths.get("./src/Datamaskin/sentOrdersPath/"+orderID+".csv");
             String formattedList = OrderFormatter.formatListOfProductToString(Cart.Register);
             filesaver.saveToFile(formattedList, sentOrderPath);
+
+            //kode som lagrer orderen til forhåndsdefinert filsti (alle ordre samlet i csv.fil)
+            Path allOrderPath = Paths.get("./src/Datamaskin/sentOrdersPath/allOrders.csv");
+            String formattedAllOrdersList = OrderFormatter.formatFinalOrderOverViewToString(aFinalOrderOverview);
+            filesaver.saveToFile(formattedAllOrdersList, allOrderPath);
 
             //sletter handlekurven *etter* å ha lagret til fil - //todo: kanskje lage exception i tilfelle ikke klarer å lese til filstien (så ikke handlekurven slettes før det faktisk er blitt lagret) - hannah
             shoppingcart.deleteShoppingcart();
         }
     }
 
-    // metode for å generere ordreID
-    private static int orderID = 10;
-    private String generateOrderID(){
-        orderID++;
-        return "ordre-"+orderID;
+    // metode for å generere ordreID. Setter en begrensning på 100 ordre
+    private String generateOrderID() throws IOException {
+        int orderNumber = 0;
+        boolean pathNotUsed;
+
+        for(int i = 1; i<100; i++) {
+            File orderPath = new File(
+                    "./src/Datamaskin/sentOrdersPath/ordre-" + i + ".csv");
+            pathNotUsed = orderPath.exists();
+            if (!pathNotUsed) {
+                orderNumber = i;
+                break;
+            }
+        }
+
+        return "ordre-"+orderNumber;
     }
 
     // metode for å generere en ordre og legget il ordreID og epost i array

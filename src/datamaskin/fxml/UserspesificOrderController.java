@@ -125,44 +125,6 @@ public class UserspesificOrderController implements Initializable {
             toMainpage();
         }
 
-
-        // for å søke etter emailen til bruker skjult, så bare brukerens ordre kommer opp
-
-
-	/*// kode for filtrering
-	@FXML void filtreringsFelt() {
-		FilteredList<Order> filtrertData = new FilteredList<>((Register), p -> true);
-		String userEmail;
-
-		//hver gang verdien endres skjer følgende
-		userEmail.textProperty().addListener((observable, gammelVerdi, nyVerdi) -> {
-			filtrertData.setPredicate(person -> {
-
-				String småBokstaver = nyVerdi.toLowerCase();
-
-				if (nyVerdi.matches("[a-zA-Z. -_0-9()@]*")) {    //
-
-					// Hvis feltet er tomt skal alle personer vises
-					if (nyVerdi.isEmpty()) {
-						return true;
-					}
-
-					// Sammenligner alle kolonner med filtertekst
-					 if (person.getEpost().toLowerCase().contains(småBokstaver)) {
-						return true;
-					}
-				} return false;
-			});
-		});
-
-		// oppretter en sortert liste binder den sammen med tabellen
-		SortedList<Order> sortertData = new SortedList<>(filtrertData);
-		sortertData.comparatorProperty().bind(tabell1.comparatorProperty());
-
-		// legger til sotrert og filtert data til tabellen
-		tabell1.setItems(sortertData);
-	}
-*/
     }
     @FXML void toMainpage() throws IOException {
         Stage primaryStage = (Stage) toMainpage.getScene().getWindow();

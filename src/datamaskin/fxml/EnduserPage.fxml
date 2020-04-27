@@ -6,7 +6,6 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -27,31 +26,31 @@
                         <Font name="Arial Bold" size="36.0" />
                      </font></Text>
                   <Label layoutX="11.0" layoutY="102.0" prefHeight="21.0" prefWidth="86.0" text="Skjermkort" />
-                  <ChoiceBox id="Velg her" fx:id="cBoxGraphicCard" layoutX="11.0" layoutY="123.0" prefWidth="150.0" />
-                  <Label layoutX="12.0" layoutY="171.0" prefHeight="17.0" prefWidth="149.0" text="Minnekort" />
-                  <ChoiceBox fx:id="cBoxMemorycard" layoutX="11.0" layoutY="192.0" prefWidth="150.0" />
-                  <Label layoutX="12.0" layoutY="237.0" prefHeight="17.0" prefWidth="149.0" text="Harddisk" />
-                  <ChoiceBox fx:id="cBoxHarddrive" layoutX="11.0" layoutY="256.0" prefWidth="150.0" />
-                  <Label layoutX="12.0" layoutY="302.0" prefHeight="17.0" prefWidth="149.0" text="Prosessor" />
-                  <ChoiceBox fx:id="cBoxProcessor" layoutX="11.0" layoutY="319.0" prefWidth="150.0" />
-                  <Label layoutX="12.0" layoutY="367.0" prefHeight="17.0" prefWidth="149.0" text="Strømforsyning" />
-                  <ChoiceBox fx:id="cBoxPower" layoutX="11.0" layoutY="388.0" prefWidth="150.0" />
-                  <Label layoutX="12.0" layoutY="431.0" prefHeight="17.0" prefWidth="149.0" text="Lydkort" />
-                  <ChoiceBox fx:id="cBoxSoundcard" layoutX="11.0" layoutY="452.0" prefWidth="150.0" />
-                  <Label layoutX="11.0" layoutY="498.0" prefHeight="17.0" prefWidth="150.0" text="Optisk disk" />
-                  <ChoiceBox fx:id="cBoxOpticaldisk" layoutX="11.0" layoutY="519.0" prefWidth="150.0" />
-                  <Label layoutX="12.0" layoutY="560.0" prefHeight="17.0" prefWidth="149.0" text="Farge" />
-                  <ChoiceBox fx:id="cBoxColor" layoutX="12.0" layoutY="581.0" prefWidth="150.0" />
-                  <Line endY="-47.0" layoutX="212.0" layoutY="128.0" startY="525.0" />
-                  <TextArea layoutX="244.0" layoutY="100.0" prefHeight="339.0" prefWidth="340.0" />
-                  <Button fx:id="btnAddToCart" layoutX="250.0" layoutY="555.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="60.0" prefWidth="340.0" style="-fx-background-color: grey;" text="Oppdater handlekurv med valgte komponenter" textFill="WHITE" />
-                  <Label fx:id="lblError" layoutX="244.0" layoutY="457.0" prefHeight="77.0" prefWidth="340.0" wrapText="true" />
+                  <ChoiceBox id="Velg her" fx:id="cBoxGraphicCard" layoutX="11.0" layoutY="123.0" onInputMethodTextChanged="#setInfotext" prefWidth="150.0" />
+                  <Label layoutX="212.0" layoutY="102.0" prefHeight="17.0" prefWidth="149.0" text="Minnekort" />
+                  <ChoiceBox fx:id="cBoxMemorycard" layoutX="212.0" layoutY="123.0" onInputMethodTextChanged="#setInfotext" prefWidth="150.0" />
+                  <Label layoutX="427.0" layoutY="102.0" prefHeight="17.0" prefWidth="149.0" text="Harddisk" />
+                  <ChoiceBox fx:id="cBoxHarddrive" layoutX="426.0" layoutY="123.0" onInputMethodTextChanged="#setInfotext" prefWidth="150.0" />
+                  <Label layoutX="12.0" layoutY="196.0" prefHeight="17.0" prefWidth="149.0" text="Prosessor" />
+                  <ChoiceBox fx:id="cBoxProcessor" layoutX="11.0" layoutY="217.0" onInputMethodTextChanged="#setInfotext" prefWidth="150.0" />
+                  <Label layoutX="213.0" layoutY="196.0" prefHeight="17.0" prefWidth="149.0" text="Strømforsyning" />
+                  <ChoiceBox fx:id="cBoxPower" layoutX="212.0" layoutY="217.0" onInputMethodTextChanged="#setInfotext" prefWidth="150.0" />
+                  <Label layoutX="427.0" layoutY="196.0" prefHeight="17.0" prefWidth="149.0" text="Lydkort" />
+                  <ChoiceBox fx:id="cBoxSoundcard" layoutX="427.0" layoutY="217.0" onInputMethodTextChanged="#setInfotext" prefWidth="150.0" />
+                  <Label layoutX="12.0" layoutY="281.0" prefHeight="17.0" prefWidth="150.0" text="Optisk disk" />
+                  <ChoiceBox fx:id="cBoxOpticaldisk" layoutX="11.0" layoutY="302.0" onInputMethodTextChanged="#setInfotext" prefWidth="150.0" />
+                  <Label layoutX="212.0" layoutY="281.0" prefHeight="17.0" prefWidth="149.0" text="Farge" />
+                  <ChoiceBox fx:id="cBoxColor" layoutX="212.0" layoutY="302.0" onInputMethodTextChanged="#setInfotext" prefWidth="150.0" />
+                  <Line endX="400.0" endY="325.0" layoutX="210.0" layoutY="115.0" startX="-200.0" startY="325.0" />
+                  <Button fx:id="btnAddToCart" layoutX="140.0" layoutY="537.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="86.0" prefWidth="340.0" style="-fx-background-color: grey;" text="Oppdater handlekurv med valgte komponenter" textFill="WHITE" />
+                  <Label fx:id="lblError" layoutX="140.0" layoutY="454.0" prefHeight="76.0" prefWidth="340.0" textFill="RED" wrapText="true" />
                   <Line endX="400.0" layoutX="210.0" layoutY="80.0" startX="-200.0" />
+                  <Label fx:id="lblInfo" layoutX="10.0" layoutY="359.0" prefHeight="63.0" prefWidth="601.0" wrapText="true" />
                </children>
             </AnchorPane>
           <AnchorPane layoutX="625.0" layoutY="670.0" minHeight="0.0" minWidth="0.0" prefHeight="670.0" prefWidth="625.0" SplitPane.resizableWithParent="false">
                <children>
-                  <TableView fx:id="tableviewCart" editable="true" layoutX="10.0" layoutY="100.0" prefHeight="339.0" prefWidth="600.0">
+                  <TableView fx:id="tableviewCart" editable="true" layoutX="10.0" layoutY="101.0" prefHeight="339.0" prefWidth="601.0">
                     <columns>
                       <TableColumn fx:id="nameColumn" prefWidth="129.0" text="Produktnavn">
                         <cellValueFactory>

@@ -6,11 +6,14 @@ import datamaskin.customer.CustomerValidator;
 import datamaskin.exceptions.InvalidEmailException;
 import datamaskin.filbehandling.FileSaverTxt;
 import datamaskin.filbehandling.OrderFormatter;
+import datamaskin.filbehandling.ReadFromAllOrdersFile;
 import datamaskin.images.ImageClass;
 import datamaskin.orders.FinalOrderOverview;
 import datamaskin.orders.Order;
 import datamaskin.product.Product;
 import datamaskin.Page;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -45,6 +48,7 @@ public class EnduserSendOrderPageController implements Initializable {
     @FXML private TextField txtDiscount;
     @FXML private PasswordField txtPassword;
 
+    private ReadFromAllOrdersFile readFromAllOrdersFile = new ReadFromAllOrdersFile();
     private FileSaverTxt filesaver = new FileSaverTxt();
     private ImageClass image = new ImageClass();
     private Image homeImage = image.createImage("./src/Datamaskin/images/mainpage.png");
@@ -103,8 +107,9 @@ public class EnduserSendOrderPageController implements Initializable {
 
             //kode som lagrer orderen til forhåndsdefinert filsti (alle ordre samlet i csv.fil)
             Path allOrderPath = Paths.get("./src/Datamaskin/sentOrdersPath/allOrders.csv");
-            String formattedAllOrdersList = OrderFormatter.formatFinalOrderOverViewToString(aFinalOrderOverview);
-            filesaver.saveToFile(formattedAllOrdersList, allOrderPath);
+            String formattedFinalOrder = OrderFormatter.formatFinalOrderOverViewToString(aFinalOrderOverview);
+            filesaver.appendToFile("\n", allOrderPath);
+            filesaver.appendToFile(formattedFinalOrder, allOrderPath);
 
             //sletter handlekurven *etter* å ha lagret til fil - //todo: kanskje lage exception i tilfelle ikke klarer å lese til filstien (så ikke handlekurven slettes før det faktisk er blitt lagret) - hannah
             shoppingcart.deleteShoppingcart();

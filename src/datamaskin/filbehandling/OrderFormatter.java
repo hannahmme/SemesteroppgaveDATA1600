@@ -1,5 +1,6 @@
 package datamaskin.filbehandling;
 
+import datamaskin.orders.FinalOrderOverview;
 import datamaskin.product.Product;
 
 import java.util.List;
@@ -24,6 +25,12 @@ public class OrderFormatter {
         return  product.getName()+ DELIMITER + product.getDescription() +
                 DELIMITER + product.getLifetime() + DELIMITER + product.getPrice() +
                 DELIMITER + product.getCategory();
+    }
+
+    //Metode som lager bestilling til en String med en DELIMITER som skiller hver attributt-verdi.
+    public static String formatFinalOrderOverViewToString(FinalOrderOverview finalOrder){
+        return  finalOrder.getOrderID()+ DELIMITER + finalOrder.getEmail() +
+                DELIMITER + finalOrder.getOrderDate() + DELIMITER + finalOrder.getTotalPrice();
     }
 
 }

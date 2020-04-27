@@ -94,9 +94,15 @@ public class EnduserSendOrderPageController implements Initializable {
             txtPassword.setText("");
             txtDiscount.setText("");
 
+            //kode som lagrer orderen til forhåndsdefinert filsti med generert ordreID.
             Path sentOrderPath = Paths.get("./src/Datamaskin/sentOrdersPath/"+orderID+".csv");
             String formattedList = OrderFormatter.formatListOfProductToString(Cart.Register);
             filesaver.saveToFile(formattedList, sentOrderPath);
+
+            //kode som lagrer orderen til forhåndsdefinert filsti (alle ordre samlet i csv.fil)
+            Path allOrderPath = Paths.get("./src/Datamaskin/sentOrdersPath/allOrders.csv");
+            String formattedAllOrdersList = OrderFormatter.formatFinalOrderOverViewToString(aFinalOrderOverview);
+            filesaver.saveToFile(formattedAllOrdersList, allOrderPath);
 
             //sletter handlekurven *etter* å ha lagret til fil - //todo: kanskje lage exception i tilfelle ikke klarer å lese til filstien (så ikke handlekurven slettes før det faktisk er blitt lagret) - hannah
             shoppingcart.deleteShoppingcart();

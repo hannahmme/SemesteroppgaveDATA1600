@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="608.0" prefWidth="997.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="datamaskin.fxml.SuperuserPageController">
+   <children>
+      <Text layoutX="14.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Velkommen superbruker" wrappingWidth="496.08837890625">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <Button fx:id="toMainPage" alignment="CENTER" contentDisplay="RIGHT" layoutX="820.0" layoutY="29.0" mnemonicParsing="false" onAction="#toMainPage" onKeyPressed="#btnLogOutEnter" prefHeight="33.0" prefWidth="157.0" text="Logg ut" />
+      <ImageView fx:id="logOutImageView" fitHeight="24.0" fitWidth="32.0" layoutX="936.0" layoutY="34.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
+      <Line endX="588.21435546875" layoutX="389.0" layoutY="80.0" startX="-374.1428527832031" />
+      <Button fx:id="toSuperUserProductPage" layoutX="59.0" layoutY="129.0" mnemonicParsing="false" onAction="#toSuperUserProductPage" onKeyPressed="#btnChangeEnter" prefHeight="25.0" prefWidth="368.0" text="Lag nye eller endre på komponenter">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <ImageView fx:id="createProdImageView" fitHeight="230.0" fitWidth="362.0" layoutX="62.0" layoutY="223.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
+      <Line endX="-4.78564453125" endY="528.0" layoutX="500.0" layoutY="80.0" startX="-4.78564453125" startY="1.5" />
+      <Button fx:id="toSuperUserOrderPage" layoutX="560.0" layoutY="129.0" mnemonicParsing="false" onAction="#toSuperUserOrderPage" onKeyPressed="#btnAllOrdersEnter" prefHeight="25.0" prefWidth="368.0" text="Se alle ordre">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <ImageView fx:id="allOrdersImageView" fitHeight="164.0" fitWidth="329.0" layoutX="580.0" layoutY="167.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
+      <Line endX="606.0" layoutX="389.0" layoutY="345.0" startX="104.71435546875" />
+      <ImageView fx:id="allOrdersImageView1" fitHeight="164.0" fitWidth="329.0" layoutX="580.0" layoutY="364.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="btnadministrateUsers" layoutX="668.0" layoutY="547.0" mnemonicParsing="false" onAction="#toAllUsersPage" onKeyTyped="#btnadministrateUsers" text="Administrer brukere" />
+   </children>
+</AnchorPane>

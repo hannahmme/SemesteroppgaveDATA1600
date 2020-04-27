@@ -1,4 +1,4 @@
-import Datamaskin.AdminValidator;
+import datamaskin.AdminValidator;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;

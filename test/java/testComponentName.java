@@ -1,4 +1,4 @@
-import Datamaskin.product.ProductValidator;
+import datamaskin.product.ProductValidator;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;

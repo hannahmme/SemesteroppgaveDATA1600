@@ -1,5 +1,5 @@
-import Datamaskin.exceptions.InvalidLifetimeException;
-import Datamaskin.product.ProductValidator;
+import datamaskin.exceptions.InvalidLifetimeException;
+import datamaskin.product.ProductValidator;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

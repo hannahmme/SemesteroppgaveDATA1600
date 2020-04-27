@@ -22,6 +22,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -109,11 +111,22 @@ public class EnduserSendOrderPageController implements Initializable {
         }
     }
 
-    // metode for å generere ordreID
-    private static int orderID = 10;
-    private String generateOrderID(){
-        orderID++;
-        return "ordre-"+orderID;
+    // metode for å generere ordreID. Setter en begrensning på 100 ordre
+    private String generateOrderID() throws IOException {
+        int orderNumber = 0;
+        boolean pathNotUsed;
+
+        for(int i = 1; i<100; i++) {
+            File orderPath = new File(
+                    "./src/Datamaskin/sentOrdersPath/ordre-" + i + ".csv");
+            pathNotUsed = orderPath.exists();
+            if (!pathNotUsed) {
+                orderNumber = i;
+                break;
+            }
+        }
+
+        return "ordre-"+orderNumber;
     }
 
     // metode for å generere en ordre og legget il ordreID og epost i array

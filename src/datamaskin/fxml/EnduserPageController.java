@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -29,6 +30,7 @@ public class EnduserPageController implements Initializable {
     @FXML private Button btnGoToPay;
     @FXML private Label lblTotalPrice;
     @FXML private Label lblError;
+    @FXML private Label lblInfo;
     @FXML private ImageView mainpageImageView;
 
     @FXML private TableView<Product> tableviewCart;
@@ -215,5 +217,11 @@ public class EnduserPageController implements Initializable {
         if (event.getCode().equals(KeyCode.ENTER)) {
             loadPayment();
         }
+    }
+
+    // todo: metode for å sette infoteksten for hvert produkt
+    @FXML void setInfotext(InputMethodEvent event) {
+        String infoGraphicCard;
+        lblInfo.setText("");
     }
 }

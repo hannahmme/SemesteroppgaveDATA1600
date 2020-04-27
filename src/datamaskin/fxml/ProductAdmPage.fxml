@@ -63,7 +63,7 @@
       <Text fx:id="wrongInput" layoutX="7.0" layoutY="597.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="264.42243576049805" />
       <Button fx:id="btnDeleteComponent" layoutX="1038.0" layoutY="618.0" mnemonicParsing="false" onAction="#deleteComponent" onKeyPressed="#btnDeleteComponentEnter" text="Slett valgt komponent" />
       <Text layoutX="921.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logget inn som admin" />
-      <Button fx:id="btnSearch" layoutX="1151.0" layoutY="72.0" mnemonicParsing="false" text="Søk" />
-      <TextField fx:id="txtSearch" layoutX="990.0" layoutY="72.0" />
+      <TextField fx:id="txtSearch" layoutX="895.0" layoutY="72.0" onKeyTyped="#searchTxtEntered"/>
+      <ChoiceBox fx:id="cboxFilter" layoutX="1056.0" layoutY="72.0" prefWidth="150.0" onAction="#filterChoiceChanged" />
    </children>
 </AnchorPane>

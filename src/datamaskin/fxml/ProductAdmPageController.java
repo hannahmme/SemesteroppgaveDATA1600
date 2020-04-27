@@ -6,6 +6,7 @@ import datamaskin.filbehandling.FileSaver;
 import datamaskin.filbehandling.SaveComponentsToFile;
 import datamaskin.Page;
 import datamaskin.product.*;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -40,7 +41,7 @@ public class ProductAdmPageController implements Initializable{
     @FXML private MenuItem saveToFile;
     @FXML private MenuItem openFromFile;
     @FXML private Label txtSearch;
-    @FXML private Button btnSearch;
+    @FXML private ChoiceBox<String> cboxFilter;
 
 
     // metode for å lage kategoriene i cboksene, så admin må velge en av de
@@ -151,6 +152,40 @@ public class ProductAdmPageController implements Initializable{
         return null;
     }
 
+    private void updateProductList() {
+        ProductRegister.setComponentToTV(componentTableview);
+    }
+
+    @FXML
+    private void filterChoiceChanged(){
+
+    }
+
+    @FXML
+    private void searchTxtEntered(){
+
+    }
+
+    private void filter(){
+        if(txtSearch.getText().isEmpty()) {
+            updateProductList();
+            return;
+        }
+
+        ObservableList<Product> result = null;
+        switch (cboxFilter.getValue().toLowerCase()) {
+            case "name" : result = aRegister.filterByName(txtSearch.getText()); break;
+            case "description" : result = aRegister.filterByDescription(txtSearch.getText()); break;
+            case "lifetime" : try {
+                result = aRegister.filterByLifetime(Integer.parseInt(txtSearch.getText()));
+            } catch (NumberFormatException e) {} break;
+            case "price" : try {
+                result = aRegister.filterByPrice(Double.parseDouble(txtSearch.getText()));
+            } catch (NumberFormatException e) {} break;
+            case "category" : result = aRegister.filterByCategory(txtSearch.getText()); break;
+        }
+    }
+
     // knapp for å slette komponent fra produktlista
     @FXML void btnDeleteComponentEnter(KeyEvent event) throws IOException {
         if(event.getCode().equals(KeyCode.ENTER)){
@@ -199,6 +234,9 @@ public class ProductAdmPageController implements Initializable{
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("Category"));
 
         aRegister.setComponentToTV(componentTableview);
+
+        //Choiceboxen for filtrering skal stå på Navn som default
+        cboxFilter.setValue("Navn");
 
         // for å ha kategoriene i nedtrekkslista fra før av
         setData();

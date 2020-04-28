@@ -40,7 +40,9 @@ public class AllUsersController implements Initializable {
 
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
         passwordColumn.setCellValueFactory(new PropertyValueFactory<>("Password"));
+        customerTV.setEditable(false);
     }
+
 
     //knappen "tilbake" tar brukeren med tilbake til menysiden for superbruker
     @FXML void toSuperuserpage() throws IOException {

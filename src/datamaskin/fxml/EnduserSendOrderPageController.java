@@ -3,7 +3,6 @@ package datamaskin.fxml;
 import datamaskin.cart.Cart;
 import datamaskin.filbehandling.ReadFromCustomerFile;
 import datamaskin.users.Customer;
-import datamaskin.users.CustomerRegister;
 import datamaskin.users.CustomerValidator;
 import datamaskin.exceptions.InvalidEmailException;
 import datamaskin.filbehandling.FileSaverTxt;
@@ -34,8 +33,8 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.Objects;
 import java.util.ResourceBundle;
+import static datamaskin.users.CustomerValidator.getCustomerList;
 
 public class EnduserSendOrderPageController implements Initializable {
 
@@ -145,11 +144,10 @@ public class EnduserSendOrderPageController implements Initializable {
         try {
             email = txtEpost.getText();
             password = txtPassword.getText();
-            ObservableList<Customer> allCustomersList = readFromCustomerFile.readFromCustomerFile("./src/Datamaskin/users/allCustomers.csv");
 
             if(!CustomerValidator.validateEmail(email)){
                 throw new InvalidEmailException("Skriv inn gyldig e-postadresse");
-            } else if(!CustomerValidator.validateCredentials(email, password, allCustomersList)){
+            } else if(!CustomerValidator.validateCredentials(email, password, getCustomerList())){
                 throw new InvalidEmailException("Du har skrevet inn ugyldige innloggingsdetaljer!");
             }
             else{

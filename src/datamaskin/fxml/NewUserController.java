@@ -4,7 +4,6 @@ import datamaskin.filbehandling.CustomerFormatter;
 import datamaskin.filbehandling.FileSaverTxt;
 import datamaskin.filbehandling.ReadFromCustomerFile;
 import datamaskin.users.Customer;
-import datamaskin.users.CustomerRegister;
 import datamaskin.users.CustomerValidator;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,8 +23,6 @@ public class NewUserController {
     @FXML private Label lblErrorPassword;
 
     private FileSaverTxt filesaver = new FileSaverTxt();
-    public static CustomerRegister aCustomerRegister = new CustomerRegister();
-    private ReadFromCustomerFile readFromCustomerFile = new ReadFromCustomerFile();
 
     // når knappen trykkes kalles metoden for å lage ny bruker og for at vinduet skal lukkes hvis vellykket
     @FXML void makeNewUser(ActionEvent event) throws Exception {
@@ -53,7 +50,6 @@ public class NewUserController {
             String email = txtEmail.getText();
             String password = txtPassword.getText();
             String password2 = txtPassword2.getText();
-            ObservableList<Customer> allCustomersList = readFromCustomerFile.readFromCustomerFile("./src/Datamaskin/users/allCustomers.csv");
 
             // validerer epost og passord og sjekker om de er i riktig format/ lengde
             if(!CustomerValidator.validatePassword(password)){ // false returneres om passordet er for kort
@@ -61,9 +57,8 @@ public class NewUserController {
             else if(!CustomerValidator.validateEmail(email)){ // false returneres om eposten er ugyldig
                 lblErrorEmail.setText("Skriv inn en gyldig epostadresse");}
 
-            // todo: må sjekke om den finnes i CSV, ikke array
             // sjekker om eposten finnes fra før og om passordene er like
-            else if(CustomerValidator.validateAvailability(email, allCustomersList)){ // true returneres om eposten finnes fra før
+            else if(CustomerValidator.validateAvailability(email, CustomerValidator.getCustomerList())){ // true returneres om eposten finnes fra før
                 lblErrorEmail.setText("Epostadressen er allerede tilknyttet en kunde");}
 
 
@@ -72,7 +67,7 @@ public class NewUserController {
 
             // hvis epost og passord er i riktig format, og de andre if-ene ikke slår inn lages en ny kunde
             else if(CustomerValidator.validateEmail(email) && CustomerValidator.validatePassword(password) &&
-                    !CustomerValidator.validateAvailability(email, allCustomersList)) {
+                    !CustomerValidator.validateAvailability(email, CustomerValidator.getCustomerList())) {
                 Customer aCustomer = new Customer(email, password);
                 return aCustomer;
             }

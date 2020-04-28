@@ -1,7 +1,10 @@
 package datamaskin.users;
 
 import datamaskin.exceptions.InvalidEmailException;
+import datamaskin.filbehandling.ReadFromCustomerFile;
 import javafx.collections.ObservableList;
+
+import java.io.IOException;
 
 public class CustomerValidator {
 
@@ -38,6 +41,26 @@ public class CustomerValidator {
             }
         }
         return false;
+    }
+
+    // todo: gjøre ferdig metoden for å slette fra csv
+    //metode som gjør det mulig å slette en kunde
+    public static void deleteCustomer(Customer customerToDelete, ObservableList<Customer> aCustomerRegister){
+        if(!(customerToDelete == null)){
+
+        }
+    }
+
+    private static ReadFromCustomerFile readFromCustomerFile = new ReadFromCustomerFile();
+
+    public static ObservableList<Customer> getCustomerList() throws IOException {
+        try {
+            ObservableList<Customer> allCustomersList = readFromCustomerFile.readFromCustomerFile("./src/Datamaskin/users/allCustomers.csv");
+            return allCustomersList;
+        } catch (IOException e){
+            System.out.println("Filsti ikke funnet: " + e.getMessage());
+        }
+        return null;
     }
 
 }

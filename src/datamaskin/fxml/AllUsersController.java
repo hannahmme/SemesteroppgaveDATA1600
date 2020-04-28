@@ -2,11 +2,8 @@ package datamaskin.fxml;
 
 import datamaskin.Page;
 import datamaskin.filbehandling.ReadFromCustomerFile;
-import datamaskin.orders.FinalOrderOverview;
 import datamaskin.users.Customer;
-import datamaskin.users.CustomerRegister;
 import datamaskin.users.CustomerValidator;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,6 +20,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static datamaskin.users.CustomerValidator.getCustomerList;
+
 public class AllUsersController implements Initializable {
 
     @FXML private TableView<Customer> customerTV;
@@ -30,19 +29,17 @@ public class AllUsersController implements Initializable {
     @FXML private TableColumn<Customer, String> passwordColumn;
     @FXML private Button toSuperuserpage;
 
-    private ReadFromCustomerFile readFromCustomerFile = new ReadFromCustomerFile();
 
-    @FXML void deleteUser(){
+    // todo fikse sletteknapp
+    @FXML void deleteUser() throws IOException {
         Customer deleteCustomer = customerTV.getSelectionModel().getSelectedItem();
-        CustomerRegister.deleteCustomer(deleteCustomer);
-        NewUserController.aCustomerRegister.deleteCustomer(deleteCustomer);
+        CustomerValidator.deleteCustomer(deleteCustomer, getCustomerList());
     }
 
     @Override public void initialize(URL url, ResourceBundle rb) {
         try {
-            ObservableList<Customer> allOrdersList = readFromCustomerFile.readFromCustomerFile("./src/Datamaskin/users/allCustomers.csv");
-            customerTV.getItems().addAll(allOrdersList);
-            customerTV.setItems(allOrdersList);
+            customerTV.getItems().addAll(getCustomerList());
+            customerTV.setItems(getCustomerList());
         } catch (IOException e) {
             System.out.println("Filsti ikke funnet: " + e.getMessage());
         }

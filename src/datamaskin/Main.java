@@ -1,7 +1,5 @@
 package datamaskin;
 
-import datamaskin.users.CustomerRegister;
-import datamaskin.orders.Order;
 import datamaskin.product.ProductCategories;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

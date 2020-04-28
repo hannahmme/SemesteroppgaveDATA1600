@@ -1,7 +1,6 @@
 package datamaskin.fxml;
 
-import datamaskin.exceptions.DoubleFromStringConverter;
-import datamaskin.exceptions.IntegerFromStringConverter;
+import datamaskin.exceptions.ConvertersWithErrorHandling;
 import datamaskin.exceptions.InvalidLifetimeException;
 import datamaskin.exceptions.InvalidPriceException;
 import datamaskin.filbehandling.FileSaver;
@@ -19,7 +18,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
@@ -34,6 +32,11 @@ public class ProductAdmPageController implements Initializable{
 
     @FXML private Button toSuperUserPage;
     @FXML private Label wrongInput;
+
+    private ConvertersWithErrorHandling.IntegerStringConverter intStrConverter
+            = new ConvertersWithErrorHandling.IntegerStringConverter();
+    private ConvertersWithErrorHandling.DoubleFromStringConverter doubleStrConverter
+            = new ConvertersWithErrorHandling.DoubleFromStringConverter();
     private SaveComponentsToFile filesaver = new SaveComponentsToFile();
 
     // inputfields for å lage et produkt/ komponent
@@ -229,8 +232,8 @@ public class ProductAdmPageController implements Initializable{
     }
 
     @Override public void initialize(URL url, ResourceBundle rb) {
-        lifetimeColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        priceColumn.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        lifetimeColumn.setCellFactory(TextFieldTableCell.forTableColumn(intStrConverter));
+        priceColumn.setCellFactory(TextFieldTableCell.forTableColumn(doubleStrConverter));
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         categoryColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -321,13 +324,13 @@ public class ProductAdmPageController implements Initializable{
         event.getRowValue().setDescription(event.getNewValue());
     }
     @FXML void txtProductLifetimeEdited(TableColumn.CellEditEvent<Product, Integer> event) {
-        if (IntegerFromStringConverter.convertSuccessfull) {
+        if (intStrConverter.getSuccessfulIntValue()) {
             event.getRowValue().setLifetime(event.getNewValue());
         }
         componentTableview.refresh();
     }
-    @FXML void txtProductPriceEdited(TableColumn.CellEditEvent<Product, Double> event){
-        if(DoubleFromStringConverter.convertSuccessfull){
+    @FXML void txtProductPriceEdited(TableColumn.CellEditEvent<Product, Double> event) {
+        if (doubleStrConverter.getSuccessfulDoubleValue()) {
             event.getRowValue().setPrice(event.getNewValue());
         }
         componentTableview.refresh();

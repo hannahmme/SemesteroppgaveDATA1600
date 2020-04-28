@@ -109,7 +109,7 @@ public class AllOrdersController implements Initializable {
             allOrders.getItems().addAll(allOrdersList);
             allOrders.setItems(allOrdersList);
         } catch (IOException e) {
-            System.out.println("Filsti ikke funnet " + e.getMessage());
+            System.out.println("Filsti ikke funnet: " + e.getMessage());
         }
 
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
@@ -125,16 +125,23 @@ public class AllOrdersController implements Initializable {
         FinalOrderOverview finalOrder = allOrders.getSelectionModel().getSelectedItem();
         String orderID = finalOrder.getOrderID();
         String orderIdPath = "./src/Datamaskin/sentOrdersPath/" + orderID + ".csv";
-        ObservableList<Product> listOfProducts = readFromOrderFile.readFromOrderFile(orderIdPath);
 
-        tblOrderContent.getItems().addAll(listOfProducts);
-        tblOrderContent.setItems(listOfProducts);
+        try{
+            ObservableList<Product> listOfProducts = readFromOrderFile.readFromOrderFile(orderIdPath);
+            tblOrderContent.getItems().addAll(listOfProducts);
+            tblOrderContent.setItems(listOfProducts);
+
+        } catch (IOException e){
+            System.out.println("Noe gikk galt ved innlasting av filstien: " + e.getMessage());
+        }
+
+
+
 
         productName.setCellValueFactory(new PropertyValueFactory<>("Name"));
         productInfo.setCellValueFactory(new PropertyValueFactory<>("Description"));
         productLifetime.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
         productPrice.setCellValueFactory(new PropertyValueFactory<>("Price"));
-
 
     }
 

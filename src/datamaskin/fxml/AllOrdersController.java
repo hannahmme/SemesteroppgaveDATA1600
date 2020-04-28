@@ -4,7 +4,6 @@ import datamaskin.filbehandling.ReadFromAllOrdersFile;
 import datamaskin.filbehandling.ReadFromOrderFile;
 import datamaskin.orders.FinalOrderOverview;
 import datamaskin.Page;
-import datamaskin.orders.Order;
 import datamaskin.product.Product;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -24,10 +23,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Observable;
 import java.util.ResourceBundle;
 
 import static datamaskin.orders.FinalOrderOverviewRegister.OrderRegister;
@@ -121,8 +116,6 @@ public class AllOrdersController implements Initializable {
         orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("OrderID"));
         orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("OrderDate"));
         totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
-
-        //Order.OrderRegister.addOrder(allOrders);
     }
 
 
@@ -137,7 +130,10 @@ public class AllOrdersController implements Initializable {
         tblOrderContent.getItems().addAll(listOfProducts);
         tblOrderContent.setItems(listOfProducts);
 
-
+        productName.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        productInfo.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        productLifetime.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
+        productPrice.setCellValueFactory(new PropertyValueFactory<>("Price"));
 
 
     }

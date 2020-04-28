@@ -1,4 +1,4 @@
-package datamaskin.customer;
+package datamaskin.users;
 
 import datamaskin.exceptions.InvalidEmailException;
 import javafx.collections.FXCollections;

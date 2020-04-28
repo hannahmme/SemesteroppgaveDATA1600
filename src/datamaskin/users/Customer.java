@@ -1,4 +1,4 @@
-package datamaskin.customer;
+package datamaskin.users;
 
 import javafx.beans.property.SimpleStringProperty;
 

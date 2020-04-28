@@ -1,7 +1,7 @@
 package datamaskin.fxml;
 
-import datamaskin.customer.CustomerRegister;
-import datamaskin.customer.CustomerValidator;
+import datamaskin.users.CustomerRegister;
+import datamaskin.users.CustomerValidator;
 import datamaskin.exceptions.InvalidEmailException;
 import datamaskin.Page;
 import datamaskin.images.ImageClass;

@@ -1,31 +1,10 @@
-Hei! Her kan vi skrive informasjon.
+Nyttig informasjon:
 
 Brukernavn og passord til superbruker: admin; admin.
+Vi har lagt inn to ekesempelbrukere med brukernavn og passord:
+    1. bruker@bruker.no; bruker
+    2. eksempel@eksempel.no; eksempel
 
 
-Vi har følgende sider:
-1. Hovedside
-    - Mainpage
-
-2. Superbrukersiden
-    - SuperuserPage
-
-    2.1 Endre på komponenter-siden
-        - ProductAdmPage, Product og ProductRegister til.
-
-    2.2 Se alle ordre-siden
-        - admAllOrders
-
-3. Sluttbrukersiden/ Handlekurvsiden
-    - EnduserPage
-
-   3.1 Bestillingssiden
-        - OrderComponents
-
-4. Se tidligere ordre-siden
-    - enduserFormerOrder
 
 
-Tanker om hva som bør inkluderes:
-- Mulighet til å komme seg tilbake til hovedsiden og forrige side man var på uansett hvilken side man er på
--

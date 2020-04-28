@@ -1,8 +1,8 @@
 package datamaskin.fxml;
 
 import datamaskin.Page;
-import datamaskin.customer.Customer;
-import datamaskin.customer.CustomerRegister;
+import datamaskin.users.Customer;
+import datamaskin.users.CustomerRegister;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

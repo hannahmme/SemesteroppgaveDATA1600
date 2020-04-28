@@ -26,26 +26,35 @@
                         <Font name="Arial Bold" size="36.0" />
                      </font></Text>
                   <Label layoutX="11.0" layoutY="102.0" prefHeight="21.0" prefWidth="86.0" text="Skjermkort" />
-                  <ChoiceBox id="Velg her" fx:id="cBoxGraphicCard" layoutX="11.0" layoutY="123.0" onInputMethodTextChanged="#setInfotext" prefWidth="150.0" />
-                  <Label layoutX="212.0" layoutY="102.0" prefHeight="17.0" prefWidth="149.0" text="Minnekort" />
-                  <ChoiceBox fx:id="cBoxMemorycard" layoutX="212.0" layoutY="123.0" onInputMethodTextChanged="#setInfotext" prefWidth="150.0" />
-                  <Label layoutX="427.0" layoutY="102.0" prefHeight="17.0" prefWidth="149.0" text="Harddisk" />
-                  <ChoiceBox fx:id="cBoxHarddrive" layoutX="426.0" layoutY="123.0" onInputMethodTextChanged="#setInfotext" prefWidth="150.0" />
-                  <Label layoutX="12.0" layoutY="196.0" prefHeight="17.0" prefWidth="149.0" text="Prosessor" />
-                  <ChoiceBox fx:id="cBoxProcessor" layoutX="11.0" layoutY="217.0" onInputMethodTextChanged="#setInfotext" prefWidth="150.0" />
-                  <Label layoutX="213.0" layoutY="196.0" prefHeight="17.0" prefWidth="149.0" text="Strømforsyning" />
-                  <ChoiceBox fx:id="cBoxPower" layoutX="212.0" layoutY="217.0" onInputMethodTextChanged="#setInfotext" prefWidth="150.0" />
-                  <Label layoutX="427.0" layoutY="196.0" prefHeight="17.0" prefWidth="149.0" text="Lydkort" />
-                  <ChoiceBox fx:id="cBoxSoundcard" layoutX="427.0" layoutY="217.0" onInputMethodTextChanged="#setInfotext" prefWidth="150.0" />
-                  <Label layoutX="12.0" layoutY="281.0" prefHeight="17.0" prefWidth="150.0" text="Optisk disk" />
-                  <ChoiceBox fx:id="cBoxOpticaldisk" layoutX="11.0" layoutY="302.0" onInputMethodTextChanged="#setInfotext" prefWidth="150.0" />
-                  <Label layoutX="212.0" layoutY="281.0" prefHeight="17.0" prefWidth="149.0" text="Farge" />
-                  <ChoiceBox fx:id="cBoxColor" layoutX="212.0" layoutY="302.0" onInputMethodTextChanged="#setInfotext" prefWidth="150.0" />
-                  <Line endX="400.0" endY="325.0" layoutX="210.0" layoutY="115.0" startX="-200.0" startY="325.0" />
-                  <Button fx:id="btnAddToCart" layoutX="140.0" layoutY="537.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="86.0" prefWidth="340.0" style="-fx-background-color: grey;" text="Oppdater handlekurv med valgte komponenter" textFill="WHITE" />
-                  <Label fx:id="lblError" layoutX="140.0" layoutY="454.0" prefHeight="76.0" prefWidth="340.0" textFill="RED" wrapText="true" />
+                  <ChoiceBox id="Velg her" fx:id="cBoxGraphicCard" layoutX="128.0" layoutY="97.0" prefWidth="150.0" />
+                  <Label fx:id="lblInfoGraphicCard" layoutX="310.0" layoutY="97.0" prefHeight="31.0" prefWidth="299.0" />
+                  <Label layoutX="12.0" layoutY="154.0" prefHeight="21.0" prefWidth="109.0" text="Minnekort" />
+                  <ChoiceBox fx:id="cBoxMemorycard" layoutX="128.0" layoutY="149.0" prefWidth="150.0" />
+                  <Label fx:id="lblInfoMemorycard" layoutX="310.0" layoutY="149.0" prefHeight="31.0" prefWidth="299.0" />
+                  <Label layoutX="12.0" layoutY="207.0" prefHeight="21.0" prefWidth="109.0" text="Harddisk" />
+                  <ChoiceBox fx:id="cBoxHarddrive" layoutX="128.0" layoutY="202.0" prefWidth="150.0" />
+                  <Label fx:id="lblInfoHarddrive" layoutX="297.0" layoutY="202.0" prefHeight="31.0" prefWidth="299.0" />
+                  <Label layoutX="12.0" layoutY="253.0" prefHeight="21.0" prefWidth="109.0" text="Prosessor" />
+                  <ChoiceBox fx:id="cBoxProcessor" layoutX="128.0" layoutY="248.0" prefWidth="150.0" />
+                  <Label fx:id="lblInfoProcessor" layoutX="297.0" layoutY="248.0" prefHeight="31.0" prefWidth="299.0" />
+                  <Label layoutX="13.0" layoutY="302.0" prefHeight="21.0" prefWidth="109.0" text="Strømforsyning" />
+                  <ChoiceBox fx:id="cBoxPower" layoutX="128.0" layoutY="297.0" prefWidth="150.0" />
+                  <Label fx:id="lblInfoPower" layoutX="297.0" layoutY="297.0" prefHeight="31.0" prefWidth="299.0" />
+                  <Label layoutX="12.0" layoutY="357.0" prefHeight="21.0" prefWidth="109.0" text="Lydkort" />
+                  <ChoiceBox fx:id="cBoxSoundcard" layoutX="128.0" layoutY="352.0" prefWidth="150.0" />
+                  <Label fx:id="lblInfoSoundcard" layoutX="297.0" layoutY="352.0" prefHeight="31.0" prefWidth="299.0" />
+                  <Label layoutX="13.0" layoutY="403.0" prefHeight="21.0" prefWidth="109.0" text="Optisk disk" />
+                  <ChoiceBox fx:id="cBoxOpticaldisk" layoutX="128.0" layoutY="398.0" prefWidth="150.0" />
+                  <Label fx:id="lblInfoOpticaldisk" layoutX="297.0" layoutY="398.0" prefHeight="31.0" prefWidth="299.0" />
+                  <Label layoutX="12.0" layoutY="456.0" prefHeight="21.0" prefWidth="109.0" text="Farge" />
+                  <ChoiceBox fx:id="cBoxColor" layoutX="128.0" layoutY="451.0" prefWidth="150.0" />
+                  <Label fx:id="lblInfoColor" layoutX="297.0" layoutY="451.0" prefHeight="31.0" prefWidth="299.0" />
+                  <Button fx:id="btnAddToCart" layoutX="140.0" layoutY="568.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="86.0" prefWidth="353.0" style="-fx-background-color: grey;" text="Oppdater handlekurv med valgte komponenter" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font></Button>
+                  <Label fx:id="lblError" layoutX="93.0" layoutY="504.0" prefHeight="55.0" prefWidth="434.0" textFill="RED" wrapText="true" />
                   <Line endX="400.0" layoutX="210.0" layoutY="80.0" startX="-200.0" />
-                  <Label fx:id="lblInfo" layoutX="10.0" layoutY="359.0" prefHeight="63.0" prefWidth="601.0" wrapText="true" />
                </children>
             </AnchorPane>
           <AnchorPane layoutX="625.0" layoutY="670.0" minHeight="0.0" minWidth="0.0" prefHeight="670.0" prefWidth="625.0" SplitPane.resizableWithParent="false">

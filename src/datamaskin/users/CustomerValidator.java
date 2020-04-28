@@ -1,4 +1,4 @@
-package datamaskin.customer;
+package datamaskin.users;
 
 public class CustomerValidator {
 

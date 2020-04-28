@@ -1,8 +1,8 @@
 package datamaskin.fxml;
 
-import datamaskin.customer.Customer;
-import datamaskin.customer.CustomerRegister;
-import datamaskin.customer.CustomerValidator;
+import datamaskin.users.Customer;
+import datamaskin.users.CustomerRegister;
+import datamaskin.users.CustomerValidator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;

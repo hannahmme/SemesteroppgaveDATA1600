@@ -83,6 +83,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
         if(chosenProduct!=null) {
             if (chosenProduct.getCategory().equals("Andre produkter")) {
                 shoppingCart.deleteOneProductFromCart(chosenProduct);
+                updateTotalPriceLabel();
             } else {
                 boolean goBackIsConfirmed = Page.alertInformation("Du kan ikke slette essensielle komponenter, gå tilbake til forrige side for å endre disse.");
                 if (goBackIsConfirmed){
@@ -128,14 +129,14 @@ public class ExtraOrderEnduserPageController implements Initializable {
         // Hvis raden det klikkes på er tom - ikke gjør noe
         if (selectedProduct == null) return;
 
-        // Forsøker å hente ut bilde og vise det
+        // Forsøker å hente ut bildet og vise det
         try {
             String productImage = selectedProduct.getImageUri();
             FileInputStream imageStream = new FileInputStream(productImage);
             Image image = new Image(imageStream);
             imgImageView.setImage(image);
         } catch (FileNotFoundException e) {
-            System.err.println("Noe gikk galt ved innlasting av produktbilde. " + e.getMessage());
+            System.err.println("Noe gikk galt ved innlasting av produktbildet. " + e.getMessage());
         }
     }
 

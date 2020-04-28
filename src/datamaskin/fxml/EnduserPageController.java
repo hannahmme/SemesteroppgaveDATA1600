@@ -5,6 +5,7 @@ import datamaskin.product.Product;
 import datamaskin.product.ProductCategories;
 import datamaskin.Page;
 import datamaskin.images.ImageClass;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -30,8 +32,16 @@ public class EnduserPageController implements Initializable {
     @FXML private Button btnGoToPay;
     @FXML private Label lblTotalPrice;
     @FXML private Label lblError;
-    @FXML private Label lblInfo;
     @FXML private ImageView mainpageImageView;
+
+    @FXML private Label lblInfoGraphicCard;
+    @FXML private Label lblInfoMemorycard;
+    @FXML private Label lblInfoHarddrive;
+    @FXML private Label lblInfoProcessor;
+    @FXML private Label lblInfoPower;
+    @FXML private Label lblInfoSoundcard;
+    @FXML private Label lblInfoOpticaldisk;
+    @FXML private Label lblInfoColor;
 
     @FXML private TableView<Product> tableviewCart;
     @FXML private TableColumn<Product, String> nameColumn;
@@ -219,9 +229,15 @@ public class EnduserPageController implements Initializable {
         }
     }
 
-    // todo: metode for å sette infoteksten for hvert produkt
-    @FXML void setInfotext(InputMethodEvent event) {
-        String infoGraphicCard;
-        lblInfo.setText("");
+
+    //todo: metode for å sette infotekst ved siden av hver CB. vet ikke hvordan den skal vite når noe velges?
+    public void changedGraphicCard() {
+        Product newValue = Cart.addProduct(cBoxGraphicCard.getValue(),ProductCategories.GraphicCard);
+        lblInfoGraphicCard.setText(newValue.getDescription());
+
+        // osv med de andre kategoriene
     }
+
+
+
 }

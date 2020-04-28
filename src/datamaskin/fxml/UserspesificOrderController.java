@@ -1,5 +1,6 @@
 package datamaskin.fxml;
 
+import datamaskin.filbehandling.ReadFromAllOrdersFile;
 import datamaskin.filbehandling.ReadFromOrderFile;
 import datamaskin.orders.FinalOrderCustomerOverviewRegister;
 import datamaskin.orders.Order;
@@ -41,6 +42,7 @@ public class UserspesificOrderController implements Initializable {
     @FXML private TableColumn<Product, Double> productPrice;
     @FXML private TextField txtFilter;
 
+    private ReadFromAllOrdersFile readFromAllOrdersFile = new ReadFromAllOrdersFile();
     private ReadFromOrderFile reader = new ReadFromOrderFile();
 
     //Metode som viser innholdet i orderen når bruker trykker på en ordre
@@ -107,15 +109,18 @@ public class UserspesificOrderController implements Initializable {
 
     // metoder for å legge inn ordreregisteret på denne siden
     @Override public void initialize(URL url, ResourceBundle rb) {
-        Order.deleteCustomerInfo();                 // sletter elementer i kunderegisteret for ny bruk
-        Order.addCustomerOverviewInfo(sortingKey);  // legger til elementer basert på hva som er sortingKey
+        try {
+            ObservableList<FinalOrderOverview> allOrdersList = readFromAllOrdersFile.readFromAllOrdersFile("./src/Datamaskin/sentOrdersPath/allOrders.csv");
+            tblAllOrders.getItems().addAll(allOrdersList);
+            tblAllOrders.setItems(allOrdersList);
+        } catch (IOException e) {
+            System.out.println("Filsti ikke funnet " + e.getMessage());
+        }
 
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
         orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("OrderID"));
         orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("OrderDate"));
         totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
-
-        Order.aCustomersOrderRegister.addOrder(tblAllOrders);
     }
 
 

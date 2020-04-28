@@ -1,10 +1,14 @@
 package datamaskin.product;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableView;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.stream.Collectors;
 
 public class ProductRegister implements Serializable {
@@ -83,6 +87,7 @@ public class ProductRegister implements Serializable {
         }
         return false;
     }
+
 
 
 }

@@ -1,7 +1,6 @@
 package datamaskin.orders;
 
-// er denne noe vits i å ha?
-
+// todo: er denne noe vits i å ha? Eller kan produktklassen brukes istedet?
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;

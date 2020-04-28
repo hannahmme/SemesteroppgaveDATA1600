@@ -1,6 +1,6 @@
 package datamaskin;
 
-import datamaskin.customer.CustomerRegister;
+import datamaskin.users.CustomerRegister;
 import datamaskin.orders.Order;
 import datamaskin.product.ProductCategories;
 import javafx.application.Application;
@@ -20,7 +20,6 @@ public class Main extends Application {
 
         ProductCategories.setExampleData();
         CustomerRegister.setExampleCustomers();
-        Order.setExampleData();
     }
 
     public static void main(String[] args) {

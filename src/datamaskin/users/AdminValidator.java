@@ -1,4 +1,4 @@
-package datamaskin;
+package datamaskin.users;
 
 public class AdminValidator {
 

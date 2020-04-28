@@ -12,12 +12,12 @@
    <children>
       <TableView fx:id="customerTV" layoutX="347.0" layoutY="94.0" prefHeight="518.0" prefWidth="557.0">
         <columns>
-          <TableColumn fx:id="emailColumn" prefWidth="293.0" text="Epostadresse">
+          <TableColumn fx:id="emailColumn" onEditCommit="#changeEmailCellEvent" prefWidth="293.0" text="Epostadresse">
             <cellValueFactory>
                 <PropertyValueFactory property="email" />
             </cellValueFactory>
           </TableColumn>
-          <TableColumn fx:id="passwordColumn" prefWidth="259.0" text="Passord">
+          <TableColumn fx:id="passwordColumn" onEditCommit="#changePasswordCellEvent" prefWidth="259.0" text="Passord">
             <cellValueFactory>
                 <PropertyValueFactory property="password" />
             </cellValueFactory>

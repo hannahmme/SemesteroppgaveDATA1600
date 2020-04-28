@@ -3,6 +3,7 @@ package datamaskin.fxml;
 import datamaskin.Page;
 import datamaskin.users.Customer;
 import datamaskin.users.CustomerRegister;
+import datamaskin.users.CustomerValidator;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,10 +12,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,8 +23,8 @@ import java.util.ResourceBundle;
 public class AllUsersController implements Initializable {
 
     @FXML private TableView<Customer> customerTV;
-    @FXML private TableColumn<String, Customer> emailColumn;
-    @FXML private TableColumn<String, Customer> passwordColumn;
+    @FXML private TableColumn<Customer, String> emailColumn;
+    @FXML private TableColumn<Customer, String> passwordColumn;
     @FXML private Button toSuperuserpage;
 
 
@@ -38,7 +39,26 @@ public class AllUsersController implements Initializable {
         passwordColumn.setCellValueFactory(new PropertyValueFactory<>("Password"));
 
         NewUserController.aCustomerRegister.setCustomerToTV(customerTV);
-        customerTV.isEditable();
+
+        //oppdaterer TV for å la oss endre tabellen
+        customerTV.setEditable(true);
+        emailColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        passwordColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+    }
+
+    // metode som vil la admin endre komponenter
+    public void changeEmailCellEvent(TableColumn.CellEditEvent editedCell){
+        Customer selectedCustomer = customerTV.getSelectionModel().getSelectedItem();
+
+        selectedCustomer.setEmail(editedCell.getNewValue().toString());
+    }
+
+    // metode som vil la admin endre komponenter
+    public void changePasswordCellEvent(TableColumn.CellEditEvent editedCell){
+        Customer selectedCustomer = customerTV.getSelectionModel().getSelectedItem();
+        if(CustomerValidator.validatePassword(selectedCustomer.getPassword())) {
+            selectedCustomer.setPassword(editedCell.getNewValue().toString());
+        }
     }
 
     //knappen "tilbake" tar brukeren med tilbake til menysiden for superbruker

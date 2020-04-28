@@ -1,6 +1,7 @@
 package datamaskin.fxml;
 
 import datamaskin.cart.Cart;
+import datamaskin.orders.Order;
 import datamaskin.product.Product;
 import datamaskin.Page;
 import datamaskin.product.ProductCategories;
@@ -63,7 +64,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
                 throw new NullPointerException("Velg et produkt for å legge det til i handlekurven.");
             } else {
                 shoppingCart.addElement(extraProduct);
-                updateTotalPriceLabel();
+                Order.getTotalprice(shoppingCart,lblTotalPrice);
                 txtWarning.setText("");
             }
 
@@ -72,18 +73,12 @@ public class ExtraOrderEnduserPageController implements Initializable {
         }
     }
 
-    // Metode som oppdaterer label med totalsum
-    private void updateTotalPriceLabel() {
-        double totalPrice = shoppingCart.getTotalPrice();
-        lblTotalPrice.setText(String.valueOf(totalPrice));
-    }
-
     @FXML void deleteFromCart(ActionEvent event) throws IOException {
         Product chosenProduct = tableviewCart.getSelectionModel().getSelectedItem();
         if(chosenProduct!=null) {
             if (chosenProduct.getCategory().equals("Andre produkter")) {
                 shoppingCart.deleteOneProductFromCart(chosenProduct);
-                updateTotalPriceLabel();
+                Order.getTotalprice(shoppingCart,lblTotalPrice);
             } else {
                 boolean goBackIsConfirmed = Page.alertInformation("Du kan ikke slette essensielle komponenter, gå tilbake til forrige side for å endre disse.");
                 if (goBackIsConfirmed){
@@ -117,7 +112,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
         shoppingCart.attachTableview(tableviewCart);
 
         //Setter riktig totaltpris ved innlasting av siden
-        updateTotalPriceLabel();
+        Order.getTotalprice(shoppingCart,lblTotalPrice);
 
         image.setImageView(mainpageImageView, homeImage);
     }

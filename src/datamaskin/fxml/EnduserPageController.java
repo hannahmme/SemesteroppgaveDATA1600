@@ -1,6 +1,7 @@
 // denne siden gjelder sluttbruker siden der man skal velge komponenter
 package datamaskin.fxml;
 import datamaskin.cart.Cart;
+import datamaskin.orders.Order;
 import datamaskin.product.Product;
 import datamaskin.product.ProductCategories;
 import datamaskin.Page;
@@ -69,7 +70,7 @@ public class EnduserPageController implements Initializable {
         } else {
             lblError.setText("");
             createCartObjectsFromGUI();
-            getTotalprice();
+            Order.getTotalprice(aCart,lblTotalPrice);
         }
     }
 
@@ -86,12 +87,6 @@ public class EnduserPageController implements Initializable {
         for(int position = 0; position < productCategoryMap.size(); position++){
             cBox.getItems().add(ProductCategories.CategorynameToString(productCategoryMap, position));
         }
-    }
-
-    // meotde for å hente ut verdier fra pris-kolonnen og legge de sammen, for så å sette verdien til lbl
-    private void getTotalprice() {
-        double totalPrice = aCart.getTotalPrice();
-        lblTotalPrice.setText(String.valueOf(totalPrice));
     }
 
     // metode for å slette gamle objekter og for å lage nye objekter som kommer an på valg i choiceboksene
@@ -171,7 +166,7 @@ public class EnduserPageController implements Initializable {
         // kaller metode for å velge riktige choicebokser når man går tilbake
         if (!Cart.Register.isEmpty()) {
             setChosenChoicebox();
-            getTotalprice();
+            Order.getTotalprice(aCart,lblTotalPrice);
         }
     }
 

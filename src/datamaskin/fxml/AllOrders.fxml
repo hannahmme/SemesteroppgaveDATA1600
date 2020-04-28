@@ -9,12 +9,12 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="datamaskin.fxml.AllOrdersController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="datamaskin.fxml.AllOrdersController">
    <children>
       <Button fx:id="toSuperuserpage" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#toSuperuserpage" onKeyPressed="#btnSuperUserPageEnter" text="Gå til forrige side" />
       <Text layoutX="1077.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logget inn som admin" wrappingWidth="158.9599609375" />
       <Text layoutX="410.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter" wrappingWidth="52.94677734375" />
-      <TextField fx:id="txtFiltering" layoutX="463.0" layoutY="44.0" onKeyTyped="#filteredByInput" />
+      <TextField fx:id="txtFiltering" layoutX="463.0" layoutY="44.0" />
       <TableView fx:id="allOrders" layoutX="14.0" layoutY="93.0" onMouseClicked="#selectedItemEvent" prefHeight="535.0" prefWidth="636.0">
         <columns>
           <TableColumn fx:id="emailColumn" prefWidth="212.0" text="E-post">

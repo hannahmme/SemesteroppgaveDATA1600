@@ -92,7 +92,8 @@ public class EnduserSendOrderPageController implements Initializable {
         FinalOrderOverview aFinalOrderOverview = createOrderObjectFromGUI(orderID);
 
         if(aFinalOrderOverview != null) {
-            Order.OrderRegister.addElement(aFinalOrderOverview);
+            //Todo: Tror jeg klarte å legge til denne i en commit. Skulle den slettes? (Linjen under)
+            /*Order.OrderRegister.addElement(aFinalOrderOverview);*/
             txtEpost.setText("");
             txtPassword.setText("");
             txtDiscount.setText("");

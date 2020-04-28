@@ -2,16 +2,12 @@ package datamaskin.fxml;
 
 import datamaskin.filbehandling.ReadFromAllOrdersFile;
 /*import datamaskin.filbehandling.ReadFromOrderFile;*/
-import datamaskin.orders.FinalOrderCustomerOverviewRegister;
-import datamaskin.orders.Order;
 import datamaskin.product.Product;
 import datamaskin.orders.FinalOrderOverview;
 import datamaskin.Page;
 import datamaskin.threadprogramming.ThreadReader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -89,7 +85,7 @@ public class UserspesificOrderController implements Initializable {
         tblAllOrders.setDisable(false);
     }
 
-    // todo: filtrering etter beløp fungerer ikke
+    /* todo: filtrering etter beløp fungerer ikke
     @FXML void filterData(KeyEvent event) {
         FilteredList<FinalOrderOverview> filteredData = new FilteredList<>(FinalOrderCustomerOverviewRegister.OrderRegister, p -> true);
 
@@ -98,9 +94,9 @@ public class UserspesificOrderController implements Initializable {
             filteredData.setPredicate(finalOrderOverview -> {
 
                 String smallLetters = newValue.toLowerCase();
-                /*if(finalOrderOverview.getEmail().equals(MainpageController.sortingKey)){
+                if(finalOrderOverview.getEmail().equals(MainpageController.sortingKey)){
 
-                }*/
+                }
                 if (newValue.matches("[a-zA-Z. -_0-9()@]*")) {    //
                     // Hvis feltet er tomt skal alle personer vises
                     if (newValue.isEmpty()) {
@@ -129,7 +125,9 @@ public class UserspesificOrderController implements Initializable {
 
         // legger til sotrert og filtert data til tabellen
         tblAllOrders.setItems(sortertData);
-    }
+    }*/
+
+
 
     // metoder for å legge inn ordreregisteret på denne siden
     @Override public void initialize(URL url, ResourceBundle rb) {

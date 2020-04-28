@@ -15,25 +15,24 @@ public class CustomerValidator {
         return false;
     }
 
-    // todo: må lages en test-metode for denne også
     public static boolean validatePassword(String password) {
-        if (password.matches("[a-zA-Z0-9._%+-]{3,}") && !password.isEmpty() && password != null && !password.equals("")){
+        if (password.matches("[a-zA-Z0-9._%+!-<>@£$€#¤%&*|§]{3,}") && !password.isEmpty() && password != null && !password.equals("")){
             return true;
         }
         return false;
     }
 
-    // her sjekkes det om emailen allerede er i bruk
+    // metode som sjekker om emailen allerede er i bruk, returnerer false hvis den er ledig
     public static boolean validateAvailability (String email, ObservableList<Customer> aCustomerRegister){
         for(Customer aCustomer : aCustomerRegister){
             if(email.equals(aCustomer.getEmail())){
-                return true; // returnerer true hvis emailen finnes fra før
+                return true;
             }
         }
         return false;
     }
 
-    // sjekker om passord og epost matcher, gir true hvis de matcher
+    // metode som sjekker om passord og epost matcher, gir true hvis de matcher
     public static boolean validateCredentials(String email, String password, ObservableList<Customer> aCustomerRegister) throws InvalidEmailException {
         for(Customer aCustomer : aCustomerRegister){
             if(email.equals(aCustomer.getEmail()) && password.equals(aCustomer.getPassword())){
@@ -43,16 +42,9 @@ public class CustomerValidator {
         return false;
     }
 
-    // todo: gjøre ferdig metoden for å slette fra csv
-    //metode som gjør det mulig å slette en kunde
-    public static void deleteCustomer(Customer customerToDelete, ObservableList<Customer> aCustomerRegister){
-        if(!(customerToDelete == null)){
-
-        }
-    }
-
     private static ReadFromCustomerFile readFromCustomerFile = new ReadFromCustomerFile();
 
+    // metode som henter og returnerer en liste med kundene
     public static ObservableList<Customer> getCustomerList() throws IOException {
         try {
             ObservableList<Customer> allCustomersList = readFromCustomerFile.readFromCustomerFile("./src/Datamaskin/users/allCustomers.csv");

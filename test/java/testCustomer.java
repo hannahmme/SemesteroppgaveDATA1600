@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class testEmail {
+public class testCustomer {
 
     @Test
     public void testValidEmail() {
@@ -21,6 +21,23 @@ public class testEmail {
         assertFalse(CustomerValidator.validateEmail("henrik.lieng@invalid"));
         assertFalse(CustomerValidator.validateEmail("test@"));
         assertFalse(CustomerValidator.validateEmail(";bot@evil.com"));
+    }
+
+    @Test
+    public void testValidPassword() {
+        assertTrue(CustomerValidator.validatePassword("tre"));
+        assertTrue(CustomerValidator.validatePassword("ok3"));
+        assertTrue(CustomerValidator.validatePassword("heihei"));
+    }
+
+    @Test
+    public void testInvalidPassword() {
+        assertFalse(CustomerValidator.validatePassword(""));
+        assertFalse(CustomerValidator.validatePassword("/"));
+        assertFalse(CustomerValidator.validatePassword(" 1"));
+        assertFalse(CustomerValidator.validatePassword("                invalid"));
+        assertFalse(CustomerValidator.validatePassword("ii"));
+        assertFalse(CustomerValidator.validatePassword(";;"));
     }
 
 }

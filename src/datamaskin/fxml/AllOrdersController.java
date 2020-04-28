@@ -1,15 +1,12 @@
 package datamaskin.fxml;
 
 import datamaskin.filbehandling.ReadFromAllOrdersFile;
-/*import datamaskin.filbehandling.ReadFromOrderFile;*/
 import datamaskin.orders.FinalOrderOverview;
 import datamaskin.Page;
 import datamaskin.product.Product;
 import datamaskin.threadprogramming.ThreadReader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +26,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static datamaskin.orders.FinalOrderOverviewRegister.OrderRegister;
 
 public class AllOrdersController implements Initializable {
 
@@ -52,7 +48,8 @@ public class AllOrdersController implements Initializable {
     @FXML private TableColumn<Integer, Product> productLifetime;
     @FXML private TableColumn<Double, Product> productPrice;
 
-    // kode for filtrering
+    // eventuell kode for filtrering - må endres på. krever at noe lagres i array?
+    /*// kode for filtrering
     @FXML void filteredByInput(KeyEvent event) {
         FilteredList<FinalOrderOverview> filteredData = new FilteredList<>(OrderRegister, p -> true);
 
@@ -90,7 +87,7 @@ public class AllOrdersController implements Initializable {
 
         // legger til sotrert og filtert data til tabellen
         allOrders.setItems(sortertData);
-    }
+    }*/
 
 
     //knappen "tilbake" tar brukeren med tilbake til menysiden for superbruker

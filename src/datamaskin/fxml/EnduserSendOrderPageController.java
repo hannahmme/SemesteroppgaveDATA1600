@@ -88,7 +88,7 @@ public class EnduserSendOrderPageController implements Initializable {
     }
 
     @FXML void sendOrder() throws IOException, InvalidEmailException {
-        String orderID = generateOrderID();
+        String orderID = Order.generateOrderID();
         FinalOrderOverview aFinalOrderOverview = createOrderObjectFromGUI(orderID);
 
         if(aFinalOrderOverview != null) {
@@ -113,23 +113,6 @@ public class EnduserSendOrderPageController implements Initializable {
         }
     }
 
-    // metode for å generere ordreID. Setter en begrensning på 100 ordre
-    private String generateOrderID() throws IOException {
-        int orderNumber = 0;
-        boolean pathNotUsed;
-
-        for(int i = 1; i<100; i++) {
-            File orderPath = new File(
-                    "./src/Datamaskin/sentOrdersPath/ordre-" + i + ".csv");
-            pathNotUsed = orderPath.exists();
-            if (!pathNotUsed) {
-                orderNumber = i;
-                break;
-            }
-        }
-
-        return "ordre-"+orderNumber;
-    }
 
     // metode for å generere en ordre og legget il ordreID og epost i array
     private FinalOrderOverview createOrderObjectFromGUI(String orderID) throws IOException {

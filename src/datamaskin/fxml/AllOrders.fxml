@@ -7,15 +7,19 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="datamaskin.fxml.AllOrdersController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="datamaskin.fxml.AllOrdersController">
    <children>
-      <Button fx:id="toSuperuserpage" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#toSuperuserpage" onKeyPressed="#btnSuperUserPageEnter" text="Gå til forrige side" />
+      <Button fx:id="toSuperuserpage" layoutX="14.0" layoutY="19.0" mnemonicParsing="false" onAction="#toSuperuserpage" onKeyPressed="#btnSuperUserPageEnter" prefHeight="31.0" prefWidth="129.0" style="-fx-background-color: grey;" text="Gå tilbake" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font></Button>
       <Text layoutX="1077.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logget inn som admin" wrappingWidth="158.9599609375" />
-      <Text layoutX="410.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter" wrappingWidth="52.94677734375" />
-      <TextField fx:id="txtFiltering" layoutX="463.0" layoutY="44.0" onKeyTyped="#filteredByInput" />
-      <TableView fx:id="allOrders" layoutX="14.0" layoutY="93.0" onMouseClicked="#selectedItemEvent" prefHeight="535.0" prefWidth="636.0">
+      <Text layoutX="403.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter" wrappingWidth="52.94677734375" />
+      <TextField fx:id="txtFiltering" layoutX="463.0" layoutY="85.0" />
+      <TableView fx:id="allOrders" layoutX="14.0" layoutY="121.0" onMouseClicked="#selectedItemEvent" prefHeight="513.0" prefWidth="636.0">
         <columns>
           <TableColumn fx:id="emailColumn" prefWidth="212.0" text="E-post">
               <cellValueFactory>
@@ -39,7 +43,7 @@
             </TableColumn>
         </columns>
       </TableView>
-      <TableView fx:id="tblOrderContent" layoutX="694.0" layoutY="93.0" prefHeight="535.0" prefWidth="548.0">
+      <TableView fx:id="tblOrderContent" layoutX="694.0" layoutY="121.0" prefHeight="513.0" prefWidth="548.0">
         <columns>
           <TableColumn fx:id="productName" prefWidth="141.0" text="Produktnavn" />
           <TableColumn fx:id="productInfo" prefWidth="121.0" text="Beskrivelse" />
@@ -47,7 +51,8 @@
             <TableColumn fx:id="productPrice" prefWidth="134.0" text="Pris" />
         </columns>
       </TableView>
-      <Line endX="-25.0" endY="590.0" layoutX="701.0" layoutY="44.0" startX="-25.0" startY="-4.0" />
-      <Text fx:id="txtTblHeader" layoutX="694.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spesifikasjon av ordre" wrappingWidth="302.8289794921875" />
+      <Line endX="-25.0" endY="574.0" layoutX="700.0" layoutY="71.0" startX="-25.0" startY="-4.0" />
+      <Text fx:id="txtTblHeader" layoutX="894.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spesifikasjon av ordre" wrappingWidth="147.8289794921875" />
+      <Line endX="568.0" layoutX="675.0" layoutY="67.0" startX="-667.0" />
    </children>
 </AnchorPane>

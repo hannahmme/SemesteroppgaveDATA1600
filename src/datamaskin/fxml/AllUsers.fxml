@@ -12,19 +12,22 @@
    <children>
       <TableView fx:id="customerTV" layoutX="347.0" layoutY="94.0" prefHeight="518.0" prefWidth="557.0">
         <columns>
-          <TableColumn fx:id="emailColumn" onEditCommit="#changeEmailCellEvent" prefWidth="293.0" text="Epostadresse">
+          <TableColumn fx:id="emailColumn" prefWidth="293.0" text="Epostadresse">
             <cellValueFactory>
                 <PropertyValueFactory property="email" />
             </cellValueFactory>
           </TableColumn>
-          <TableColumn fx:id="passwordColumn" onEditCommit="#changePasswordCellEvent" prefWidth="259.0" text="Passord">
+          <TableColumn fx:id="passwordColumn" prefWidth="259.0" text="Passord">
             <cellValueFactory>
                 <PropertyValueFactory property="password" />
             </cellValueFactory>
           </TableColumn>
         </columns>
       </TableView>
-      <Button fx:id="toSuperuserpage" layoutX="21.0" layoutY="21.0" mnemonicParsing="false" onAction="#toSuperuserpage" onMouseDragEntered="#btnSuperUserPageEnter" text="Gå tilbake" />
+      <Button fx:id="toSuperuserpage" layoutX="21.0" layoutY="21.0" mnemonicParsing="false" onAction="#toSuperuserpage" onMouseDragEntered="#btnSuperUserPageEnter" prefHeight="31.0" prefWidth="125.0" style="-fx-background-color: grey;" text="Gå tilbake" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font></Button>
       <Text layoutX="1087.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logget inn som admin" />
       <Text layoutX="503.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kunderegister">
          <font>

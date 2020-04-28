@@ -40,28 +40,9 @@ public class AllUsersController implements Initializable {
 
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
         passwordColumn.setCellValueFactory(new PropertyValueFactory<>("Password"));
-
-
-        //oppdaterer TV for å la oss endre tabellen
-        customerTV.setEditable(true);
-        emailColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        passwordColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        customerTV.setEditable(false);
     }
 
-    // metode som vil la admin endre komponenter
-    public void changeEmailCellEvent(TableColumn.CellEditEvent editedCell){
-        Customer selectedCustomer = customerTV.getSelectionModel().getSelectedItem();
-
-        selectedCustomer.setEmail(editedCell.getNewValue().toString());
-    }
-
-    // metode som vil la admin endre komponenter
-    public void changePasswordCellEvent(TableColumn.CellEditEvent editedCell){
-        Customer selectedCustomer = customerTV.getSelectionModel().getSelectedItem();
-        if(CustomerValidator.validatePassword(selectedCustomer.getPassword())) {
-            selectedCustomer.setPassword(editedCell.getNewValue().toString());
-        }
-    }
 
     //knappen "tilbake" tar brukeren med tilbake til menysiden for superbruker
     @FXML void toSuperuserpage() throws IOException {

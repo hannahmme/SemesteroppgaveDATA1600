@@ -1,15 +1,12 @@
 package datamaskin.fxml;
 
 import datamaskin.filbehandling.ReadFromAllOrdersFile;
-/*import datamaskin.filbehandling.ReadFromOrderFile;*/
 import datamaskin.orders.FinalOrderOverview;
 import datamaskin.Page;
 import datamaskin.product.Product;
 import datamaskin.threadprogramming.ThreadReader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +26,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static datamaskin.orders.FinalOrderOverviewRegister.OrderRegister;
 
 public class AllOrdersController implements Initializable {
 
@@ -51,47 +47,6 @@ public class AllOrdersController implements Initializable {
     @FXML private TableColumn<String, Product> productInfo;
     @FXML private TableColumn<Integer, Product> productLifetime;
     @FXML private TableColumn<Double, Product> productPrice;
-
-    // kode for filtrering
-    @FXML void filteredByInput(KeyEvent event) {
-        FilteredList<FinalOrderOverview> filteredData = new FilteredList<>(OrderRegister, p -> true);
-
-        //hver gang verdien endres skjer følgende
-        txtFiltering.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(finalOrderOverview -> {
-
-                String smallLetters = newValue.toLowerCase();
-
-
-                if (newValue.matches("[a-zA-Z. -_0-9()@]*")) {    //
-                    // Hvis feltet er tomt skal alle personer vises
-                    if (newValue.isEmpty()) {
-                        return true;
-                    }
-
-                    // Sammenligner alle kolonner med filtertekst
-                    if (finalOrderOverview.getEmail().toLowerCase().contains(smallLetters)) {
-                        return true;
-                    } else if (finalOrderOverview.getOrderID().toLowerCase().contains(smallLetters)) {
-                        return true;
-                    } else if (String.valueOf(finalOrderOverview.getOrderDate()).matches(smallLetters)) {
-                        return true;
-                        // todo: sortere etter totalpris funker ikke
-                    }else if (finalOrderOverview.getTotalPrice() == Double.parseDouble(smallLetters)) {
-                        return true;
-                    } return false;
-                } return  false;
-            });
-        });
-
-        // oppretter en sortert liste binder den sammen med tabellen
-        SortedList<FinalOrderOverview> sortertData = new SortedList<>(filteredData);
-        sortertData.comparatorProperty().bind(allOrders.comparatorProperty());
-
-        // legger til sotrert og filtert data til tabellen
-        allOrders.setItems(sortertData);
-    }
-
 
     //knappen "tilbake" tar brukeren med tilbake til menysiden for superbruker
     @FXML void toSuperuserpage() throws IOException {

@@ -5,13 +5,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.Optional;
 
 public class Page {
-
-
+    
     //Generell metode som gir alert hvis man skal gå til hovedsiden - Hannah
     public static boolean alertConfirmed(String content) throws IOException {
         Alert alert = new Alert(Alert.AlertType.NONE);
@@ -65,7 +63,7 @@ public class Page {
 
     public static void toSuperuserpage(Stage primaryStage, Parent FXMLString) throws IOException {
         Parent root = FXMLString;
-        primaryStage.setTitle("Hei Superbruker");
+        primaryStage.setTitle("Adminsiden");
         primaryStage.setScene(new Scene(root, 1250, 670));
         primaryStage.show();
     }
@@ -87,7 +85,7 @@ public class Page {
 
     public static void toEnduserSendOrderPage(Stage primaryStage, Parent FXMLString) throws IOException {
         Parent root = FXMLString;
-        primaryStage.setTitle("Fullfør bestilling");
+        primaryStage.setTitle("Fullfør din bestilling");
         primaryStage.setScene(new Scene(root, 1250, 670));
         primaryStage.show();
     }

@@ -2,16 +2,12 @@ package datamaskin.fxml;
 
 import datamaskin.filbehandling.ReadFromAllOrdersFile;
 /*import datamaskin.filbehandling.ReadFromOrderFile;*/
-import datamaskin.orders.FinalOrderCustomerOverviewRegister;
-import datamaskin.orders.Order;
 import datamaskin.product.Product;
 import datamaskin.orders.FinalOrderOverview;
 import datamaskin.Page;
 import datamaskin.threadprogramming.ThreadReader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -74,6 +70,8 @@ public class UserspesificOrderController implements Initializable {
         productPrice.setCellValueFactory(new PropertyValueFactory<>("Price"));
 
     }
+
+
     //tråden er ferdig lest:
     private void threadDoneReading(WorkerStateEvent event){
         txtTblHeader.setText("Ordreinnhold");
@@ -89,47 +87,6 @@ public class UserspesificOrderController implements Initializable {
         tblAllOrders.setDisable(false);
     }
 
-    // todo: filtrering etter beløp fungerer ikke
-    @FXML void filterData(KeyEvent event) {
-        FilteredList<FinalOrderOverview> filteredData = new FilteredList<>(FinalOrderCustomerOverviewRegister.OrderRegister, p -> true);
-
-        //hver gang verdien endres skjer følgende
-        txtFilter.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(finalOrderOverview -> {
-
-                String smallLetters = newValue.toLowerCase();
-                /*if(finalOrderOverview.getEmail().equals(MainpageController.sortingKey)){
-
-                }*/
-                if (newValue.matches("[a-zA-Z. -_0-9()@]*")) {    //
-                    // Hvis feltet er tomt skal alle personer vises
-                    if (newValue.isEmpty()) {
-                        return true;
-                    }
-
-                    // Sammenligner alle kolonner med filtertekst
-                    if (finalOrderOverview.getEmail().toLowerCase().contains(smallLetters)) {
-                        return true;
-                    } else if (finalOrderOverview.getOrderID().toLowerCase().contains(smallLetters)) {
-                        return true;
-                    } else if (String.valueOf(finalOrderOverview.getOrderDate()).matches(smallLetters)) {
-                        return true;
-                        // todo: sortere etter totalpris funker ikke
-                    } else if (String.valueOf(finalOrderOverview.getTotalPrice()).matches(smallLetters)) {
-                        return true;
-                    } return false;
-                } return  false;
-
-            });
-        });
-
-        // oppretter en sortert liste binder den sammen med tabellen
-        SortedList<FinalOrderOverview> sortertData = new SortedList<>(filteredData);
-        sortertData.comparatorProperty().bind(tblAllOrders.comparatorProperty());
-
-        // legger til sotrert og filtert data til tabellen
-        tblAllOrders.setItems(sortertData);
-    }
 
     // metoder for å legge inn ordreregisteret på denne siden
     @Override public void initialize(URL url, ResourceBundle rb) {

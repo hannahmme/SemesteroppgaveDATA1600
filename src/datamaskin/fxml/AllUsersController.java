@@ -30,12 +30,6 @@ public class AllUsersController implements Initializable {
     @FXML private Button toSuperuserpage;
 
 
-    // todo fikse sletteknapp
-    @FXML void deleteUser() throws IOException {
-        Customer deleteCustomer = customerTV.getSelectionModel().getSelectedItem();
-        CustomerValidator.deleteCustomer(deleteCustomer, getCustomerList());
-    }
-
     @Override public void initialize(URL url, ResourceBundle rb) {
         try {
             customerTV.getItems().addAll(getCustomerList());

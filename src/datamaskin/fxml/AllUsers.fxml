@@ -24,10 +24,6 @@
           </TableColumn>
         </columns>
       </TableView>
-      <Button layoutX="972.0" layoutY="566.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="46.0" prefWidth="264.0" style="-fx-background-color: grey;" text="Slett valgt bruker" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font></Button>
       <Button fx:id="toSuperuserpage" layoutX="21.0" layoutY="21.0" mnemonicParsing="false" onAction="#toSuperuserpage" onMouseDragEntered="#btnSuperUserPageEnter" text="Gå tilbake" />
       <Text layoutX="1087.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logget inn som admin" />
       <Text layoutX="503.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kunderegister">

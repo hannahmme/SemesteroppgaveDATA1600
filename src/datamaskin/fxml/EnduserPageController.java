@@ -5,6 +5,7 @@ import datamaskin.product.Product;
 import datamaskin.product.ProductCategories;
 import datamaskin.Page;
 import datamaskin.images.ImageClass;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +24,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Observable;
 import java.util.ResourceBundle;
 import static datamaskin.cart.Cart.addProduct;
 import static datamaskin.cart.Cart.findIndex;
@@ -187,8 +189,12 @@ public class EnduserPageController implements Initializable {
 
     // knapp som sender bruker til neste side
     @FXML void loadPayment() throws IOException {
+        ObservableList<Product> items = tableviewCart.getItems();
         if (checkBoxesAreEmpty()) {
             lblError.setText("Du har ikke valgt alle nødvendige komponenter til din datamaskin.");
+        }
+        if (items.isEmpty()) {
+            lblError.setText("Legg til dine valgte komponenter i handlekurven for å gå videre.");
             return;
         }
         Stage primaryStage = (Stage) btnGoToPay.getScene().getWindow();

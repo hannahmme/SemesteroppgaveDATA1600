@@ -18,18 +18,18 @@
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font></Button>
-      <ImageView fx:id="logOutImageView" fitHeight="24.0" fitWidth="32.0" layoutX="936.0" layoutY="34.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="logOutImageView" fitHeight="24.0" fitWidth="32.0" layoutX="132.0" layoutY="34.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
       <Line endX="854.0" layoutX="389.0" layoutY="80.0" startX="-374.1428527832031" />
       <Button fx:id="toSuperUserProductPage" layoutX="140.0" layoutY="114.0" mnemonicParsing="false" onAction="#toSuperUserProductPage" onKeyPressed="#btnChangeEnter" prefHeight="48.0" prefWidth="329.0" style="-fx-background-color: steelblue;" text="Lag nye eller endre på komponenter" textFill="WHITE">
          <font>
             <Font name="Arial" size="15.0" />
          </font></Button>
-      <ImageView fx:id="createProdImageView" fitHeight="369.0" fitWidth="362.0" layoutX="140.0" layoutY="208.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="createProdImageView" fitHeight="286.0" fitWidth="329.0" layoutX="140.0" layoutY="208.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
       <Line endX="-4.78564453125" endY="574.0" layoutX="632.0" layoutY="81.0" startX="-4.78564453125" startY="1.5" />
       <Button fx:id="toSuperUserOrderPage" layoutX="773.0" layoutY="114.0" mnemonicParsing="false" onAction="#toSuperUserOrderPage" onKeyPressed="#btnAllOrdersEnter" prefHeight="48.0" prefWidth="329.0" style="-fx-background-color: steelblue;" text="Se alle ordre" textFill="WHITE" />
-      <ImageView fx:id="allOrdersImageView" fitHeight="164.0" fitWidth="329.0" layoutX="773.0" layoutY="159.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="allOrdersImageView" fitHeight="124.0" fitWidth="329.0" layoutX="773.0" layoutY="191.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
       <Line endX="720.0" layoutX="523.0" layoutY="345.0" startX="104.71435546875" />
-      <ImageView fx:id="allOrdersImageView1" fitHeight="164.0" fitWidth="329.0" layoutX="773.0" layoutY="383.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="btnadministrateUsers" layoutX="788.0" layoutY="567.0" mnemonicParsing="false" onAction="#toAllUsersPage" onKeyTyped="#btnadministrateUsers" prefHeight="48.0" prefWidth="329.0" style="-fx-background-color: steelblue;" text="Administrer brukere" textFill="WHITE" />
+      <ImageView fx:id="allOrdersImageView1" fitHeight="164.0" fitWidth="329.0" layoutX="771.0" layoutY="385.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="btnadministrateUsers" layoutX="773.0" layoutY="567.0" mnemonicParsing="false" onAction="#toAllUsersPage" onKeyTyped="#btnadministrateUsers" prefHeight="48.0" prefWidth="329.0" style="-fx-background-color: steelblue;" text="Administrer brukere" textFill="WHITE" />
    </children>
 </AnchorPane>

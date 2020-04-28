@@ -114,9 +114,9 @@ public class UserspesificOrderController implements Initializable {
             ObservableList<FinalOrderOverview> allOrdersList = readFromAllOrdersFile.readFromAllOrdersFile("./src/Datamaskin/sentOrdersPath/allOrders.csv");
             ObservableList<FinalOrderOverview> userSpecifiedOrderList = FXCollections.observableArrayList();
 
-            for (FinalOrderOverview x : allOrdersList){
-                if(x.getEmail().equals(sortingKey)){
-                    userSpecifiedOrderList.add(x);
+            for (FinalOrderOverview order : allOrdersList){
+                if(order.getEmail().equals(sortingKey)){
+                    userSpecifiedOrderList.add(order);
                 }
             }
 

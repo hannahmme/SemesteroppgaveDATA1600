@@ -136,8 +136,6 @@ public class AllOrdersController implements Initializable {
         }
 
 
-
-
         productName.setCellValueFactory(new PropertyValueFactory<>("Name"));
         productInfo.setCellValueFactory(new PropertyValueFactory<>("Description"));
         productLifetime.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));

@@ -1,10 +1,12 @@
 package datamaskin.fxml;
 
-import datamaskin.users.CustomerRegister;
+import datamaskin.filbehandling.ReadFromCustomerFile;
+import datamaskin.users.Customer;
 import datamaskin.users.CustomerValidator;
 import datamaskin.exceptions.InvalidEmailException;
 import datamaskin.Page;
 import datamaskin.images.ImageClass;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -34,6 +36,8 @@ public class MainpageController implements Initializable {
     @FXML private Label lblUserError;
     @FXML private Label lblAdminError;
 
+    private ReadFromCustomerFile readFromCustomerFile = new ReadFromCustomerFile();
+
 
     private ImageClass image = new ImageClass();
 
@@ -49,8 +53,11 @@ public class MainpageController implements Initializable {
         try {
             String email = txtUserEmail.getText();
             String password = txtUserPassword.getText();
+            ObservableList<Customer> allCustomersList = readFromCustomerFile.readFromCustomerFile("./src/Datamaskin/users/allCustomers.csv");
 
-            sortingKey = CustomerRegister.checkCredentials(email, password);
+            if(CustomerValidator.validateCredentials(email, password, allCustomersList)) {
+                sortingKey = email;
+            }
 
             if (!CustomerValidator.validateEmail(email)) {
                 throw new InvalidEmailException("Skriv inn gyldig e-postadresse");

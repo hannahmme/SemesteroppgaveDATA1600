@@ -25,4 +25,6 @@ public class Customer {
         this.password = new SimpleStringProperty(password);
     }
 
+
+
 }

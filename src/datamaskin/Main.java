@@ -1,7 +1,5 @@
 package datamaskin;
 
-import datamaskin.users.CustomerRegister;
-import datamaskin.orders.Order;
 import datamaskin.product.ProductCategories;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +17,6 @@ public class Main extends Application {
         primaryStage.show();
 
         ProductCategories.setExampleData();
-        CustomerRegister.setExampleCustomers();
     }
 
     public static void main(String[] args) {

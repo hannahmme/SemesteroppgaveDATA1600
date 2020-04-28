@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class Page {
-    
+
     //Generell metode som gir alert hvis man skal gå til hovedsiden - Hannah
     public static boolean alertConfirmed(String content) throws IOException {
         Alert alert = new Alert(Alert.AlertType.NONE);

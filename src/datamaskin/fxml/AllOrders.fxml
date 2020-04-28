@@ -52,7 +52,7 @@
         </columns>
       </TableView>
       <Line endX="-25.0" endY="574.0" layoutX="700.0" layoutY="71.0" startX="-25.0" startY="-4.0" />
-      <Text fx:id="txtTblHeader" layoutX="894.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spesifikasjon av ordre" wrappingWidth="147.8289794921875" />
+      <Text fx:id="txtTblHeader" layoutX="694.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spesifikasjon av ordre" wrappingWidth="269.8289794921875" />
       <Line endX="568.0" layoutX="675.0" layoutY="67.0" startX="-667.0" />
    </children>
 </AnchorPane>

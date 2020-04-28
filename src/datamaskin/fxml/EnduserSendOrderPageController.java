@@ -2,7 +2,6 @@ package datamaskin.fxml;
 
 import datamaskin.cart.Cart;
 import datamaskin.filbehandling.ReadFromCustomerFile;
-import datamaskin.users.Customer;
 import datamaskin.users.CustomerValidator;
 import datamaskin.exceptions.InvalidEmailException;
 import datamaskin.filbehandling.FileSaverTxt;
@@ -13,7 +12,6 @@ import datamaskin.orders.FinalOrderOverview;
 import datamaskin.orders.Order;
 import datamaskin.product.Product;
 import datamaskin.Page;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,8 +23,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -43,19 +39,19 @@ public class EnduserSendOrderPageController implements Initializable {
     @FXML private Button btnGoBack;
     @FXML private Button btnGoToMainpage;
     @FXML private TextField txtEpost;
+    @FXML private TextField txtDiscount;
     @FXML private Label lblOrderSent;
     @FXML private Label lblTotalPrice;
     @FXML private ImageView mainpageImageView;
-    @FXML private TextField txtDiscount;
     @FXML private PasswordField txtPassword;
+    @FXML private TableView<FinalOrderOverview> finalOrderRegister;
+    @FXML private TableColumn<Product, String> nameColumn;
+    @FXML private TableColumn<Product, Double> priceColumn;
 
-    private ReadFromAllOrdersFile readFromAllOrdersFile = new ReadFromAllOrdersFile();
-    private ReadFromCustomerFile readFromCustomerFile = new ReadFromCustomerFile();
     private FileSaverTxt filesaver = new FileSaverTxt();
     private ImageClass image = new ImageClass();
     private Image homeImage = image.createImage("./src/Datamaskin/images/mainpage.png");
     private Cart shoppingcart = new Cart();
-    //private FileSaverTxt filesaver = new FileSaverTxt();
 
     //denne kastes fordi image.createImage kalles
     public EnduserSendOrderPageController() throws FileNotFoundException {
@@ -67,37 +63,27 @@ public class EnduserSendOrderPageController implements Initializable {
         lblTotalPrice.setText(String.valueOf(totalPrice));
     }
 
-    //Handlekurven på høyre side
-    @FXML private TableView<FinalOrderOverview> finalOrderRegister;
-    @FXML private TableColumn<Product, String> nameColumn;
-    @FXML private TableColumn<Product, Double> priceColumn;
-
-
     @Override public void initialize(URL location, ResourceBundle resources) {
-        //Handlekurven på høyre side lastes inn når siden lastes inn
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
 
-        //Kobler handlekurven med tableviewet.
+        //Kobler handlekurven med tableviewet og setter bildene
         shoppingcart.attachTableview(finalOrderRegister);
-
-        //Setter riktig totaltpris ved innlasting av siden
-        setTotalPriceLabel();
-
         image.setImageView(mainpageImageView, homeImage);
+
+        setTotalPriceLabel();
     }
 
-    @FXML void sendOrder() throws IOException, InvalidEmailException {
+    @FXML void sendOrder() throws IOException {
         String orderID = Order.generateOrderID();
         FinalOrderOverview aFinalOrderOverview = createOrderObjectFromGUI(orderID);
 
         if(aFinalOrderOverview != null) {
-            //Todo: Tror jeg klarte å legge til denne i en commit. Skulle den slettes? (Linjen under)
-            /*Order.OrderRegister.addElement(aFinalOrderOverview);*/
             txtEpost.setText("");
             txtPassword.setText("");
             txtDiscount.setText("");
 
+            try{
             //kode som lagrer orderen til forhåndsdefinert filsti med generert ordreID.
             Path sentOrderPath = Paths.get("./src/Datamaskin/sentOrdersPath/"+orderID+".csv");
             String formattedList = OrderFormatter.formatListOfProductToString(Cart.Register);
@@ -109,8 +95,12 @@ public class EnduserSendOrderPageController implements Initializable {
             filesaver.appendToFile("\n", allOrderPath);
             filesaver.appendToFile(formattedFinalOrder, allOrderPath);
 
-            //sletter handlekurven *etter* å ha lagret til fil - //todo: kanskje lage exception i tilfelle ikke klarer å lese til filstien (så ikke handlekurven slettes før det faktisk er blitt lagret) - hannah
+            //sletter handlekurven *etter* å ha lagret til fil
+    // todo: kanskje lage exception i tilfelle ikke klarer å lese til filstien (så ikke handlekurven slettes før det faktisk er blitt lagret) - hannah
             shoppingcart.deleteShoppingcart();
+            } catch(IOException e){
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -136,19 +126,15 @@ public class EnduserSendOrderPageController implements Initializable {
 
                 //lager en ordreID for bestillingen og viser den til bruker
                 lblOrderSent.setText("Takk for din ordre.\nOrdrenummer: " + orderID);
-                System.out.println(orderID);
-
-                //Oppretter ferdig ordre-objekt
-                FinalOrderOverview anFinalOrderOverview = new FinalOrderOverview(orderID, email, date, totalPrice);
 
                 // setter knappene som disabled fordi bestillingen er gjennomført og man må starte på nytt
                 btnSendOrder.setDisable(true);
                 btnGoBack.setDisable(true);
 
-                // Setter totalprisen til brukers skjerm
                 lblTotalPrice.setText(String.valueOf(totalPrice));
 
-                // returnerer ordren siden alt er riktig av input osv
+                //Oppretter ferdig ordre-objekt som returneres
+                FinalOrderOverview anFinalOrderOverview = new FinalOrderOverview(orderID, email, date, totalPrice);
                 return anFinalOrderOverview;
             }
         } catch (InvalidEmailException e){
@@ -212,7 +198,4 @@ public class EnduserSendOrderPageController implements Initializable {
             goBack();
         }
     }
-
-
-
 }

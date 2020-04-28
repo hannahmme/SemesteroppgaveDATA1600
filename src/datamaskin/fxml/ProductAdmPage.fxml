@@ -13,33 +13,33 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="datamaskin.fxml.ProductAdmPageController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="datamaskin.fxml.ProductAdmPageController">
    <children>
       <Button layoutX="26.0" layoutY="618.0" mnemonicParsing="false" onAction="#addComponent" onKeyPressed="#btnAddProdEnter" prefHeight="25.0" prefWidth="187.0" text="Legg til komponent" />
       <Button fx:id="toSuperUserPage" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#toSuperUserPage" onKeyPressed="#btnGoBackEnter" text="Gå tilbake" />
       <TableView fx:id="componentTableview" editable="true" layoutX="271.0" layoutY="105.0" prefHeight="494.0" prefWidth="935.0">
         <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="191.0" text="Komponentnavn">
+          <TableColumn fx:id="nameColumn" prefWidth="191.0" text="Komponentnavn" onEditCommit="#txtProductNameEdited">
             <cellValueFactory>
                 <PropertyValueFactory property="name" />
             </cellValueFactory>
           </TableColumn>
-          <TableColumn fx:id="descriptionColumn" prefWidth="373.0" text="Beskrivelse">
+          <TableColumn fx:id="descriptionColumn" prefWidth="373.0" text="Beskrivelse" onEditCommit="#txtProductDescriptionEdited">
               <cellValueFactory>
                   <PropertyValueFactory property="Description" />
               </cellValueFactory>
           </TableColumn>
-            <TableColumn fx:id="lifetimeColumn" prefWidth="124.0" text="Levetid">
+            <TableColumn fx:id="lifetimeColumn" prefWidth="124.0" text="Levetid" onEditCommit="#txtProductLifetimeEdited">
                 <cellValueFactory>
                     <PropertyValueFactory property="Lifetime" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="87.0" text="Pris">
+            <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="87.0" text="Pris" onEditCommit="#txtProductPriceEdited">
                 <cellValueFactory>
                     <PropertyValueFactory property="Price" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="categoryColumn" prefWidth="158.0" text="Kategori">
+            <TableColumn fx:id="categoryColumn" prefWidth="158.0" text="Kategori" onEditCommit="#txtProductCategoryEdited">
                 <cellValueFactory>
                     <PropertyValueFactory property="Category" />
                 </cellValueFactory>

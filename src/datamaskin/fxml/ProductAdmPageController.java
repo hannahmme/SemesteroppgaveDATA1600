@@ -1,5 +1,7 @@
 package datamaskin.fxml;
 
+import datamaskin.exceptions.DoubleFromStringConverter;
+import datamaskin.exceptions.IntegerFromStringConverter;
 import datamaskin.exceptions.InvalidLifetimeException;
 import datamaskin.exceptions.InvalidPriceException;
 import datamaskin.filbehandling.FileSaver;
@@ -14,10 +16,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.converter.DoubleStringConverter;
+import javafx.util.converter.IntegerStringConverter;
+
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
@@ -55,8 +61,8 @@ public class ProductAdmPageController implements Initializable{
     @FXML private TableView<Product> componentTableview;
     @FXML private TableColumn<Product, String> nameColumn;
     @FXML private TableColumn<Product, String> descriptionColumn;
-    @FXML private TableColumn<Product, String> lifetimeColumn;
-    @FXML private TableColumn<Product, Integer> priceColumn;
+    @FXML private TableColumn<Product, Integer> lifetimeColumn;
+    @FXML private TableColumn<Product, Double> priceColumn;
     @FXML private TableColumn<Product, String> categoryColumn;
 
     // oppretter et nytt objekt av typen Produktregister
@@ -157,14 +163,10 @@ public class ProductAdmPageController implements Initializable{
     }
 
     @FXML
-    private void filterChoiceChanged(){
-
-    }
-
+    private void filterChoiceChanged(){ }
     @FXML
-    private void searchTxtEntered(){
+    private void searchTxtEntered(){ }
 
-    }
 
     private void filter(){
         if(txtSearch.getText().isEmpty()) {
@@ -227,6 +229,12 @@ public class ProductAdmPageController implements Initializable{
     }
 
     @Override public void initialize(URL url, ResourceBundle rb) {
+        lifetimeColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        priceColumn.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        categoryColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
         lifetimeColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
@@ -302,5 +310,29 @@ public class ProductAdmPageController implements Initializable{
                 System.out.println("Lagring til fil feilet. Årsak: " + e.getMessage());
             }
         }
+    }
+
+
+    //Metoder slik at innholdet i Produkt-tableViewet på adminsiden endres direkte i tblViewet
+    @FXML void txtProductNameEdited(TableColumn.CellEditEvent<Product, String> event){
+        event.getRowValue().setName(event.getNewValue());
+    }
+    @FXML void txtProductDescriptionEdited(TableColumn.CellEditEvent<Product, String> event){
+        event.getRowValue().setDescription(event.getNewValue());
+    }
+    @FXML void txtProductLifetimeEdited(TableColumn.CellEditEvent<Product, Integer> event) {
+        if (IntegerFromStringConverter.convertSuccessfull) {
+            event.getRowValue().setLifetime(event.getNewValue());
+        }
+        componentTableview.refresh();
+    }
+    @FXML void txtProductPriceEdited(TableColumn.CellEditEvent<Product, Double> event){
+        if(DoubleFromStringConverter.convertSuccessfull){
+            event.getRowValue().setPrice(event.getNewValue());
+        }
+        componentTableview.refresh();
+    }
+    @FXML void txtProductCategoryEdited(TableColumn.CellEditEvent<Product, String> event){
+        event.getRowValue().setCategory(event.getNewValue());
     }
 }

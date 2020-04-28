@@ -33,6 +33,7 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import static datamaskin.users.CustomerValidator.getCustomerList;
 
@@ -92,11 +93,6 @@ public class EnduserSendOrderPageController implements Initializable {
 
         if(aFinalOrderOverview != null) {
             Order.OrderRegister.addElement(aFinalOrderOverview);
-
-     // todo: kan dette slettes?
-            /*FinalOrderSpecific aFinalOrderSpecific = createSpecificOrderObject(orderID);
-            SpecificOrderRegister.addElement(aFinalOrderSpecific);*/
-
             txtEpost.setText("");
             txtPassword.setText("");
             txtDiscount.setText("");
@@ -147,7 +143,7 @@ public class EnduserSendOrderPageController implements Initializable {
 
             if(!CustomerValidator.validateEmail(email)){
                 throw new InvalidEmailException("Skriv inn gyldig e-postadresse");
-            } else if(!CustomerValidator.validateCredentials(email, password, getCustomerList())){
+            } else if(!CustomerValidator.validateCredentials(email, password, Objects.requireNonNull(getCustomerList()))){
                 throw new InvalidEmailException("Du har skrevet inn ugyldige innloggingsdetaljer!");
             }
             else{

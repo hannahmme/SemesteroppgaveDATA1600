@@ -18,21 +18,21 @@ public class Product implements Serializable {
     private SimpleStringProperty imageUri;
 
     public Product(String name, String description, int lifetime, double price, String category) {
-        this.name = new SimpleStringProperty(name);
+        this.name        = new SimpleStringProperty(name);
         this.description = new SimpleStringProperty(description);
-        this.lifetime = new SimpleIntegerProperty(lifetime);
-        this.price = new SimpleDoubleProperty(price);
-        this.category = new SimpleStringProperty(category);
+        this.lifetime    = new SimpleIntegerProperty(lifetime);
+        this.price       = new SimpleDoubleProperty(price);
+        this.category    = new SimpleStringProperty(category);
     }
 
     //konstruktør som også tar inn bildeSti (slik at det er valgfritt å legge til bilde)
     public Product(String name, String description, int lifetime, double price, String category, String imageUri) {
-        this.name = new SimpleStringProperty(name);
+        this.name        = new SimpleStringProperty(name);
         this.description = new SimpleStringProperty(description);
-        this.lifetime = new SimpleIntegerProperty(lifetime);
-        this.price = new SimpleDoubleProperty(price);
-        this.category = new SimpleStringProperty(category);
-        this.imageUri = new SimpleStringProperty(imageUri);
+        this.lifetime    = new SimpleIntegerProperty(lifetime);
+        this.price       = new SimpleDoubleProperty(price);
+        this.category    = new SimpleStringProperty(category);
+        this.imageUri    = new SimpleStringProperty(imageUri);
     }
 
     public String getName() {

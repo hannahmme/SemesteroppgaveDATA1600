@@ -7,6 +7,7 @@ import datamaskin.orders.Order;
 import datamaskin.product.Product;
 import datamaskin.orders.FinalOrderOverview;
 import datamaskin.Page;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -111,8 +112,16 @@ public class UserspesificOrderController implements Initializable {
     @Override public void initialize(URL url, ResourceBundle rb) {
         try {
             ObservableList<FinalOrderOverview> allOrdersList = readFromAllOrdersFile.readFromAllOrdersFile("./src/Datamaskin/sentOrdersPath/allOrders.csv");
-            tblAllOrders.getItems().addAll(allOrdersList);
-            tblAllOrders.setItems(allOrdersList);
+            ObservableList<FinalOrderOverview> userSpecifiedOrderList = FXCollections.observableArrayList();
+
+            for (FinalOrderOverview x : allOrdersList){
+                if(x.getEmail().equals(sortingKey)){
+                    userSpecifiedOrderList.add(x);
+                }
+            }
+
+            tblAllOrders.getItems().addAll(userSpecifiedOrderList);
+            tblAllOrders.setItems(userSpecifiedOrderList);
         } catch (IOException e) {
             System.out.println("Filsti ikke funnet " + e.getMessage());
         }

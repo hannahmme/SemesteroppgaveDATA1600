@@ -1,5 +1,8 @@
 package datamaskin.users;
 
+import datamaskin.exceptions.InvalidEmailException;
+import javafx.collections.ObservableList;
+
 public class CustomerValidator {
 
     public static boolean validateEmail(String email) {
@@ -18,10 +21,20 @@ public class CustomerValidator {
     }
 
     // her sjekkes det om emailen allerede er i bruk
-    public static boolean validateAvailability (String email){
-        for(Customer aCustomer : CustomerRegister.CustomerRegister){
+    public static boolean validateAvailability (String email, ObservableList<Customer> aCustomerRegister){
+        for(Customer aCustomer : aCustomerRegister){
             if(email.equals(aCustomer.getEmail())){
                 return true; // returnerer true hvis emailen finnes fra før
+            }
+        }
+        return false;
+    }
+
+    // sjekker om passord og epost matcher, gir true hvis de matcher
+    public static boolean validateCredentials(String email, String password, ObservableList<Customer> aCustomerRegister) throws InvalidEmailException {
+        for(Customer aCustomer : aCustomerRegister){
+            if(email.equals(aCustomer.getEmail()) && password.equals(aCustomer.getPassword())){
+                return true;
             }
         }
         return false;

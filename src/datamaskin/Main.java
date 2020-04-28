@@ -19,7 +19,6 @@ public class Main extends Application {
         primaryStage.show();
 
         ProductCategories.setExampleData();
-        CustomerRegister.setExampleCustomers();
     }
 
     public static void main(String[] args) {

@@ -1,9 +1,12 @@
 package datamaskin.fxml;
 
 import datamaskin.Page;
+import datamaskin.filbehandling.ReadFromCustomerFile;
+import datamaskin.orders.FinalOrderOverview;
 import datamaskin.users.Customer;
 import datamaskin.users.CustomerRegister;
 import datamaskin.users.CustomerValidator;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,6 +30,7 @@ public class AllUsersController implements Initializable {
     @FXML private TableColumn<Customer, String> passwordColumn;
     @FXML private Button toSuperuserpage;
 
+    private ReadFromCustomerFile readFromCustomerFile = new ReadFromCustomerFile();
 
     @FXML void deleteUser(){
         Customer deleteCustomer = customerTV.getSelectionModel().getSelectedItem();
@@ -35,10 +39,17 @@ public class AllUsersController implements Initializable {
     }
 
     @Override public void initialize(URL url, ResourceBundle rb) {
+        try {
+            ObservableList<Customer> allOrdersList = readFromCustomerFile.readFromCustomerFile("./src/Datamaskin/users/allCustomers.csv");
+            customerTV.getItems().addAll(allOrdersList);
+            customerTV.setItems(allOrdersList);
+        } catch (IOException e) {
+            System.out.println("Filsti ikke funnet: " + e.getMessage());
+        }
+
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
         passwordColumn.setCellValueFactory(new PropertyValueFactory<>("Password"));
 
-        NewUserController.aCustomerRegister.setCustomerToTV(customerTV);
 
         //oppdaterer TV for å la oss endre tabellen
         customerTV.setEditable(true);
@@ -67,7 +78,6 @@ public class AllUsersController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
         Page.toSuperuserpage(primaryStage, root);
     }
-
     @FXML void btnSuperUserPageEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             toSuperuserpage();

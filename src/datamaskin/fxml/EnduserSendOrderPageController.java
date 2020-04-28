@@ -1,6 +1,8 @@
 package datamaskin.fxml;
 
 import datamaskin.cart.Cart;
+import datamaskin.filbehandling.ReadFromCustomerFile;
+import datamaskin.users.Customer;
 import datamaskin.users.CustomerRegister;
 import datamaskin.users.CustomerValidator;
 import datamaskin.exceptions.InvalidEmailException;
@@ -12,6 +14,7 @@ import datamaskin.orders.FinalOrderOverview;
 import datamaskin.orders.Order;
 import datamaskin.product.Product;
 import datamaskin.Page;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -47,6 +50,7 @@ public class EnduserSendOrderPageController implements Initializable {
     @FXML private PasswordField txtPassword;
 
     private ReadFromAllOrdersFile readFromAllOrdersFile = new ReadFromAllOrdersFile();
+    private ReadFromCustomerFile readFromCustomerFile = new ReadFromCustomerFile();
     private FileSaverTxt filesaver = new FileSaverTxt();
     private ImageClass image = new ImageClass();
     private Image homeImage = image.createImage("./src/Datamaskin/images/mainpage.png");
@@ -133,7 +137,7 @@ public class EnduserSendOrderPageController implements Initializable {
     }
 
     // metode for å generere en ordre og legget il ordreID og epost i array
-    private FinalOrderOverview createOrderObjectFromGUI(String orderID){
+    private FinalOrderOverview createOrderObjectFromGUI(String orderID) throws IOException {
         String email;
         String password;
         double totalPrice;
@@ -141,10 +145,11 @@ public class EnduserSendOrderPageController implements Initializable {
         try {
             email = txtEpost.getText();
             password = txtPassword.getText();
+            ObservableList<Customer> allCustomersList = readFromCustomerFile.readFromCustomerFile("./src/Datamaskin/users/allCustomers.csv");
 
             if(!CustomerValidator.validateEmail(email)){
                 throw new InvalidEmailException("Skriv inn gyldig e-postadresse");
-            } else if(!Objects.equals(CustomerRegister.checkCredentials(email, password), email)){
+            } else if(!CustomerValidator.validateCredentials(email, password, allCustomersList)){
                 throw new InvalidEmailException("Du har skrevet inn ugyldige innloggingsdetaljer!");
             }
             else{

@@ -48,6 +48,6 @@
         </columns>
       </TableView>
       <Line endX="-25.0" endY="590.0" layoutX="701.0" layoutY="44.0" startX="-25.0" startY="-4.0" />
-      <Text layoutX="694.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spesifikasjon av ordre" />
+      <Text fx:id="txtTblHeader" layoutX="694.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spesifikasjon av ordre" wrappingWidth="302.8289794921875" />
    </children>
 </AnchorPane>

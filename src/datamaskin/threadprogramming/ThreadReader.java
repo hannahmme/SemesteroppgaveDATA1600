@@ -1,40 +1,43 @@
+package datamaskin.threadprogramming;
 
-//Todo: Har kommentrert ut hele klassen, da jeg heller leser fra ordre-fil i tråd
-//Todo: Skal vurdere senere om jeg skal slette klassen - Hannah
-
-
-/*
-package datamaskin.filbehandling;
-
-import datamaskin.orders.FinalOrderOverview;
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import datamaskin.product.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
 
-public class ReadFromOrderFile implements iReadFromOrderFile{
+public class ThreadReader extends Task<ObservableList<Product>> {
+    private final String path;
+
+    public ThreadReader(String path){
+        this.path = path;
+    }
+
     @Override
-    public ObservableList<Product> readFromOrderFile(String path) throws IOException {
+    protected ObservableList<Product> call() throws Exception {
         ObservableList<Product> listOfProducts = FXCollections.observableArrayList();
 
-        try(BufferedReader reader = Files.newBufferedReader(Paths.get(path))){
+        try {
+            Thread.sleep(1500);
+            BufferedReader reader = Files.newBufferedReader(Paths.get(path));
             String line = reader.readLine();
 
-            while(line != null){
+            while (line!= null) {
                 listOfProducts.add(parseToProduct(line));
                 line = reader.readLine();
             }
+        } catch (InterruptedException | IOException e) {
+            throw new IOException("Noe gikk galt ved henting av informasjon: " + e.getMessage());
         }
         return listOfProducts;
     }
 
-    @Override
-    public Product parseToProduct(String line) throws IOException {
+    private Product parseToProduct(String line) throws IOException {
         String[] split = line.split(";");
         if(split.length != 5){
             throw new IOException("Ikke riktig bruk av delimiter");
@@ -49,8 +52,7 @@ public class ReadFromOrderFile implements iReadFromOrderFile{
     }
 
     //Todo: har prøvd å lage disse to metodene under til generiske metoder. Får prøve igjen senere
-    @Override
-    public double parseToDouble(String str, String errorMessage) throws IOException {
+    private double parseToDouble(String str, String errorMessage) throws IOException {
         double stringToDouble;
         try{
             stringToDouble = Double.parseDouble(str);
@@ -60,8 +62,7 @@ public class ReadFromOrderFile implements iReadFromOrderFile{
         return stringToDouble;
     }
 
-    @Override
-    public int parseToInteger(String str, String errorMessage) throws IOException {
+    private int parseToInteger(String str, String errorMessage) throws IOException {
         int stringToInt;
         try{
             stringToInt = Integer.parseInt(str);
@@ -71,6 +72,4 @@ public class ReadFromOrderFile implements iReadFromOrderFile{
         return stringToInt;
     }
 
-
 }
-*/

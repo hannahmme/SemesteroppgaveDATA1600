@@ -1,16 +1,18 @@
 package datamaskin.fxml;
 
 import datamaskin.filbehandling.ReadFromAllOrdersFile;
-import datamaskin.filbehandling.ReadFromOrderFile;
+/*import datamaskin.filbehandling.ReadFromOrderFile;*/
 import datamaskin.orders.FinalOrderCustomerOverviewRegister;
 import datamaskin.orders.Order;
 import datamaskin.product.Product;
 import datamaskin.orders.FinalOrderOverview;
 import datamaskin.Page;
+import datamaskin.threadprogramming.ThreadReader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,6 +24,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.*;
 import java.net.URL;
@@ -30,40 +33,60 @@ import static datamaskin.fxml.MainpageController.sortingKey;
 
 public class UserspesificOrderController implements Initializable {
     @FXML private Button toMainpage;
+    @FXML private TextField txtFilter;
     @FXML private TableView<FinalOrderOverview> tblAllOrders;
     @FXML private TableColumn<FinalOrderOverview, String> emailColumn;
     @FXML private TableColumn<FinalOrderOverview, String> orderIDColumn;
     @FXML private TableColumn<FinalOrderOverview, String> orderDateColumn;
     @FXML private TableColumn<FinalOrderOverview, Double> totalPriceColumn;
 
+    @FXML private Text txtTblHeader;
     @FXML private TableView<Product> tblOrderInfo;
     @FXML private TableColumn<Product, String> productName;
     @FXML private TableColumn<Product, String> productInfo;
     @FXML private TableColumn<Product, Integer> productLifetime;
     @FXML private TableColumn<Product, Double> productPrice;
-    @FXML private TextField txtFilter;
+    @FXML private ThreadReader readerTask;
 
+    private ObservableList<Product> emptyList = FXCollections.observableArrayList();
     private ReadFromAllOrdersFile readFromAllOrdersFile = new ReadFromAllOrdersFile();
-    private ReadFromOrderFile reader = new ReadFromOrderFile();
 
     //Metode som viser innholdet i orderen når bruker trykker på en ordre
+    //Lesing fra fil gjennomføres i en egen tråd
     @FXML void selectedOrderItemEvent(MouseEvent event) throws IOException {
         FinalOrderOverview order = tblAllOrders.getSelectionModel().getSelectedItem();
 
-        if (order == null) return;
-        try {
-            String path = "./src/Datamaskin/sentOrdersPath/" + order.getOrderID() + ".csv";
-            ObservableList<Product> listOfProducts = reader.readFromOrderFile(path);
-            tblOrderInfo.getItems().addAll(listOfProducts);
-            tblOrderInfo.setItems(listOfProducts);
-            productName.setCellValueFactory(new PropertyValueFactory<>("Name"));
-            productInfo.setCellValueFactory(new PropertyValueFactory<>("Description"));
-            productLifetime.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
-            productPrice.setCellValueFactory(new PropertyValueFactory<>("Price"));
+        if (order == null){ return; }
 
-        }catch(FileNotFoundException e){
-            System.err.println("Noe gikk galt ved innlasting av filstien" + e.getMessage());
-        }
+        String orderID = order.getOrderID();
+        String path = "./src/Datamaskin/sentOrdersPath/" + orderID + ".csv";
+        txtTblHeader.setText("Laster inn valgt ordre......");
+        readerTask = new ThreadReader(path);
+        readerTask.setOnSucceeded(this::threadDoneReading);
+        readerTask.setOnFailed(this::threadFailedReading);
+        Thread thread = new Thread(readerTask);
+        thread.start();
+
+        tblAllOrders.setDisable(true);
+        productName.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        productInfo.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        productLifetime.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
+        productPrice.setCellValueFactory(new PropertyValueFactory<>("Price"));
+
+    }
+    //tråden er ferdig lest:
+    private void threadDoneReading(WorkerStateEvent event){
+        txtTblHeader.setText("Ordreinnhold");
+        ObservableList<Product> listOfProducts = readerTask.getValue();
+        tblAllOrders.setDisable(false);
+        tblOrderInfo.getItems().addAll(listOfProducts);
+        tblOrderInfo.setItems(listOfProducts);
+    }
+
+    private void threadFailedReading(WorkerStateEvent event){
+        txtTblHeader.setText("Det oppsto en feil. Kunne ikke hente ordreinfo....");
+        tblOrderInfo.setItems(emptyList);
+        tblAllOrders.setDisable(false);
     }
 
     // todo: filtrering etter beløp fungerer ikke

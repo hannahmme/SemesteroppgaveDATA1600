@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="datamaskin.fxml.UserspesificOrderController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml" fx:controller="datamaskin.fxml.UserspesificOrderController">
     <children>
         <Text layoutX="419.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dine tidligere ordre" textAlignment="CENTER" wrappingWidth="411.14794921875" AnchorPane.bottomAnchor="629.58984375" AnchorPane.leftAnchor="419.0" AnchorPane.rightAnchor="419.85205078125" AnchorPane.topAnchor="19.41015625">
          <font>
@@ -70,6 +70,6 @@
             </TableColumn>
         </columns>
       </TableView>
-      <Text layoutX="661.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ordreinnhold" wrappingWidth="180.4224853515625" />
+      <Text fx:id="txtTblHeader" layoutX="661.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ordreinnhold" wrappingWidth="330.7081298828125" />
     </children>
 </AnchorPane>

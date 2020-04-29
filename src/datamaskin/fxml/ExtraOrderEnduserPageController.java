@@ -64,7 +64,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
                 throw new NullPointerException("Velg et produkt for å legge det til i handlekurven.");
             } else {
                 shoppingCart.addElement(extraProduct);
-                Order.getTotalprice(shoppingCart,lblTotalPrice);
+                shoppingCart.getTotalPrice(lblTotalPrice);
                 txtWarning.setText("");
             }
 
@@ -78,7 +78,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
         if(chosenProduct!=null) {
             if (chosenProduct.getCategory().equals("Andre produkter")) {
                 shoppingCart.deleteOneProductFromCart(chosenProduct);
-                Order.getTotalprice(shoppingCart,lblTotalPrice);
+                shoppingCart.getTotalPrice(lblTotalPrice);
             } else {
                 boolean goBackIsConfirmed = Page.alertInformation("Du kan ikke slette essensielle komponenter, gå tilbake til forrige side for å endre disse.");
                 if (goBackIsConfirmed){
@@ -111,8 +111,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
         //Kobler handlekurven med tableviewet.
         shoppingCart.attachTableview(tableviewCart);
 
-        //Setter riktig totaltpris ved innlasting av siden
-        Order.getTotalprice(shoppingCart,lblTotalPrice);
+        shoppingCart.getTotalPrice(lblTotalPrice);
 
         image.setImageView(mainpageImageView, homeImage);
     }

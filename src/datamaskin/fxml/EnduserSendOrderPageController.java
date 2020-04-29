@@ -57,11 +57,6 @@ public class EnduserSendOrderPageController implements Initializable {
     public EnduserSendOrderPageController() throws FileNotFoundException {
     }
 
-    // metode som setter den totale prisen basert på komponentene i arrayet
-    private void setTotalPriceLabel(){
-        double totalPrice = shoppingcart.getTotalPrice();
-        lblTotalPrice.setText(String.valueOf(totalPrice));
-    }
 
     @Override public void initialize(URL location, ResourceBundle resources) {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -71,7 +66,7 @@ public class EnduserSendOrderPageController implements Initializable {
         shoppingcart.attachTableview(finalOrderRegister);
         image.setImageView(mainpageImageView, homeImage);
 
-        setTotalPriceLabel();
+        shoppingcart.getTotalPrice(lblTotalPrice);
     }
 
     @FXML void sendOrder() throws IOException {
@@ -121,7 +116,7 @@ public class EnduserSendOrderPageController implements Initializable {
                 throw new InvalidEmailException("Du har skrevet inn ugyldige innloggingsdetaljer!");
             }
             else{
-                totalPrice = shoppingcart.getTotalPrice();
+                totalPrice = shoppingcart.getTotalPrice(lblTotalPrice);
                 String date = String.valueOf(LocalDate.now());
 
                 //lager en ordreID for bestillingen og viser den til bruker
@@ -130,8 +125,6 @@ public class EnduserSendOrderPageController implements Initializable {
                 // setter knappene som disabled fordi bestillingen er gjennomført og man må starte på nytt
                 btnSendOrder.setDisable(true);
                 btnGoBack.setDisable(true);
-
-                lblTotalPrice.setText(String.valueOf(totalPrice));
 
                 //Oppretter ferdig ordre-objekt som returneres
                 FinalOrderOverview anFinalOrderOverview = new FinalOrderOverview(orderID, email, date, totalPrice);

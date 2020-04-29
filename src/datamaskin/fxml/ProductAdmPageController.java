@@ -27,6 +27,7 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
+import static datamaskin.product.ProductCategories.*;
 
 public class ProductAdmPageController implements Initializable{
 
@@ -148,7 +149,7 @@ public class ProductAdmPageController implements Initializable{
                 Product aProduct = new Product(name, description, lifetime, price, category);
 
                 // metode som også legger til produktet i riktig kategori-array
-                ProductCategories.setData(aProduct, category, name);
+                ProductCategories.setData(aProduct, category);
 
                 // returnerer produktet
                 return aProduct;
@@ -210,24 +211,24 @@ public class ProductAdmPageController implements Initializable{
 
     // elementet som slettes i TV slettes fra riktig array/ hashmap så det ikke kommer opp i choiceboksene hos sluttbruker
     private void deleteFromRegister(Product aProduct){
-        if(ProductCategories.GraphicCard.containsValue(aProduct)){
-            ProductCategories.GraphicCard.remove(aProduct.getName());
-        } else if(ProductCategories.Memorycard.containsValue(aProduct)){
-            ProductCategories.Memorycard.remove(aProduct.getName());
-        } else if(ProductCategories.Harddrive.containsValue(aProduct)){
-            ProductCategories.Harddrive.remove(aProduct.getName());
-        } else if(ProductCategories.Processor.containsValue(aProduct)){
-            ProductCategories.Processor.remove(aProduct.getName());
-        } else if(ProductCategories.Power.containsValue(aProduct)){
-            ProductCategories.Power.remove(aProduct.getName());
-        } else if(ProductCategories.Soundcard.containsValue(aProduct)){
-            ProductCategories.Soundcard.remove(aProduct.getName());
-        } else if(ProductCategories.OpticalDisk.containsValue(aProduct)){
-            ProductCategories.OpticalDisk.remove(aProduct.getName());
-        } else if(ProductCategories.Color.containsValue(aProduct)){
-            ProductCategories.Color.remove(aProduct.getName());
-        } else if(ProductCategories.otherProducts.contains(aProduct)){
-            ProductCategories.otherProducts.remove(aProduct);
+        if(GraphicCard.contains(aProduct)){
+            GraphicCard.remove(aProduct);
+        } else if(Memorycard.contains(aProduct)){
+            Memorycard.remove(aProduct);
+        } else if(Harddrive.contains(aProduct)){
+            Harddrive.remove(aProduct);
+        } else if(Processor.contains(aProduct)){
+            Processor.remove(aProduct);
+        } else if(Power.contains(aProduct)){
+            Power.remove(aProduct);
+        } else if(Soundcard.contains(aProduct)){
+            Soundcard.remove(aProduct);
+        } else if(OpticalDisk.contains(aProduct)){
+            OpticalDisk.remove(aProduct);
+        } else if(Color.contains(aProduct)){
+            Color.remove(aProduct);
+        } else if(otherProducts.contains(aProduct)){
+            otherProducts.remove(aProduct);
         }
     }
 

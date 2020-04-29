@@ -10,57 +10,42 @@ import java.util.HashMap;
 public class ProductCategories implements Serializable {
     private static final long serialVersionUID = 1;
 
-    private String componentName;
-    private String componentDescription;
-    private int componentLifetime;
-    private double componentPrice;
-
-    public void ProductCategories (String componentName, String componentDescription, int componentLifetime, double componentPrice){
-        this.componentName = componentName;
-        this.componentDescription = componentDescription;
-        this.componentLifetime = componentLifetime;
-        this.componentPrice = componentPrice;
-    }
-
     // alle de forskjellige kategoriene et produkt kan være innenfor
-    public static HashMap<String, Product> GraphicCard = new HashMap<>(); // Skjermkort
-    public static HashMap<String, Product> Memorycard = new HashMap<>(); // Minnekort
-    public static HashMap<String, Product> Harddrive = new HashMap<>(); // Harddisk
-    public static HashMap<String, Product> Processor = new HashMap<>(); // Prosessor
-    public static HashMap<String, Product> Power = new HashMap<>();     // Strømforsyning
-    public static HashMap<String, Product> Soundcard = new HashMap<>(); // Lydkort
-    public static HashMap<String, Product> OpticalDisk = new HashMap<>(); // Optisk disk
-    public static HashMap<String, Product> Color = new HashMap<>();     // Farge
-
-    // har ikke denne i hashmap, fordi hashmap har en kapasitet på 16 plasser i listen.
+    public static ObservableList<Product> GraphicCard = FXCollections.observableArrayList(); // Skjermkort
+    public static ObservableList<Product> Memorycard = FXCollections.observableArrayList(); // Minnekort
+    public static ObservableList<Product> Harddrive = FXCollections.observableArrayList(); // Harddisk
+    public static ObservableList<Product> Processor = FXCollections.observableArrayList(); // Prosessor
+    public static ObservableList<Product> Power = FXCollections.observableArrayList();     // Strømforsyning
+    public static ObservableList<Product> Soundcard = FXCollections.observableArrayList(); // Lydkort
+    public static ObservableList<Product> OpticalDisk = FXCollections.observableArrayList(); // Optisk disk
+    public static ObservableList<Product> Color = FXCollections.observableArrayList();     // Farge
     public static ObservableList<Product> otherProducts = FXCollections.observableArrayList(); // Andre produkter som mus, tastatur, skjerm osv
 
-
     // vurder å bruke switch case for å vise at vi kan det også
-    public static void setData(Product etProduct, String category, String navn){
+    public static void setData(Product etProduct, String category){
         if(category.equals("Skjermkort")) {
-            GraphicCard.put(navn, etProduct);
+            GraphicCard.add(etProduct);
         }
         else if (category.equals("Minnekort")){
-            Memorycard.put(navn, etProduct);
+            Memorycard.add(etProduct);
         }
         else if (category.equals("Harddisk")){
-            Harddrive.put(navn, etProduct);
+            Harddrive.add(etProduct);
         }
         else if (category.equals("Prosessor")){
-            Processor.put(navn, etProduct);
+            Processor.add(etProduct);
         }
         else if (category.equals("Strømforsyning")){
-            Power.put(navn, etProduct);
+            Power.add(etProduct);
         }
         else if (category.equals("Lydkort")){
-            Soundcard.put(navn, etProduct);
+            Soundcard.add(etProduct);
         }
         else if (category.equals("Optisk disk")){
-            OpticalDisk.put(navn, etProduct);
+            OpticalDisk.add(etProduct);
         }
         else if (category.equals("Farge")){
-            Color.put(navn, etProduct);
+            Color.add(etProduct);
         }
         else if (category.equals("Andre produkter")){
             otherProducts.add(etProduct);
@@ -73,57 +58,49 @@ public class ProductCategories implements Serializable {
         Product graphiccard2 = new Product("Skjermkort 2", "Dette er vårt nest billigste skjermkort", 10, 399, "Skjermkort");
         ProductAdmPageController.aRegister.addElement(graphiccard1);
         ProductAdmPageController.aRegister.addElement(graphiccard2);
-        GraphicCard.put("Skjermkort 1", graphiccard1);
-        GraphicCard.put("Skjermkort 2", graphiccard2);
+        GraphicCard.addAll(graphiccard1, graphiccard2);
 
         Product memorycard1 = new Product("4GB RAM", "Dette er vårt billigste minnekort", 5, 299, "Minnekort");
         Product memorycard2 = new Product("8GB RAM", "Dette er vårt beste skjermkort", 10, 699, "Minnekort");
         ProductAdmPageController.aRegister.addElement(memorycard1);
         ProductAdmPageController.aRegister.addElement(memorycard2);
-        Memorycard.put("4GB RAM", memorycard1);
-        Memorycard.put("8GB RAM", memorycard2);
+        Memorycard.addAll(memorycard1, memorycard2);
 
         Product harddrive1 = new Product("128 GB SSD", "Egnet til pcer for vanlig bruk", 5, 299, "Harddisk");
         Product harddrive2 = new Product("256 GB SSD", "Dette er et minnekort med rask lagring", 7, 999, "Harddisk");
         ProductAdmPageController.aRegister.addElement(harddrive1);
         ProductAdmPageController.aRegister.addElement(harddrive2);
-        Harddrive.put("128 GB SSD", harddrive1);
-        Harddrive.put("256 GB SSD", harddrive2);
+        Harddrive.addAll(harddrive1, harddrive2);
 
         Product processor1 = new Product("Intel Core I3", "Eldre versjon av prosessor", 5, 299, "Prosessor");
         Product processor2 = new Product("Intel Core I5", "Nyere versjon av prosessor", 5, 499, "Prosessor");
         ProductAdmPageController.aRegister.addElement(processor1);
         ProductAdmPageController.aRegister.addElement(processor2);
-        Processor.put("Intel Core I3", processor1);
-        Processor.put("Intel Core I5", processor2);
+        Processor.addAll(processor1, processor2);
 
         Product Power1 = new Product("Strømforsyning 1", "0.5 meter ledning", 5, 299, "Strømforsyning");
         Product Power2 = new Product("Strømforsyning 2", "1.5 meter ledning", 5, 399, "Strømforsyning");
         ProductAdmPageController.aRegister.addElement(Power1);
         ProductAdmPageController.aRegister.addElement(Power2);
-        Power.put("Strømforsyning 1", Power1);
-        Power.put("Strømforsyning 2", Power2);
+        Power.addAll(Power1, Power2);
 
         Product Soundcard1 = new Product("Lydkort 1", "God lyd", 5, 299, "Lydkort");
         Product Soundcard2 = new Product("Lydkort 2", "Den beste lyden på markedet", 7, 799, "Lydkort");
         ProductAdmPageController.aRegister.addElement(Soundcard1);
         ProductAdmPageController.aRegister.addElement(Soundcard2);
-        Soundcard.put("Lydkort 1", Soundcard1);
-        Soundcard.put("Lydkort 2", Soundcard2);
+        Soundcard.addAll(Soundcard1, Soundcard2);
 
-        Product opticaldisk1 = new Product("Optisk disk 1", "God opplevelse til daglige gjøremål", 5, 299, "Optisk disk");
-        Product opticaldisk2 = new Product("Optisk disk 2", "Godt egnet for gaming", 7, 1429, "Optisk disk");
-        ProductAdmPageController.aRegister.addElement(opticaldisk1);
-        ProductAdmPageController.aRegister.addElement(opticaldisk2);
-        OpticalDisk.put("Optisk disk 1", opticaldisk1);
-        OpticalDisk.put("Optisk disk 2", opticaldisk2);
+        Product Opticaldisk1 = new Product("Optisk disk 1", "God opplevelse til daglige gjøremål", 5, 299, "Optisk disk");
+        Product Opticaldisk2 = new Product("Optisk disk 2", "Godt egnet for gaming", 7, 1429, "Optisk disk");
+        ProductAdmPageController.aRegister.addElement(Opticaldisk1);
+        ProductAdmPageController.aRegister.addElement(Opticaldisk2);
+        OpticalDisk.addAll(Opticaldisk1, Opticaldisk2);
 
         Product color1 = new Product("Rød", "En fin farge inspirert av rød rose", 10, 299, "Farge");
         Product color2 = new Product("Svart som olje", "En tøff oljesvart farge med glans.", 10, 499, "Farge");
         ProductAdmPageController.aRegister.addElement(color1);
         ProductAdmPageController.aRegister.addElement(color2);
-        Color.put("Rød", color1);
-        Color.put("Svart som olje", color2);
+        Color.addAll(color1, color2);
 
 
         // disse andre produktene skal knyttes mot tableview på "ExtraOrderEnduserPage"
@@ -153,15 +130,10 @@ public class ProductCategories implements Serializable {
     }
 
 
-    // todo: bør lage en to string metode så man får skrevet ut år etter levetid og kroner etter prisMap.Entry<String, Product> entry
-    @Override
-    public String toString() {
-        return componentPrice+"kr";
-    }
-
     //metode som gjør at navnet fra hashmappen kommer opp som et option i choicebox, og ikke hele objektet blir vist som et valg
-    public static String CategorynameToString(HashMap<String, Product> aProduct, int index){
-        return aProduct.keySet().toArray()[index].toString();
+    public static String ProductToString(ObservableList<Product> aProduct, int i){
+        String productName = aProduct.toArray()[i].toString();
+        return productName;
     }
 
 }

@@ -7,10 +7,14 @@ import datamaskin.users.Customer;
 import datamaskin.users.CustomerValidator;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -24,8 +28,15 @@ public class NewUserController {
 
     private FileSaverTxt filesaver = new FileSaverTxt();
 
+    @FXML
+    void btnMakeNewUser(KeyEvent event) throws Exception {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            makeNewUser(event);
+        }
+    }
+
     // når knappen trykkes kalles metoden for å lage ny bruker og for at vinduet skal lukkes hvis vellykket
-    @FXML void makeNewUser(ActionEvent event) throws Exception {
+    @FXML void makeNewUser(Event event) throws Exception {
         if(createCustomerFromGUI()!=null){
             Customer aCustomer = createCustomerFromGUI();
 
@@ -40,7 +51,7 @@ public class NewUserController {
     }
 
     // metode som lukker vinduet automatisk når det er laget en ny bruker
-    public void closeWindow(ActionEvent event){
+    public void closeWindow(Event event){
         ((Node)(event.getSource())).getScene().getWindow().hide();
     }
 

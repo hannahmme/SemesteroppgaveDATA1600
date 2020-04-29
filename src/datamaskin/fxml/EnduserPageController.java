@@ -39,6 +39,7 @@ public class EnduserPageController implements Initializable {
     @FXML private Label lblInfoSoundcard;
     @FXML private Label lblInfoOpticaldisk;
     @FXML private Label lblInfoColor;
+    @FXML private Label lblExpectedLifetime;
 
     @FXML private TableView<Product> tableviewCart;
     @FXML private TableColumn<Product, String> nameColumn;
@@ -79,8 +80,10 @@ public class EnduserPageController implements Initializable {
     private void createCartObjectsFromGUI() {
         if (Cart.Register.isEmpty()) {  // kun hvis handlekurven er tom skal det lages helt nye produkter som legges til
             createProducts();
+            lblExpectedLifetime.setText(String.valueOf(findExpectedLifetime()));
         } else {
             updateCart();               // oppdater alltid handlekurven ut fra det som er i choicebox
+            lblExpectedLifetime.setText(String.valueOf(findExpectedLifetime()));
         }
     }
 
@@ -146,6 +149,7 @@ public class EnduserPageController implements Initializable {
         if (!Cart.Register.isEmpty()) {
             setChosenCombobox();
             aCart.getTotalPrice(lblTotalPrice);
+            lblExpectedLifetime.setText(String.valueOf(findExpectedLifetime()));
         }
     }
 

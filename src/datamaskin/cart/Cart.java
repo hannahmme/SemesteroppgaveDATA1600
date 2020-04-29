@@ -104,4 +104,17 @@ public class Cart {
         });
     }
 
+    public static double findExpectedLifetime(){
+        double lifetime = 0;
+        double expectedLifetime;
+        double count = 0;
+        for(Product aProduct : Register) {
+            count ++;
+            lifetime += aProduct.getLifetime();
+
+        }
+        expectedLifetime = lifetime / count;
+        return expectedLifetime;
+    }
+
 }

@@ -25,36 +25,36 @@
                      <font>
                         <Font name="Arial Bold" size="36.0" />
                      </font></Text>
+                  <Line endX="400.0" layoutX="210.0" layoutY="80.0" startX="-200.0" />
                   <Label layoutX="11.0" layoutY="102.0" prefHeight="21.0" prefWidth="86.0" text="Skjermkort" />
+                  <ComboBox fx:id="cBoxGraphicCard" layoutX="121.0" layoutY="97.0" prefWidth="150.0" />
                   <Label fx:id="lblInfoGraphicCard" layoutX="287.0" layoutY="93.0" prefHeight="40.0" prefWidth="319.0" wrapText="true" />
                   <Label layoutX="12.0" layoutY="154.0" prefHeight="21.0" prefWidth="109.0" text="Minnekort" />
-                  <Label fx:id="lblInfoMemorycard" layoutX="310.0" layoutY="149.0" prefHeight="31.0" prefWidth="299.0" />
+                  <ComboBox fx:id="cBoxMemorycard" layoutX="121.0" layoutY="149.0" prefWidth="150.0" />
+                  <Label fx:id="lblInfoMemorycard" layoutX="287.0" layoutY="145.0" prefHeight="40.0" prefWidth="319.0" wrapText="true" />
                   <Label layoutX="12.0" layoutY="207.0" prefHeight="21.0" prefWidth="109.0" text="Harddisk" />
-                  <Label fx:id="lblInfoHarddrive" layoutX="297.0" layoutY="202.0" prefHeight="31.0" prefWidth="299.0" />
+                  <ComboBox fx:id="cBoxHarddrive" layoutX="121.0" layoutY="202.0" prefWidth="150.0" />
+                  <Label fx:id="lblInfoHarddrive" layoutX="287.0" layoutY="198.0" prefHeight="40.0" prefWidth="319.0" wrapText="true" />
                   <Label layoutX="12.0" layoutY="253.0" prefHeight="21.0" prefWidth="109.0" text="Prosessor" />
-                  <Label fx:id="lblInfoProcessor" layoutX="297.0" layoutY="248.0" prefHeight="31.0" prefWidth="299.0" />
+                  <ComboBox fx:id="cBoxProcessor" layoutX="121.0" layoutY="248.0" prefWidth="150.0" />
+                  <Label fx:id="lblInfoProcessor" layoutX="287.0" layoutY="244.0" prefHeight="40.0" prefWidth="319.0" wrapText="true" />
                   <Label layoutX="13.0" layoutY="302.0" prefHeight="21.0" prefWidth="109.0" text="Strømforsyning" />
-                  <Label fx:id="lblInfoPower" layoutX="297.0" layoutY="297.0" prefHeight="31.0" prefWidth="299.0" />
+                  <ComboBox fx:id="cBoxPower" layoutX="121.0" layoutY="297.0" prefWidth="150.0" />
+                  <Label fx:id="lblInfoPower" layoutX="287.0" layoutY="293.0" prefHeight="40.0" prefWidth="319.0" wrapText="true" />
                   <Label layoutX="12.0" layoutY="357.0" prefHeight="21.0" prefWidth="109.0" text="Lydkort" />
-                  <Label fx:id="lblInfoSoundcard" layoutX="297.0" layoutY="352.0" prefHeight="31.0" prefWidth="299.0" />
+                  <ComboBox fx:id="cBoxSoundcard" layoutX="121.0" layoutY="352.0" prefWidth="150.0" />
+                  <Label fx:id="lblInfoSoundcard" layoutX="287.0" layoutY="348.0" prefHeight="40.0" prefWidth="319.0" wrapText="true" />
                   <Label layoutX="13.0" layoutY="403.0" prefHeight="21.0" prefWidth="109.0" text="Optisk disk" />
-                  <Label fx:id="lblInfoOpticaldisk" layoutX="297.0" layoutY="398.0" prefHeight="31.0" prefWidth="299.0" />
+                  <ComboBox fx:id="cBoxOpticaldisk" layoutX="121.0" layoutY="398.0" prefWidth="150.0" />
+                  <Label fx:id="lblInfoOpticaldisk" layoutX="287.0" layoutY="394.0" prefHeight="40.0" prefWidth="319.0" wrapText="true" />
                   <Label layoutX="12.0" layoutY="456.0" prefHeight="21.0" prefWidth="109.0" text="Farge" />
-                  <Label fx:id="lblInfoColor" layoutX="297.0" layoutY="451.0" prefHeight="31.0" prefWidth="299.0" />
+                  <ComboBox fx:id="cBoxColor" layoutX="121.0" layoutY="451.0" prefWidth="150.0" />
+                  <Label fx:id="lblInfoColor" layoutX="287.0" layoutY="447.0" prefHeight="40.0" prefWidth="319.0" wrapText="true" />
+                  <Label fx:id="lblError" layoutX="93.0" layoutY="504.0" prefHeight="55.0" prefWidth="434.0" textFill="RED" wrapText="true" />
                   <Button fx:id="btnAddToCart" layoutX="140.0" layoutY="568.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="86.0" prefWidth="353.0" style="-fx-background-color: grey;" text="Oppdater handlekurv med valgte komponenter" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="15.0" />
                      </font></Button>
-                  <Label fx:id="lblError" layoutX="93.0" layoutY="504.0" prefHeight="55.0" prefWidth="434.0" textFill="RED" wrapText="true" />
-                  <Line endX="400.0" layoutX="210.0" layoutY="80.0" startX="-200.0" />
-                  <ComboBox fx:id="cBoxGraphicCard" layoutX="121.0" layoutY="97.0" prefWidth="150.0" />
-                  <ComboBox fx:id="cBoxMemorycard" layoutX="121.0" layoutY="149.0" prefWidth="150.0" />
-                  <ComboBox fx:id="cBoxHarddrive" layoutX="121.0" layoutY="202.0" prefWidth="150.0" />
-                  <ComboBox fx:id="cBoxProcessor" layoutX="121.0" layoutY="248.0" prefWidth="150.0" />
-                  <ComboBox fx:id="cBoxPower" layoutX="121.0" layoutY="297.0" prefWidth="150.0" />
-                  <ComboBox fx:id="cBoxSoundcard" layoutX="121.0" layoutY="352.0" prefWidth="150.0" />
-                  <ComboBox fx:id="cBoxOpticaldisk" layoutX="121.0" layoutY="398.0" prefWidth="150.0" />
-                  <ComboBox fx:id="cBoxColor" layoutX="121.0" layoutY="451.0" prefWidth="150.0" />
                </children>
             </AnchorPane>
           <AnchorPane layoutX="625.0" layoutY="670.0" minHeight="0.0" minWidth="0.0" prefHeight="670.0" prefWidth="625.0" SplitPane.resizableWithParent="false">
@@ -94,6 +94,8 @@
                      </font></Button>
                   <Label fx:id="lblTotalPrice" layoutX="130.0" layoutY="620.0" prefHeight="21.0" prefWidth="141.0" wrapText="true" />
                   <Line endX="480.0" layoutX="130.0" layoutY="79.0" startX="-120.0" />
+                  <Text layoutX="15.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gjennomsnittlig levetid på konfigurert pc:" wrappingWidth="292.63330078125" />
+                  <Label fx:id="lblExpectedLifetime" layoutX="315.0" layoutY="466.0" prefHeight="21.0" prefWidth="73.0" />
                </children>
             </AnchorPane>
         </items>

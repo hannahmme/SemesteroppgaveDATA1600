@@ -7,6 +7,7 @@ import datamaskin.filbehandling.FileSaver;
 import datamaskin.filbehandling.SaveComponentsToFile;
 import datamaskin.Page;
 import datamaskin.product.*;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +22,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
+import sun.jvm.hotspot.asm.Register;
 
 import java.io.IOException;
 import java.net.URL;
@@ -50,8 +52,10 @@ public class ProductAdmPageController implements Initializable{
     @FXML private MenuButton menuDropdown;
     @FXML private MenuItem saveToFile;
     @FXML private MenuItem openFromFile;
-    @FXML private Label txtSearch;
+    @FXML private TextField txtSearch;
     @FXML private ChoiceBox<String> cboxFilter;
+    @FXML private Button btnSearch;
+
 
 
     // metode for å lage kategoriene i cboksene, så admin må velge en av de
@@ -166,14 +170,17 @@ public class ProductAdmPageController implements Initializable{
         ProductRegister.setComponentToTV(componentTableview);
     }
 
+    /*@FXML
+    private void filterChoiceChanged(){
+        filter();
+    }
     @FXML
-    private void filterChoiceChanged(){ }
-    @FXML
-    private void searchTxtEntered(){ }
+    private void searchTxtEntered(){
+        filter(); }*/
 
 
     private void filter(){
-        if(txtSearch.getText().isEmpty()) {
+        if(isEmptyOrBlank(txtSearch)) {
             updateProductList();
             return;
         }
@@ -189,6 +196,12 @@ public class ProductAdmPageController implements Initializable{
                 result = aRegister.filterByPrice(Double.parseDouble(txtSearch.getText()));
             } catch (NumberFormatException e) {} break;
             case "category" : result = aRegister.filterByCategory(txtSearch.getText()); break;
+        }
+
+        if(result == null) {
+            componentTableview.setItems(FXCollections.observableArrayList());
+        } else {
+            componentTableview.setItems(result);
         }
     }
 
@@ -248,7 +261,7 @@ public class ProductAdmPageController implements Initializable{
         aRegister.setComponentToTV(componentTableview);
 
         //Choiceboxen for filtrering skal stå på Navn som default
-        cboxFilter.setValue("Navn");
+        //cboxFilter.setValue("Navn");
 
         // for å ha kategoriene i nedtrekkslista fra før av
         setData();
@@ -338,5 +351,10 @@ public class ProductAdmPageController implements Initializable{
     }
     @FXML void txtProductCategoryEdited(TableColumn.CellEditEvent<Product, String> event){
         event.getRowValue().setCategory(event.getNewValue());
+    }
+
+
+    @FXML void filterTV(ActionEvent actionEvent) {
+        filter();
     }
 }

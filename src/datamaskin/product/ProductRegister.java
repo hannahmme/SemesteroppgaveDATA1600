@@ -9,6 +9,8 @@ import javafx.scene.control.TableView;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class ProductRegister implements Serializable {
@@ -20,6 +22,7 @@ public class ProductRegister implements Serializable {
         tv.setItems(Register);
     }
 
+    //Metoder for filtrering innenfor de ulike kolonnene
     public ObservableList<Product> filterByName(String name) {
         return Register.stream().
                 filter(p -> p.getName().toLowerCase().
@@ -88,6 +91,15 @@ public class ProductRegister implements Serializable {
         return false;
     }
 
+    /*@Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for(Product p : Register) {
+            sb.append(p.toString());
+            sb.append(System.lineSeparator());
+        }
 
+        return sb.toString();
+    }*/
 
 }

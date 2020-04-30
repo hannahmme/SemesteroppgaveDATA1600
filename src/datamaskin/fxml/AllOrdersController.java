@@ -3,19 +3,19 @@ package datamaskin.fxml;
 import datamaskin.filbehandling.ReadFromAllOrdersFile;
 import datamaskin.orders.FinalOrderOverview;
 import datamaskin.Page;
+import datamaskin.orders.Order;
 import datamaskin.product.Product;
 import datamaskin.threadprogramming.ThreadReader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -37,6 +37,7 @@ public class AllOrdersController implements Initializable {
     @FXML private Button toSuperuserpage;
     @FXML private TextField txtFiltering;
     @FXML private Text txtTblHeader;
+    @FXML ChoiceBox<String> filterCBox;
     @FXML private ThreadReader readerTask;
 
     private ReadFromAllOrdersFile readFromAllOrdersFile = new ReadFromAllOrdersFile();
@@ -71,6 +72,12 @@ public class AllOrdersController implements Initializable {
         } catch (IOException e) {
             System.out.println("Filsti ikke funnet: " + e.getMessage());
         }
+
+        ObservableList<String> filterChoices = FXCollections.observableArrayList();
+        filterChoices.addAll("Email", "OrdreID", "Dato", "Totalpris");
+
+        filterCBox.setItems(filterChoices);
+        filterCBox.setValue("Email");
 
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
         orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("OrderID"));
@@ -115,6 +122,75 @@ public class AllOrdersController implements Initializable {
         txtTblHeader.setText("Det oppsto en feil. Kunne ikke hente ordreinfo.....");
         tblOrderContent.setItems(emptyList);
         allOrders.setDisable(false);
+    }
+
+
+    @FXML
+    private void filterChoiceChanged() throws IOException {
+        filter();
+    }
+
+    @FXML
+    private void searchTxtEntered() throws IOException {
+        filter();
+    }
+
+
+    private void filter() throws IOException {
+        // henter listen over alle ordrene fra fil
+        ObservableList<FinalOrderOverview> allOrdersList = readFromAllOrdersFile.readFromAllOrdersFile("./src/Datamaskin/sentOrdersPath/allOrders.csv");
+
+        // oppretter en ny liste for filtrert data med alle ordrene fra fil
+        FilteredList<FinalOrderOverview> filtrertData = new FilteredList<>((allOrdersList), p -> true);
+
+        // hver gang verdien endres skjer følgende
+        txtFiltering.textProperty().addListener((observable, oldVerdi, newVerdi) -> {
+
+            // listen med filtrert data sjekker gjennom allOrdersList om den finner verdiene av order
+            filtrertData.setPredicate(anOrder -> {
+
+                // henter den nye verdien og gjør den om til små bokstaver
+                String smallLetters = newVerdi.toLowerCase();
+
+                if (newVerdi.matches("[a-zA-Z. -_0-9()@]*")) {    //
+
+                    // Hvis feltet er tomt skal alle personer vises
+                    if (newVerdi.isEmpty()) {
+                        return true;
+                    }
+
+                    // Sammenligner alle kolonner med filtertekst, etter valgt cbox
+                    if(filterCBox.getValue().toLowerCase().equals("email")) {
+                        if (anOrder.getEmail().toLowerCase().contains(smallLetters)) {
+                            return true;
+                        }
+                    }
+                    if(filterCBox.getValue().toLowerCase().equals("ordreid")) {
+                        if (anOrder.getOrderID().toLowerCase().contains(smallLetters)) {
+                            return true;
+                        }
+                    }
+                    if(filterCBox.getValue().toLowerCase().equals("dato")) {
+                        if (anOrder.getOrderDate().contains(smallLetters)) {
+                            return true;
+                        }
+                    }
+                    if(filterCBox.getValue().toLowerCase().equals("totalpris")){
+                            if (String.valueOf(anOrder.getTotalPrice()).matches(smallLetters)) {
+                                return true;
+                            }
+                    }
+                }
+                return false;
+            });
+        });
+
+        // oppretter en sortert liste fra filtrert data og binder den sammen med tabellen
+        SortedList<FinalOrderOverview> sortertData = new SortedList<>(filtrertData);
+        sortertData.comparatorProperty().bind(allOrders.comparatorProperty());
+
+        // legger til sotrert og filtert data til tabellen
+        allOrders.setItems(sortertData);
     }
 
 }

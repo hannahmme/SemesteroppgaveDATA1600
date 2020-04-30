@@ -2,9 +2,10 @@ package datamaskin.orders;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class FinalOrderOverview {
-
     private transient SimpleStringProperty orderID;
     private transient SimpleStringProperty email;
     private transient SimpleStringProperty orderDate;

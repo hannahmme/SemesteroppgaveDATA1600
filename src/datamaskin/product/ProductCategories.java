@@ -21,8 +21,9 @@ public class ProductCategories implements Serializable {
     public static ObservableList<Product> Color = FXCollections.observableArrayList();     // Farge
     public static ObservableList<Product> otherProducts = FXCollections.observableArrayList(); // Andre produkter som mus, tastatur, skjerm osv
 
-    // vurder å bruke switch case for å vise at vi kan det også
+    // todo: vurder å bruke switch case for å vise at vi kan det også
     public static void setData(Product etProduct, String category){
+
         if(category.equals("Skjermkort")) {
             GraphicCard.add(etProduct);
         }

@@ -184,23 +184,23 @@ public class ProductAdmPageController implements Initializable{
             return;
         }
 
-        ObservableList<Product> result = null;
+        ObservableList<Product> searchResult = null;
         switch (cboxFilter.getValue().toLowerCase()) {
-            case "name" : result = aRegister.filterByName(txtSearch.getText()); break;
-            case "description" : result = aRegister.filterByDescription(txtSearch.getText()); break;
+            case "name" : searchResult = aRegister.filterByName(txtSearch.getText()); break;
+            case "description" : searchResult = aRegister.filterByDescription(txtSearch.getText()); break;
             case "lifetime" : try {
-                result = aRegister.filterByLifetime(Integer.parseInt(txtSearch.getText()));
+                searchResult = aRegister.filterByLifetime(Integer.parseInt(txtSearch.getText()));
             } catch (NumberFormatException e) {} break;
             case "price" : try {
-                result = aRegister.filterByPrice(Double.parseDouble(txtSearch.getText()));
+                searchResult = aRegister.filterByPrice(Double.parseDouble(txtSearch.getText()));
             } catch (NumberFormatException e) {} break;
-            case "category" : result = aRegister.filterByCategory(txtSearch.getText()); break;
+            case "category" : searchResult = aRegister.filterByCategory(txtSearch.getText()); break;
         }
 
-        if(result == null) {
+        if(searchResult == null) {
             componentTableview.setItems(FXCollections.observableArrayList());
         } else {
-            componentTableview.setItems(result);
+            componentTableview.setItems(searchResult);
         }
     }
 

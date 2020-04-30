@@ -22,6 +22,21 @@ public class ProductRegister implements Serializable {
         tv.setItems(Register);
     }
 
+    public Product searchRegisterByName(String name) {
+        Pattern pattern = Pattern.compile(name, Pattern.CASE_INSENSITIVE);
+
+        for(Product p : Register) {
+            Matcher matcher = pattern.matcher(p.getName());
+
+            if(matcher.find()) {
+                return p;
+            }
+        }
+
+        // Hvis vi kommer hit betyr det at vi ikke fant noen personer
+        return null;
+    }
+
     //Metoder for filtrering innenfor de ulike kolonnene
     public ObservableList<Product> filterByName(String name) {
         return Register.stream().

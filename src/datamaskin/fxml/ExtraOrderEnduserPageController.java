@@ -1,7 +1,6 @@
 package datamaskin.fxml;
 
 import datamaskin.cart.Cart;
-import datamaskin.orders.Order;
 import datamaskin.product.Product;
 import datamaskin.Page;
 import datamaskin.product.ProductCategories;
@@ -25,7 +24,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ExtraOrderEnduserPageController implements Initializable {
-
     //Handlekurv på høyre side
     @FXML private TableView<Product> tableviewCart;
     @FXML private TableColumn<Product, String> nameColumn;
@@ -33,7 +31,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
     @FXML private TableColumn<Product, Integer> lifetimeColumn;
     @FXML private TableColumn<Product, Double> priceColumn;
 
-    //Tableview på venstre side med ekstra komponenter
+    //TV på venstre side med ekstra komponenter
     @FXML private TableView<Product> tblExtraProduct;
     @FXML private TableColumn<Product, String> extraProductName;
     @FXML private TableColumn<Product, String> extraProductInfo;
@@ -93,24 +91,21 @@ public class ExtraOrderEnduserPageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //Tableview på venstre side med ekstra tilbehør
-        tblExtraProduct.getItems().addAll(ProductCategories.otherProducts);
-        tblExtraProduct.setItems(ProductCategories.otherProducts);
-
+        // TV på venstre side
         extraProductName.setCellValueFactory(new PropertyValueFactory<>("Name"));
         extraProductInfo.setCellValueFactory(new PropertyValueFactory<>("Description"));
         extraProductLifetime.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
         extraProductPrice.setCellValueFactory(new PropertyValueFactory<>("Price"));
 
-        //Handlekurven på høyre side lastes inn når siden lastes inn
+        tblExtraProduct.getItems().addAll(ProductCategories.otherProducts);
+        tblExtraProduct.setItems(ProductCategories.otherProducts);
+
+        // Handlekurven på høyre side
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
         lifetimeColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
-
-        //Kobler handlekurven med tableviewet.
         shoppingCart.attachTableview(tableviewCart);
-
         shoppingCart.getTotalPrice(lblTotalPrice);
 
         image.setImageView(mainpageImageView, homeImage);
@@ -119,8 +114,6 @@ public class ExtraOrderEnduserPageController implements Initializable {
     //Metode som gjør at bilde av produktet som velges vises i produktinfo-imageviewet
     @FXML void selectedItemEvent(MouseEvent event) throws FileNotFoundException {
         Product selectedProduct = tblExtraProduct.getSelectionModel().getSelectedItem();
-
-        // Hvis raden det klikkes på er tom - ikke gjør noe
         if (selectedProduct == null) return;
 
         // Forsøker å hente ut bildet og vise det
@@ -140,7 +133,6 @@ public class ExtraOrderEnduserPageController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("EnduserPage.fxml"));
         Page.toEnduserPage(primaryStage, root);
         primaryStage.show();
-
     }
 
     // går tilbake til hovedsiden hvis yes på alert + sletter handlekurven

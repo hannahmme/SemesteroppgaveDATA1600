@@ -20,9 +20,6 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import javafx.util.converter.DoubleStringConverter;
-import javafx.util.converter.IntegerStringConverter;
-
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
@@ -31,17 +28,15 @@ import java.util.ResourceBundle;
 import static datamaskin.product.ProductCategories.*;
 
 public class ProductAdmPageController implements Initializable{
-
     @FXML private Button toSuperUserPage;
     @FXML private Label wrongInput;
 
-    private ConvertersWithErrorHandling.IntegerStringConverter intStrConverter
+    private final ConvertersWithErrorHandling.IntegerStringConverter intStrConverter
             = new ConvertersWithErrorHandling.IntegerStringConverter();
-    private ConvertersWithErrorHandling.DoubleFromStringConverter doubleStrConverter
+    private final ConvertersWithErrorHandling.DoubleFromStringConverter doubleStrConverter
             = new ConvertersWithErrorHandling.DoubleFromStringConverter();
     private SaveComponentsToFile filesaver = new SaveComponentsToFile();
 
-    // inputfields for å lage et produkt/ komponent
     @FXML private TextField txtComponentname;
     @FXML private TextField txtDescription;
     @FXML private TextField txtLifetime;
@@ -53,9 +48,6 @@ public class ProductAdmPageController implements Initializable{
     @FXML private MenuItem openFromFile;
     @FXML private TextField txtSearch;
     @FXML private ChoiceBox<String> cboxFilter;
-    @FXML private Button btnSearch;
-
-
 
     // metode for å lage kategoriene i cboksene, så admin må velge en av de
     private void setData(){
@@ -76,7 +68,7 @@ public class ProductAdmPageController implements Initializable{
     public static ProductRegister aRegister = new ProductRegister();
 
     // knappen for å legge til et nytt produkt i listen
-    @FXML void addComponent(ActionEvent event) {
+    @FXML void addComponent() {
         Product aProduct = createProductObjectFromGUI();
         if(aProduct != null) {
             aRegister.addElement(aProduct);
@@ -118,32 +110,28 @@ public class ProductAdmPageController implements Initializable{
         } else {
             try {
                 name = txtComponentname.getText();
-                if(!ProductValidator.validateName(name)){
+                description = txtDescription.getText();
+                lifetimeString = txtLifetime.getText();
+                priceString = txtPrice.getText();
+                category = cboxCategory.getSelectionModel().getSelectedItem();
+
+                if (!ProductValidator.validateName(name)){
                     throw new IllegalArgumentException("Skriv inn et gyldig komponentnavn");
                 }
-
-                description = txtDescription.getText();
-                if(!ProductValidator.validateDescription(description)){
+                if (!ProductValidator.validateDescription(description)){
                     throw new IllegalArgumentException("Skriv inn en gyldig beskrivelse");
                 }
-
-                lifetimeString = txtLifetime.getText();
-                if(!ProductValidator.validateLifetime(lifetimeString)){
+                if (!ProductValidator.validateLifetime(lifetimeString)){
                     throw new InvalidLifetimeException("Skriv inn et gyldig antall år");
-                }
-                else{
+                } else{
                     lifetime = Integer.parseInt(txtLifetime.getText());
                 }
-
-                priceString = txtPrice.getText();
-                if(!ProductValidator.validatePrice(priceString)){
+                if (!ProductValidator.validatePrice(priceString)){
                     throw new InvalidPriceException("Skriv inn en gyldig pris");
-                }
-                else{
+                } else{
                     price = Double.parseDouble(txtPrice.getText());
                 }
 
-                category = cboxCategory.getSelectionModel().getSelectedItem();
                 if(!ProductValidator.validateCategory(category)){
                     throw new IllegalArgumentException("Vennligst velg kategori");
                 }
@@ -156,7 +144,6 @@ public class ProductAdmPageController implements Initializable{
 
                 // returnerer produktet
                 return aProduct;
-
 
             } catch (InvalidPriceException | IllegalArgumentException | InvalidLifetimeException e) {
                 wrongInput.setText(e.getMessage());
@@ -222,6 +209,7 @@ public class ProductAdmPageController implements Initializable{
     }
 
     // elementet som slettes i TV slettes fra riktig array/ hashmap så det ikke kommer opp i choiceboksene hos sluttbruker
+    //todo: vurder å bruke switch case
     private void deleteFromRegister(Product aProduct){
         if(GraphicCard.contains(aProduct)){
             GraphicCard.remove(aProduct);
@@ -257,7 +245,7 @@ public class ProductAdmPageController implements Initializable{
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("Category"));
 
-        aRegister.setComponentToTV(componentTableview);
+        ProductRegister.setComponentToTV(componentTableview);
 
         //Choiceboxen for filtrering skal stå på Navn som default
         //cboxFilter.setValue("Navn");

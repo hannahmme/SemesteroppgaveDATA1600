@@ -14,10 +14,16 @@
 
 <AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="datamaskin.fxml.UserspesificOrderController">
     <children>
+        <Button fx:id="toMainpage" layoutX="26.0" layoutY="35.0" mnemonicParsing="false" onAction="#toMainpage" onKeyPressed="#btnToMainpageEnter" prefHeight="31.0" prefWidth="140.0" style="-fx-background-color: grey;" text="Gå tilbake" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font></Button>
+      <ImageView fitHeight="23.0" fitWidth="25.0" layoutX="135.0" layoutY="39.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
         <Text layoutX="437.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dine tidligere ordre" textAlignment="CENTER" wrappingWidth="411.14794921875" AnchorPane.bottomAnchor="615.58984375" AnchorPane.leftAnchor="437.0" AnchorPane.rightAnchor="401.85205078125" AnchorPane.topAnchor="33.41015625">
          <font>
             <Font name="Arial Bold" size="36.0" />
          </font></Text>
+      <Line endX="591.0" layoutX="648.0" layoutY="89.0" startX="-634.0" />
         <TableView fx:id="tblAllOrders" layoutX="26.0" layoutY="135.0" onMouseClicked="#selectedOrderItemEvent" prefHeight="489.0" prefWidth="595.0">
             <columns>
                 <TableColumn fx:id="emailColumn" prefWidth="226.0" text="E-post">
@@ -42,11 +48,8 @@
                 </TableColumn>
             </columns>
         </TableView>
-        <Button fx:id="toMainpage" layoutX="26.0" layoutY="35.0" mnemonicParsing="false" onAction="#toMainpage" onKeyPressed="#btnToMainpageEnter" prefHeight="31.0" prefWidth="140.0" style="-fx-background-color: grey;" text="Gå tilbake" textFill="WHITE">
-         <font>
-            <Font name="Arial Bold" size="15.0" />
-         </font></Button>
-      <ImageView fitHeight="23.0" fitWidth="37.0" layoutX="179.0" layoutY="28.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
+      <Line endX="-3.0" endY="563.0" layoutX="645.0" layoutY="111.0" startX="-3.0" startY="-22.5" />
+      <Text fx:id="txtTblHeader" layoutX="665.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ordreinnhold" wrappingWidth="330.7081298828125" />
       <TableView fx:id="tblOrderInfo" layoutX="661.0" layoutY="135.0" prefHeight="489.0" prefWidth="584.0">
         <columns>
             <TableColumn fx:id="productName" prefWidth="106.857177734375" text="Produktnavn">
@@ -71,8 +74,5 @@
             </TableColumn>
         </columns>
       </TableView>
-      <Text fx:id="txtTblHeader" layoutX="665.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ordreinnhold" wrappingWidth="330.7081298828125" />
-      <Line endX="591.0" layoutX="648.0" layoutY="89.0" startX="-634.0" />
-      <Line endX="-3.0" endY="563.0" layoutX="645.0" layoutY="111.0" startX="-3.0" startY="-22.5" />
     </children>
 </AnchorPane>

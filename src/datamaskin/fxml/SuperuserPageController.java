@@ -12,7 +12,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -98,7 +97,4 @@ public class SuperuserPageController implements Initializable {
             toAllUsersPage();
         }
     }
-
-
 }
-

@@ -37,8 +37,6 @@ public class MainpageController implements Initializable {
     @FXML private Label lblAdminError;
 
     private ReadFromCustomerFile readFromCustomerFile = new ReadFromCustomerFile();
-
-
     private ImageClass image = new ImageClass();
 
     //Dette kastes pga bildene som lastes inn når siden lastes inn. Skal sjekke om det kan fjernes evt  - Hannah
@@ -82,24 +80,24 @@ public class MainpageController implements Initializable {
         Page.toEnduserPage(primaryStage, root);
         primaryStage.show();
     }
+
     // metode som åpner ny scene til sluttbrukersiden (endret versjon av metoden) - hannah
     @FXML void toSuperUserPage() throws IOException {
         try {
            String username = txtUsername.getText();
            String password = txtPassword.getText();
-            if(username == null || password == null){
-                lblAdminError.setText("Feil innloggingsdetaljer");
-                throw new NullPointerException("Noe gikk galt ved innlasting av brukernavn/passord");
-            } else{
-                boolean isMatching = username.matches("admin") && password.matches("admin");
-                if(isMatching){
-                    lblAdminError.setText("");
-                    Stage primaryStage = (Stage) btnSuperuserPage.getScene().getWindow();
-                    Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
-                    Page.toSuperuserpage(primaryStage, root);
-                    primaryStage.show();
-                }
-            }
+           boolean isMatching = username.matches("admin") && password.matches("admin");
+           if(isMatching){
+               lblAdminError.setText("");
+               Stage primaryStage = (Stage) btnSuperuserPage.getScene().getWindow();
+               Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
+               Page.toSuperuserpage(primaryStage, root);
+               primaryStage.show();
+           }
+           else{
+               lblAdminError.setText("Feil innloggingsdetaljer");
+               throw new NullPointerException("Noe gikk galt ved innlasting av brukernavn/passord");
+           }
         }catch(NullPointerException npe){
             System.err.println(npe.getMessage());
         }
@@ -133,7 +131,7 @@ public class MainpageController implements Initializable {
     @FXML private ImageView adminImageView;
     private Image adminImage = image.createImage("./src/Datamaskin/images/admin.png");
 
-    //Effekt for å blurre bilde på mainpage (det blå bildet)
+    //Effekt for å blurre bildet på mainpage (det blå bildet)
     private DropShadow shadowEffect = new DropShadow();
 
     //Bilder settes i ImageViewet når siden lastes inn, samt effekt på bildet

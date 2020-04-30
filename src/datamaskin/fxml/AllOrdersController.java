@@ -3,7 +3,6 @@ package datamaskin.fxml;
 import datamaskin.filbehandling.ReadFromAllOrdersFile;
 import datamaskin.orders.FinalOrderOverview;
 import datamaskin.Page;
-import datamaskin.orders.Order;
 import datamaskin.product.Product;
 import datamaskin.threadprogramming.ThreadReader;
 import javafx.collections.FXCollections;
@@ -26,7 +25,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
 public class AllOrdersController implements Initializable {
 
     @FXML private TableView<FinalOrderOverview> allOrders;
@@ -37,11 +35,8 @@ public class AllOrdersController implements Initializable {
     @FXML private Button toSuperuserpage;
     @FXML private TextField txtFiltering;
     @FXML private Text txtTblHeader;
-    @FXML ChoiceBox<String> filterCBox;
+    @FXML private ChoiceBox<String> filterCBox;
     @FXML private ThreadReader readerTask;
-
-    private ReadFromAllOrdersFile readFromAllOrdersFile = new ReadFromAllOrdersFile();
-    private ObservableList<Product> emptyList = FXCollections.observableArrayList();
 
     @FXML private TableView<Product> tblOrderContent;
     @FXML private TableColumn<String, Product> productName;
@@ -49,13 +44,15 @@ public class AllOrdersController implements Initializable {
     @FXML private TableColumn<Integer, Product> productLifetime;
     @FXML private TableColumn<Double, Product> productPrice;
 
+    private final ReadFromAllOrdersFile readFromAllOrdersFile = new ReadFromAllOrdersFile();
+    private final ObservableList<Product> emptyList = FXCollections.observableArrayList();
+
     //knappen "tilbake" tar brukeren med tilbake til menysiden for superbruker
     @FXML void toSuperuserpage() throws IOException {
         Stage primaryStage = (Stage) toSuperuserpage.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
         Page.toSuperuserpage(primaryStage, root);
     }
-
     @FXML void btnSuperUserPageEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             toSuperuserpage();
@@ -87,8 +84,7 @@ public class AllOrdersController implements Initializable {
 
     //metode som gjør det mulig for admin å trykke på en ordre og se hva den inneholder
     //Lesing fra fil gjennomføres i en egen tråd, og setter tableViewet disablet imens det leser
-    @FXML
-    void selectedItemEvent(MouseEvent event) throws IOException {
+    @FXML void selectedItemEvent(MouseEvent event) throws IOException {
         FinalOrderOverview finalOrder = allOrders.getSelectionModel().getSelectedItem();
         if (finalOrder == null) { return; }
 
@@ -117,6 +113,7 @@ public class AllOrdersController implements Initializable {
         tblOrderContent.getItems().addAll(listOfProducts);
         tblOrderContent.setItems(listOfProducts);
     }
+
     //hvis tråden feiler:
     private void threadFailedReading(WorkerStateEvent event){
         txtTblHeader.setText("Det oppsto en feil. Kunne ikke hente ordreinfo.....");
@@ -125,16 +122,14 @@ public class AllOrdersController implements Initializable {
     }
 
 
-    @FXML
-    private void filterChoiceChanged() throws IOException {
+    // kode for filtrering
+    @FXML private void filterChoiceChanged() throws IOException {
         filter();
     }
 
-    @FXML
-    private void searchTxtEntered() throws IOException {
+    @FXML private void searchTxtEntered() throws IOException {
         filter();
     }
-
 
     private void filter() throws IOException {
         // henter listen over alle ordrene fra fil

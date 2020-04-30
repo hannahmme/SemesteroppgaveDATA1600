@@ -47,7 +47,6 @@ public class EnduserPageController implements Initializable {
     @FXML private TableColumn<Product, Integer> lifetimeColumn;
     @FXML private TableColumn<Product, Double> priceColumn;
 
-    // choicebox som skal populeres med arrays lagret i ProductAdmPage
     @FXML private ComboBox<Product> cBoxGraphicCard;
     @FXML private ComboBox<Product> cBoxMemorycard;
     @FXML private ComboBox<Product> cBoxHarddrive;
@@ -57,7 +56,10 @@ public class EnduserPageController implements Initializable {
     @FXML private ComboBox<Product> cBoxOpticaldisk;
     @FXML private ComboBox<Product> cBoxColor;
 
-    // metode som kaller på andre metoder for å legge til produkter i handlekurven
+    private final ImageClass image = new ImageClass();
+    private final Image homeImage = image.createImage("./src/Datamaskin/images/mainpage.png");
+    private static final Cart aCart = new Cart();
+
     @FXML void addToCart() {
         if (comboBoxesAreEmpty()) {
             lblError.setText("Husk å velge en komponent i alle choiceboksene!");
@@ -67,10 +69,6 @@ public class EnduserPageController implements Initializable {
             aCart.getTotalPrice(lblTotalPrice);
         }
     }
-
-    private ImageClass image = new ImageClass();
-    private Image homeImage = image.createImage("./src/Datamaskin/images/mainpage.png");
-    private static Cart aCart = new Cart();
 
     //Kastes fordi createImage-metoden kalles
     public EnduserPageController() throws FileNotFoundException {
@@ -101,7 +99,7 @@ public class EnduserPageController implements Initializable {
         }
     }
 
-    // metode som oppretter produkter fra hver choicebox (hver stirng representerer navnet på produktet)
+    // metode som oppretter produkter fra hver choicebox (hver string representerer navnet på produktet)
     private void createProducts() {
         aCart.addElement(addProduct(cBoxGraphicCard.getValue().getName(), ProductCategories.GraphicCard));
         aCart.addElement(addProduct(cBoxMemorycard.getValue().getName(), ProductCategories.Memorycard));
@@ -113,7 +111,7 @@ public class EnduserPageController implements Initializable {
         aCart.addElement(addProduct(cBoxColor.getValue().getName(), ProductCategories.Color));
     }
 
-    // metode som bruker metoden over til å sette verdier til hver cBox
+    // metode som setter verdier til hver cBox
     private void setChosenCombobox() {
         cBoxGraphicCard.setValue(setAllChosenComboboxes("Skjermkort"));
         cBoxMemorycard.setValue(setAllChosenComboboxes("Minnekort"));
@@ -126,7 +124,6 @@ public class EnduserPageController implements Initializable {
 
     }
 
-    // metode som kjøres umiddelbart hver gang denne scenen blir laget
     @Override public void initialize(URL url, ResourceBundle rb) {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
@@ -145,7 +142,7 @@ public class EnduserPageController implements Initializable {
         setProducts(cBoxOpticaldisk, OpticalDisk, lblInfoOpticaldisk);
         setProducts(cBoxColor, Color, lblInfoColor);
 
-        // kaller metode for å velge riktige choicebokser når man går tilbake
+        // kaller metode for å velge riktige choicebokser/ sette totalpris når man går tilbake fra neste side
         if (!Cart.Register.isEmpty()) {
             setChosenCombobox();
             aCart.getTotalPrice(lblTotalPrice);

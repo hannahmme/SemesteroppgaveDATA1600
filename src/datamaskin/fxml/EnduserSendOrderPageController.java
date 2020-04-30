@@ -1,12 +1,10 @@
 package datamaskin.fxml;
 
 import datamaskin.cart.Cart;
-import datamaskin.filbehandling.ReadFromCustomerFile;
 import datamaskin.users.CustomerValidator;
 import datamaskin.exceptions.InvalidEmailException;
 import datamaskin.filbehandling.FileSaverTxt;
 import datamaskin.filbehandling.OrderFormatter;
-import datamaskin.filbehandling.ReadFromAllOrdersFile;
 import datamaskin.images.ImageClass;
 import datamaskin.orders.FinalOrderOverview;
 import datamaskin.orders.Order;
@@ -34,7 +32,6 @@ import java.util.ResourceBundle;
 import static datamaskin.users.CustomerValidator.getCustomerList;
 
 public class EnduserSendOrderPageController implements Initializable {
-
     @FXML private Button btnSendOrder;
     @FXML private Button btnGoBack;
     @FXML private Button btnGoToMainpage;
@@ -57,12 +54,10 @@ public class EnduserSendOrderPageController implements Initializable {
     public EnduserSendOrderPageController() throws FileNotFoundException {
     }
 
-
     @Override public void initialize(URL location, ResourceBundle resources) {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
 
-        //Kobler handlekurven med tableviewet og setter bildene
         shoppingcart.attachTableview(finalOrderRegister);
         image.setImageView(mainpageImageView, homeImage);
 
@@ -99,8 +94,7 @@ public class EnduserSendOrderPageController implements Initializable {
         }
     }
 
-
-    // metode for å generere en ordre og legget il ordreID og epost i array
+    // metode for å generere en ordre
     private FinalOrderOverview createOrderObjectFromGUI(String orderID) throws IOException {
         String email;
         String password;
@@ -114,8 +108,7 @@ public class EnduserSendOrderPageController implements Initializable {
                 throw new InvalidEmailException("Skriv inn gyldig e-postadresse");
             } else if(!CustomerValidator.validateCredentials(email, password, Objects.requireNonNull(getCustomerList()))){
                 throw new InvalidEmailException("Du har skrevet inn ugyldige innloggingsdetaljer!");
-            }
-            else{
+            } else{
                 totalPrice = shoppingcart.getTotalPrice(lblTotalPrice);
                 String date = String.valueOf(LocalDate.now());
 
@@ -127,8 +120,7 @@ public class EnduserSendOrderPageController implements Initializable {
                 btnGoBack.setDisable(true);
 
                 //Oppretter ferdig ordre-objekt som returneres
-                FinalOrderOverview anFinalOrderOverview = new FinalOrderOverview(orderID, email, date, totalPrice);
-                return anFinalOrderOverview;
+                return new FinalOrderOverview(orderID, email, date, totalPrice);
             }
         } catch (InvalidEmailException e){
             lblOrderSent.setText(e.getMessage());

@@ -1,7 +1,6 @@
 package datamaskin.fxml;
 
 import datamaskin.filbehandling.ReadFromAllOrdersFile;
-/*import datamaskin.filbehandling.ReadFromOrderFile;*/
 import datamaskin.product.Product;
 import datamaskin.orders.FinalOrderOverview;
 import datamaskin.Page;
@@ -15,7 +14,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -29,7 +27,6 @@ import static datamaskin.fxml.MainpageController.sortingKey;
 
 public class UserspesificOrderController implements Initializable {
     @FXML private Button toMainpage;
-    @FXML private TextField txtFilter;
     @FXML private TableView<FinalOrderOverview> tblAllOrders;
     @FXML private TableColumn<FinalOrderOverview, String> emailColumn;
     @FXML private TableColumn<FinalOrderOverview, String> orderIDColumn;
@@ -44,8 +41,8 @@ public class UserspesificOrderController implements Initializable {
     @FXML private TableColumn<Product, Double> productPrice;
     @FXML private ThreadReader readerTask;
 
-    private ObservableList<Product> emptyList = FXCollections.observableArrayList();
-    private ReadFromAllOrdersFile readFromAllOrdersFile = new ReadFromAllOrdersFile();
+    private final ObservableList<Product> emptyList = FXCollections.observableArrayList();
+    private final ReadFromAllOrdersFile readFromAllOrdersFile = new ReadFromAllOrdersFile();
 
     //Metode som viser innholdet i orderen når bruker trykker på en ordre
     //Lesing fra fil gjennomføres i en egen tråd
@@ -71,7 +68,6 @@ public class UserspesificOrderController implements Initializable {
 
     }
 
-
     //tråden er ferdig lest:
     private void threadDoneReading(WorkerStateEvent event){
         txtTblHeader.setText("Ordreinnhold");
@@ -86,7 +82,6 @@ public class UserspesificOrderController implements Initializable {
         tblOrderInfo.setItems(emptyList);
         tblAllOrders.setDisable(false);
     }
-
 
     // metoder for å legge inn ordreregisteret på denne siden
     @Override public void initialize(URL url, ResourceBundle rb) {
@@ -112,7 +107,6 @@ public class UserspesificOrderController implements Initializable {
         totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
     }
 
-
     // Knapper som tar brukeren med tilbake til hovedsiden
     @FXML void btnToMainpageEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
@@ -125,4 +119,3 @@ public class UserspesificOrderController implements Initializable {
         Page.toMainpage(primaryStage, FXMLLoader.load(getClass().getResource("Mainpage.fxml")));
     }
 }
-

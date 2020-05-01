@@ -78,21 +78,21 @@ public class Cart {
         return null;
     }
 
-    // metode som gjør at combobox kun viser navnet på produktet
-    public static void formatComboBoxDisplay(ComboBox<Product> aCBox){
-        aCBox.setConverter(new StringConverter<Product>() {
+    // metode som setter verdier til hver cBox
+    public static void setChosenCombobox(ComboBox<Product> cBoxGraphicCard,ComboBox<Product> cBoxMemorycard,ComboBox<Product> cBoxHarddrive,
+                                   ComboBox<Product> cBoxProcessor, ComboBox<Product> cBoxPower, ComboBox<Product> cBoxSoundcard,
+                                   ComboBox<Product> cBoxOpticaldisk, ComboBox<Product> cBoxColor) {
+        cBoxGraphicCard.setValue(setAllChosenComboboxes("Skjermkort"));
+        cBoxMemorycard.setValue(setAllChosenComboboxes("Minnekort"));
+        cBoxHarddrive.setValue(setAllChosenComboboxes("Harddisk"));
+        cBoxProcessor.setValue(setAllChosenComboboxes("Prosessor"));
+        cBoxPower.setValue(setAllChosenComboboxes("Strømforsyning"));
+        cBoxSoundcard.setValue(setAllChosenComboboxes("Lydkort"));
+        cBoxOpticaldisk.setValue(setAllChosenComboboxes("Optisk disk"));
+        cBoxColor.setValue(setAllChosenComboboxes("Farge"));
+    }
 
-            @Override
-            public String toString(Product object) {
-                return object.getName();
-            }
-
-            @Override
-            public Product fromString(String string) {
-                return aCBox.getItems().stream().filter(aProduct ->
-                        aProduct.getName().equals(string)).findFirst().orElse(null);
-            }
-        });
+    public static void changeButtonColor(){
 
     }
 
@@ -100,7 +100,7 @@ public class Cart {
     public static void formatComboBoxDexcription (ComboBox<Product> aCBox, Label aLbl){
         aCBox.valueProperty().addListener((obs, oldval, newval) -> {
             if(newval != null)
-                aLbl.setText(newval.getDescription());
+                aLbl.setText(newval.getDescription()+" Levetid: " + newval.getLifetime());
         });
     }
 
@@ -116,5 +116,4 @@ public class Cart {
         expectedLifetime = lifetime / count;
         return expectedLifetime;
     }
-
 }

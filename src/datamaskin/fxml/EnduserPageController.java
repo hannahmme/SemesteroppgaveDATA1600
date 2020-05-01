@@ -76,7 +76,7 @@ public class EnduserPageController implements Initializable {
 
     // metode for å slette gamle objekter og for å lage nye objekter som kommer an på valg i choiceboksene
     private void createCartObjectsFromGUI() {
-        if (Cart.Register.isEmpty()) {  // kun hvis handlekurven er tom skal det lages helt nye produkter som legges til
+        if (Register.isEmpty()) {  // kun hvis handlekurven er tom skal det lages helt nye produkter som legges til
             createProducts();
             lblExpectedLifetime.setText(String.valueOf(findExpectedLifetime()));
         } else {
@@ -87,7 +87,7 @@ public class EnduserPageController implements Initializable {
 
     // sjekke om handlekurven allerede har komponenter, da må de slettes for å legge til nye komponenter som bruker vil endre til
     private void updateCart() {
-        if (!Cart.Register.isEmpty()) {
+        if (!Register.isEmpty()) {
             aCart.replaceElements(findIndex("Skjermkort"), addProduct(cBoxGraphicCard.getValue().getName(), ProductCategories.GraphicCard));
             aCart.replaceElements(findIndex("Minnekort"), addProduct(cBoxMemorycard.getValue().getName(), ProductCategories.Memorycard));
             aCart.replaceElements(findIndex("Harddisk"), addProduct(cBoxHarddrive.getValue().getName(), ProductCategories.Harddrive));
@@ -111,19 +111,6 @@ public class EnduserPageController implements Initializable {
         aCart.addElement(addProduct(cBoxColor.getValue().getName(), ProductCategories.Color));
     }
 
-    // metode som setter verdier til hver cBox
-    private void setChosenCombobox() {
-        cBoxGraphicCard.setValue(setAllChosenComboboxes("Skjermkort"));
-        cBoxMemorycard.setValue(setAllChosenComboboxes("Minnekort"));
-        cBoxHarddrive.setValue(setAllChosenComboboxes("Harddisk"));
-        cBoxProcessor.setValue(setAllChosenComboboxes("Prosessor"));
-        cBoxPower.setValue(setAllChosenComboboxes("Strømforsyning"));
-        cBoxSoundcard.setValue(setAllChosenComboboxes("Lydkort"));
-        cBoxOpticaldisk.setValue(setAllChosenComboboxes("Optisk disk"));
-        cBoxColor.setValue(setAllChosenComboboxes("Farge"));
-
-    }
-
     @Override public void initialize(URL url, ResourceBundle rb) {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
@@ -143,8 +130,8 @@ public class EnduserPageController implements Initializable {
         setProducts(cBoxColor, Color, lblInfoColor);
 
         // kaller metode for å velge riktige choicebokser/ sette totalpris når man går tilbake fra neste side
-        if (!Cart.Register.isEmpty()) {
-            setChosenCombobox();
+        if (!Register.isEmpty()) {
+            setChosenCombobox(cBoxGraphicCard, cBoxMemorycard, cBoxHarddrive, cBoxProcessor, cBoxPower, cBoxSoundcard, cBoxOpticaldisk, cBoxColor);
             aCart.getTotalPrice(lblTotalPrice);
             lblExpectedLifetime.setText(String.valueOf(findExpectedLifetime()));
         }
@@ -153,7 +140,6 @@ public class EnduserPageController implements Initializable {
     // metode som setter comboboxer og lbl til verdier fra liste
     public void setProducts(ComboBox<Product> cBox, ObservableList<Product> aCategory, Label infoLabel){
         cBox.setItems(aCategory);
-        formatComboBoxDisplay(cBox);
         formatComboBoxDexcription(cBox, infoLabel);
     }
 

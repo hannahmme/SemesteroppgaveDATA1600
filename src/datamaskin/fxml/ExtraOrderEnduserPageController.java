@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
+import static datamaskin.product.ProductCategories.*;
 
 public class ExtraOrderEnduserPageController implements Initializable {
     //Handlekurv på høyre side
@@ -97,8 +98,8 @@ public class ExtraOrderEnduserPageController implements Initializable {
         extraProductLifetime.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
         extraProductPrice.setCellValueFactory(new PropertyValueFactory<>("Price"));
 
-        tblExtraProduct.getItems().addAll(ProductCategories.otherProducts);
-        tblExtraProduct.setItems(ProductCategories.otherProducts);
+        tblExtraProduct.getItems().addAll(OtherProducts);
+        tblExtraProduct.setItems(OtherProducts);
 
         // Handlekurven på høyre side
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -177,4 +178,3 @@ public class ExtraOrderEnduserPageController implements Initializable {
             }
         }
 }
-

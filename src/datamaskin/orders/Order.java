@@ -1,15 +1,9 @@
 package datamaskin.orders;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 import java.io.File;
 import java.io.IOException;
-import java.util.stream.Collectors;
 
 public class Order {
-
-    private transient ObservableList<FinalOrderOverview> overviewRegister = FXCollections.observableArrayList();
 
     // metode for å generere ordreID. Setter en begrensning på 100 ordre
     public static String generateOrderID() throws IOException {

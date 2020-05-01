@@ -55,9 +55,4 @@ public class FinalOrderSpecific {
     public void setPrice(double componentPrice) {
         this.price = new SimpleDoubleProperty(componentPrice);
     }
-
-
-
-
-
 }

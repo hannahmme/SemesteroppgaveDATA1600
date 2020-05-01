@@ -13,14 +13,16 @@ public class ConvertersWithErrorHandling{
         @Override public Integer fromString(String str){
             try{
                 Integer result = super.fromString(str);
+                if(result > 0 && result < 36){
                 conversionSuccessful = true;
                 return result;
+                }
             }
             catch(NumberFormatException nfe){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Ops..");
                 alert.setHeaderText("Feil verdier skrevet inn.");
-                alert.setContentText("Du må taste inn et gyldig heltall.");
+                alert.setContentText("Du må taste inn et gyldig heltall mellom 0 og 36.");
                 alert.showAndWait();
 
                 conversionSuccessful = false;
@@ -30,6 +32,7 @@ public class ConvertersWithErrorHandling{
                 System.out.println("OTHER exception" + ex.getMessage());
                 return 0;
             }
+            return 0;
         }
         public boolean getSuccessfulIntValue(){
             return conversionSuccessful;
@@ -42,21 +45,24 @@ public class ConvertersWithErrorHandling{
         private boolean convertSuccessfull = true;
 
         @Override
-        public Double fromString(String str){
-            try{
+        public Double fromString(String str) {
+            try {
                 Double result = super.fromString(str);
-                convertSuccessfull = true;
-                return result;
-            } catch (NumberFormatException nfe){
+                if (result > 0 && result != 0) {
+                    convertSuccessfull = true;
+                    return result;
+                }
+            } catch (NumberFormatException nfe) {
                 Alert doubleAlert = new Alert(Alert.AlertType.ERROR);
                 doubleAlert.setTitle("Ops..");
                 doubleAlert.setHeaderText("Feil verdier skrevet inn.");
-                doubleAlert.setContentText("Du må skrive inn et gyldig tall.");
+                doubleAlert.setContentText("Du må skrive inn et gyldig tall over 0.");
                 doubleAlert.showAndWait();
 
                 convertSuccessfull = false;
                 return 0.0;
             }
+            return 0.0;
         }
         public boolean getSuccessfulDoubleValue(){
             return convertSuccessfull;

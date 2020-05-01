@@ -113,7 +113,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
     }
 
     //Metode som gjør at bilde av produktet som velges vises i produktinfo-imageviewet
-    @FXML void selectedItemEvent(MouseEvent event) throws FileNotFoundException {
+   /* @FXML void selectedItemEvent(MouseEvent event) throws FileNotFoundException {
         Product selectedProduct = tblExtraProduct.getSelectionModel().getSelectedItem();
         if (selectedProduct == null) return;
 
@@ -126,7 +126,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
         } catch (FileNotFoundException e) {
             System.err.println("Noe gikk galt ved innlasting av produktbildet. " + e.getMessage());
         }
-    }
+    }*/
 
     // går tilbake til forrige side for å se på valgte komponenter
     @FXML void goBack() throws IOException {

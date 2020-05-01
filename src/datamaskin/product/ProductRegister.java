@@ -1,14 +1,14 @@
 package datamaskin.product;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableView;
-
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -16,12 +16,23 @@ import java.util.stream.Collectors;
 public class ProductRegister implements Serializable {
     private static final long serialVersionUID = 1;
 
-    public transient static ObservableList<Product> Register = FXCollections.observableArrayList();
+    static transient ObservableList<Product> Register = FXCollections.observableArrayList();
 
-    public static void setComponentToTV(TableView tv) {
+    public List<Product> getRegister(){ return Register;}
+
+    public void addElement(Product aProduct) {
+        Register.add(aProduct);
+    }
+
+    public void removeAll() {
+        Register.clear();
+    }
+
+    public static void setComponentToTV(TableView<Product> tv) {
         tv.setItems(Register);
     }
 
+    // todo: kan denne slettes?
     public Product searchRegisterByName(String name) {
         Pattern pattern = Pattern.compile(name, Pattern.CASE_INSENSITIVE);
 
@@ -83,10 +94,6 @@ public class ProductRegister implements Serializable {
         }
     }
 
-    public void addElement(Product aProduct) {
-        Register.add(aProduct);
-    }
-
     public static boolean checkIfCategoryIsPresent(String category){
         for(Product aProduct : Register){
             if(aProduct.getCategory().equals(category)){
@@ -106,7 +113,7 @@ public class ProductRegister implements Serializable {
         return false;
     }
 
-    /*@Override
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for(Product p : Register) {
@@ -115,6 +122,18 @@ public class ProductRegister implements Serializable {
         }
 
         return sb.toString();
-    }*/
+    }
+
+    private void writeObject(ObjectOutputStream s) throws IOException {
+        s.defaultWriteObject();
+        s.writeObject(new ArrayList<>(Register));
+    }
+
+    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
+        List<Product> list = (List<Product>) s.readObject();
+        Register = FXCollections.observableArrayList();
+        Register.addAll(list);
+    }
+
 
 }

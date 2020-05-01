@@ -1,10 +1,10 @@
 package datamaskin.fxml;
 
+import datamaskin.filbehandling.binarysaving.FileHandler;
 import datamaskin.exceptions.ConvertersWithErrorHandling;
 import datamaskin.exceptions.InvalidLifetimeException;
 import datamaskin.exceptions.InvalidPriceException;
-import datamaskin.filbehandling.FileSaver;
-import datamaskin.filbehandling.SaveComponentsToFile;
+//import datamaskin.filbehandling.SaveComponentsToFile;
 import datamaskin.Page;
 import datamaskin.product.*;
 import javafx.collections.FXCollections;
@@ -22,8 +22,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import static datamaskin.product.ProductCategories.*;
 
@@ -35,8 +33,9 @@ public class ProductAdmPageController implements Initializable{
             = new ConvertersWithErrorHandling.IntegerStringConverter();
     private final ConvertersWithErrorHandling.DoubleFromStringConverter doubleStrConverter
             = new ConvertersWithErrorHandling.DoubleFromStringConverter();
-    private SaveComponentsToFile filesaver = new SaveComponentsToFile();
+    //private SaveComponentsToFile filesaver = new SaveComponentsToFile();
 
+    private Stage stage;
     @FXML private TextField txtComponentname;
     @FXML private TextField txtDescription;
     @FXML private TextField txtLifetime;
@@ -44,8 +43,6 @@ public class ProductAdmPageController implements Initializable{
     @FXML private ChoiceBox<String> cboxCategory;
 
     @FXML private MenuButton menuDropdown;
-    @FXML private MenuItem saveToFile;
-    @FXML private MenuItem openFromFile;
     @FXML private TextField txtSearch;
     @FXML private ChoiceBox<String> cboxFilter;
 
@@ -156,14 +153,6 @@ public class ProductAdmPageController implements Initializable{
         ProductRegister.setComponentToTV(componentTableview);
     }
 
-    /*@FXML
-    private void filterChoiceChanged(){
-        filter();
-    }
-    @FXML
-    private void searchTxtEntered(){
-        filter(); }*/
-
 
     private void filter(){
         if(isEmptyOrBlank(txtSearch)) {
@@ -209,7 +198,6 @@ public class ProductAdmPageController implements Initializable{
     }
 
     // elementet som slettes i TV slettes fra riktig array/ hashmap så det ikke kommer opp i choiceboksene hos sluttbruker
-    //todo: vurder å bruke switch case
     private void deleteFromRegister(Product aProduct){
         if(GraphicCard.contains(aProduct)){
             GraphicCard.remove(aProduct);
@@ -227,8 +215,8 @@ public class ProductAdmPageController implements Initializable{
             OpticalDisk.remove(aProduct);
         } else if(Color.contains(aProduct)){
             Color.remove(aProduct);
-        } else if(otherProducts.contains(aProduct)){
-            otherProducts.remove(aProduct);
+        } else if(OtherProducts.contains(aProduct)){
+            OtherProducts.remove(aProduct);
         }
     }
 
@@ -299,12 +287,19 @@ public class ProductAdmPageController implements Initializable{
 
     // litt enkel filbehandling her, lagre til binære filer? og lage for ordre også
     @FXML void openFromFile(ActionEvent event) {
-
+        FileHandler.openFile(stage, aRegister);
+        txtSearch.setText("");
+        ProductRegister.setComponentToTV(componentTableview);
     }
 
     //lagre til binær fil - den lagrer til fil, men jeg kan lese den. Skal vel komme kun tall?
     @FXML void saveToFile(ActionEvent event) {
-        FileSaver saver = new SaveComponentsToFile();
+        FileHandler.saveFile(stage, aRegister);
+
+
+
+        // todo: kode som lå her før
+        /*FileSaver saver = new SaveComponentsToFile();
         Path path = Paths.get("productReg.jobj");
         if(saver != null) {
             try {
@@ -313,7 +308,7 @@ public class ProductAdmPageController implements Initializable{
             } catch (IOException e) {
                 System.out.println("Lagring til fil feilet. Årsak: " + e.getMessage());
             }
-        }
+        }*/
     }
 
 

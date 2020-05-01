@@ -1,5 +1,6 @@
-package datamaskin.filbehandling;
+/*package datamaskin.filbehandling;
 
+import datamaskin.filbehandling.binarysaving.FileSaver;
 import datamaskin.product.Product;
 
 import java.io.*;
@@ -19,3 +20,4 @@ public class SaveComponentsToFile implements FileSaver {
 
     }
 }
+*/

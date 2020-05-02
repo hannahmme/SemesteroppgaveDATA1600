@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
-import javafx.util.StringConverter;
 
 public class Cart {
     public transient static ObservableList<Product> Register = FXCollections.observableArrayList();
@@ -92,6 +91,7 @@ public class Cart {
         cBoxColor.setValue(setAllChosenComboboxes("Farge"));
     }
 
+    // todo: endre farge?
     public static void changeButtonColor(){
 
     }
@@ -100,9 +100,10 @@ public class Cart {
     public static void formatComboBoxDexcription (ComboBox<Product> aCBox, Label aLbl){
         aCBox.valueProperty().addListener((obs, oldval, newval) -> {
             if(newval != null)
-                aLbl.setText(newval.getDescription()+" Levetid: " + newval.getLifetime());
+                aLbl.setText(newval.getDescription()+" Levetid: " + newval.getLifetime() + " år.");
         });
     }
+
 
     public static double findExpectedLifetime(){
         double lifetime = 0;

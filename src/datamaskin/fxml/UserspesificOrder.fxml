@@ -41,7 +41,7 @@
                         <PropertyValueFactory property="OrderDate" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn fx:id="totalPriceColumn" prefWidth="106.0" text="Totalpris">
+                <TableColumn fx:id="totalPriceColumn" prefWidth="106.0" text="Totalpris (kr)">
                     <cellValueFactory>
                         <PropertyValueFactory property="TotalPrice" />
                     </cellValueFactory>
@@ -62,12 +62,12 @@
                     <PropertyValueFactory property="Description" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="productLifetime" prefWidth="65.0" text="Levetid">
+            <TableColumn fx:id="productLifetime" prefWidth="71.0" text="Levetid (år)">
                 <cellValueFactory>
                     <PropertyValueFactory property="Lifetime" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="productPrice" prefWidth="104.0" text="Pris">
+            <TableColumn fx:id="productPrice" prefWidth="98.0" text="Pris (kr)">
                 <cellValueFactory>
                     <PropertyValueFactory property="Price" />
                 </cellValueFactory>

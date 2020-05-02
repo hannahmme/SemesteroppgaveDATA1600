@@ -75,12 +75,12 @@
                             <PropertyValueFactory property="Description" />
                         </cellValueFactory>
                       </TableColumn>
-                      <TableColumn fx:id="lifetimeColumn" prefWidth="64.0" text="Levetid">
+                      <TableColumn fx:id="lifetimeColumn" prefWidth="73.0" text="Levetid (år)">
                         <cellValueFactory>
                             <PropertyValueFactory property="Lifetime" />
                         </cellValueFactory>
                       </TableColumn>
-                      <TableColumn fx:id="priceColumn" prefWidth="106.0" text="Pris">
+                      <TableColumn fx:id="priceColumn" prefWidth="103.0" text="Pris (kr)">
                         <cellValueFactory>
                             <PropertyValueFactory property="Price" />
                         </cellValueFactory>

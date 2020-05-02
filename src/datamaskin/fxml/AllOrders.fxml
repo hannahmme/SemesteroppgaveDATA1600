@@ -36,7 +36,7 @@
                     <PropertyValueFactory property="OrderDate" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="totalPriceColumn" prefWidth="134.0" text="Totalpris">
+            <TableColumn fx:id="totalPriceColumn" prefWidth="134.0" text="Totalpris (kr)">
                 <cellValueFactory>
                     <PropertyValueFactory property="TotalPrice" />
                 </cellValueFactory>
@@ -47,8 +47,8 @@
         <columns>
           <TableColumn fx:id="productName" prefWidth="141.0" text="Produktnavn" />
           <TableColumn fx:id="productInfo" prefWidth="121.0" text="Beskrivelse" />
-            <TableColumn fx:id="productLifetime" prefWidth="151.0" text="Levetid" />
-            <TableColumn fx:id="productPrice" prefWidth="134.0" text="Pris" />
+            <TableColumn fx:id="productLifetime" prefWidth="151.0" text="Levetid (år)" />
+            <TableColumn fx:id="productPrice" prefWidth="134.0" text="Pris (kr)" />
         </columns>
       </TableView>
       <Line endX="-25.0" endY="574.0" layoutX="700.0" layoutY="71.0" startX="-25.0" startY="-4.0" />

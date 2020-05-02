@@ -33,7 +33,7 @@ public class Cart {
         for (Product product : Register) {
             totalSum += product.getPrice();
         }
-        infoLabel.setText(String.valueOf(totalSum));
+        infoLabel.setText(String.valueOf(totalSum) + "0 kr");
         return totalSum;
     }
 

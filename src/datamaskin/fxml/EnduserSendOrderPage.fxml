@@ -46,7 +46,7 @@
                   <TableView fx:id="finalOrderRegister" layoutX="61.0" layoutY="92.0" prefHeight="500.0" prefWidth="500.0">
                     <columns>
                       <TableColumn fx:id="nameColumn" prefWidth="324.0" text="Navn" />
-                      <TableColumn fx:id="priceColumn" prefWidth="164.0" text="Pris" />
+                      <TableColumn fx:id="priceColumn" prefWidth="175.0" text="Pris (kr)" />
                     </columns>
                   </TableView>
                   <Text layoutX="119.0" layoutY="614.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Totalpris" />

@@ -3,6 +3,7 @@ package datamaskin.fxml;
 import datamaskin.filbehandling.ReadFromAllOrdersFile;
 import datamaskin.orders.FinalOrderOverview;
 import datamaskin.Page;
+import datamaskin.orders.OrderValidator;
 import datamaskin.product.Product;
 import datamaskin.threadprogramming.ThreadReader;
 import javafx.collections.FXCollections;
@@ -23,6 +24,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class AllOrdersController implements Initializable {
@@ -61,9 +63,9 @@ public class AllOrdersController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            ObservableList<FinalOrderOverview> allOrdersList = readFromAllOrdersFile.readFromAllOrdersFile("./src/Datamaskin/sentOrdersPath/allOrders.csv");
-            allOrders.getItems().addAll(allOrdersList);
-            allOrders.setItems(allOrdersList);
+
+            allOrders.getItems().addAll(Objects.requireNonNull(OrderValidator.getOrderList()));
+            allOrders.setItems(Objects.requireNonNull(OrderValidator.getOrderList()));
         } catch (IOException e) {
             System.out.println("Filsti ikke funnet: " + e.getMessage());
         }

@@ -15,6 +15,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import static datamaskin.users.CustomerValidator.getCustomerList;
@@ -28,7 +29,7 @@ public class AllUsersController implements Initializable {
 
     @Override public void initialize(URL url, ResourceBundle rb) {
         try {
-            customerTV.getItems().addAll(getCustomerList());
+            customerTV.getItems().addAll(Objects.requireNonNull(getCustomerList()));
             customerTV.setItems(getCustomerList());
         } catch (IOException e) {
             System.out.println("Filsti ikke funnet: " + e.getMessage());

@@ -1,10 +1,7 @@
 package datamaskin.exceptions;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
-import datamaskin.product.Product;
 import javafx.scene.control.Alert;
 import javafx.util.converter.DoubleStringConverter;
-import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 
 import java.io.IOException;
 
@@ -33,7 +30,7 @@ public class ConvertersWithErrorHandling {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Ops..");
                 alert.setHeaderText("Feil verdier skrevet inn.");
-                alert.setContentText("Du må taste inn et gyldig heltall.");
+                alert.setContentText("Du må taste inn et gyldig heltall mellom 0 og 36.");
                 alert.showAndWait();
 
                 conversionSuccessful = false;

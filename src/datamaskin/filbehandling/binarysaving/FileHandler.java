@@ -50,7 +50,8 @@ public class FileHandler {
                 try {
                     opener.open(register, selectedFile.toPath());
                 } catch (IOException e) {
-                    Messages.showErrorDialog("Åpning av filen feilet. Grunn: " + e.getMessage());
+                    System.out.println("Åpning av filen feilet. Grunn: " + e.getMessage());
+                    Messages.showErrorDialog("Åpning av filen feilet. Se gjennom importfil med plassering: " + selectedFile);
                 }
             }
         }

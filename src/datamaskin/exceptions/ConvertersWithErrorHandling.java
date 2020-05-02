@@ -54,7 +54,7 @@ public class ConvertersWithErrorHandling {
             Double doubleResult;
             try {
                 doubleResult = super.fromString(str);
-                if (doubleResult > 0 && doubleResult != 0) {
+                if (doubleResult > 0 && doubleResult < 100000) {
                     convertSuccessfull = true;
                     return doubleResult;
                 } else {
@@ -65,7 +65,7 @@ public class ConvertersWithErrorHandling {
                 Alert doubleAlert = new Alert(Alert.AlertType.ERROR);
                 doubleAlert.setTitle("Ops..");
                 doubleAlert.setHeaderText("Feil verdier skrevet inn.");
-                doubleAlert.setContentText("Du må skrive inn et gyldig tall.");
+                doubleAlert.setContentText("Du må skrive inn et gyldig tall mellom 0 og 100 000.");
                 doubleAlert.showAndWait();
 
                 convertSuccessfull = false;

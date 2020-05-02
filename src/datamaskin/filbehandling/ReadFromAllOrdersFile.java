@@ -1,16 +1,12 @@
 package datamaskin.filbehandling;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import datamaskin.orders.FinalOrderOverview;
-import datamaskin.product.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
 
 public class ReadFromAllOrdersFile implements iReadFromAllOrdersFile{
     @Override

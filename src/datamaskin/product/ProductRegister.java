@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class ProductRegister implements Serializable {
     private static final long serialVersionUID = 1;
 
-    static transient ObservableList<Product> Register = FXCollections.observableArrayList();
+    public static transient ObservableList<Product> Register = FXCollections.observableArrayList();
 
     public List<Product> getRegister(){ return Register;}
 

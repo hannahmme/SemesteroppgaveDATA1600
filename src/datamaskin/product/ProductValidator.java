@@ -17,14 +17,14 @@ public class ProductValidator {
     }
 
     public static boolean validateLifetime (String lifetime) {
-        if (lifetime.matches("[0-9]{1,2}") && Integer.parseInt(lifetime) > 0 && Integer.parseInt(lifetime) < 36) {
+        if (lifetime.matches("[0-9]") && Integer.parseInt(lifetime) > 0 && Integer.parseInt(lifetime) < 36) {
             return true;
         }
         return false;
     }
 
     public static boolean validatePrice (String price) {
-        if (price.matches("[0-9]{1,4}([.][0-9]{1,2})?") && Double.parseDouble(price) > 0){
+        if (price.matches("[0-9]([.][0-9]{1,2})?") && Double.parseDouble(price) > 0 && Double.parseDouble(price) < 100000){
             return true;
         }
         return false;

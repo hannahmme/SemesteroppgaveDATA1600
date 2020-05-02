@@ -76,7 +76,7 @@ public class EnduserSendOrderPageController implements Initializable {
             try{
             //kode som lagrer orderen til forhåndsdefinert filsti med generert ordreID.
             Path sentOrderPath = Paths.get("./src/Datamaskin/sentOrdersPath/"+orderID+".csv");
-            String formattedList = OrderFormatter.formatListOfProductToString(Cart.Register);
+            String formattedList = OrderFormatter.formatListOfProductToString(Cart.Cart);
             filesaver.saveToFile(formattedList, sentOrderPath);
 
             //kode som lagrer orderen til forhåndsdefinert filsti (alle ordre samlet i csv.fil)

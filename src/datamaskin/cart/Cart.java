@@ -8,29 +8,29 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 
 public class Cart {
-    public transient static ObservableList<Product> Register = FXCollections.observableArrayList();
+    public transient static ObservableList<Product> Cart = FXCollections.observableArrayList();
 
     public void attachTableview(TableView tv) {
-        tv.setItems(Register);
+        tv.setItems(Cart);
     }
 
     public void addElement(Product aProduct){
-            Register.add(aProduct);
+        Cart.add(aProduct);
     }
 
     public void deleteOneProductFromCart(Product aProduct){
-        Register.remove(aProduct);
+        Cart.remove(aProduct);
     }
 
     // Fjerner gammelt element i handlelisten (hører til første brukerside) og legger til nytt
     public void replaceElements(int i, Product newProduct){
-            Register.set(i, newProduct);
+        Cart.set(i, newProduct);
     }
 
     // Returnerer totalsum av varer lagt til i handlekurv + setter prisen til label
     public double getTotalPrice(Label infoLabel) {
         double totalSum = 0;
-        for (Product product : Register) {
+        for (Product product : Cart) {
             totalSum += product.getPrice();
         }
         infoLabel.setText(String.valueOf(totalSum) + "0 kr");
@@ -39,17 +39,17 @@ public class Cart {
 
     // Sletter alle elementer i handlelisten (brukes når bruker skal tilbake til hovedsiden)
     public void deleteShoppingcart(){
-        if(Register.size() != 0){
-            Register.remove(0, Register.size());
+        if(Cart.size() != 0){
+            Cart.remove(0, Cart.size());
         }
     }
 
     // Finner indeksen til produktet i produktkategorien som er input
     public static int findIndex(String category){
         int index = 0;
-        for(Product aProduct: Cart.Register){
+        for(Product aProduct: Cart){
             if(aProduct.getCategory().equals(category)){
-                index = Cart.Register.indexOf(aProduct);
+                index = Cart.indexOf(aProduct);
             }
         }
         return index;
@@ -68,7 +68,7 @@ public class Cart {
 
     // Sette combobox til riktig verdi utifra det brukeren allerede har valgt
     public static Product setAllChosenComboboxes(String category) {
-        for(Product aProduct : Register){
+        for(Product aProduct : Cart){
             if(aProduct.getCategory().equals(category)){
                 return aProduct;
             }
@@ -103,7 +103,7 @@ public class Cart {
         double lifetime = 0;
         double expectedLifetime;
         double count = 0;
-        for(Product aProduct : Register) {
+        for(Product aProduct : Cart) {
             count ++;
             lifetime += aProduct.getLifetime();
         }

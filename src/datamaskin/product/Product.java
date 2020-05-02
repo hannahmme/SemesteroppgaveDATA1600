@@ -13,13 +13,13 @@ import java.io.Serializable;
 public class Product implements Serializable {
     private static final long serialVersionUID = 1;
 
-    //private final String MISSING_IMG_PATH = "./src/Datamaskin/images/missingImage.png";
+    private final String MISSING_IMG_PATH = "./src/Datamaskin/images/missingImage.png";
     private transient SimpleStringProperty name;
     private transient SimpleStringProperty description;
     private transient SimpleIntegerProperty lifetime;
     private transient SimpleDoubleProperty price;
     private transient SimpleStringProperty category;
-    //private transient SimpleStringProperty imageUri;
+    private transient SimpleStringProperty imageUri;
 
     public Product(String name, String description, int lifetime, double price, String category) {
         this.name        = new SimpleStringProperty(name);
@@ -75,7 +75,7 @@ public class Product implements Serializable {
     }
 
     //hvis et produkt ikke har et bilde (det er valgtfritt å legge til for admin når admin oppretter et nytt produkt), vil "missingImage" settes i ImagesViewet.
-    /*public String getImageUri() {
+    public String getImageUri() {
        String imgUri = MISSING_IMG_PATH;
 
         if(imageUri != null){
@@ -87,10 +87,10 @@ public class Product implements Serializable {
         return imgUri;
     }
 
-    // todo:
+    // todo: Hannah
     public void setImageUri(String imageUri) {
         this.imageUri = new SimpleStringProperty(imageUri);
-    }*/
+    }
 
     @Override public String toString(){
         return String.format("%s;%s;%s;%s;%s",
@@ -106,6 +106,8 @@ public class Product implements Serializable {
         s.writeInt(getLifetime());
         s.writeDouble(getPrice());
         s.writeUTF(getCategory());
+        //todo: Hannah - fortsett her
+       /* s.writeUTF(getImageUri());*/
     }
 
     private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {

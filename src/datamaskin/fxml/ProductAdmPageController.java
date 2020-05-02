@@ -117,12 +117,12 @@ public class ProductAdmPageController implements Initializable{
                     throw new IllegalArgumentException("Skriv inn en gyldig beskrivelse");
                 }
                 if (!ProductValidator.validateLifetime(lifetimeString)){
-                    throw new InvalidLifetimeException("Skriv inn et gyldig antall år");
+                    throw new InvalidLifetimeException("Skriv inn et gyldig antall år (1-36)");
                 } else{
                     lifetime = Integer.parseInt(txtLifetime.getText());
                 }
                 if (!ProductValidator.validatePrice(priceString)){
-                    throw new InvalidPriceException("Skriv inn en gyldig pris");
+                    throw new InvalidPriceException("Skriv inn en gyldig pris (0.01-9999.99)");
                 } else{
                     price = Double.parseDouble(txtPrice.getText());
                 }
@@ -264,20 +264,6 @@ public class ProductAdmPageController implements Initializable{
     //lagre til binær fil - den lagrer til fil, men jeg kan lese den. Skal vel komme kun tall?
     @FXML void saveToFile(ActionEvent event) {
         FileHandler.saveFile(stage, aRegister);
-
-
-
-        // todo: kode som lå her før
-        /*FileSaver saver = new SaveComponentsToFile();
-        Path path = Paths.get("productReg.jobj");
-        if(saver != null) {
-            try {
-                saver.saveToJobj(ProductRegister.Register, path);
-                System.out.println("Registeret ble lagret!");
-            } catch (IOException e) {
-                System.out.println("Lagring til fil feilet. Årsak: " + e.getMessage());
-            }
-        }*/
     }
 
     //Metoder slik at innholdet i Produkt-tableViewet på adminsiden endres direkte i tblViewet

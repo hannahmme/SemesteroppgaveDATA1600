@@ -1,10 +1,6 @@
 package datamaskin.filbehandling.binarysaving;
 
-import datamaskin.filbehandling.binarysaving.*;
-import datamaskin.fxml.ProductAdmPageController;
-import datamaskin.product.Product;
 import datamaskin.product.ProductRegister;
-import javafx.collections.ObservableList;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;

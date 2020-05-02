@@ -51,8 +51,8 @@
                   <Label layoutX="12.0" layoutY="475.0" prefHeight="21.0" prefWidth="109.0" text="Farge" />
                   <ComboBox fx:id="cBoxColor" layoutX="121.0" layoutY="470.0" prefWidth="150.0" />
                   <Label fx:id="lblInfoColor" layoutX="277.0" layoutY="460.0" prefHeight="51.0" prefWidth="319.0" textFill="#0a681e" wrapText="true" />
-                  <Label fx:id="lblError" layoutX="16.0" layoutY="508.0" prefHeight="51.0" prefWidth="600.0" textFill="RED" wrapText="true" />
-                  <Button fx:id="btnAddToCart" layoutX="140.0" layoutY="568.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="86.0" prefWidth="353.0" style="-fx-background-color: lightgreen;" text="Oppdater handlekurv med valgte komponenter">
+                  <Label fx:id="lblError" layoutX="16.0" layoutY="508.0" prefHeight="51.0" prefWidth="600.0" textFill="indianred" wrapText="true" />
+                  <Button fx:id="btnAddToCart" layoutX="140.0" layoutY="568.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="86.0" prefWidth="353.0" style="-fx-background-color: darkseagreen;" text="Oppdater handlekurv med valgte komponenter">
                      <font>
                         <Font name="Arial Bold" size="15.0" />
                      </font>

@@ -43,7 +43,7 @@
                     </columns>
                   </TableView>
                   <Text fx:id="txtWarning" layoutX="13.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="599.9999865889549" />
-                  <Button fx:id="btnSaveToCart" layoutX="250.0" layoutY="555.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="60.0" prefWidth="340.0" style="-fx-background-color: lightgreen;" text="Legg til valgt produkt" wrapText="true">
+                  <Button fx:id="btnSaveToCart" layoutX="250.0" layoutY="555.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="60.0" prefWidth="340.0" style="-fx-background-color: darkseagreen;" text="Legg til valgt produkt" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
@@ -91,7 +91,7 @@
                    </TableView>
                   <Label layoutX="15.0" layoutY="620.0" prefHeight="21.0" prefWidth="106.0" text="Totalt å betale:" />
                   <Label fx:id="lblTotalPrice" layoutX="130.0" layoutY="620.0" prefHeight="21.0" prefWidth="115.0" />
-                  <Button layoutX="170.0" layoutY="465.0" mnemonicParsing="false" onAction="#deleteFromCart" prefHeight="31.0" prefWidth="282.0" style="-fx-background-color: grey;" text="Slett valgt produkt fra handlekurven" textFill="WHITE" />
+                  <Button layoutX="170.0" layoutY="465.0" mnemonicParsing="false" onAction="#deleteFromCart" prefHeight="31.0" prefWidth="282.0" style="-fx-background-color: indianred;" text="Slett valgt produkt fra handlekurven" textFill="WHITE" />
                   <Button fx:id="btnGoToPay" layoutX="425.0" layoutY="610.0" mnemonicParsing="false" onAction="#goToPay" onKeyPressed="#btnGoPayEnter" prefHeight="42.0" prefWidth="170.0" style="-fx-background-color: steelblue;" text="Gå til betaling" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="18.0" />

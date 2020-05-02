@@ -203,7 +203,7 @@ public class ProductAdmPageController implements Initializable{
         ProductRegister.setComponentToTV(componentTableview);
 
         ObservableList<String> filterChoices = FXCollections.observableArrayList();
-        filterChoices.addAll("Navn", "Levetid", "Pris", "Kategori");
+        filterChoices.addAll("Navn", "Kategori", "Levetid", "Pris");
 
         cBoxFilter.setItems(filterChoices);
         cBoxFilter.setValue("Kategori");
@@ -321,24 +321,21 @@ public class ProductAdmPageController implements Initializable{
             filteredData.setPredicate(aProduct -> {
 
                 String smallLetters = newVerdi.toLowerCase();       // henter den nye verdien og gjør den om til små bokstaver
-                if (newVerdi.matches("[a-zA-Z. -_0-9()@]*")) {
+                if (newVerdi.matches("[a-zA-Z-æøå. -_0-9()@]*")) {
                     if (newVerdi.isEmpty()) {                       // Hvis feltet er tomt skal alle personer vises
                         return true;
                     }
 
                     // Sammenligner alle kolonner med filtertekst, etter valgt cbox
                     if(cBoxFilter.getValue().toLowerCase().equals("navn")) {
-                        if(String.valueOf(aProduct.getName()).startsWith(smallLetters)) {
-                            if (aProduct.getName().toLowerCase().contains(smallLetters)) {
-                                return true;
-                            }
+                        if (aProduct.getName().toLowerCase().contains(smallLetters)) {
+                            return true;
                         }
+
                     }
                     if(cBoxFilter.getValue().toLowerCase().equals("kategori")) {
-                        if(String.valueOf(aProduct.getCategory()).startsWith(smallLetters)) {
-                            if (aProduct.getCategory().toLowerCase().contains(smallLetters)) {
-                                return true;
-                            }
+                        if (aProduct.getCategory().toLowerCase().contains(smallLetters)) {
+                            return true;
                         }
                     }
                     if(cBoxFilter.getValue().toLowerCase().equals("levetid")) {

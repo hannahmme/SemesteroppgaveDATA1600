@@ -42,13 +42,13 @@ public class ProductCategories implements Serializable {
         GraphicCard.addAll(graphiccard1, graphiccard2);
 
         Product memorycard1 = new Product("4GB RAM", "Dette er vårt billigste minnekort.", 5, 299, "Minnekort");
-        Product memorycard2 = new Product("8GB RAM", "Dette er vårt beste skjermkort.", 10, 699, "Minnekort");
+        Product memorycard2 = new Product("8GB RAM", "Dette er vårt beste minnekort.", 10, 699, "Minnekort");
         ProductAdmPageController.aRegister.addElement(memorycard1);
         ProductAdmPageController.aRegister.addElement(memorycard2);
         Memorycard.addAll(memorycard1, memorycard2);
 
         Product harddrive1 = new Product("128 GB SSD", "Egnet til pcer for vanlig bruk.", 5, 299, "Harddisk");
-        Product harddrive2 = new Product("256 GB SSD", "Dette er et minnekort med rask lagring.", 7, 999, "Harddisk");
+        Product harddrive2 = new Product("256 GB SSD", "Dette er en harddisk med rask lagring.", 7, 999, "Harddisk");
         ProductAdmPageController.aRegister.addElement(harddrive1);
         ProductAdmPageController.aRegister.addElement(harddrive2);
         Harddrive.addAll(harddrive1, harddrive2);

@@ -8,6 +8,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -55,6 +56,7 @@ public class NewUserController {
         return null;
     }
 
+
     // når knappen trykkes kalles metoden for å lage ny bruker og for at vinduet skal lukkes hvis vellykket
     @FXML void makeNewUser(Event event) throws Exception {
         if(createCustomerFromGUI()!=null){
@@ -69,6 +71,7 @@ public class NewUserController {
             closeWindow(event);
         }
     }
+
 
     @FXML void btnMakeNewUser(KeyEvent event) throws Exception {
         if (event.getCode().equals(KeyCode.ENTER)) {

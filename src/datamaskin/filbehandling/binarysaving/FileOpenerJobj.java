@@ -5,7 +5,7 @@ import datamaskin.product.ProductRegister;
 import java.io.*;
 import java.nio.file.Path;
 
-import static datamaskin.cart.Cart.Register;
+import static datamaskin.product.ProductRegister.*;
 
 public class FileOpenerJobj implements FileOpener {
     @Override
@@ -16,9 +16,7 @@ public class FileOpenerJobj implements FileOpener {
              ObjectInputStream oin = new ObjectInputStream(fin))
         {
             ProductRegister register = (ProductRegister) oin.readObject();
-            for(Product p: Register){
-                productRegister.addElement(p);
-            }
+
             //register.getRegister().forEach(productRegister::addElement);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

@@ -117,12 +117,12 @@ public class ProductAdmPageController implements Initializable{
                     throw new IllegalArgumentException("Skriv inn en gyldig beskrivelse");
                 }
                 if (!ProductValidator.validateLifetime(lifetimeString)){
-                    throw new InvalidLifetimeException("Skriv inn et gyldig antall år (1-36)");
+                    throw new InvalidLifetimeException("Skriv inn et gyldig antall år (1-35)");
                 } else{
                     lifetime = Integer.parseInt(txtLifetime.getText());
                 }
                 if (!ProductValidator.validatePrice(priceString)){
-                    throw new InvalidPriceException("Skriv inn en gyldig pris (0.01-9999.99)");
+                    throw new InvalidPriceException("Skriv inn en gyldig pris (0.01-99 999.99)");
                 } else{
                     price = Double.parseDouble(txtPrice.getText());
                 }
@@ -312,7 +312,7 @@ public class ProductAdmPageController implements Initializable{
 
     private void filter() throws IOException {
         // oppretter en ny liste for filtrert data med alle produktene
-        FilteredList<Product> filteredData = new FilteredList<>((ProductRegister.Register), p -> true);
+        FilteredList<Product> filteredData = new FilteredList<>((ProductRegister.ProductRegister), p -> true);
 
         // hver gang verdien i søkefeltet endres skjer følgende
         txtSearch.textProperty().addListener((observable, oldVerdi, newVerdi) -> {

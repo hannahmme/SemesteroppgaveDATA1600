@@ -35,7 +35,7 @@
                         </cellValueFactory>
                       </TableColumn>
                         <TableColumn fx:id="extraProductLifetime" prefWidth="68.0" text="Levetid (år)" />
-                        <TableColumn fx:id="extraProductPrice" prefWidth="101.0" text="Pris (kr)">
+                        <TableColumn fx:id="extraProductPrice" prefWidth="99.0" text="Pris (kr)">
                             <cellValueFactory>
                                 <PropertyValueFactory property="Price" />
                             </cellValueFactory>
@@ -82,7 +82,7 @@
                                    <PropertyValueFactory property="Lifetime" />
                                </cellValueFactory>
                            </TableColumn>
-                           <TableColumn fx:id="priceColumn" prefWidth="89.0" text="Pris (kr)">
+                           <TableColumn fx:id="priceColumn" prefWidth="87.0" text="Pris (kr)">
                                <cellValueFactory>
                                    <PropertyValueFactory property="Price" />
                                </cellValueFactory>

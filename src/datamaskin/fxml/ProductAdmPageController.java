@@ -1,14 +1,18 @@
 package datamaskin.fxml;
 
+import datamaskin.filbehandling.ReadFromAllOrdersFile;
 import datamaskin.filbehandling.binarysaving.FileHandler;
 import datamaskin.exceptions.ConvertersWithErrorHandling;
 import datamaskin.exceptions.InvalidLifetimeException;
 import datamaskin.exceptions.InvalidPriceException;
 //import datamaskin.filbehandling.SaveComponentsToFile;
 import datamaskin.Page;
+import datamaskin.orders.FinalOrderOverview;
 import datamaskin.product.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,7 +48,7 @@ public class ProductAdmPageController implements Initializable{
 
     @FXML private MenuButton menuDropdown;
     @FXML private TextField txtSearch;
-    @FXML private ChoiceBox<String> cboxFilter;
+    @FXML private ComboBox<String> cBoxFilter;
 
     // metode for å lage kategoriene i cboksene, så admin må velge en av de
     private void setData(){
@@ -149,7 +153,8 @@ public class ProductAdmPageController implements Initializable{
         return null;
     }
 
-    private void updateProductList() {
+    //todo: gammel kode filtrering
+    /*private void updateProductList() {
         ProductRegister.setComponentToTV(componentTableview);
     }
 
@@ -178,7 +183,7 @@ public class ProductAdmPageController implements Initializable{
         } else {
             componentTableview.setItems(searchResult);
         }
-    }
+    }*/
 
     // knapp for å slette komponent fra produktlista
     @FXML void btnDeleteComponentEnter(KeyEvent event) throws IOException {
@@ -235,8 +240,11 @@ public class ProductAdmPageController implements Initializable{
 
         ProductRegister.setComponentToTV(componentTableview);
 
-        //Choiceboxen for filtrering skal stå på Navn som default
-        //cboxFilter.setValue("Navn");
+        ObservableList<String> filterChoices = FXCollections.observableArrayList();
+        filterChoices.addAll("Navn", "Levetid", "Pris", "Kategori");
+
+        cBoxFilter.setItems(filterChoices);
+        cBoxFilter.setValue("Kategori");
 
         // for å ha kategoriene i nedtrekkslista fra før av
         setData();
@@ -336,7 +344,75 @@ public class ProductAdmPageController implements Initializable{
     }
 
 
-    @FXML void filterTV(ActionEvent actionEvent) {
+
+    // kode for filtrering
+    @FXML private void filterChoiceChanged() throws IOException {
         filter();
+    }
+
+    @FXML private void searchTxtEntered() throws IOException {
+        filter();
+    }
+
+    private void filter() throws IOException {
+        // oppretter en ny liste for filtrert data med alle ordrene fra fil
+        FilteredList<Product> filtrertData = new FilteredList<>((ProductRegister.Register), p -> true);
+
+        // hver gang verdien endres skjer følgende
+        txtSearch.textProperty().addListener((observable, oldVerdi, newVerdi) -> {
+
+            // listen med filtrert data sjekker gjennom allOrdersList om den finner verdiene av order
+            filtrertData.setPredicate(anOrder -> {
+
+                // henter den nye verdien og gjør den om til små bokstaver
+                String smallLetters = newVerdi.toLowerCase();
+
+                if (newVerdi.matches("[a-zA-Z. -_0-9()@]*")) {    //
+
+                    // Hvis feltet er tomt skal alle personer vises
+                    if (newVerdi.isEmpty()) {
+                        return true;
+                    }
+
+                    // Sammenligner alle kolonner med filtertekst, etter valgt cbox
+                    if(cBoxFilter.getValue().toLowerCase().equals("navn")) {
+                        if (anOrder.getName().toLowerCase().contains(smallLetters)) {
+                            return true;
+                        }
+                    }
+                    if(cBoxFilter.getValue().toLowerCase().equals("kategori")) {
+                        if (anOrder.getCategory().toLowerCase().contains(smallLetters)) {
+                            return true;
+                        }
+                    }
+                    if(cBoxFilter.getValue().toLowerCase().equals("levetid")) {
+                        if (String.valueOf(anOrder.getLifetime()).matches(smallLetters)) {
+                            return true;
+                        }
+                    }
+                    if(cBoxFilter.getValue().toLowerCase().equals("pris")){
+                        if(String.valueOf(anOrder.getPrice()).startsWith(smallLetters)){
+                            if(smallLetters.endsWith(".0")){
+                                if (String.valueOf(anOrder.getPrice()).matches(smallLetters)) {
+                                    return true;
+                                }
+                            } else {
+                                if (String.valueOf(anOrder.getPrice()).matches(smallLetters + ".0")) {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+                return false;
+            });
+        });
+
+        // oppretter en sortert liste fra filtrert data og binder den sammen med tabellen
+        SortedList<Product> sortedData = new SortedList<>(filtrertData);
+        sortedData.comparatorProperty().bind(componentTableview.comparatorProperty());
+
+        // legger til sotrert og filtert data til tabellen
+        componentTableview.setItems(sortedData);
     }
 }

@@ -129,36 +129,39 @@ public class AllOrdersController implements Initializable {
     }
 
     private void filter() throws IOException {
-        // henter listen over alle ordrene fra fil
         ObservableList<FinalOrderOverview> allOrdersList = readFromAllOrdersFile.readFromAllOrdersFile("./src/Datamaskin/sentOrdersPath/allOrders.csv");
-
-        // oppretter en ny liste for filtrert data med alle ordrene fra fil
         FilteredList<FinalOrderOverview> filtrertData = new FilteredList<>((allOrdersList), p -> true);
 
         // hver gang verdien endres skjer følgende
         txtFiltering.textProperty().addListener((observable, oldVerdi, newVerdi) -> {
 
-            // listen med filtrert data sjekker gjennom allOrdersList om den finner verdiene av order
+            // listen med filtrert data sjekker gjennom allOrdersList om den finner verdiene av en ordre
             filtrertData.setPredicate(anOrder -> {
 
-                // henter den nye verdien og gjør den om til små bokstaver
-                String smallLetters = newVerdi.toLowerCase();
-
-                if (newVerdi.matches("[a-zA-Z. -_0-9()@]*")) {    //
-
-                    // Hvis feltet er tomt skal alle personer vises
-                    if (newVerdi.isEmpty()) {
+                String smallLetters = newVerdi.toLowerCase();           // henter den nye verdien og gjør den om til små bokstaver
+                if (newVerdi.matches("[a-zA-Z. -_0-9()@]*")) {    // Sjekker at det matcher regex
+                    if (newVerdi.isEmpty()) {                           // Hvis feltet er tomt skal alle personer vises
                         return true;
                     }
 
                     // Sammenligner alle kolonner med filtertekst, etter valgt cbox
                     if(filterCBox.getValue().toLowerCase().equals("email")) {
-                        if (anOrder.getEmail().toLowerCase().contains(smallLetters)) {
+                        if (anOrder.getEmail().endsWith(smallLetters)){             // kan filtrere etter eposter med samme domene
+                            if (anOrder.getEmail().toLowerCase().contains(smallLetters)) {
+                                return true;
+                            }
+                        }
+                        if (anOrder.getEmail().toLowerCase().contains(smallLetters)) { // filtrer etter eksakt epostadresse
                             return true;
                         }
                     }
                     if(filterCBox.getValue().toLowerCase().equals("ordreid")) {
-                        if (anOrder.getOrderID().toLowerCase().contains(smallLetters)) {
+                        if(!smallLetters.startsWith("ordre-")){
+                            if (anOrder.getOrderID().toLowerCase().matches("ordre-" + smallLetters)) {
+                                return true;
+                            }
+                        }
+                        if (anOrder.getOrderID().toLowerCase().matches(smallLetters)) {
                             return true;
                         }
                     }
@@ -192,5 +195,4 @@ public class AllOrdersController implements Initializable {
         // legger til sotrert og filtert data til tabellen
         allOrders.setItems(sortertData);
     }
-
 }

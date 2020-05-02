@@ -313,11 +313,18 @@ public class ProductAdmPageController implements Initializable{
 
 
     //Metoder slik at innholdet i Produkt-tableViewet på adminsiden endres direkte i tblViewet
-    @FXML void txtProductNameEdited(TableColumn.CellEditEvent<Product, String> event){
-        event.getRowValue().setName(event.getNewValue());
+    @FXML void txtProductNameEdited(TableColumn.CellEditEvent<Product, String> event) {
+        if (ConvertersWithErrorHandling.isInputNotNull(event.getNewValue())) {
+            event.getRowValue().setName(event.getNewValue());
+        }
+        componentTableview.refresh();
     }
-    @FXML void txtProductDescriptionEdited(TableColumn.CellEditEvent<Product, String> event){
-        event.getRowValue().setDescription(event.getNewValue());
+
+    @FXML void txtProductDescriptionEdited(TableColumn.CellEditEvent<Product, String> event) {
+        if (ConvertersWithErrorHandling.isInputNotNull(event.getNewValue())) {
+            event.getRowValue().setDescription(event.getNewValue());
+        }
+        componentTableview.refresh();
     }
     @FXML void txtProductLifetimeEdited(TableColumn.CellEditEvent<Product, Integer> event) {
         if (intStrConverter.getSuccessfulIntValue()) {
@@ -332,7 +339,12 @@ public class ProductAdmPageController implements Initializable{
         componentTableview.refresh();
     }
     @FXML void txtProductCategoryEdited(TableColumn.CellEditEvent<Product, String> event){
-        event.getRowValue().setCategory(event.getNewValue());
+        if(ConvertersWithErrorHandling.isCategoryMatchingInput(event.getNewValue())){
+            String string = event.getNewValue().toLowerCase();
+            String input = string.substring(0,1).toUpperCase() + string.substring(1);
+            event.getRowValue().setCategory(input);
+        }
+        componentTableview.refresh();
     }
 
 

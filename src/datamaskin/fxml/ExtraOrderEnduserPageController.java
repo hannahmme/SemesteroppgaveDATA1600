@@ -43,7 +43,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
     @FXML private Button btnGoBack;
     @FXML private Button btnGoToMainpage;
     @FXML private Label lblTotalPrice;
-    @FXML private ImageView imgImageView;
+    //@FXML private ImageView imgImageView;
     @FXML private Text txtWarning;
     @FXML private ImageView mainpageImageView;
 
@@ -112,8 +112,10 @@ public class ExtraOrderEnduserPageController implements Initializable {
         image.setImageView(mainpageImageView, homeImage);
     }
 
-    //Metode som gjør at bilde av produktet som velges vises i produktinfo-imageviewet
-   /* @FXML void selectedItemEvent(MouseEvent event) throws FileNotFoundException {
+
+    //Todo: Hvordan få binær fil til å laste med bilde
+    /*//Metode som gjør at bilde av produktet som velges vises i produktinfo-imageviewet
+    @FXML void selectedItemEvent(MouseEvent event) throws FileNotFoundException {
         Product selectedProduct = tblExtraProduct.getSelectionModel().getSelectedItem();
         if (selectedProduct == null) return;
 

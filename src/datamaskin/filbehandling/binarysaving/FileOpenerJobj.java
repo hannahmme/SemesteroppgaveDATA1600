@@ -8,9 +8,9 @@ import java.nio.file.Path;
 import static datamaskin.cart.Cart.Register;
 
 public class FileOpenerJobj implements FileOpener {
-
     @Override
     public void open(ProductRegister productRegister, Path filePath) throws IOException {
+
 
     try (InputStream fin = new FileInputStream(filePath.toFile());
              ObjectInputStream oin = new ObjectInputStream(fin))

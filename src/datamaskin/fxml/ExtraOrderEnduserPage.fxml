@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
@@ -18,10 +19,10 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="670.0" prefWidth="152.0">
                <children>
-                  <Button fx:id="btnGoToMainpage" alignment="TOP_LEFT" layoutX="13.0" layoutY="30.0" mnemonicParsing="false" onAction="#goToMainpage" onKeyPressed="#btnToMainpageEnter" prefHeight="31.0" prefWidth="130.0" text="Gå til forsiden" />
+                  <Button fx:id="btnGoToMainpage" alignment="TOP_LEFT" cancelButton="true" layoutX="13.0" layoutY="30.0" mnemonicParsing="false" onAction="#goToMainpage" onKeyPressed="#btnToMainpageEnter" prefHeight="31.0" prefWidth="130.0" text="Gå til forsiden" />
                   <ImageView fx:id="mainpageImageView" fitHeight="21.0" fitWidth="26.0" layoutX="117.0" layoutY="35.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
                   <Button fx:id="btnGoBack" alignment="TOP_LEFT" layoutX="157.0" layoutY="30.0" mnemonicParsing="false" onAction="#goBack" onKeyPressed="#btnGoBackEnter" prefHeight="31.0" prefWidth="140.0" text="Gå til forrige side" />
-                  <TableView fx:id="tblExtraProduct" layoutX="10.0" layoutY="100.0" onMouseClicked="#selectedItemEvent" prefHeight="340.0" prefWidth="600.0">
+                  <TableView fx:id="tblExtraProduct" layoutX="10.0" layoutY="100.0" prefHeight="340.0" prefWidth="600.0">
                     <columns>
                       <TableColumn fx:id="extraProductName" prefWidth="108.0" text="Tilbehor">
                         <cellValueFactory>
@@ -33,8 +34,8 @@
                             <PropertyValueFactory property="Description" />
                         </cellValueFactory>
                       </TableColumn>
-                        <TableColumn fx:id="extraProductLifetime" prefWidth="68.0" text="Levetid" />
-                        <TableColumn fx:id="extraProductPrice" prefWidth="96.0" text="Pris">
+                        <TableColumn fx:id="extraProductLifetime" prefWidth="68.0" text="Levetid (år)" />
+                        <TableColumn fx:id="extraProductPrice" prefWidth="99.0" text="Pris (kr)">
                             <cellValueFactory>
                                 <PropertyValueFactory property="Price" />
                             </cellValueFactory>
@@ -42,10 +43,13 @@
                     </columns>
                   </TableView>
                   <Text fx:id="txtWarning" layoutX="13.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="599.9999865889549" />
-                  <Button fx:id="btnSaveToCart" layoutX="250.0" layoutY="555.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="60.0" prefWidth="340.0" style="-fx-background-color: gray;" text="Legg til valgt produkt" textFill="WHITE" wrapText="true">
+                  <Button fx:id="btnSaveToCart" layoutX="250.0" layoutY="555.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="60.0" prefWidth="340.0" style="-fx-background-color: darkseagreen;" text="Legg til valgt produkt" wrapText="true">
                      <font>
-                        <Font name="Arial" size="15.0" />
-                     </font></Button>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect></Button>
                   <ImageView fx:id="imgImageView" fitHeight="201.0" fitWidth="201.0" layoutX="16.0" layoutY="455.0" pickOnBounds="true" preserveRatio="true" />
                   <Line endX="500.0" layoutX="110.0" layoutY="80.0" startX="-100.0" />
                   <Text layoutX="344.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ekstra tilbehør" wrappingWidth="261.951171875">
@@ -73,12 +77,12 @@
                                    <PropertyValueFactory property="Description" />
                                </cellValueFactory>
                            </TableColumn>
-                           <TableColumn fx:id="lifetimeColumn" prefWidth="70.0" text="Levetid">
+                           <TableColumn fx:id="lifetimeColumn" prefWidth="75.0" text="Levetid (år)">
                                <cellValueFactory>
                                    <PropertyValueFactory property="Lifetime" />
                                </cellValueFactory>
                            </TableColumn>
-                           <TableColumn fx:id="priceColumn" prefWidth="89.0" text="Pris">
+                           <TableColumn fx:id="priceColumn" prefWidth="87.0" text="Pris (kr)">
                                <cellValueFactory>
                                    <PropertyValueFactory property="Price" />
                                </cellValueFactory>
@@ -87,11 +91,14 @@
                    </TableView>
                   <Label layoutX="15.0" layoutY="620.0" prefHeight="21.0" prefWidth="106.0" text="Totalt å betale:" />
                   <Label fx:id="lblTotalPrice" layoutX="130.0" layoutY="620.0" prefHeight="21.0" prefWidth="115.0" />
-                  <Button layoutX="170.0" layoutY="465.0" mnemonicParsing="false" onAction="#deleteFromCart" prefHeight="31.0" prefWidth="282.0" style="-fx-background-color: grey;" text="Slett valgt produkt fra handlekurven" textFill="WHITE" />
+                  <Button layoutX="170.0" layoutY="465.0" mnemonicParsing="false" onAction="#deleteFromCart" prefHeight="31.0" prefWidth="282.0" style="-fx-background-color: indianred;" text="Slett valgt produkt fra handlekurven" textFill="WHITE" />
                   <Button fx:id="btnGoToPay" layoutX="425.0" layoutY="610.0" mnemonicParsing="false" onAction="#goToPay" onKeyPressed="#btnGoPayEnter" prefHeight="42.0" prefWidth="170.0" style="-fx-background-color: steelblue;" text="Gå til betaling" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
-                     </font></Button>
+                     </font>
+                     <effect>
+                        <DropShadow height="11.67" radius="6.1125" width="14.78" />
+                     </effect></Button>
                   <Line endX="500.0" fill="BLACK" layoutX="110.0" layoutY="80.0" startX="-100.0" />
                </children>
             </AnchorPane>

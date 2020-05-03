@@ -16,27 +16,27 @@ import java.util.stream.Collectors;
 public class ProductRegister implements Serializable {
     private static final long serialVersionUID = 1;
 
-    static transient ObservableList<Product> Register = FXCollections.observableArrayList();
+    public static transient ObservableList<Product> ProductRegister = FXCollections.observableArrayList();
 
-    public List<Product> getRegister(){ return Register;}
+    public List<Product> getRegister(){ return ProductRegister;}
 
     public void addElement(Product aProduct) {
-        Register.add(aProduct);
+        ProductRegister.add(aProduct);
     }
 
     public void removeAll() {
-        Register.clear();
+        ProductRegister.clear();
     }
 
     public static void setComponentToTV(TableView<Product> tv) {
-        tv.setItems(Register);
+        tv.setItems(ProductRegister);
     }
 
     // todo: kan denne slettes?
     public Product searchRegisterByName(String name) {
         Pattern pattern = Pattern.compile(name, Pattern.CASE_INSENSITIVE);
 
-        for(Product p : Register) {
+        for(Product p : ProductRegister) {
             Matcher matcher = pattern.matcher(p.getName());
 
             if(matcher.find()) {
@@ -48,54 +48,21 @@ public class ProductRegister implements Serializable {
         return null;
     }
 
-    //Metoder for filtrering innenfor de ulike kolonnene
-    public ObservableList<Product> filterByName(String name) {
-        return Register.stream().
-                filter(p -> p.getName().toLowerCase().
-                        matches(String.format("%s%s%s",".*", name.toLowerCase(), ".*"))).
-                collect(Collectors.toCollection(FXCollections::observableArrayList));
-    }
-
-    public ObservableList<Product> filterByDescription(String description) {
-        return Register.stream().
-                filter(p -> p.getDescription().toLowerCase().
-                        matches(String.format("%s%s%s",".*", description.toLowerCase(), ".*"))).
-                collect(Collectors.toCollection(FXCollections::observableArrayList));
-    }
-
-    public ObservableList<Product> filterByLifetime(int lifetime) {
-        return Register.stream().
-                filter(p -> p.getLifetime() == lifetime).
-                collect(Collectors.toCollection(FXCollections::observableArrayList));
-    }
-
-    public ObservableList<Product> filterByPrice(double price) {
-        return Register.stream().
-                filter(p -> p.getPrice() == price).
-                collect(Collectors.toCollection(FXCollections::observableArrayList));
-    }
-
-    public ObservableList<Product> filterByCategory(String category) {
-        return Register.stream().
-                filter(p -> p.getCategory().toLowerCase().
-                        matches(String.format("%s%s%s",".*", category.toLowerCase(), ".*"))).
-                collect(Collectors.toCollection(FXCollections::observableArrayList));
-    }
 
     //metode som gjør det mulig å slette et produkt i listen - Hannah
     public static void deleteElement(Product itemToDelete){
         if(itemToDelete == null){
             return;
         }
-        for(int i = 0; i < Register.size(); i++){
-            if (itemToDelete.equals(Register.get(i))) {
-                Register.remove(Register.get(i));
+        for(int i = 0; i < ProductRegister.size(); i++){
+            if (itemToDelete.equals(ProductRegister.get(i))) {
+                ProductRegister.remove(ProductRegister.get(i));
             }
         }
     }
 
     public static boolean checkIfCategoryIsPresent(String category){
-        for(Product aProduct : Register){
+        for(Product aProduct : ProductRegister){
             if(aProduct.getCategory().equals(category)){
                 return true;
             }
@@ -116,7 +83,7 @@ public class ProductRegister implements Serializable {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for(Product p : Register) {
+        for(Product p : ProductRegister) {
             sb.append(p.toString());
             sb.append(System.lineSeparator());
         }
@@ -126,13 +93,13 @@ public class ProductRegister implements Serializable {
 
     private void writeObject(ObjectOutputStream s) throws IOException {
         s.defaultWriteObject();
-        s.writeObject(new ArrayList<>(Register));
+        s.writeObject(new ArrayList<>(ProductRegister));
     }
 
     private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
         List<Product> list = (List<Product>) s.readObject();
-        Register = FXCollections.observableArrayList();
-        Register.addAll(list);
+        ProductRegister = FXCollections.observableArrayList();
+        ProductRegister.addAll(list);
     }
 
 

@@ -43,12 +43,13 @@ public class ExtraOrderEnduserPageController implements Initializable {
     @FXML private Button btnGoBack;
     @FXML private Button btnGoToMainpage;
     @FXML private Label lblTotalPrice;
-    @FXML private ImageView imgImageView;
+    //@FXML private ImageView imgImageView;
     @FXML private Text txtWarning;
     @FXML private ImageView mainpageImageView;
 
     private ImageClass image = new ImageClass();
     private Image homeImage = image.createImage("./src/Datamaskin/images/mainpage.png");
+
     private Page scene = new Page();
     private Cart shoppingCart = new Cart();
 
@@ -109,11 +110,13 @@ public class ExtraOrderEnduserPageController implements Initializable {
         shoppingCart.attachTableview(tableviewCart);
         shoppingCart.getTotalPrice(lblTotalPrice);
 
-        image.setImageView(mainpageImageView, homeImage);
+        //image.setImageView(mainpageImageView, homeImage);
     }
 
-    //Metode som gjør at bilde av produktet som velges vises i produktinfo-imageviewet
-   /* @FXML void selectedItemEvent(MouseEvent event) throws FileNotFoundException {
+
+    //Todo: Hvordan få binær fil til å laste med bilde
+    /*//Metode som gjør at bilde av produktet som velges vises i produktinfo-imageviewet
+    @FXML void selectedItemEvent(MouseEvent event) throws FileNotFoundException {
         Product selectedProduct = tblExtraProduct.getSelectionModel().getSelectedItem();
         if (selectedProduct == null) return;
 

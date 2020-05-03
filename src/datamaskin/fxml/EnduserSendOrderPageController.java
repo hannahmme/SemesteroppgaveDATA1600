@@ -35,7 +35,7 @@ public class EnduserSendOrderPageController implements Initializable {
     @FXML private Button btnSendOrder;
     @FXML private Button btnGoBack;
     @FXML private Button btnGoToMainpage;
-    @FXML private TextField txtEpost;
+    @FXML private TextField txtEmail;
     @FXML private TextField txtDiscount;
     @FXML private Label lblOrderSent;
     @FXML private Label lblTotalPrice;
@@ -64,19 +64,20 @@ public class EnduserSendOrderPageController implements Initializable {
         shoppingcart.getTotalPrice(lblTotalPrice);
     }
 
+
     @FXML void sendOrder() throws IOException {
         String orderID = Order.generateOrderID();
         FinalOrderOverview aFinalOrderOverview = createOrderObjectFromGUI(orderID);
 
         if(aFinalOrderOverview != null) {
-            txtEpost.setText("");
+            txtEmail.setText("");
             txtPassword.setText("");
             txtDiscount.setText("");
 
             try{
             //kode som lagrer orderen til forhåndsdefinert filsti med generert ordreID.
             Path sentOrderPath = Paths.get("./src/Datamaskin/sentOrdersPath/"+orderID+".csv");
-            String formattedList = OrderFormatter.formatListOfProductToString(Cart.Register);
+            String formattedList = OrderFormatter.formatListOfProductToString(Cart.Cart);
             filesaver.saveToFile(formattedList, sentOrderPath);
 
             //kode som lagrer orderen til forhåndsdefinert filsti (alle ordre samlet i csv.fil)
@@ -101,7 +102,7 @@ public class EnduserSendOrderPageController implements Initializable {
         double totalPrice;
 
         try {
-            email = txtEpost.getText();
+            email = txtEmail.getText();
             password = txtPassword.getText();
 
             if(!CustomerValidator.validateEmail(email)){

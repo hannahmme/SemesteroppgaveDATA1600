@@ -4,11 +4,12 @@ import datamaskin.filbehandling.binarysaving.FileHandler;
 import datamaskin.exceptions.ConvertersWithErrorHandling;
 import datamaskin.exceptions.InvalidLifetimeException;
 import datamaskin.exceptions.InvalidPriceException;
-//import datamaskin.filbehandling.SaveComponentsToFile;
 import datamaskin.Page;
 import datamaskin.product.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,27 +34,18 @@ public class ProductAdmPageController implements Initializable{
             = new ConvertersWithErrorHandling.IntegerStringConverter();
     private final ConvertersWithErrorHandling.DoubleFromStringConverter doubleStrConverter
             = new ConvertersWithErrorHandling.DoubleFromStringConverter();
-    //private SaveComponentsToFile filesaver = new SaveComponentsToFile();
 
     private Stage stage;
+
     @FXML private TextField txtComponentname;
     @FXML private TextField txtDescription;
     @FXML private TextField txtLifetime;
     @FXML private TextField txtPrice;
-    @FXML private ChoiceBox<String> cboxCategory;
-
-    @FXML private MenuButton menuDropdown;
     @FXML private TextField txtSearch;
-    @FXML private ChoiceBox<String> cboxFilter;
+    @FXML private ChoiceBox<String> cboxCategory;
+    @FXML private ComboBox<String> cBoxFilter;
+    @FXML private MenuButton menuDropdown;
 
-    // metode for å lage kategoriene i cboksene, så admin må velge en av de
-    private void setData(){
-        cboxCategory.getItems().addAll("Skjermkort", "Minnekort",
-                "Harddisk", "Prosessor", "Strømforsyning", "Lydkort",
-                "Optisk disk" , "Farge", "Andre produkter");
-    }
-
-    // konfigurerer tabellen
     @FXML private TableView<Product> componentTableview;
     @FXML private TableColumn<Product, String> nameColumn;
     @FXML private TableColumn<Product, String> descriptionColumn;
@@ -61,8 +53,14 @@ public class ProductAdmPageController implements Initializable{
     @FXML private TableColumn<Product, Double> priceColumn;
     @FXML private TableColumn<Product, String> categoryColumn;
 
-    // oppretter et nytt objekt av typen Produktregister
     public static ProductRegister aRegister = new ProductRegister();
+
+    // Setter data i combobox - må velge en av disse kategoriene for å opprette produkter
+    private void setData(){
+        cboxCategory.getItems().addAll("Skjermkort", "Minnekort",
+                "Harddisk", "Prosessor", "Strømforsyning", "Lydkort",
+                "Optisk disk" , "Farge", "Andre produkter");
+    }
 
     // knappen for å legge til et nytt produkt i listen
     @FXML void addComponent() {
@@ -119,12 +117,12 @@ public class ProductAdmPageController implements Initializable{
                     throw new IllegalArgumentException("Skriv inn en gyldig beskrivelse");
                 }
                 if (!ProductValidator.validateLifetime(lifetimeString)){
-                    throw new InvalidLifetimeException("Skriv inn et gyldig antall år");
+                    throw new InvalidLifetimeException("Skriv inn et gyldig antall år (1-35)");
                 } else{
                     lifetime = Integer.parseInt(txtLifetime.getText());
                 }
                 if (!ProductValidator.validatePrice(priceString)){
-                    throw new InvalidPriceException("Skriv inn en gyldig pris");
+                    throw new InvalidPriceException("Skriv inn en gyldig pris (0.01-99 999.99)");
                 } else{
                     price = Double.parseDouble(txtPrice.getText());
                 }
@@ -147,37 +145,6 @@ public class ProductAdmPageController implements Initializable{
             }
         }
         return null;
-    }
-
-    private void updateProductList() {
-        ProductRegister.setComponentToTV(componentTableview);
-    }
-
-
-    private void filter(){
-        if(isEmptyOrBlank(txtSearch)) {
-            updateProductList();
-            return;
-        }
-
-        ObservableList<Product> searchResult = null;
-        switch (cboxFilter.getValue().toLowerCase()) {
-            case "name" : searchResult = aRegister.filterByName(txtSearch.getText()); break;
-            case "description" : searchResult = aRegister.filterByDescription(txtSearch.getText()); break;
-            case "lifetime" : try {
-                searchResult = aRegister.filterByLifetime(Integer.parseInt(txtSearch.getText()));
-            } catch (NumberFormatException e) {} break;
-            case "price" : try {
-                searchResult = aRegister.filterByPrice(Double.parseDouble(txtSearch.getText()));
-            } catch (NumberFormatException e) {} break;
-            case "category" : searchResult = aRegister.filterByCategory(txtSearch.getText()); break;
-        }
-
-        if(searchResult == null) {
-            componentTableview.setItems(FXCollections.observableArrayList());
-        } else {
-            componentTableview.setItems(searchResult);
-        }
     }
 
     // knapp for å slette komponent fra produktlista
@@ -235,8 +202,11 @@ public class ProductAdmPageController implements Initializable{
 
         ProductRegister.setComponentToTV(componentTableview);
 
-        //Choiceboxen for filtrering skal stå på Navn som default
-        //cboxFilter.setValue("Navn");
+        ObservableList<String> filterChoices = FXCollections.observableArrayList();
+        filterChoices.addAll("Navn", "Kategori", "Levetid", "Pris");
+
+        cBoxFilter.setItems(filterChoices);
+        cBoxFilter.setValue("Kategori");
 
         // for å ha kategoriene i nedtrekkslista fra før av
         setData();
@@ -284,7 +254,6 @@ public class ProductAdmPageController implements Initializable{
         }
     }
 
-
     // litt enkel filbehandling her, lagre til binære filer? og lage for ordre også
     @FXML void openFromFile(ActionEvent event) {
         FileHandler.openFile(stage, aRegister);
@@ -295,29 +264,21 @@ public class ProductAdmPageController implements Initializable{
     //lagre til binær fil - den lagrer til fil, men jeg kan lese den. Skal vel komme kun tall?
     @FXML void saveToFile(ActionEvent event) {
         FileHandler.saveFile(stage, aRegister);
-
-
-
-        // todo: kode som lå her før
-        /*FileSaver saver = new SaveComponentsToFile();
-        Path path = Paths.get("productReg.jobj");
-        if(saver != null) {
-            try {
-                saver.saveToJobj(ProductRegister.Register, path);
-                System.out.println("Registeret ble lagret!");
-            } catch (IOException e) {
-                System.out.println("Lagring til fil feilet. Årsak: " + e.getMessage());
-            }
-        }*/
     }
-
 
     //Metoder slik at innholdet i Produkt-tableViewet på adminsiden endres direkte i tblViewet
-    @FXML void txtProductNameEdited(TableColumn.CellEditEvent<Product, String> event){
-        event.getRowValue().setName(event.getNewValue());
+    @FXML void txtProductNameEdited(TableColumn.CellEditEvent<Product, String> event) {
+        if (ConvertersWithErrorHandling.isInputNotNull(event.getNewValue())) {
+            event.getRowValue().setName(event.getNewValue());
+        }
+        componentTableview.refresh();
     }
-    @FXML void txtProductDescriptionEdited(TableColumn.CellEditEvent<Product, String> event){
-        event.getRowValue().setDescription(event.getNewValue());
+
+    @FXML void txtProductDescriptionEdited(TableColumn.CellEditEvent<Product, String> event) {
+        if (ConvertersWithErrorHandling.isInputNotNull(event.getNewValue())) {
+            event.getRowValue().setDescription(event.getNewValue());
+        }
+        componentTableview.refresh();
     }
     @FXML void txtProductLifetimeEdited(TableColumn.CellEditEvent<Product, Integer> event) {
         if (intStrConverter.getSuccessfulIntValue()) {
@@ -332,11 +293,79 @@ public class ProductAdmPageController implements Initializable{
         componentTableview.refresh();
     }
     @FXML void txtProductCategoryEdited(TableColumn.CellEditEvent<Product, String> event){
-        event.getRowValue().setCategory(event.getNewValue());
+        if(ConvertersWithErrorHandling.isCategoryMatchingInput(event.getNewValue())){
+            String string = event.getNewValue().toLowerCase();
+            String input = string.substring(0,1).toUpperCase() + string.substring(1);
+            event.getRowValue().setCategory(input);
+        }
+        componentTableview.refresh();
     }
 
-
-    @FXML void filterTV(ActionEvent actionEvent) {
+    // kode for filtrering
+    @FXML private void filterChoiceChanged() throws IOException {
         filter();
+    }
+
+    @FXML private void searchTxtEntered() throws IOException {
+        filter();
+    }
+
+    private void filter() throws IOException {
+        // oppretter en ny liste for filtrert data med alle produktene
+        FilteredList<Product> filteredData = new FilteredList<>((ProductRegister.ProductRegister), p -> true);
+
+        // hver gang verdien i søkefeltet endres skjer følgende
+        txtSearch.textProperty().addListener((observable, oldVerdi, newVerdi) -> {
+
+            // listen med filtrert data sjekker gjennom produktlisten og ser om den finner et produkt som matcher
+            filteredData.setPredicate(aProduct -> {
+
+                String smallLetters = newVerdi.toLowerCase();       // henter den nye verdien og gjør den om til små bokstaver
+                if (newVerdi.matches("[a-zA-Z-æøå. -_0-9()@]*")) {
+                    if (newVerdi.isEmpty()) {                       // Hvis feltet er tomt skal alle personer vises
+                        return true;
+                    }
+
+                    // Sammenligner alle kolonner med filtertekst, etter valgt cbox
+                    if(cBoxFilter.getValue().toLowerCase().equals("navn")) {
+                        if (aProduct.getName().toLowerCase().contains(smallLetters)) {
+                            return true;
+                        }
+
+                    }
+                    if(cBoxFilter.getValue().toLowerCase().equals("kategori")) {
+                        if (aProduct.getCategory().toLowerCase().contains(smallLetters)) {
+                            return true;
+                        }
+                    }
+                    if(cBoxFilter.getValue().toLowerCase().equals("levetid")) {
+                        if(String.valueOf(aProduct.getLifetime()).startsWith(smallLetters)) {
+                            if (String.valueOf(aProduct.getLifetime()).matches(smallLetters)) {
+                                return true;
+                            }
+                        }
+                    }
+                    if(cBoxFilter.getValue().toLowerCase().equals("pris")){
+                        if(String.valueOf(aProduct.getPrice()).startsWith(smallLetters)){
+                            if(smallLetters.endsWith(".0")){
+                                if (String.valueOf(aProduct.getPrice()).matches(smallLetters)) {
+                                    return true;
+                                }
+                            } else {
+                                if (String.valueOf(aProduct.getPrice()).matches(smallLetters + ".0")) {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+                return false;
+            });
+        });
+
+        // oppretter en sortert liste fra filtrert data og binder den sammen med tabellen
+        SortedList<Product> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(componentTableview.comparatorProperty());
+        componentTableview.setItems(sortedData);
     }
 }

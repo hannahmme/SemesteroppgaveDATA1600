@@ -76,7 +76,7 @@ public class EnduserPageController implements Initializable {
 
     // metode for å slette gamle objekter og for å lage nye objekter som kommer an på valg i choiceboksene
     private void createCartObjectsFromGUI() {
-        if (Register.isEmpty()) {  // kun hvis handlekurven er tom skal det lages helt nye produkter som legges til
+        if (Cart.isEmpty()) {  // kun hvis handlekurven er tom skal det lages helt nye produkter som legges til
             createProducts();
             lblExpectedLifetime.setText(String.valueOf(findExpectedLifetime()));
         } else {
@@ -87,7 +87,7 @@ public class EnduserPageController implements Initializable {
 
     // sjekke om handlekurven allerede har komponenter, da må de slettes for å legge til nye komponenter som bruker vil endre til
     private void updateCart() {
-        if (!Register.isEmpty()) {
+        if (!Cart.isEmpty()) {
             aCart.replaceElements(findIndex("Skjermkort"), addProduct(cBoxGraphicCard.getValue().getName(), ProductCategories.GraphicCard));
             aCart.replaceElements(findIndex("Minnekort"), addProduct(cBoxMemorycard.getValue().getName(), ProductCategories.Memorycard));
             aCart.replaceElements(findIndex("Harddisk"), addProduct(cBoxHarddrive.getValue().getName(), ProductCategories.Harddrive));
@@ -130,7 +130,7 @@ public class EnduserPageController implements Initializable {
         setProducts(cBoxColor, Color, lblInfoColor);
 
         // kaller metode for å velge riktige choicebokser/ sette totalpris når man går tilbake fra neste side
-        if (!Register.isEmpty()) {
+        if (!Cart.isEmpty()) {
             setChosenCombobox(cBoxGraphicCard, cBoxMemorycard, cBoxHarddrive, cBoxProcessor, cBoxPower, cBoxSoundcard, cBoxOpticaldisk, cBoxColor);
             aCart.getTotalPrice(lblTotalPrice);
             lblExpectedLifetime.setText(String.valueOf(findExpectedLifetime()));

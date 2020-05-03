@@ -1,10 +1,6 @@
 package datamaskin.filbehandling.binarysaving;
 
-import datamaskin.filbehandling.binarysaving.*;
-import datamaskin.fxml.ProductAdmPageController;
-import datamaskin.product.Product;
 import datamaskin.product.ProductRegister;
-import javafx.collections.ObservableList;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
@@ -54,7 +50,8 @@ public class FileHandler {
                 try {
                     opener.open(register, selectedFile.toPath());
                 } catch (IOException e) {
-                    Messages.showErrorDialog("Åpning av filen feilet. Grunn: " + e.getMessage());
+                    System.out.println("Åpning av filen feilet. Grunn: " + e.getMessage());
+                    Messages.showErrorDialog("Åpning av filen feilet. Se gjennom importfil med plassering: " + selectedFile);
                 }
             }
         }

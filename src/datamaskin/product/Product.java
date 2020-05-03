@@ -93,9 +93,7 @@ public class Product implements Serializable {
     }
 
     @Override public String toString(){
-        return String.format("%s;%s;%s;%s;%s",
-                name.getValue(), description.getValue(), lifetime.toString(),
-                price.getValue(), category.getValue());
+        return name.getValue() + ", KR " + price.getValue();
     }
 
 

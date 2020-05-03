@@ -3,6 +3,7 @@ package datamaskin.fxml;
 import datamaskin.filbehandling.ReadFromAllOrdersFile;
 import datamaskin.orders.FinalOrderOverview;
 import datamaskin.Page;
+import datamaskin.orders.OrderValidator;
 import datamaskin.product.Product;
 import datamaskin.threadprogramming.ThreadReader;
 import javafx.collections.FXCollections;
@@ -23,6 +24,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class AllOrdersController implements Initializable {
@@ -35,7 +37,7 @@ public class AllOrdersController implements Initializable {
     @FXML private Button toSuperuserpage;
     @FXML private TextField txtFiltering;
     @FXML private Text txtTblHeader;
-    @FXML private ChoiceBox<String> filterCBox;
+    @FXML private ComboBox<String> filterCBox;
     @FXML private ThreadReader readerTask;
 
     @FXML private TableView<Product> tblOrderContent;
@@ -47,7 +49,6 @@ public class AllOrdersController implements Initializable {
     private final ReadFromAllOrdersFile readFromAllOrdersFile = new ReadFromAllOrdersFile();
     private final ObservableList<Product> emptyList = FXCollections.observableArrayList();
 
-    //knappen "tilbake" tar brukeren med tilbake til menysiden for superbruker
     @FXML void toSuperuserpage() throws IOException {
         Stage primaryStage = (Stage) toSuperuserpage.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
@@ -59,32 +60,37 @@ public class AllOrdersController implements Initializable {
         }
     }
 
-    // metoder for å legge inn ordreregisteret på denne siden
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            ObservableList<FinalOrderOverview> allOrdersList = readFromAllOrdersFile.readFromAllOrdersFile("./src/Datamaskin/sentOrdersPath/allOrders.csv");
-            allOrders.getItems().addAll(allOrdersList);
-            allOrders.setItems(allOrdersList);
+            setTV();
         } catch (IOException e) {
-            System.out.println("Filsti ikke funnet: " + e.getMessage());
+            e.printStackTrace();
         }
 
+        // setter verdier til filterboks
         ObservableList<String> filterChoices = FXCollections.observableArrayList();
         filterChoices.addAll("Email", "OrdreID", "Dato", "Totalpris");
-
         filterCBox.setItems(filterChoices);
         filterCBox.setValue("Email");
+    }
 
-        emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
-        orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("OrderID"));
-        orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("OrderDate"));
-        totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
+    private void setTV() throws IOException {
+            if(OrderValidator.getOrderList()!=null) {
+                allOrders.getItems().addAll((OrderValidator.getOrderList()));
+                allOrders.setItems((OrderValidator.getOrderList()));
+            }
+
+            emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
+            orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("OrderID"));
+            orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("OrderDate"));
+            totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
+
     }
 
     //metode som gjør det mulig for admin å trykke på en ordre og se hva den inneholder
     //Lesing fra fil gjennomføres i en egen tråd, og setter tableViewet disablet imens det leser
-    @FXML void selectedItemEvent(MouseEvent event) throws IOException {
+    @FXML void selectedItemEvent(MouseEvent event) throws IOException{
         FinalOrderOverview finalOrder = allOrders.getSelectionModel().getSelectedItem();
         if (finalOrder == null) { return; }
 
@@ -101,8 +107,6 @@ public class AllOrdersController implements Initializable {
         productInfo.setCellValueFactory(new PropertyValueFactory<>("Description"));
         productLifetime.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
         productPrice.setCellValueFactory(new PropertyValueFactory<>("Price"));
-
-
     }
 
     //når tråden er ferdig lest, så skjer:
@@ -117,6 +121,7 @@ public class AllOrdersController implements Initializable {
     //hvis tråden feiler:
     private void threadFailedReading(WorkerStateEvent event){
         txtTblHeader.setText("Det oppsto en feil. Kunne ikke hente ordreinfo.....");
+        System.out.println("Feil i filen, se gjennom ordrespesifikasjon");
         tblOrderContent.setItems(emptyList);
         allOrders.setDisable(false);
     }
@@ -132,48 +137,59 @@ public class AllOrdersController implements Initializable {
     }
 
     private void filter() throws IOException {
-        // henter listen over alle ordrene fra fil
         ObservableList<FinalOrderOverview> allOrdersList = readFromAllOrdersFile.readFromAllOrdersFile("./src/Datamaskin/sentOrdersPath/allOrders.csv");
-
-        // oppretter en ny liste for filtrert data med alle ordrene fra fil
         FilteredList<FinalOrderOverview> filtrertData = new FilteredList<>((allOrdersList), p -> true);
 
         // hver gang verdien endres skjer følgende
         txtFiltering.textProperty().addListener((observable, oldVerdi, newVerdi) -> {
 
-            // listen med filtrert data sjekker gjennom allOrdersList om den finner verdiene av order
+            // listen med filtrert data sjekker gjennom allOrdersList om den finner verdiene av en ordre
             filtrertData.setPredicate(anOrder -> {
 
-                // henter den nye verdien og gjør den om til små bokstaver
-                String smallLetters = newVerdi.toLowerCase();
-
-                if (newVerdi.matches("[a-zA-Z. -_0-9()@]*")) {    //
-
-                    // Hvis feltet er tomt skal alle personer vises
-                    if (newVerdi.isEmpty()) {
+                String smallLetters = newVerdi.toLowerCase();           // henter den nye verdien og gjør den om til små bokstaver
+                if (newVerdi.matches("[a-zA-Z. -_0-9()@]*")) {    // Sjekker at det matcher regex
+                    if (newVerdi.isEmpty()) {                           // Hvis feltet er tomt skal alle personer vises
                         return true;
                     }
 
                     // Sammenligner alle kolonner med filtertekst, etter valgt cbox
                     if(filterCBox.getValue().toLowerCase().equals("email")) {
-                        if (anOrder.getEmail().toLowerCase().contains(smallLetters)) {
+                        if (anOrder.getEmail().endsWith(smallLetters)){             // kan filtrere etter eposter med samme domene
+                            if (anOrder.getEmail().toLowerCase().contains(smallLetters)) {
+                                return true;
+                            }
+                        }
+                        if (anOrder.getEmail().toLowerCase().contains(smallLetters)) { // filtrer etter eksakt epostadresse
                             return true;
                         }
                     }
                     if(filterCBox.getValue().toLowerCase().equals("ordreid")) {
-                        if (anOrder.getOrderID().toLowerCase().contains(smallLetters)) {
+                        if(!smallLetters.startsWith("ordre-")){
+                            if (anOrder.getOrderID().toLowerCase().matches("ordre-" + smallLetters)) {
+                                return true;
+                            }
+                        }
+                        if (anOrder.getOrderID().toLowerCase().matches(smallLetters)) {
                             return true;
                         }
                     }
                     if(filterCBox.getValue().toLowerCase().equals("dato")) {
-                        if (anOrder.getOrderDate().contains(smallLetters)) {
+                        if (anOrder.getOrderDate().startsWith(smallLetters)) {
                             return true;
                         }
                     }
                     if(filterCBox.getValue().toLowerCase().equals("totalpris")){
-                            if (String.valueOf(anOrder.getTotalPrice()).matches(smallLetters)) {
-                                return true;
+                        if(String.valueOf(anOrder.getTotalPrice()).startsWith(smallLetters)) {
+                            if (smallLetters.endsWith(".0")) {
+                                if (String.valueOf(anOrder.getTotalPrice()).matches(smallLetters)) {
+                                    return true;
+                                }
+                            } else {
+                                if (String.valueOf(anOrder.getTotalPrice()).matches(smallLetters + ".0")) {
+                                    return true;
+                                }
                             }
+                        }
                     }
                 }
                 return false;
@@ -187,5 +203,4 @@ public class AllOrdersController implements Initializable {
         // legger til sotrert og filtert data til tabellen
         allOrders.setItems(sortertData);
     }
-
 }

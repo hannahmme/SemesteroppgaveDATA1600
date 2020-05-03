@@ -7,5 +7,4 @@ import java.nio.file.Path;
 public interface FileOpener {
 
     void open(ProductRegister personRegister, Path filePath) throws IOException;
-
 }

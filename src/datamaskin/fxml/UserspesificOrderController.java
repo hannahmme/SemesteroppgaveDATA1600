@@ -1,6 +1,7 @@
 package datamaskin.fxml;
 
 import datamaskin.filbehandling.ReadFromAllOrdersFile;
+import datamaskin.orders.OrderValidator;
 import datamaskin.product.Product;
 import datamaskin.orders.FinalOrderOverview;
 import datamaskin.Page;
@@ -22,6 +23,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.*;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import static datamaskin.fxml.MainpageController.sortingKey;
 
@@ -86,17 +88,19 @@ public class UserspesificOrderController implements Initializable {
     // metoder for å legge inn ordreregisteret på denne siden
     @Override public void initialize(URL url, ResourceBundle rb) {
         try {
-            ObservableList<FinalOrderOverview> allOrdersList = readFromAllOrdersFile.readFromAllOrdersFile("./src/Datamaskin/sentOrdersPath/allOrders.csv");
-            ObservableList<FinalOrderOverview> userSpecifiedOrderList = FXCollections.observableArrayList();
+            if(OrderValidator.getOrderList()!=null) {
+                ObservableList<FinalOrderOverview> allOrdersList = OrderValidator.getOrderList();
+                ObservableList<FinalOrderOverview> userSpecifiedOrderList = FXCollections.observableArrayList();
 
-            for (FinalOrderOverview order : allOrdersList){
-                if(order.getEmail().equals(sortingKey)){
-                    userSpecifiedOrderList.add(order);
+                for (FinalOrderOverview order : Objects.requireNonNull(allOrdersList)) {
+                    if (order.getEmail().equals(sortingKey)) {
+                        userSpecifiedOrderList.add(order);
+                    }
                 }
-            }
 
-            tblAllOrders.getItems().addAll(userSpecifiedOrderList);
-            tblAllOrders.setItems(userSpecifiedOrderList);
+                tblAllOrders.getItems().addAll(userSpecifiedOrderList);
+                tblAllOrders.setItems(userSpecifiedOrderList);
+            }
         } catch (IOException e) {
             System.out.println("Filsti ikke funnet " + e.getMessage());
         }

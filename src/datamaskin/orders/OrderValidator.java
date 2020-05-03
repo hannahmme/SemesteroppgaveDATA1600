@@ -1,6 +1,7 @@
 package datamaskin.orders;
 
 import datamaskin.filbehandling.ReadFromAllOrdersFile;
+import datamaskin.filbehandling.ReadFromCustomerFile;
 import datamaskin.users.Customer;
 import datamaskin.users.CustomerValidator;
 import javafx.collections.FXCollections;
@@ -79,7 +80,7 @@ public class OrderValidator {
             }
             return validOrdersList;
         } catch (IOException e){
-            System.out.println("Filsti ikke funnet: " + e.getMessage());
+            System.out.println("Filsti ikke funnet: " + e.getMessage() + ". Se igjennom allOrders.csv-filen.");
         }
         return null;
     }

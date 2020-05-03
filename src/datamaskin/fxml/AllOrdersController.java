@@ -63,11 +63,9 @@ public class AllOrdersController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-
-            allOrders.getItems().addAll(Objects.requireNonNull(OrderValidator.getOrderList()));
-            allOrders.setItems(Objects.requireNonNull(OrderValidator.getOrderList()));
+            setTV();
         } catch (IOException e) {
-            System.out.println("Filsti ikke funnet: " + e.getMessage());
+            e.printStackTrace();
         }
 
         // setter verdier til filterboks
@@ -75,11 +73,19 @@ public class AllOrdersController implements Initializable {
         filterChoices.addAll("Email", "OrdreID", "Dato", "Totalpris");
         filterCBox.setItems(filterChoices);
         filterCBox.setValue("Email");
+    }
 
-        emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
-        orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("OrderID"));
-        orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("OrderDate"));
-        totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
+    private void setTV() throws IOException {
+            if(OrderValidator.getOrderList()!=null) {
+                allOrders.getItems().addAll((OrderValidator.getOrderList()));
+                allOrders.setItems((OrderValidator.getOrderList()));
+            }
+
+            emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
+            orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("OrderID"));
+            orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("OrderDate"));
+            totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
+
     }
 
     //metode som gjør det mulig for admin å trykke på en ordre og se hva den inneholder

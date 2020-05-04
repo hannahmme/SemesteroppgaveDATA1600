@@ -6,10 +6,12 @@ import datamaskin.exceptions.InvalidLifetimeException;
 import datamaskin.exceptions.InvalidPriceException;
 import datamaskin.Page;
 import datamaskin.product.*;
+import datamaskin.threadprogramming.ThreadReaderBinary;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,9 +22,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
 import java.util.ResourceBundle;
 import static datamaskin.product.ProductCategories.*;
 
@@ -37,6 +41,7 @@ public class ProductAdmPageController implements Initializable{
 
     private Stage stage;
 
+    @FXML private ThreadReaderBinary threadReaderBinaryTask;
     @FXML private TextField txtComponentname;
     @FXML private TextField txtDescription;
     @FXML private TextField txtLifetime;
@@ -46,6 +51,7 @@ public class ProductAdmPageController implements Initializable{
     @FXML private ComboBox<String> cBoxFilter;
     @FXML private MenuButton menuDropdown;
 
+    @FXML private Text txtInfoMessage;
     @FXML private TableView<Product> componentTableview;
     @FXML private TableColumn<Product, String> nameColumn;
     @FXML private TableColumn<Product, String> descriptionColumn;
@@ -257,14 +263,32 @@ public class ProductAdmPageController implements Initializable{
         }
     }
 
-    // litt enkel filbehandling her, lagre til binære filer? og lage for ordre også
+    //metode som leser fra binær fil med tråd - hannah
     @FXML void openFromFile(ActionEvent event) {
-        FileHandler.openFile(stage, aRegister);
-        txtSearch.setText("");
+        Path filePathToRead = FileHandler.getFilePathToJobj(stage);
+        if (filePathToRead != null) {
+            txtInfoMessage.setText("Laster inn valgt fil....");
+            ProductRegister.clearTableView(componentTableview);
+            threadReaderBinaryTask = new ThreadReaderBinary(filePathToRead);
+            threadReaderBinaryTask.setOnSucceeded(this::threadDoneReadingBinary);
+            threadReaderBinaryTask.setOnFailed(this::threadFailedReadingBinary);
+            Thread thread = new Thread(threadReaderBinaryTask);
+            thread.start();
+            txtSearch.setText("");
+        }
+    }
+    private void threadDoneReadingBinary(WorkerStateEvent event){
+        txtInfoMessage.setText("");
         ProductRegister.setComponentToTV(componentTableview);
     }
 
-    //lagre til binær fil - den lagrer til fil, men jeg kan lese den. Skal vel komme kun tall?
+    private void threadFailedReadingBinary(WorkerStateEvent event){
+        ProductRegister.clearTableView(componentTableview);
+        txtInfoMessage.setText("Det oppsto en feil. Kunne ikke hente ut ordreoversikt.");
+        System.out.println("Feil i henting av binær fil. Kunne ikke lese");
+    }
+
+    //lagre til binær fil
     @FXML void saveToFile(ActionEvent event) {
         FileHandler.saveFile(stage, aRegister);
     }

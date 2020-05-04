@@ -52,7 +52,8 @@ public class OrderValidator {
     }
 
     public static double getExpectedprice(String orderID){
-        String orderIdPath = "./src/Datamaskin/sentOrdersPath/" + orderID + ".csv";
+        String orderIdPath = "./src/datamaskin/sentOrdersPath/" + orderID + ".csv";
+
 
         return 2093.00;
     }
@@ -61,7 +62,7 @@ public class OrderValidator {
     // metode som henter og returnerer en liste med kundene
     public static ObservableList<FinalOrderOverview> getOrderList() throws IOException {
         try {
-            ObservableList<FinalOrderOverview> allOrdersList = readFromAllOrdersFile.readFromAllOrdersFile("./src/Datamaskin/sentOrdersPath/allOrders.csv");
+            ObservableList<FinalOrderOverview> allOrdersList = readFromAllOrdersFile.readFromAllOrdersFile("./src/datamaskin/sentOrdersPath/allOrders.csv");
             ObservableList<FinalOrderOverview> validOrdersList = FXCollections.observableArrayList();
 
             for(FinalOrderOverview anOrder: allOrdersList){

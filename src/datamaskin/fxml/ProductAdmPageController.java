@@ -164,12 +164,14 @@ public class ProductAdmPageController implements Initializable{
     }
     @FXML void deleteComponent() throws IOException {
         Product deleteItem = componentTableview.getSelectionModel().getSelectedItem();
-        boolean deleteConfirmed = Page.alertConfirmed("Ønsker du å slette "+deleteItem.getName() + " fra listen?");
-        if(deleteConfirmed) {
-            ProductRegister.deleteElement(deleteItem);
+        if (deleteItem != null) {
+            boolean deleteConfirmed = Page.alertConfirmed("Ønsker du å slette " + deleteItem.getName() + " fra listen?");
+            if (deleteConfirmed) {
+                ProductRegister.deleteElement(deleteItem);
 
-            // her slettes elementet også fra arrayet
-            deleteFromRegister(deleteItem);
+                // her slettes elementet også fra arrayet
+                deleteFromRegister(deleteItem);
+            }
         }
     }
 

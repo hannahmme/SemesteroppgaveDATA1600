@@ -77,6 +77,7 @@ public class EnduserSendOrderPageController implements Initializable {
             try{
             //kode som lagrer orderen til forhåndsdefinert filsti med generert ordreID.
             Path sentOrderPath = Paths.get("./src/Datamaskin/sentOrdersPath/"+orderID+".csv");
+
             String formattedList = OrderFormatter.formatListOfProductToString(Cart.Cart);
             filesaver.saveToFile(formattedList, sentOrderPath);
 
@@ -107,7 +108,7 @@ public class EnduserSendOrderPageController implements Initializable {
 
             if(!CustomerValidator.validateEmail(email)){
                 throw new InvalidEmailException("Skriv inn gyldig e-postadresse");
-            } else if(!CustomerValidator.validateCredentials(email, password, Objects.requireNonNull(getCustomerList()))){
+            } else if(getCustomerList()!=null && !CustomerValidator.validateCredentials(email, password, getCustomerList())){
                 throw new InvalidEmailException("Du har skrevet inn ugyldige innloggingsdetaljer!");
             } else{
                 totalPrice = shoppingcart.getTotalPrice(lblTotalPrice);

@@ -25,7 +25,7 @@
             
                   <Text layoutX="14.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Har du handlet her før? Logg inn og send bestillingen!" wrappingWidth="205.99999898672104" />
                   <Text layoutX="14.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Epostadresse" />
-                  <TextField fx:id="txtEpost" layoutX="117.0" layoutY="170.0" prefHeight="31.0" prefWidth="187.0" />
+                  <TextField fx:id="txtEmail" layoutX="117.0" layoutY="170.0" prefHeight="31.0" prefWidth="187.0" />
                   <Text layoutX="14.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" wrappingWidth="86.74073964357376" />
                   <PasswordField fx:id="txtPassword" layoutX="117.0" layoutY="222.0" />
                   <Label fx:id="lblOrderSent" alignment="TOP_LEFT" layoutX="134.0" layoutY="492.0" prefHeight="77.0" prefWidth="353.0" wrapText="true" />

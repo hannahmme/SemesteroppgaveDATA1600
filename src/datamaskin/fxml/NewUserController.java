@@ -39,7 +39,7 @@ public class NewUserController {
                 lblErrorEmail.setText("Skriv inn en gyldig epostadresse");}
 
             // sjekker om eposten finnes fra før og om passordene er like
-            else if(CustomerValidator.validateAvailability(email, Objects.requireNonNull(CustomerValidator.getCustomerList()))){ // true returneres om eposten finnes fra før
+            else if(CustomerValidator.validateAvailability(email, CustomerValidator.getCustomerList())){ // true returneres om eposten finnes fra før
                 lblErrorEmail.setText("Epostadressen er allerede tilknyttet en kunde");}
 
             else if(!password.equals(password2)){ // false returneres om passordene er ulike

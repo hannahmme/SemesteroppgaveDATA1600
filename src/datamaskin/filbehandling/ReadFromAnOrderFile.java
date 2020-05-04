@@ -28,14 +28,15 @@ public class ReadFromAnOrderFile implements iReadFromAnOrderFile{
         public Product parseToAnOrder(String line) throws IOException {
             String[] split = line.split(";");
 
-            if (split.length == 5) {
-                String name = split[0];
-                String description = split[1];
-                int lifetime = parseToInt(split[2], "Pris er ikke et gyldig tall.");
-                double price = parseToDouble(split[3], "Pris er ikke et gyldig tall.");
-                String category = split[4];
+            if (split.length == 6) {
+                String name         = split[0];
+                String description  = split[1];
+                int lifetime        = parseToInt(split[2], "Pris er ikke et gyldig tall.");
+                double price        = parseToDouble(split[3], "Pris er ikke et gyldig tall.");
+                String category     = split[4];
+                String imageUri     = split[5];
 
-                return new Product(name, description, lifetime, price, category);
+                return new Product(name, description, lifetime, price, category, imageUri);
 
             } else {
                 throw new IOException("Ikke riktig bruk av delimiter. Se følgende linje: \n" + line);

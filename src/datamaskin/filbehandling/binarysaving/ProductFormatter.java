@@ -1,5 +1,6 @@
 
 //todo: Brukes denne klassen, eller er den byttet ut med OrderFormatter?
+// De er vel egentlig like, men opprettet denne da jeg prøvde å konvertere fra vanlig txt-fil til jobj, så denne brukes vel ikke lenger uansett
 
 /*package datamaskin.filbehandling;
 

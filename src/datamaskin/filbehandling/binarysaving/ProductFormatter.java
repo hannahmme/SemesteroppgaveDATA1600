@@ -1,4 +1,4 @@
-package datamaskin.filbehandling;
+/*package datamaskin.filbehandling.binarysaving;
 
 import datamaskin.product.Product;
 
@@ -25,3 +25,4 @@ public class ProductFormatter {
         return stringOfProducts.toString();
     }
 }
+*/

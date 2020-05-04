@@ -19,9 +19,15 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="670.0" prefWidth="152.0">
                <children>
-                  <Button fx:id="btnGoToMainpage" alignment="TOP_LEFT" cancelButton="true" layoutX="13.0" layoutY="30.0" mnemonicParsing="false" onAction="#goToMainpage" onKeyPressed="#btnToMainpageEnter" prefHeight="31.0" prefWidth="130.0" text="Gå til forsiden" />
-                  <ImageView fx:id="mainpageImageView" fitHeight="21.0" fitWidth="26.0" layoutX="117.0" layoutY="35.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="btnGoBack" alignment="TOP_LEFT" layoutX="157.0" layoutY="30.0" mnemonicParsing="false" onAction="#goBack" onKeyPressed="#btnGoBackEnter" prefHeight="31.0" prefWidth="140.0" text="Gå til forrige side" />
+                  <Button fx:id="btnGoToMainpage" alignment="BASELINE_LEFT" cancelButton="true" layoutX="10.0" layoutY="30.0" mnemonicParsing="false" onAction="#goToMainpage" onKeyPressed="#btnToMainpageEnter" prefHeight="31.0" prefWidth="140.0" style="-fx-background-color: grey;" text="Gå til forsiden" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font></Button>
+                  <ImageView fx:id="mainpageImageView" fitHeight="21.0" fitWidth="23.0" layoutX="125.0" layoutY="35.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="btnGoBack" alignment="BASELINE_CENTER" layoutX="157.0" layoutY="30.0" mnemonicParsing="false" onAction="#goBack" onKeyPressed="#btnGoBackEnter" prefHeight="31.0" prefWidth="148.0" style="-fx-background-color: grey;" text="Gå til forrige side" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font></Button>
                   <TableView fx:id="tblExtraProduct" layoutX="10.0" layoutY="100.0" prefHeight="340.0" prefWidth="600.0">
                     <columns>
                       <TableColumn fx:id="extraProductName" prefWidth="108.0" text="Tilbehor">

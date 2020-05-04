@@ -30,6 +30,6 @@
       <ImageView fx:id="allOrdersImageView" fitHeight="124.0" fitWidth="329.0" layoutX="773.0" layoutY="191.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
       <Line endX="720.0" layoutX="523.0" layoutY="345.0" startX="104.71435546875" />
       <ImageView fx:id="allOrdersImageView1" fitHeight="164.0" fitWidth="329.0" layoutX="771.0" layoutY="385.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="btnadministrateUsers" layoutX="773.0" layoutY="567.0" mnemonicParsing="false" onAction="#toAllUsersPage" onKeyTyped="#btnadministrateUsers" prefHeight="48.0" prefWidth="329.0" style="-fx-background-color: steelblue;" text="Administrer brukere" textFill="WHITE" />
+      <Button fx:id="btnadministrateUsers" layoutX="773.0" layoutY="567.0" mnemonicParsing="false" onAction="#toAllUsersPage" onKeyTyped="#btnadministrateUsers" prefHeight="48.0" prefWidth="329.0" style="-fx-background-color: steelblue;" text="Kunderegister" textFill="WHITE" />
    </children>
 </AnchorPane>

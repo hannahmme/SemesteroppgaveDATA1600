@@ -1,6 +1,8 @@
 package datamaskin.orders;
 
 import datamaskin.filbehandling.ReadFromAllOrdersFile;
+import datamaskin.filbehandling.ReadFromAnOrderFile;
+import datamaskin.product.Product;
 import datamaskin.users.CustomerValidator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -42,19 +44,23 @@ public class OrderValidator {
     }
 
     public static boolean validateTotalPrice(double totalprice, double expectedTotalprice){
-        if(totalprice>expectedTotalprice){
+        if(totalprice==expectedTotalprice){
             return true;
         }
         return false;
     }
 
-    public static double getExpectedprice(String orderID){
-        String orderIdPath = "./src/datamaskin/sentOrdersPath/" + orderID + ".csv";
+    private static final ReadFromAnOrderFile readFromAnOrderFile = new ReadFromAnOrderFile();
 
+    public static double getExpectedPrice(String orderID) throws IOException {
+        ObservableList<Product> specificOrder = readFromAnOrderFile.readFromAnOrderFile("./src/Datamaskin/sentOrdersPath/"+orderID+".csv");
+        double totalprice = 0;
 
-        return 2093.00;
+        for(Product aProductLine : specificOrder){
+            totalprice += aProductLine.getPrice();
+        }
+        return totalprice;
     }
-
 
     // metode som henter og returnerer en liste med kundene
     public static ObservableList<FinalOrderOverview> getOrderList() throws IOException {
@@ -71,7 +77,7 @@ public class OrderValidator {
                     System.out.println("Duplikat: Det finnes to ordreID-er som er identiske i csv-filen: " + anOrder.getOrderID());
                 } else if (!validateDate(anOrder.getOrderDate())){
                     System.out.println("Dato er i feil format i csv-filen på følgende ordrenr.: " + anOrder.getOrderID());
-                } else if(!validateTotalPrice(anOrder.getTotalPrice(), 2392.0)){
+                } else if(!validateTotalPrice(anOrder.getTotalPrice(), getExpectedPrice(anOrder.getOrderID()))){
                     System.out.println("Totalprisen i filen stemmer ikke overens med totalprisen av produktene i ordrenr: " + anOrder.getOrderID());
                 } else {
                     validOrdersList.add(anOrder);
@@ -79,8 +85,10 @@ public class OrderValidator {
             }
             return validOrdersList;
         } catch (IOException e){
-            System.out.println("Filsti ikke funnet: " + e.getMessage() + ". Se igjennom allOrders.csv-filen.");
+            System.out.println("Filsti ikke funnet: " + e.getMessage() + ".");
         }
+
+
         return null;
     }
 

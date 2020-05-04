@@ -2,7 +2,9 @@ package datamaskin.orders;
 
 import datamaskin.filbehandling.ReadFromAllOrdersFile;
 import datamaskin.filbehandling.ReadFromAnOrderFile;
+import datamaskin.filbehandling.ReadFromCustomerFile;
 import datamaskin.product.Product;
+import datamaskin.users.Customer;
 import datamaskin.users.CustomerValidator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -51,6 +53,7 @@ public class OrderValidator {
     }
 
     private static final ReadFromAnOrderFile readFromAnOrderFile = new ReadFromAnOrderFile();
+    public static final ReadFromCustomerFile readFromCustomerFile = new ReadFromCustomerFile();
 
     public static double getExpectedPrice(String orderID) throws IOException {
         ObservableList<Product> specificOrder = readFromAnOrderFile.readFromAnOrderFile("./src/Datamaskin/sentOrdersPath/"+orderID+".csv");
@@ -62,7 +65,18 @@ public class OrderValidator {
         return totalprice;
     }
 
-    // metode som henter og returnerer en liste med kundene
+    public static boolean getExpectedEmail(String email) throws IOException {
+        ObservableList<Customer> customerReg = readFromCustomerFile.readFromCustomerFile("./src/Datamaskin/users/allCustomers.csv");
+
+        for(Customer aCustomer : customerReg){
+            if(aCustomer.getEmail().equals(email)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+        // metode som henter og returnerer en liste med kundene
     public static ObservableList<FinalOrderOverview> getOrderList() throws IOException {
         try {
             ObservableList<FinalOrderOverview> allOrdersList = readFromAllOrdersFile.readFromAllOrdersFile("./src/datamaskin/sentOrdersPath/allOrders.csv");
@@ -71,6 +85,8 @@ public class OrderValidator {
             for(FinalOrderOverview anOrder: allOrdersList){
                 if(!CustomerValidator.validateEmail(anOrder.getEmail())) {
                     System.out.println("Eposten er i feil format på følgende ordrenr.: " + anOrder.getOrderID());
+                } else if(!getExpectedEmail(anOrder.getEmail())){
+                    System.out.println("Eposten fra følgende ordrenr. finnes ikke i kunderegisteret: " + anOrder.getOrderID());
                 } else if (!validateOrderID(anOrder.getOrderID())){
                     System.out.println("OrdreID er i feil format på følgende ordrenr.: " + anOrder.getOrderID());
                 } else if (checkDuplicate(validOrdersList, anOrder)) {

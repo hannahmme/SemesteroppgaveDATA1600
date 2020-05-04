@@ -48,6 +48,7 @@ public class NewUserController {
             // hvis epost og passord er i riktig format, og de andre if-ene ikke slår inn lages en ny kunde
             else if(CustomerValidator.validateEmail(email) && CustomerValidator.validatePassword(password) &&
                     !CustomerValidator.validateAvailability(email, CustomerValidator.getCustomerList())) {
+
                 return new Customer(email, password);
             }
         } catch (Exception e){
@@ -68,12 +69,9 @@ public class NewUserController {
             filesaver.appendToFile("\n", customerPath);
             filesaver.appendToFile(formattedCustomer, customerPath);
 
-
-
             closeWindow(event);
         }
     }
-
 
     @FXML void btnMakeNewUser(KeyEvent event) throws Exception {
         if (event.getCode().equals(KeyCode.ENTER)) {

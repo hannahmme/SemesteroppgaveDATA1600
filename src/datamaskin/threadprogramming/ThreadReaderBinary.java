@@ -24,9 +24,6 @@ public class ThreadReaderBinary extends Task<ProductRegister> {
             ObjectInputStream oin = new ObjectInputStream(fin);
             ProductRegister register = (ProductRegister) oin.readObject();
 
-            System.out.println("Nå er vi i FileOpenerJobj " + register.getRegister().size());
-            System.out.println(register.getRegister().toString());
-
         } catch (ClassNotFoundException e) {
         e.printStackTrace();
         throw new IOException("Noe gikk galt. Se konsoll");

@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="datamaskin.fxml.ProductAdmPageController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="datamaskin.fxml.ProductAdmPageController">
    <children>
       <Button layoutX="26.0" layoutY="604.0" mnemonicParsing="false" onAction="#addComponent" onKeyPressed="#btnAddProdEnter" prefHeight="51.0" prefWidth="187.0" style="-fx-background-color: steelblue;" text="Legg til komponent" textFill="WHITE" wrapText="true">
          <font>
@@ -80,6 +80,7 @@
        <Line endX="1111.0" layoutX="119.0" layoutY="62.0" startX="-100.0" />
       <TextField fx:id="txtSearch" layoutX="1019.0" layoutY="72.0" onKeyTyped="#searchTxtEntered" promptText="Filtrer her" /> <!--onKeyTyped="#searchTxtEntered"-->
       <ComboBox fx:id="cBoxFilter" layoutX="861.0" layoutY="72.0" onAction="#filterChoiceChanged" prefHeight="31.0" prefWidth="149.0" promptText="Velg kolonne" />
+      <Text fx:id="txtInfoMessage" layoutX="271.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="357.56536865234375" />
 
    </children>
 </AnchorPane>

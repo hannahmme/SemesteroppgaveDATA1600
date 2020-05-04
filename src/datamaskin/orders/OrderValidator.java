@@ -51,10 +51,9 @@ public class OrderValidator {
         return false;
     }
 
+    // metode som setter minstepris til 8x299, som er den minste verdien en ordre kan ha
     public static double getExpectedprice(String orderID){
-        String orderIdPath = "./src/Datamaskin/sentOrdersPath/" + orderID + ".csv";
-
-        return 2093.00;
+        return 2392.00;
     }
 
 

@@ -45,16 +45,17 @@ public class OrderValidator {
     }
 
     public static boolean validateTotalPrice(double totalprice, double expectedTotalprice){
-        if(totalprice==expectedTotalprice){
+        if(totalprice>expectedTotalprice){
             return true;
         }
         return false;
     }
 
-    /*public static double getExpectedprice(String orderID){
+    public static double getExpectedprice(String orderID){
         String orderIdPath = "./src/Datamaskin/sentOrdersPath/" + orderID + ".csv";
 
-    }*/
+        return 2093.00;
+    }
 
 
     // metode som henter og returnerer en liste med kundene
@@ -72,9 +73,9 @@ public class OrderValidator {
                     System.out.println("Duplikat: Det finnes to ordreID-er som er identiske i csv-filen: " + anOrder.getOrderID());
                 } else if (!validateDate(anOrder.getOrderDate())){
                     System.out.println("Dato er i feil format i csv-filen på følgende ordrenr.: " + anOrder.getOrderID());
-                } /*else if(!validateTotalPrice(anOrder.getTotalPrice(), getExpectedprice(anOrder.getOrderID()))){
-                    System.out.println("Totalprisen i filen stemmer ikke overens med totalprisen av produktene i ordrespesifikasjon.");
-                }*/ else {
+                } else if(!validateTotalPrice(anOrder.getTotalPrice(), getExpectedprice(anOrder.getOrderID()))){
+                    System.out.println("Totalprisen i filen stemmer ikke overens med totalprisen av produktene i ordrenr: " + anOrder.getOrderID());
+                } else {
                     validOrdersList.add(anOrder);
                 }
             }

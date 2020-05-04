@@ -40,7 +40,7 @@
                      <effect>
                         <DropShadow />
                      </effect></Button>
-                  <Button fx:id="btnNewUser" layoutX="388.0" layoutY="170.0" mnemonicParsing="false" onAction="#newUser" onKeyPressed="#btnNewUserEnter" style="-fx-background-color: lightgreen;" text="Opprett ny bruker">
+                  <Button fx:id="btnNewUser" layoutX="388.0" layoutY="170.0" mnemonicParsing="false" onAction="#newUser" onKeyPressed="#btnNewUserEnter" style="-fx-background-color: darkseagreen;" text="Opprett ny bruker">
                      <effect>
                         <DropShadow />
                      </effect></Button>

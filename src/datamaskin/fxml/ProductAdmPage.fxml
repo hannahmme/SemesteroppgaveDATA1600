@@ -47,7 +47,7 @@
                     <PropertyValueFactory property="Price" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="categoryColumn" onEditCommit="#txtProductCategoryEdited" prefWidth="158.0" text="Kategori">
+            <TableColumn fx:id="categoryColumn" onEditCommit="#txtProductCategoryEdited" prefWidth="156.0" text="Kategori">
                 <cellValueFactory>
                     <PropertyValueFactory property="Category" />
                 </cellValueFactory>

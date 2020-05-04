@@ -60,6 +60,7 @@ public class FileHandler {
     // metode der man kan velge kun serialiserte filer for import
     private static File getFileFromFileChooser(DialogMode mode, Stage stage) {
         FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File("./src/datamaskin/product"));
         fileChooser.setTitle("Velg fil");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Serialiserte filer", "*.jobj"));

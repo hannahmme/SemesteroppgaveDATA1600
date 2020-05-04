@@ -5,21 +5,12 @@ Brukernavn og passord til superbruker: admin; admin.
 Vi har lagt inn flere ekesempelbrukere med brukernavn og passord:
     1. bruker@bruker.no; bruker
     2. bruker2@bruker.no; bruker2
-    3. bruker@bruker.no; bruker3                    // feil format, duplikt epostadresse
+    3. bruker3@bruker.no; bruker3
     4. eksempel@eksempel.no; eksempel
     5. test@test.no; test
 
 
-Vi har lagt til følgende ordre med feil format:
-    1. ordre-1: feil bruk av delimiter
-    2. ordre-4: feil bruk av tall
-Resten av ordrene er uten feil og kan bli åpnet uten problemer.
-
-Vi har ikke lagt inn noen feil i oversikten over ordre da det ikke kommer opp noe eksempelinformasjon ved oppstart,
-men vi har feiltestet også denne.
-
-
-På produktsiden har vi laget to filer som kan importeres:
+På produktsiden har vi laget tre filer som kan importeres:
     1. importProducts1: Opprinnelige produkter som allerede er lagret i array
     2. importProducts2: Helt nye produkter
     3. importProducts3: En importfil helt uten produkter

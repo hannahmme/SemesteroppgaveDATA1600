@@ -68,6 +68,8 @@ public class NewUserController {
             filesaver.appendToFile("\n", customerPath);
             filesaver.appendToFile(formattedCustomer, customerPath);
 
+
+
             closeWindow(event);
         }
     }

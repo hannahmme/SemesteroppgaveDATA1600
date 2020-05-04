@@ -43,12 +43,12 @@
             </TableColumn>
         </columns>
       </TableView>
-      <TableView fx:id="tblOrderContent" layoutX="694.0" layoutY="121.0" prefHeight="513.0" prefWidth="548.0">
+      <TableView fx:id="tblOrderContent" layoutX="682.0" layoutY="121.0" prefHeight="513.0" prefWidth="560.0">
         <columns>
-          <TableColumn fx:id="productName" prefWidth="141.0" text="Produktnavn" />
-          <TableColumn fx:id="productInfo" prefWidth="121.0" text="Beskrivelse" />
-            <TableColumn fx:id="productLifetime" prefWidth="151.0" text="Levetid (år)" />
-            <TableColumn fx:id="productPrice" prefWidth="132.0" text="Pris (kr)" />
+          <TableColumn fx:id="productName" prefWidth="131.0" text="Produktnavn" />
+          <TableColumn fx:id="productInfo" prefWidth="258.0" text="Beskrivelse" />
+            <TableColumn fx:id="productLifetime" prefWidth="104.0" text="Levetid (år)" />
+            <TableColumn fx:id="productPrice" prefWidth="65.0" text="Pris (kr)" />
         </columns>
       </TableView>
       <Line endX="-25.0" endY="574.0" layoutX="700.0" layoutY="71.0" startX="-25.0" startY="-4.0" />

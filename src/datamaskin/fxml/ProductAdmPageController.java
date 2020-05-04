@@ -242,8 +242,8 @@ public class ProductAdmPageController implements Initializable{
             Page.toSuperuserpage(primaryStage, root);
         }
         else {
-            Page.simpleAlertInformation("Du kan ikke forlate siden enda! Produkter innenfor en av kategoriene mangler," +
-                    " og sluttbruker kan da ikke fullføre handelen sin!");
+            Page.simpleAlertInformation("Du kan ikke forlate siden enda. Det må være minst èn komponent " +
+                    "i hver kategori før du kan gå tilbake til hovedsiden.");
         }
     }
 
@@ -281,6 +281,9 @@ public class ProductAdmPageController implements Initializable{
     }
     private void threadDoneReadingBinary(WorkerStateEvent event){
         txtInfoMessage.setText("");
+        if (ProductRegister.ProductRegister.isEmpty()) {
+            txtInfoMessage.setText("Filen du lastet inn inneholder ingen produkter.");
+        }
         ProductRegister.setComponentToTV(componentTableview);
     }
 

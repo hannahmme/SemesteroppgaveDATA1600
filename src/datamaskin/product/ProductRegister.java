@@ -38,6 +38,7 @@ public class ProductRegister implements Serializable {
     }
 
     // todo: kan denne slettes?
+/*
     public Product searchRegisterByName(String name) {
         Pattern pattern = Pattern.compile(name, Pattern.CASE_INSENSITIVE);
 
@@ -52,6 +53,7 @@ public class ProductRegister implements Serializable {
         // Hvis vi kommer hit betyr det at vi ikke fant noen personer
         return null;
     }
+*/
 
 
     //metode som gjør det mulig å slette et produkt i listen - Hannah

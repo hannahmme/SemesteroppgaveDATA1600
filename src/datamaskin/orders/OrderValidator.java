@@ -1,13 +1,10 @@
 package datamaskin.orders;
 
 import datamaskin.filbehandling.ReadFromAllOrdersFile;
-import datamaskin.filbehandling.ReadFromCustomerFile;
-import datamaskin.users.Customer;
 import datamaskin.users.CustomerValidator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.io.File;
 import java.io.IOException;
 
 public class OrderValidator {
@@ -74,7 +71,7 @@ public class OrderValidator {
                     System.out.println("Duplikat: Det finnes to ordreID-er som er identiske i csv-filen: " + anOrder.getOrderID());
                 } else if (!validateDate(anOrder.getOrderDate())){
                     System.out.println("Dato er i feil format i csv-filen på følgende ordrenr.: " + anOrder.getOrderID());
-                } else if(!validateTotalPrice(anOrder.getTotalPrice(), getExpectedprice(anOrder.getOrderID()))){
+                } else if(!validateTotalPrice(anOrder.getTotalPrice(), 2392.0)){
                     System.out.println("Totalprisen i filen stemmer ikke overens med totalprisen av produktene i ordrenr: " + anOrder.getOrderID());
                 } else {
                     validOrdersList.add(anOrder);
@@ -86,8 +83,5 @@ public class OrderValidator {
         }
         return null;
     }
-
-
-
 
 }

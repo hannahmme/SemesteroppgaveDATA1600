@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -21,6 +22,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+
+import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -35,12 +38,25 @@ public class EnduserSendOrderPageController implements Initializable {
     @FXML private Button btnSendOrder;
     @FXML private Button btnGoBack;
     @FXML private Button btnGoToMainpage;
-    @FXML private TextField txtEmail;
     @FXML private TextField txtDiscount;
     @FXML private Label lblOrderSent;
     @FXML private Label lblTotalPrice;
     @FXML private ImageView mainpageImageView;
+
+    @FXML private TextField txtEmail;
     @FXML private PasswordField txtPassword;
+
+
+    //metode for å sette passord fra bruker når oppretter bruker
+    public void setTxtPassword(String inputPassword){
+        this.txtPassword.setText(inputPassword);
+    }
+
+    //metode for å sette epost i feltet når bruker oppretter ny bruker
+    public void setTxtEmail(String inputEmail){
+        this.txtEmail.setText(inputEmail);
+    }
+
     @FXML private TableView<FinalOrderOverview> finalOrderRegister;
     @FXML private TableColumn<Product, String> nameColumn;
     @FXML private TableColumn<Product, Double> priceColumn;
@@ -88,7 +104,6 @@ public class EnduserSendOrderPageController implements Initializable {
             filesaver.appendToFile(formattedFinalOrder, allOrderPath);
 
             //sletter handlekurven *etter* å ha lagret til fil
-    // todo: kanskje lage exception i tilfelle ikke klarer å lese til filstien (så ikke handlekurven slettes før det faktisk er blitt lagret) - hannah
             shoppingcart.deleteShoppingcart();
             } catch(IOException e){
                 System.out.println(e.getMessage());

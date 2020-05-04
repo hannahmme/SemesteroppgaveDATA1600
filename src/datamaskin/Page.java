@@ -10,6 +10,9 @@ import java.util.Optional;
 
 public class Page {
 
+    //Enkel variabel for å få tak i primarystage til enduserSendOrderPage
+    public static Stage sendOrderPage;
+
     //Generell metode som gir alert hvis man skal gå til hovedsiden - Hannah
     public static boolean alertConfirmed(String content) throws IOException {
         Alert alert = new Alert(Alert.AlertType.NONE);
@@ -88,6 +91,7 @@ public class Page {
         primaryStage.setTitle("Fullfør din bestilling");
         primaryStage.setScene(new Scene(root, 1250, 670));
         primaryStage.show();
+        sendOrderPage = primaryStage;
     }
 
     public static void toAllOrdersPage(Stage primaryStage, Parent FXMLString) throws IOException {

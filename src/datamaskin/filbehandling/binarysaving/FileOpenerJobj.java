@@ -13,6 +13,9 @@ public class FileOpenerJobj implements FileOpener {
         ObjectInputStream oin = new ObjectInputStream(fin);
         ProductRegister register = (ProductRegister) oin.readObject();
 
+        register.removeAll();
+        register.getRegister().forEach(productRegister::addElement);
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             throw new IOException("Noe gikk galt. Se konsoll");

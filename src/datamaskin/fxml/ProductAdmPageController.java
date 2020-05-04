@@ -94,6 +94,7 @@ public class ProductAdmPageController implements Initializable{
         String priceString;
         double price;
         String category;
+        String imageUri = "./src/Datamaskin/images/missingImage.png";
 
         if (    isEmptyOrBlank(txtComponentname) ||
                 isEmptyOrBlank(txtDescription)   ||
@@ -132,7 +133,7 @@ public class ProductAdmPageController implements Initializable{
                 }
 
                 //oppretter produktet med alle riktige attributter etter at de er sjekket for feil
-                Product aProduct = new Product(name, description, lifetime, price, category);
+                Product aProduct = new Product(name, description, lifetime, price, category, imageUri);
 
                 // metode som også legger til produktet i riktig kategori-array
                 ProductCategories.setData(aProduct, category);

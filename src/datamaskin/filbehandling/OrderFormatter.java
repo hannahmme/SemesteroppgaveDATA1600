@@ -24,7 +24,7 @@ public class OrderFormatter {
     private static String formatProductToString(Product product) {
         return product.getName() + DELIMITER + product.getDescription() +
                 DELIMITER + product.getLifetime() + DELIMITER + product.getPrice() +
-                DELIMITER + product.getCategory();
+                DELIMITER + product.getCategory() + DELIMITER + product.getImageUri();
     }
 
 

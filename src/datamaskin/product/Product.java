@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class Product implements Serializable {
     private static final long serialVersionUID = 1;
 
-    private final String MISSING_IMG_PATH = "./src/Datamaskin/images/missingImage.png";
+    //private final String MISSING_IMG_PATH = "./src/Datamaskin/images/missingImage.png";
     private transient SimpleStringProperty name;
     private transient SimpleStringProperty description;
     private transient SimpleIntegerProperty lifetime;
@@ -21,13 +21,13 @@ public class Product implements Serializable {
     private transient SimpleStringProperty category;
     private transient SimpleStringProperty imageUri;
 
-    public Product(String name, String description, int lifetime, double price, String category) {
+/*    public Product(String name, String description, int lifetime, double price, String category) {
         this.name        = new SimpleStringProperty(name);
         this.description = new SimpleStringProperty(description);
         this.lifetime    = new SimpleIntegerProperty(lifetime);
         this.price       = new SimpleDoubleProperty(price);
         this.category    = new SimpleStringProperty(category);
-    }
+    }*/
 
     //konstruktør som også tar inn bildeSti (slik at det er valgfritt å legge til bilde)
     public Product(String name, String description, int lifetime, double price, String category, String imageUri) {
@@ -36,7 +36,7 @@ public class Product implements Serializable {
         this.lifetime    = new SimpleIntegerProperty(lifetime);
         this.price       = new SimpleDoubleProperty(price);
         this.category    = new SimpleStringProperty(category);
-        //this.imageUri    = new SimpleStringProperty(imageUri);
+        this.imageUri    = new SimpleStringProperty(imageUri);
     }
 
     public String getName() {
@@ -76,24 +76,25 @@ public class Product implements Serializable {
 
     //hvis et produkt ikke har et bilde (det er valgtfritt å legge til for admin når admin oppretter et nytt produkt), vil "missingImage" settes i ImagesViewet.
     public String getImageUri() {
-       String imgUri = MISSING_IMG_PATH;
+       String imgUri = "./src/Datamaskin/images/missingImage.png";
 
         if(imageUri != null){
             imgUri = imageUri.get();
         }
         if(imgUri.isEmpty()){
-            imgUri = MISSING_IMG_PATH;
+            imgUri = "./src/Datamaskin/images/missingImage.png";
         }
         return imgUri;
     }
 
-    // todo: Hannah
     public void setImageUri(String imageUri) {
         this.imageUri = new SimpleStringProperty(imageUri);
     }
 
     @Override public String toString(){
-        return name.getValue() + ", KR " + price.getValue();
+        return String.format("%s;%s;%s;%s;%s;%s",
+                name.getValue(), description.getValue(), lifetime.getValue(),
+                price.getValue(), category.getValue(), imageUri.getValue());
     }
 
 
@@ -104,28 +105,30 @@ public class Product implements Serializable {
         s.writeInt(getLifetime());
         s.writeDouble(getPrice());
         s.writeUTF(getCategory());
-        //todo: Hannah - fortsett her
-       /* s.writeUTF(getImageUri());*/
+        s.writeUTF(getImageUri());
     }
 
     private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
-        String name = s.readUTF();
-        String description = s.readUTF();
-        int lifetime = s.readInt();
-        double price = s.readDouble();
-        String category = s.readUTF();
+        String name         = s.readUTF();
+        String description  = s.readUTF();
+        int lifetime        = s.readInt();
+        double price        = s.readDouble();
+        String category     = s.readUTF();
+        String imageUri     = s.readUTF();
 
-        this.name = new SimpleStringProperty();
-        this.description = new SimpleStringProperty();
-        this.lifetime = new SimpleIntegerProperty();
-        this.price = new SimpleDoubleProperty();
-        this.category = new SimpleStringProperty();
+        this.name           = new SimpleStringProperty();
+        this.description    = new SimpleStringProperty();
+        this.lifetime       = new SimpleIntegerProperty();
+        this.price          = new SimpleDoubleProperty();
+        this.category       = new SimpleStringProperty();
+        this.imageUri       = new SimpleStringProperty();
 
         setName(name);
         setDescription(description);
         setLifetime(lifetime);
         setPrice(price);
         setCategory(category);
+        setImageUri(imageUri);
     }
 
 }

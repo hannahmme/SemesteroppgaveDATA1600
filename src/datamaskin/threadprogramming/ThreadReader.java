@@ -39,7 +39,7 @@ public class ThreadReader extends Task<ObservableList<Product>> {
 
     private Product parseToProduct(String line) throws IOException {
         String[] split = line.split(";");
-        if(split.length != 5){
+        if(split.length != 6){
             throw new IOException("Ikke riktig bruk av delimiter");
         }
 
@@ -48,7 +48,8 @@ public class ThreadReader extends Task<ObservableList<Product>> {
         int producLifetime      = parseToInteger(split[2], "Levetid er ikke et tall.");
         double productPrice     = parseToDouble(split[3], "Prisen er ikke et tall.");
         String productCategory  = split[4];
-        return new Product(productName, produtInfo, producLifetime, productPrice, productCategory);
+        String imageUri         = split[5];
+        return new Product(productName, produtInfo, producLifetime, productPrice, productCategory, imageUri);
     }
 
     //Todo: har prøvd å lage disse to metodene under til generiske metoder. Får prøve igjen senere
@@ -57,7 +58,7 @@ public class ThreadReader extends Task<ObservableList<Product>> {
         try{
             stringToDouble = Double.parseDouble(str);
         } catch (NumberFormatException e){
-            throw new IOException("Ikke gyldig tall");
+            throw new IOException(errorMessage);
         }
         return stringToDouble;
     }
@@ -67,7 +68,7 @@ public class ThreadReader extends Task<ObservableList<Product>> {
         try{
             stringToInt = Integer.parseInt(str);
         } catch (NumberFormatException e){
-            throw new IOException("Ikke gyldig tall");
+            throw new IOException(errorMessage);
         }
         return stringToInt;
     }

@@ -1,4 +1,7 @@
-package datamaskin.filbehandling;
+
+//todo: Brukes denne klassen, eller er den byttet ut med OrderFormatter?
+
+/*package datamaskin.filbehandling;
 
 import datamaskin.product.Product;
 
@@ -10,7 +13,7 @@ public class ProductFormatter {
     //Metode som skriver et produkt til en String med en DELIMITER som skiller hver attributt-verdi.
     private static String formatProductToString(Product product) {
         return product.getName() + DELIMITER + product.getDescription() + DELIMITER + product.getLifetime() +
-                DELIMITER + product.getPrice() + DELIMITER + product.getCategory();
+                DELIMITER + product.getPrice() + DELIMITER + product.getCategory() + DELIMITER + product.getImageUri();
     }
 
     //Metode som tar i mot listen over alle produkter/komponenter registrert og legger alle produktene som
@@ -24,4 +27,4 @@ public class ProductFormatter {
 
         return stringOfProducts.toString();
     }
-}
+}*/

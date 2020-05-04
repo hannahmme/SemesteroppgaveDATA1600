@@ -71,7 +71,6 @@ public class ConvertersWithErrorHandling {
                 convertSuccessfull = false;
                 return 0.0;
             }
-            return 0.0;
         }
 
         public boolean getSuccessfulDoubleValue() {

@@ -58,6 +58,7 @@ public class CustomerValidator {
                 else if (!validateEmail(aCustomer.getEmail()) || !validatePassword(aCustomer.getPassword())){
                     System.out.println("Epost eller passord i filen er i feil format.");
                 } else if(checkDuplicate(validCustomersList, aCustomer)) {
+                    System.out.println("Denne meldingen skrives ut i CustomerValidator i getCustomerList-metoden");
                     System.out.println("Duplikat: Det finnes to eposter som er identiske i csv-filen");
                 }
             }
@@ -72,7 +73,6 @@ public class CustomerValidator {
 
         for(Customer anotherC : validCustomersList){
             if(aCustomer.getEmail().equals(anotherC.getEmail())) {
-                System.out.println("Duplikat: Det finnes to eposter som er identiske i csv-filen");
                 return true;
             }
         }

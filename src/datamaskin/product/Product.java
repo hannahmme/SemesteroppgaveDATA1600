@@ -13,6 +13,7 @@ import java.io.Serializable;
 public class Product implements Serializable {
     private static final long serialVersionUID = 1;
 
+    //todo: Har denne enn så lenge. Skal fjernes etterhvert
     //private final String MISSING_IMG_PATH = "./src/Datamaskin/images/missingImage.png";
     private transient SimpleStringProperty name;
     private transient SimpleStringProperty description;
@@ -21,15 +22,7 @@ public class Product implements Serializable {
     private transient SimpleStringProperty category;
     private transient SimpleStringProperty imageUri;
 
-/*    public Product(String name, String description, int lifetime, double price, String category) {
-        this.name        = new SimpleStringProperty(name);
-        this.description = new SimpleStringProperty(description);
-        this.lifetime    = new SimpleIntegerProperty(lifetime);
-        this.price       = new SimpleDoubleProperty(price);
-        this.category    = new SimpleStringProperty(category);
-    }*/
 
-    //konstruktør som også tar inn bildeSti (slik at det er valgfritt å legge til bilde)
     public Product(String name, String description, int lifetime, double price, String category, String imageUri) {
         this.name        = new SimpleStringProperty(name);
         this.description = new SimpleStringProperty(description);
@@ -74,17 +67,8 @@ public class Product implements Serializable {
         this.category = new SimpleStringProperty(componentCategory);
     }
 
-    //hvis et produkt ikke har et bilde (det er valgtfritt å legge til for admin når admin oppretter et nytt produkt), vil "missingImage" settes i ImagesViewet.
-    public String getImageUri() {
-       String imgUri = "./src/Datamaskin/images/missingImage.png";
-
-        if(imageUri != null){
-            imgUri = imageUri.get();
-        }
-        if(imgUri.isEmpty()){
-            imgUri = "./src/Datamaskin/images/missingImage.png";
-        }
-        return imgUri;
+    public String getImageUri(){
+        return imageUri.get();
     }
 
     public void setImageUri(String imageUri) {
@@ -92,11 +76,8 @@ public class Product implements Serializable {
     }
 
     @Override public String toString(){
-        return String.format("%s;%s;%s;%s;%s;%s",
-                name.getValue(), description.getValue(), lifetime.getValue(),
-                price.getValue(), category.getValue(), imageUri.getValue());
+        return name.getValue() + ", KR "+price.getValue();
     }
-
 
     private void writeObject(ObjectOutputStream s) throws IOException {
         s.defaultWriteObject();

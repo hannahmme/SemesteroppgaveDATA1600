@@ -94,6 +94,8 @@ public class ProductAdmPageController implements Initializable{
         String priceString;
         double price;
         String category;
+        //Todo: Denne er satt til "missing-Image" enn så lenge, til vi får lagt til at admin
+        //todo: kan velge selv hvilket bilde som skal være når de oppretter nye komponenter
         String imageUri = "./src/Datamaskin/images/missingImage.png";
 
         if (    isEmptyOrBlank(txtComponentname) ||

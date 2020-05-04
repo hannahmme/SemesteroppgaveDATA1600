@@ -13,8 +13,8 @@ public class FileOpenerJobj implements FileOpener {
         ObjectInputStream oin = new ObjectInputStream(fin);
         ProductRegister register = (ProductRegister) oin.readObject();
 
-        register.removeAll();
-        register.getRegister().forEach(productRegister::addElement);
+        System.out.println("Nå er vi i FileOpenerJobj " + register.getRegister().size());
+        System.out.println(register.getRegister().toString());
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

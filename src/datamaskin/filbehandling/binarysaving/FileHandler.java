@@ -1,15 +1,18 @@
 package datamaskin.filbehandling.binarysaving;
 
 import datamaskin.product.ProductRegister;
+import datamaskin.threadprogramming.ThreadReaderBinary;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 
 public class FileHandler {
 
     private enum DialogMode {Open, Save}
 
+    //metode som skriver til binær fil
     public static void saveFile(Stage stage, ProductRegister register) {
         File selectedFile = getFileFromFileChooser(DialogMode.Save, stage);
 
@@ -31,30 +34,21 @@ public class FileHandler {
                 }
             }
         }
-
     }
 
-    public static void openFile(Stage stage, ProductRegister register) {
+    //metode som åpner dialog-vindu for å velge fil
+    public static Path getFilePathToJobj(Stage stage){
         File selectedFile = getFileFromFileChooser(DialogMode.Open, stage);
 
         if (selectedFile != null) {
             String fileExt = getFileExt(selectedFile);
-            FileOpenerJobj opener = null;
 
             switch (fileExt) {
-                case ".jobj" : opener = new FileOpenerJobj(); break;
-                default : Messages.showErrorDialog("Du kan bare åpne jobj filer.");
-            }
-
-            if(opener != null) {
-                try {
-                    opener.open(register, selectedFile.toPath());
-                } catch (IOException e) {
-                    System.out.println("Åpning av filen feilet. Grunn: " + e.getMessage());
-                    Messages.showErrorDialog("Åpning av filen feilet. Se gjennom importfil med plassering: " + selectedFile);
-                }
+                case ".jobj" : return selectedFile.toPath();
+                default : return null;
             }
         }
+        return null;
     }
 
     // metode der man kan velge kun serialiserte filer for import

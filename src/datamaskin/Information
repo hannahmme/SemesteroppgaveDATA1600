@@ -14,5 +14,6 @@ På produktsiden har vi laget tre filer som kan importeres:
     1. importProducts1: Opprinnelige produkter som allerede er lagret i array
     2. importProducts2: Helt nye produkter
     3. importProducts3: En importfil helt uten produkter
+    4. allProducts4   : En fil med alle riktige data i (med bilde-attributt) 
 
 

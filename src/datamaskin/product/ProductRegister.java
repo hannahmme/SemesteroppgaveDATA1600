@@ -17,6 +17,7 @@ public class ProductRegister implements Serializable {
     private static final long serialVersionUID = 1;
 
     public static transient ObservableList<Product> ProductRegister = FXCollections.observableArrayList();
+    private static ObservableList<Product> emptyList = FXCollections.observableArrayList();
 
     public List<Product> getRegister(){ return ProductRegister;}
 
@@ -30,6 +31,10 @@ public class ProductRegister implements Serializable {
 
     public static void setComponentToTV(TableView<Product> tv) {
         tv.setItems(ProductRegister);
+    }
+
+    public static void clearTableView(TableView<Product> tableview){
+        tableview.setItems(emptyList);
     }
 
     // todo: kan denne slettes?

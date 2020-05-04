@@ -39,7 +39,7 @@ public class NewUserController {
                 lblErrorEmail.setText("Skriv inn en gyldig epostadresse");}
 
             // sjekker om eposten finnes fra før og om passordene er like
-            else if(CustomerValidator.validateAvailability(email, Objects.requireNonNull(CustomerValidator.getCustomerList()))){ // true returneres om eposten finnes fra før
+            else if(CustomerValidator.validateAvailability(email, CustomerValidator.getCustomerList())){ // true returneres om eposten finnes fra før
                 lblErrorEmail.setText("Epostadressen er allerede tilknyttet en kunde");}
 
             else if(!password.equals(password2)){ // false returneres om passordene er ulike
@@ -48,6 +48,7 @@ public class NewUserController {
             // hvis epost og passord er i riktig format, og de andre if-ene ikke slår inn lages en ny kunde
             else if(CustomerValidator.validateEmail(email) && CustomerValidator.validatePassword(password) &&
                     !CustomerValidator.validateAvailability(email, CustomerValidator.getCustomerList())) {
+
                 return new Customer(email, password);
             }
         } catch (Exception e){
@@ -71,7 +72,6 @@ public class NewUserController {
             closeWindow(event);
         }
     }
-
 
     @FXML void btnMakeNewUser(KeyEvent event) throws Exception {
         if (event.getCode().equals(KeyCode.ENTER)) {

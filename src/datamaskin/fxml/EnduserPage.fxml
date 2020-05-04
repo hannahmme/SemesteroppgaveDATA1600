@@ -20,8 +20,11 @@
         <items>
           <AnchorPane layoutX="625.0" layoutY="670.0" minHeight="0.0" minWidth="0.0" prefHeight="670.0" prefWidth="625.0">
                <children>
-                  <Button fx:id="btnGoBack" alignment="TOP_LEFT" cancelButton="true" layoutX="11.0" layoutY="31.0" mnemonicParsing="false" onAction="#goBack" onKeyPressed="#btnGoBackEnter" prefHeight="33.0" prefWidth="130.0" text="Gå til forsiden" />
-                  <ImageView fx:id="mainpageImageView" fitHeight="32.0" fitWidth="27.0" layoutX="114.0" layoutY="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="btnGoBack" alignment="BASELINE_LEFT" cancelButton="true" contentDisplay="CENTER" layoutX="11.0" layoutY="31.0" mnemonicParsing="false" onAction="#goBack" onKeyPressed="#btnGoBackEnter" prefHeight="33.0" prefWidth="141.0" style="-fx-background-color: grey;" text="Gå til forsiden" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font></Button>
+                  <ImageView fx:id="mainpageImageView" fitHeight="32.0" fitWidth="27.0" layoutX="120.0" layoutY="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
                   <Text layoutX="172.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Essensielle komponenter">
                      <font>
                         <Font name="Arial Bold" size="36.0" />
@@ -91,7 +94,10 @@
                      <font>
                         <Font name="Arial Bold" size="36.0" />
                      </font></Label>
-                  <Label layoutX="15.0" layoutY="620.0" prefHeight="21.0" prefWidth="109.0" text="Totalt å betale:" />
+                  <Label layoutX="14.0" layoutY="610.0" prefHeight="42.0" prefWidth="129.0" text="Totalt å betale:">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                   <Button fx:id="btnGoToPay" layoutX="425.0" layoutY="610.0" mnemonicParsing="false" onAction="#loadPayment" onKeyPressed="#btnNextPageEnter" prefHeight="42.0" prefWidth="170.0" style="-fx-background-color: steelblue;" text="Gå til betaling" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
@@ -99,7 +105,10 @@
                      <effect>
                         <DropShadow height="11.67" radius="4.5575" width="8.56" />
                      </effect></Button>
-                  <Label fx:id="lblTotalPrice" layoutX="130.0" layoutY="620.0" prefHeight="21.0" prefWidth="141.0" wrapText="true" />
+                  <Label fx:id="lblTotalPrice" layoutX="143.0" layoutY="618.0" prefHeight="21.0" prefWidth="141.0" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                   <Line endX="480.0" layoutX="130.0" layoutY="79.0" startX="-120.0" />
                   <Text layoutX="15.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gjennomsnittlig levetid på konfigurert pc:" wrappingWidth="292.63330078125" />
                   <Label fx:id="lblExpectedLifetime" layoutX="315.0" layoutY="466.0" prefHeight="21.0" prefWidth="73.0" />

@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
@@ -19,9 +20,12 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="713.0" prefWidth="607.0">
                <children>
-                  <Button fx:id="btnGoToMainpage" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToMainpage" onKeyPressed="#btnMainPageEnter" prefHeight="31.0" prefWidth="170.0" style="-fx-background-color: steelblue;" text="Gå til forsiden" textFill="WHITE" />
+                  <Button fx:id="btnGoToMainpage" layoutX="14.0" layoutY="26.0" mnemonicParsing="false" onAction="#goToMainpage" onKeyPressed="#btnMainPageEnter" prefHeight="31.0" prefWidth="149.0" style="-fx-background-color: grey;" text="Gå til forsiden" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font></Button>
                   <ImageView fx:id="mainpageImageView" fitHeight="24.0" fitWidth="37.0" layoutX="139.0" layoutY="18.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="btnGoBack" layoutX="253.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" onKeyPressed="#btnGoBackEnter" prefHeight="31.0" prefWidth="353.0" style="-fx-background-color: steelblue;" text="Glemt noe? Klikk her for å endre handlekurven" textFill="WHITE" />
+                  <Button fx:id="btnGoBack" alignment="CENTER" layoutX="253.0" layoutY="26.0" mnemonicParsing="false" onAction="#goBack" onKeyPressed="#btnGoBackEnter" prefHeight="31.0" prefWidth="353.0" style="-fx-background-color: grey;" text="Glemt noe? Klikk her for å endre handlekurven" textFill="WHITE" />
             
                   <Text layoutX="14.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Har du handlet her før? Logg inn og send bestillingen!" wrappingWidth="205.99999898672104" />
                   <Text layoutX="14.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Epostadresse" />
@@ -32,8 +36,14 @@
                   <Button fx:id="btnSendOrder" layoutX="221.0" layoutY="586.0" mnemonicParsing="false" onAction="#sendOrder" onKeyPressed="#btnSendOrderEnter" prefHeight="57.0" prefWidth="178.0" style="-fx-background-color: steelblue;" text="Send bestilling" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
-                     </font></Button>
-                  <Button fx:id="btnNewUser" layoutX="388.0" layoutY="170.0" mnemonicParsing="false" onAction="#newUser" onKeyPressed="#btnNewUserEnter" style="-fx-background-color: steelblue;" text="Opprett ny bruker" textFill="WHITE" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect></Button>
+                  <Button fx:id="btnNewUser" layoutX="388.0" layoutY="170.0" mnemonicParsing="false" onAction="#newUser" onKeyPressed="#btnNewUserEnter" style="-fx-background-color: lightgreen;" text="Opprett ny bruker">
+                     <effect>
+                        <DropShadow />
+                     </effect></Button>
                   <Text layoutX="388.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Er du ny kunde? Lag en bruker før du sender bestillingen!" wrappingWidth="217.00000923871994" />
                   <TextField fx:id="txtDiscount" layoutX="117.0" layoutY="425.0" />
                   <Text layoutX="19.0" layoutY="446.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rabattkode" />

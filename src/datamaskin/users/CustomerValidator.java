@@ -52,14 +52,14 @@ public class CustomerValidator {
             ObservableList<Customer> validCustomersList = FXCollections.observableArrayList();
 
             for(Customer aCustomer: allCustomersList){
-                if(validateEmail(aCustomer.getEmail()) && validatePassword(aCustomer.getPassword())&& !checkDuplicate(validCustomersList,aCustomer)) {
-                    validCustomersList.add(aCustomer);
-                }
-                else if (!validateEmail(aCustomer.getEmail()) || !validatePassword(aCustomer.getPassword())){
+                if (!validateEmail(aCustomer.getEmail()) || !validatePassword(aCustomer.getPassword())){
                     System.out.println("Epost eller passord i filen er i feil format.");
                 } else if(checkDuplicate(validCustomersList, aCustomer)) {
                     System.out.println("Denne meldingen skrives ut i CustomerValidator i getCustomerList-metoden");
                     System.out.println("Duplikat: Det finnes to eposter som er identiske i csv-filen");
+                } else if(validateEmail(aCustomer.getEmail()) && validatePassword(aCustomer.getPassword())
+                        && !checkDuplicate(validCustomersList,aCustomer)) {
+                    validCustomersList.add(aCustomer);
                 }
             }
             return validCustomersList;

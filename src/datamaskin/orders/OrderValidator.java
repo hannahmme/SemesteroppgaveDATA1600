@@ -1,13 +1,12 @@
 package datamaskin.orders;
 
 import datamaskin.filbehandling.ReadFromAllOrdersFile;
-import datamaskin.filbehandling.ReadFromCustomerFile;
-import datamaskin.users.Customer;
+import datamaskin.filbehandling.ReadFromAnOrderFile;
+import datamaskin.product.Product;
 import datamaskin.users.CustomerValidator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.io.File;
 import java.io.IOException;
 
 public class OrderValidator {
@@ -51,16 +50,22 @@ public class OrderValidator {
         return false;
     }
 
-    /*public static double getExpectedprice(String orderID){
-        String orderIdPath = "./src/Datamaskin/sentOrdersPath/" + orderID + ".csv";
+    private static final ReadFromAnOrderFile readFromAnOrderFile = new ReadFromAnOrderFile();
 
-    }*/
+    public static double getExpectedPrice(String orderID) throws IOException {
+        ObservableList<Product> specificOrder = readFromAnOrderFile.readFromAnOrderFile("./src/Datamaskin/sentOrdersPath/"+orderID+".csv");
+        double totalprice = 0;
 
+        for(Product aProductLine : specificOrder){
+            totalprice += aProductLine.getPrice();
+        }
+        return totalprice;
+    }
 
     // metode som henter og returnerer en liste med kundene
     public static ObservableList<FinalOrderOverview> getOrderList() throws IOException {
         try {
-            ObservableList<FinalOrderOverview> allOrdersList = readFromAllOrdersFile.readFromAllOrdersFile("./src/Datamaskin/sentOrdersPath/allOrders.csv");
+            ObservableList<FinalOrderOverview> allOrdersList = readFromAllOrdersFile.readFromAllOrdersFile("./src/datamaskin/sentOrdersPath/allOrders.csv");
             ObservableList<FinalOrderOverview> validOrdersList = FXCollections.observableArrayList();
 
             for(FinalOrderOverview anOrder: allOrdersList){
@@ -72,20 +77,19 @@ public class OrderValidator {
                     System.out.println("Duplikat: Det finnes to ordreID-er som er identiske i csv-filen: " + anOrder.getOrderID());
                 } else if (!validateDate(anOrder.getOrderDate())){
                     System.out.println("Dato er i feil format i csv-filen på følgende ordrenr.: " + anOrder.getOrderID());
-                } /*else if(!validateTotalPrice(anOrder.getTotalPrice(), getExpectedprice(anOrder.getOrderID()))){
-                    System.out.println("Totalprisen i filen stemmer ikke overens med totalprisen av produktene i ordrespesifikasjon.");
-                }*/ else {
+                } else if(!validateTotalPrice(anOrder.getTotalPrice(), getExpectedPrice(anOrder.getOrderID()))){
+                    System.out.println("Totalprisen i filen stemmer ikke overens med totalprisen av produktene i ordrenr: " + anOrder.getOrderID());
+                } else {
                     validOrdersList.add(anOrder);
                 }
             }
             return validOrdersList;
         } catch (IOException e){
-            System.out.println("Filsti ikke funnet: " + e.getMessage() + ". Se igjennom allOrders.csv-filen.");
+            System.out.println("Filsti ikke funnet: " + e.getMessage() + ".");
         }
+
+
         return null;
     }
-
-
-
 
 }

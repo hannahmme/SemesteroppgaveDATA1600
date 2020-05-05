@@ -62,10 +62,10 @@ public class EnduserPageController implements Initializable {
     private void createCartObjectsFromGUI() {
         if (Cart.isEmpty()) {  // kun hvis handlekurven er tom skal det lages helt nye produkter som legges til
             createProducts();
-            lblExpectedLifetime.setText(String.valueOf(findExpectedLifetime()));
+            lblExpectedLifetime.setText(findExpectedLifetime() + " år");
         } else {
             updateCart();               // oppdater alltid handlekurven ut fra det som er i choicebox
-            lblExpectedLifetime.setText(String.valueOf(findExpectedLifetime()));
+            lblExpectedLifetime.setText(findExpectedLifetime() + " år");
         }
     }
 
@@ -117,7 +117,7 @@ public class EnduserPageController implements Initializable {
         if (!Cart.isEmpty()) {
             setChosenCombobox(cBoxGraphicCard, cBoxMemorycard, cBoxHarddrive, cBoxProcessor, cBoxPower, cBoxSoundcard, cBoxOpticaldisk, cBoxColor);
             aCart.getTotalPrice(lblTotalPrice);
-            lblExpectedLifetime.setText(String.valueOf(findExpectedLifetime()));
+            lblExpectedLifetime.setText(findExpectedLifetime() + " år");
         }
     }
 

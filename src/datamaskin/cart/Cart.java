@@ -7,6 +7,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 
+import java.text.DecimalFormat;
+
 public class Cart {
     public transient static ObservableList<Product> Cart = FXCollections.observableArrayList();
 
@@ -107,7 +109,8 @@ public class Cart {
             count ++;
             lifetime += aProduct.getLifetime();
         }
-        expectedLifetime = lifetime / count;
-        return expectedLifetime;
+        expectedLifetime =  lifetime / count;
+        double roundedExpectedLifetime = Math.round(expectedLifetime * 10) / 10.0;
+        return roundedExpectedLifetime;
     }
 }

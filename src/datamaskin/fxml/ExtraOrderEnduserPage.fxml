@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="datamaskin.fxml.ExtraOrderEnduserPageController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="datamaskin.fxml.ExtraOrderEnduserPageController">
    <children>
       <SplitPane dividerPositions="0.5" prefHeight="670.0" prefWidth="1250.0">
         <items>
@@ -48,7 +48,7 @@
                         </TableColumn>
                     </columns>
                   </TableView>
-                  <Button fx:id="btnSaveToCart" layoutX="250.0" layoutY="555.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="60.0" prefWidth="340.0" style="-fx-background-color: darkseagreen;" text="Legg til valgt produkt" wrapText="true">
+                  <Button fx:id="btnSaveToCart" layoutX="247.0" layoutY="556.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="60.0" prefWidth="340.0" style="-fx-background-color: darkseagreen;" text="Legg til valgt produkt" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
@@ -91,7 +91,7 @@
                            </TableColumn>
                        </columns>
                    </TableView>
-                  <Button layoutX="170.0" layoutY="465.0" mnemonicParsing="false" onAction="#deleteFromCart" prefHeight="31.0" prefWidth="282.0" style="-fx-background-color: indianred;" text="Slett valgt produkt fra handlekurven" textFill="WHITE" />
+                  <Button layoutX="146.0" layoutY="467.0" mnemonicParsing="false" onAction="#deleteFromCart" prefHeight="31.0" prefWidth="300.0" style="-fx-background-color: indianred;" text="Slett valgt produkt fra handlekurven" textFill="WHITE" />
                   <Button fx:id="btnGoToPay" layoutX="425.0" layoutY="610.0" mnemonicParsing="false" onAction="#goToPay" onKeyPressed="#btnGoPayEnter" prefHeight="42.0" prefWidth="170.0" style="-fx-background-color: steelblue;" text="Gå til betaling" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
@@ -103,8 +103,14 @@
                      <font>
                         <Font name="Arial Bold" size="36.0" />
                      </font></Text>
-                  <Label layoutX="15.0" layoutY="620.0" prefHeight="21.0" prefWidth="106.0" text="Totalt å betale:" />
-                  <Label fx:id="lblTotalPrice" layoutX="130.0" layoutY="620.0" prefHeight="21.0" prefWidth="115.0" />
+                  <Label layoutX="15.0" layoutY="620.0" prefHeight="23.0" prefWidth="115.0" text="Totalt å betale:">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="lblTotalPrice" layoutX="130.0" layoutY="620.0" prefHeight="21.0" prefWidth="115.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                   <Line endX="500.0" fill="BLACK" layoutX="110.0" layoutY="80.0" startX="-100.0" />
                </children>
             </AnchorPane>

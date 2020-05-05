@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="datamaskin.fxml.EnduserSendOrderPageController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="datamaskin.fxml.EnduserSendOrderPageController">
    <children>
       <SplitPane dividerPositions="0.5" prefHeight="670.0" prefWidth="1250.0">
         <items>
@@ -30,9 +30,9 @@
                         <DropShadow />
                      </effect></Button>
                   <TextField fx:id="txtEmail" layoutX="117.0" layoutY="170.0" prefHeight="31.0" prefWidth="187.0" />
-                  <PasswordField fx:id="txtPassword" layoutX="117.0" layoutY="222.0" />
-                  <TextField fx:id="txtDiscount" layoutX="117.0" layoutY="425.0" />
-                  <Button fx:id="btnSendOrder" layoutX="221.0" layoutY="586.0" mnemonicParsing="false" onAction="#sendOrder" onKeyPressed="#btnSendOrderEnter" prefHeight="57.0" prefWidth="178.0" style="-fx-background-color: steelblue;" text="Send bestilling" textFill="WHITE">
+                  <PasswordField fx:id="txtPassword" layoutX="117.0" layoutY="222.0" prefHeight="31.0" prefWidth="161.0" />
+                  <TextField fx:id="txtDiscount" layoutX="117.0" layoutY="425.0" prefHeight="31.0" prefWidth="161.0" />
+                  <Button fx:id="btnSendOrder" layoutX="221.0" layoutY="562.0" mnemonicParsing="false" onAction="#sendOrder" onKeyPressed="#btnSendOrderEnter" prefHeight="57.0" prefWidth="178.0" style="-fx-background-color: steelblue;" text="Send bestilling" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
@@ -59,8 +59,14 @@
                       <TableColumn fx:id="priceColumn" prefWidth="173.0" text="Pris (kr)" />
                     </columns>
                   </TableView>
-                  <Text layoutX="119.0" layoutY="614.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Totalpris" />
-                  <Label fx:id="lblTotalPrice" layoutX="203.0" layoutY="598.0" prefHeight="21.0" prefWidth="127.0" />
+                  <Text layoutX="61.0" layoutY="626.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Totalpris:" wrappingWidth="74.33105260133743">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Text>
+                  <Label fx:id="lblTotalPrice" layoutX="135.0" layoutY="609.0" prefHeight="21.0" prefWidth="127.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                   <Text layoutX="60.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Handlekurv" textAlignment="CENTER" wrappingWidth="500.00001210719347">
                      <font>
                         <Font name="Arial Bold" size="36.0" />

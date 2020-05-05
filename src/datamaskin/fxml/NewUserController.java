@@ -95,7 +95,9 @@ public class NewUserController {
                 Stage stage = Page.sendOrderPage;
                 stage.setScene(scene);
                 stage.show();
+
             }
+            controller.ifShoppingcartIsNull();
         }
     }
 

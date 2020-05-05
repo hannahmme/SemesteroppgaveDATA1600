@@ -81,21 +81,24 @@ public class OrderValidator {
             ObservableList<FinalOrderOverview> allOrdersList = readFromAllOrdersFile.readFromAllOrdersFile("./src/datamaskin/sentOrdersPath/allOrders.csv");
             ObservableList<FinalOrderOverview> validOrdersList = FXCollections.observableArrayList();
 
-            for(FinalOrderOverview anOrder: allOrdersList){
-                if(!CustomerValidator.validateEmail(anOrder.getEmail())) {
-                    System.out.println("Eposten er i feil format på følgende ordrenr.: " + anOrder.getOrderID());
-                } else if(!getExpectedEmail(anOrder.getEmail())){
-                    System.out.println("Eposten fra følgende ordrenr. finnes ikke i kunderegisteret: " + anOrder.getOrderID());
-                } else if (!validateOrderID(anOrder.getOrderID())){
-                    System.out.println("OrdreID er i feil format på følgende ordrenr.: " + anOrder.getOrderID());
-                } else if (checkDuplicate(validOrdersList, anOrder)) {
-                    System.out.println("Duplikat: Det finnes to ordreID-er som er identiske i csv-filen: " + anOrder.getOrderID());
-                } else if (!validateDate(anOrder.getOrderDate())){
-                    System.out.println("Dato er i feil format i csv-filen på følgende ordrenr.: " + anOrder.getOrderID());
-                } else if(!validateTotalPrice(anOrder.getTotalPrice(), getExpectedPrice(anOrder.getOrderID()))){
-                    System.out.println("Totalprisen i filen stemmer ikke overens med totalprisen av produktene i ordrenr: " + anOrder.getOrderID());
-                } else {
-                    validOrdersList.add(anOrder);
+            if(allOrdersList==null){
+                System.out.println("Filen som skal inneholde ordreregisteret er tom.");
+            } else { for (FinalOrderOverview anOrder : allOrdersList) {
+                    if (!CustomerValidator.validateEmail(anOrder.getEmail())) {
+                        System.out.println("Eposten er i feil format på følgende ordrenr.: " + anOrder.getOrderID());
+                    } else if (!getExpectedEmail(anOrder.getEmail())) {
+                        System.out.println("Eposten fra følgende ordrenr. finnes ikke i kunderegisteret: " + anOrder.getOrderID());
+                    } else if (!validateOrderID(anOrder.getOrderID())) {
+                        System.out.println("OrdreID er i feil format på følgende ordrenr.: " + anOrder.getOrderID());
+                    } else if (checkDuplicate(validOrdersList, anOrder)) {
+                        System.out.println("Duplikat: Det finnes to ordreID-er som er identiske i csv-filen: " + anOrder.getOrderID());
+                    } else if (!validateDate(anOrder.getOrderDate())) {
+                        System.out.println("Dato er i feil format i csv-filen på følgende ordrenr.: " + anOrder.getOrderID());
+                    } else if (!validateTotalPrice(anOrder.getTotalPrice(), getExpectedPrice(anOrder.getOrderID()))) {
+                        System.out.println("Totalprisen i filen stemmer ikke overens med totalprisen av produktene i ordrenr: " + anOrder.getOrderID());
+                    } else {
+                        validOrdersList.add(anOrder);
+                    }
                 }
             }
             return validOrdersList;

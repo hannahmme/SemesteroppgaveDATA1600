@@ -77,6 +77,13 @@ public class EnduserSendOrderPageController implements Initializable {
     }
 
 
+    public void ifShoppingcartIsNull() {
+        if (shoppingcart.getTotalPrice(lblTotalPrice) == 0 ) {
+            btnSendOrder.setDisable(true);
+            btnGoBack.setDisable(true);
+        }
+    }
+
     @FXML void sendOrder() throws IOException {
         String orderID = Order.generateOrderID();
         FinalOrderOverview aFinalOrderOverview = createOrderObjectFromGUI(orderID);

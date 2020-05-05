@@ -2,7 +2,6 @@ package datamaskin.filbehandling;
 
 import datamaskin.orders.FinalOrderOverview;
 import datamaskin.product.Product;
-
 import java.util.List;
 
 public class OrderFormatter {
@@ -27,7 +26,7 @@ public class OrderFormatter {
                 DELIMITER + product.getCategory() + DELIMITER + product.getImageUri();
     }
 
-
+//todo: Kan denne slettes?
 /*    //Metode som gjør om en liste til en String og "appender" den til en StringBuffer.
     public static StringBuffer formatListOfFinalOrdersToString(List<FinalOrderOverview> listOfFinalOrders) {
         StringBuffer stringOfFinalOrders = new StringBuffer();

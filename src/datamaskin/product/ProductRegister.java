@@ -9,9 +9,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class ProductRegister implements Serializable {
     private static final long serialVersionUID = 1;
@@ -36,23 +33,6 @@ public class ProductRegister implements Serializable {
     public static void clearTableView(TableView<Product> tableview){
         tableview.setItems(emptyList);
     }
-
-    // todo: kan denne slettes?
-    public Product searchRegisterByName(String name) {
-        Pattern pattern = Pattern.compile(name, Pattern.CASE_INSENSITIVE);
-
-        for(Product p : ProductRegister) {
-            Matcher matcher = pattern.matcher(p.getName());
-
-            if(matcher.find()) {
-                return p;
-            }
-        }
-
-        // Hvis vi kommer hit betyr det at vi ikke fant noen personer
-        return null;
-    }
-
 
     //metode som gjør det mulig å slette et produkt i listen - Hannah
     public static void deleteElement(Product itemToDelete){
@@ -106,6 +86,4 @@ public class ProductRegister implements Serializable {
         ProductRegister = FXCollections.observableArrayList();
         ProductRegister.addAll(list);
     }
-
-
 }

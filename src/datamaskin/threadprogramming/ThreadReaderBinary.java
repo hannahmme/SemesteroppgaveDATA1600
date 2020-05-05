@@ -2,7 +2,6 @@ package datamaskin.threadprogramming;
 
 import datamaskin.product.ProductRegister;
 import javafx.concurrent.Task;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,7 +18,7 @@ public class ThreadReaderBinary extends Task<ProductRegister> {
     @Override
     protected ProductRegister call() throws Exception {
         try{
-            Thread.sleep(2500);
+            Thread.sleep(3000);
             InputStream fin = new FileInputStream(path.toFile());
             ObjectInputStream oin = new ObjectInputStream(fin);
             ProductRegister register = (ProductRegister) oin.readObject();

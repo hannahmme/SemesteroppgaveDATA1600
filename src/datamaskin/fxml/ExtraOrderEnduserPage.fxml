@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="datamaskin.fxml.ExtraOrderEnduserPageController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="datamaskin.fxml.ExtraOrderEnduserPageController">
    <children>
       <SplitPane dividerPositions="0.5" prefHeight="670.0" prefWidth="1250.0">
         <items>
@@ -23,12 +23,12 @@
                      <font>
                         <Font name="Arial Bold" size="15.0" />
                      </font></Button>
-                  <ImageView fx:id="mainpageImageView" fitHeight="21.0" fitWidth="23.0" layoutX="125.0" layoutY="35.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
                   <Button fx:id="btnGoBack" alignment="BASELINE_CENTER" layoutX="157.0" layoutY="30.0" mnemonicParsing="false" onAction="#goBack" onKeyPressed="#btnGoBackEnter" prefHeight="31.0" prefWidth="148.0" style="-fx-background-color: grey;" text="Gå til forrige side" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="15.0" />
                      </font></Button>
-                  <TableView fx:id="tblExtraProduct" onMouseClicked="#selectedItemEvent" layoutX="10.0" layoutY="100.0" prefHeight="340.0" prefWidth="600.0">
+                  <ImageView fx:id="mainpageImageView" fitHeight="21.0" fitWidth="23.0" layoutX="125.0" layoutY="35.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
+                  <TableView fx:id="tblExtraProduct" layoutX="10.0" layoutY="100.0" onMouseClicked="#selectedItemEvent" prefHeight="340.0" prefWidth="600.0">
                     <columns>
                       <TableColumn fx:id="extraProductName" prefWidth="108.0" text="Tilbehor">
                         <cellValueFactory>
@@ -48,7 +48,6 @@
                         </TableColumn>
                     </columns>
                   </TableView>
-                  <Text fx:id="txtWarning" layoutX="13.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="599.9999865889549" />
                   <Button fx:id="btnSaveToCart" layoutX="250.0" layoutY="555.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="60.0" prefWidth="340.0" style="-fx-background-color: darkseagreen;" text="Legg til valgt produkt" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
@@ -56,6 +55,7 @@
                      <effect>
                         <DropShadow />
                      </effect></Button>
+                  <Text fx:id="txtWarning" layoutX="13.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="599.9999865889549" />
                   <ImageView fx:id="imgImageView" fitHeight="201.0" fitWidth="201.0" layoutX="16.0" layoutY="455.0" pickOnBounds="true" preserveRatio="true" />
                   <Line endX="500.0" layoutX="110.0" layoutY="80.0" startX="-100.0" />
                   <Text layoutX="344.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ekstra tilbehør" wrappingWidth="261.951171875">
@@ -67,10 +67,6 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="670.0" prefWidth="620.0">
                <children>
-                  <Text layoutX="15.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Handlekurv" textAlignment="CENTER" wrappingWidth="595.0">
-                     <font>
-                        <Font name="Arial Bold" size="36.0" />
-                     </font></Text>
                    <TableView fx:id="tableviewCart" layoutX="10.0" layoutY="100.0" prefHeight="340.0" prefWidth="600.0">
                        <columns>
                            <TableColumn fx:id="nameColumn" prefWidth="136.0" text="Produktnavn">
@@ -95,8 +91,6 @@
                            </TableColumn>
                        </columns>
                    </TableView>
-                  <Label layoutX="15.0" layoutY="620.0" prefHeight="21.0" prefWidth="106.0" text="Totalt å betale:" />
-                  <Label fx:id="lblTotalPrice" layoutX="130.0" layoutY="620.0" prefHeight="21.0" prefWidth="115.0" />
                   <Button layoutX="170.0" layoutY="465.0" mnemonicParsing="false" onAction="#deleteFromCart" prefHeight="31.0" prefWidth="282.0" style="-fx-background-color: indianred;" text="Slett valgt produkt fra handlekurven" textFill="WHITE" />
                   <Button fx:id="btnGoToPay" layoutX="425.0" layoutY="610.0" mnemonicParsing="false" onAction="#goToPay" onKeyPressed="#btnGoPayEnter" prefHeight="42.0" prefWidth="170.0" style="-fx-background-color: steelblue;" text="Gå til betaling" textFill="WHITE">
                      <font>
@@ -105,6 +99,12 @@
                      <effect>
                         <DropShadow height="11.67" radius="6.1125" width="14.78" />
                      </effect></Button>
+                  <Text layoutX="15.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Handlekurv" textAlignment="CENTER" wrappingWidth="595.0">
+                     <font>
+                        <Font name="Arial Bold" size="36.0" />
+                     </font></Text>
+                  <Label layoutX="15.0" layoutY="620.0" prefHeight="21.0" prefWidth="106.0" text="Totalt å betale:" />
+                  <Label fx:id="lblTotalPrice" layoutX="130.0" layoutY="620.0" prefHeight="21.0" prefWidth="115.0" />
                   <Line endX="500.0" fill="BLACK" layoutX="110.0" layoutY="80.0" startX="-100.0" />
                </children>
             </AnchorPane>

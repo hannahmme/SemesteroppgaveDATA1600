@@ -27,7 +27,6 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.Objects;
 import java.util.ResourceBundle;
 import static datamaskin.users.CustomerValidator.getCustomerList;
 
@@ -35,12 +34,25 @@ public class EnduserSendOrderPageController implements Initializable {
     @FXML private Button btnSendOrder;
     @FXML private Button btnGoBack;
     @FXML private Button btnGoToMainpage;
-    @FXML private TextField txtEmail;
     @FXML private TextField txtDiscount;
     @FXML private Label lblOrderSent;
     @FXML private Label lblTotalPrice;
     @FXML private ImageView mainpageImageView;
+
+    @FXML private TextField txtEmail;
     @FXML private PasswordField txtPassword;
+
+
+    //metode for å sette passord fra bruker når oppretter bruker
+    public void setTxtPassword(String inputPassword){
+        this.txtPassword.setText(inputPassword);
+    }
+
+    //metode for å sette epost i feltet når bruker oppretter ny bruker
+    public void setTxtEmail(String inputEmail){
+        this.txtEmail.setText(inputEmail);
+    }
+
     @FXML private TableView<FinalOrderOverview> finalOrderRegister;
     @FXML private TableColumn<Product, String> nameColumn;
     @FXML private TableColumn<Product, Double> priceColumn;
@@ -88,7 +100,6 @@ public class EnduserSendOrderPageController implements Initializable {
             filesaver.appendToFile(formattedFinalOrder, allOrderPath);
 
             //sletter handlekurven *etter* å ha lagret til fil
-    // todo: kanskje lage exception i tilfelle ikke klarer å lese til filstien (så ikke handlekurven slettes før det faktisk er blitt lagret) - hannah
             shoppingcart.deleteShoppingcart();
             } catch(IOException e){
                 System.out.println(e.getMessage());

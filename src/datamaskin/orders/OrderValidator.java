@@ -8,7 +8,6 @@ import datamaskin.users.Customer;
 import datamaskin.users.CustomerValidator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.io.IOException;
 
 public class OrderValidator {
@@ -103,9 +102,6 @@ public class OrderValidator {
         } catch (IOException e){
             System.out.println("Filsti ikke funnet: " + e.getMessage() + ".");
         }
-
-
         return null;
     }
-
 }

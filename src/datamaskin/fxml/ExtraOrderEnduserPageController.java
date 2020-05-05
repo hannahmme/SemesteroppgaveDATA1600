@@ -3,7 +3,6 @@ package datamaskin.fxml;
 import datamaskin.cart.Cart;
 import datamaskin.product.Product;
 import datamaskin.Page;
-import datamaskin.product.ProductCategories;
 import datamaskin.images.ImageClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -65,7 +64,6 @@ public class ExtraOrderEnduserPageController implements Initializable {
             } else {
                 shoppingCart.addElement(extraProduct);
                 shoppingCart.getTotalPrice(lblTotalPrice);
-                txtWarning.setText("");
             }
 
         } catch (NullPointerException nullpointer){
@@ -117,6 +115,9 @@ public class ExtraOrderEnduserPageController implements Initializable {
     @FXML void selectedItemEvent(MouseEvent event) throws FileNotFoundException {
         Product selectedProduct = tblExtraProduct.getSelectionModel().getSelectedItem();
         if (selectedProduct == null) return;
+        if (selectedProduct != null){
+            txtWarning.setText("");
+        }
 
         // Forsøker å hente ut bildet og vise det
         try {

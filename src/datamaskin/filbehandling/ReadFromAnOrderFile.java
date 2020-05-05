@@ -64,5 +64,4 @@ public class ReadFromAnOrderFile implements iReadFromAnOrderFile{
             }
             return stringToDouble;
         }
-
 }

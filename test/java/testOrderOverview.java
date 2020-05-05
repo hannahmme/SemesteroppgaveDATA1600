@@ -1,7 +1,5 @@
 import datamaskin.orders.OrderValidator;
-import datamaskin.users.AdminValidator;
 import org.junit.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

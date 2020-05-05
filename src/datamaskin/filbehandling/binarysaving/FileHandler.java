@@ -1,7 +1,6 @@
 package datamaskin.filbehandling.binarysaving;
 
 import datamaskin.product.ProductRegister;
-import datamaskin.threadprogramming.ThreadReaderBinary;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
@@ -54,7 +53,7 @@ public class FileHandler {
     // metode der man kan velge kun serialiserte filer for import
     private static File getFileFromFileChooser(DialogMode mode, Stage stage) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File("./src/datamaskin/product"));
+        fileChooser.setInitialDirectory(new File("./src/datamaskin/binaryFilesPath"));
         fileChooser.setTitle("Velg fil");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Serialiserte filer", "*.jobj"));

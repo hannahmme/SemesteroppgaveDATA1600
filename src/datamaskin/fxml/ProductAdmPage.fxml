@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="datamaskin.fxml.ProductAdmPageController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="datamaskin.fxml.ProductAdmPageController">
    <children>
       <Button fx:id="toSuperUserPage" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#toSuperUserPage" onKeyPressed="#btnGoBackEnter" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: grey;" text="Gå tilbake" textFill="WHITE">
          <font>
@@ -33,16 +33,16 @@
       <ChoiceBox fx:id="cboxCategory" layoutX="26.0" layoutY="507.0" prefHeight="31.0" prefWidth="187.0" />
       <Button fx:id="btnAddComponent" layoutX="26.0" layoutY="604.0" mnemonicParsing="false" onAction="#addComponent" onKeyPressed="#btnAddProdEnter" prefHeight="51.0" prefWidth="187.0" style="-fx-background-color: steelblue;" text="Legg til komponent" textFill="WHITE" wrapText="true">
          <font>
-            <Font name="Arial" size="16.0" />
+            <Font name="Arial Bold" size="16.0" />
          </font></Button>
       <MenuButton fx:id="menuDropdown" layoutX="1100.0" layoutY="14.0" mnemonicParsing="false" text="Filutforsker">
         <items>
-          <MenuItem fx:id="saveToFile" mnemonicParsing="false" onAction="#saveToFile" text="Lagre til fil" />
-          <MenuItem fx:id="openFromFile" mnemonicParsing="false" onAction="#openFromFile" text="Importer fra fil" />
+          <MenuItem mnemonicParsing="false" onAction="#saveToFile" text="Lagre til fil" />
+          <MenuItem mnemonicParsing="false" onAction="#openFromFile" text="Importer fra fil" />
         </items>
-      </MenuButton> <!--onKeyTyped="#searchTxtEntered"-->
+      </MenuButton>
       <ComboBox fx:id="cBoxFilter" layoutX="861.0" layoutY="72.0" onAction="#filterChoiceChanged" prefHeight="31.0" prefWidth="149.0" promptText="Velg kolonne" />
-      <TextField fx:id="txtSearch" layoutX="1019.0" layoutY="72.0" onKeyTyped="#searchTxtEntered" promptText="Filtrer her" />
+      <TextField fx:id="txtSearch" layoutX="1019.0" layoutY="72.0" onKeyPressed="#searchTxtChanged" onKeyTyped="#searchTxtEntered" promptText="Filtrer her" />
       <TableView fx:id="componentTableview" editable="true" layoutX="271.0" layoutY="105.0" prefHeight="494.0" prefWidth="935.0">
         <columns>
           <TableColumn fx:id="nameColumn" onEditCommit="#txtProductNameEdited" prefWidth="191.0" text="Komponentnavn">
@@ -72,7 +72,7 @@
             </TableColumn>
         </columns>
       </TableView>
-      <Button fx:id="btnDeleteComponent" layoutX="1029.0" layoutY="614.0" mnemonicParsing="false" onAction="#deleteComponent" onKeyPressed="#btnDeleteComponentEnter" prefHeight="31.0" prefWidth="177.0" style="-fx-background-color: grey;" text="Slett valgt komponent" textFill="WHITE">
+      <Button fx:id="btnDeleteComponent" layoutX="1029.0" layoutY="614.0" mnemonicParsing="false" onAction="#deleteComponent" onKeyPressed="#btnDeleteComponentEnter" prefHeight="31.0" prefWidth="177.0" style="-fx-background-color: red;" text="Slett valgt komponent" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font></Button>

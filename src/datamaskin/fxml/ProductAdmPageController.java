@@ -335,8 +335,7 @@ public class ProductAdmPageController implements Initializable {
         componentTableview.refresh();
     }
 
-    @FXML
-    void txtProductPriceEdited(TableColumn.CellEditEvent<Product, Double> event) {
+    @FXML void txtProductPriceEdited(TableColumn.CellEditEvent<Product, Double> event) {
         if (doubleStrConverter.getSuccessfulDoubleValue()) {
             event.getRowValue().setPrice(event.getNewValue());
         }
@@ -353,11 +352,15 @@ public class ProductAdmPageController implements Initializable {
     }
 
     // kode for filtrering
-    @FXML private void filterChoiceChanged() throws IOException {
+    @FXML void filterChoiceChanged(ActionEvent event) throws IOException {
         filter();
     }
 
-    @FXML private void searchTxtEntered() throws IOException {
+    @FXML void searchTxtChanged(KeyEvent event) throws IOException {
+        filter();
+    }
+
+    @FXML void searchTxtEntered(KeyEvent event) throws IOException {
         filter();
     }
 

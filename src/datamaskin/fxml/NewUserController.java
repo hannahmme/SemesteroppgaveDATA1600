@@ -38,7 +38,7 @@ public class NewUserController {
 
             // validerer epost og passord og sjekker om de er i riktig format/ lengde
             if(!CustomerValidator.validatePassword(password)){ // false returneres om passordet er for kort
-                lblErrorPassword.setText("Passordet må fylle følgende krav: Minst 3 tegn langt og uten mellomrom");}
+                lblErrorPassword.setText("Passordet må fylle følgende krav: Minst 3 tegn langt, uten mellomrom og uten æ, ø og å");}
 
             else if(!CustomerValidator.validateEmail(email)){ // false returneres om eposten er ugyldig
                 lblErrorEmail.setText("Skriv inn en gyldig epostadresse");}

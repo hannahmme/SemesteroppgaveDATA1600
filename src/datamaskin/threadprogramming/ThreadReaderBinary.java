@@ -2,7 +2,6 @@ package datamaskin.threadprogramming;
 
 import datamaskin.product.ProductRegister;
 import javafx.concurrent.Task;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;

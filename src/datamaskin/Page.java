@@ -5,7 +5,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
 
 public class Page {
@@ -121,5 +120,4 @@ public class Page {
         newStage.setScene(new Scene(root, 1250, 670));
         newStage.show();
     }
-
 }

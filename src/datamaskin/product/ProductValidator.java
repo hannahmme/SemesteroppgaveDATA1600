@@ -8,7 +8,6 @@ public class ProductValidator {
         return false;
     }
 
-
     public static boolean validateDescription(String description) throws IllegalArgumentException {
         if (description.matches("[a-zA-ZæøåÆØÅ]{1}[a-zA-ZæøåÆØÅ.! \\-0-9]{1,199}")) {
             return true;
@@ -29,7 +28,6 @@ public class ProductValidator {
         }
         return false;
     }
-
 
     public static boolean validateCategory (String category){
         if(category.isEmpty()){

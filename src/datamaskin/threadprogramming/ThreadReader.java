@@ -1,11 +1,9 @@
 package datamaskin.threadprogramming;
 
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import datamaskin.product.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -72,5 +70,4 @@ public class ThreadReader extends Task<ObservableList<Product>> {
         }
         return stringToInt;
     }
-
 }

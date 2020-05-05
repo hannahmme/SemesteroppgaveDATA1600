@@ -1,7 +1,5 @@
 import datamaskin.users.CustomerValidator;
 import org.junit.Test;
-
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class testCustomer {

@@ -3,7 +3,6 @@ package datamaskin.fxml;
 import datamaskin.cart.Cart;
 import datamaskin.product.Product;
 import datamaskin.Page;
-import datamaskin.product.ProductCategories;
 import datamaskin.images.ImageClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

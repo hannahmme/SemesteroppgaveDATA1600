@@ -249,13 +249,8 @@ public class ProductAdmPageController implements Initializable {
     }
 
     @FXML void btnGoBackEnter(KeyEvent event) throws IOException {
-        if (ProductRegister.allCategoriesArePresent()) {
-            if (event.getCode().equals(KeyCode.ENTER)) {
-                toSuperUserPage();
-            }
-        } else {
-            Page.simpleAlertInformation("Du kan ikke forlate siden enda. Det må være minst èn komponent " +
-                    "i hver kategori før du kan gå tilbake til hovedsiden.");
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            toSuperUserPage();
         }
     }
 

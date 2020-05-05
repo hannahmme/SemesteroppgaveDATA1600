@@ -61,7 +61,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
             } else {
                 shoppingCart.addElement(extraProduct);
                 shoppingCart.getTotalPrice(lblTotalPrice);
-                lblExpectedLifetime.setText(String.valueOf(findExpectedLifetime()));
+                lblExpectedLifetime.setText(findExpectedLifetime() + " år");
             }
 
         } catch (NullPointerException nullpointer){
@@ -107,7 +107,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
         shoppingCart.getTotalPrice(lblTotalPrice);
 
         image.setImageView(mainpageImageView, homeImage);
-        lblExpectedLifetime.setText(String.valueOf(findExpectedLifetime()));
+        lblExpectedLifetime.setText(findExpectedLifetime() + " år");
     }
 
     //Metode som gjør at bilde av produktet som velges vises i produktinfo-imageviewet

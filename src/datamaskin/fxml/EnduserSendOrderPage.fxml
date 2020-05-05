@@ -33,7 +33,7 @@
                         <DropShadow />
                      </effect></Button>
                   <TextField fx:id="txtEmail" layoutX="117.0" layoutY="179.0" prefHeight="31.0" prefWidth="187.0" />
-                  <PasswordField fx:id="txtPassword" layoutX="117.0" layoutY="234.0" />
+                  <PasswordField fx:id="txtPassword" layoutX="117.0" layoutY="234.0" prefHeight="31.0" prefWidth="187.0" />
                   <Button fx:id="btnSendOrder" layoutX="169.0" layoutY="513.0" mnemonicParsing="false" onAction="#sendOrder" onKeyPressed="#btnSendOrderEnter" prefHeight="77.0" prefWidth="270.0" style="-fx-background-color: steelblue;" text="Send bestilling" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
@@ -59,11 +59,11 @@
                       <TableColumn fx:id="priceColumn" prefWidth="173.0" text="Pris (kr)" />
                     </columns>
                   </TableView>
-                  <Text layoutX="61.0" layoutY="625.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Totalpris" wrappingWidth="115.0263671875">
+                  <Text layoutX="61.0" layoutY="636.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Totalpris:" wrappingWidth="74.33105260133743">
                      <font>
                         <Font size="18.0" />
                      </font></Text>
-                  <Label fx:id="lblTotalPrice" layoutX="166.0" layoutY="602.0" prefHeight="31.0" prefWidth="127.0">
+                  <Label fx:id="lblTotalPrice" layoutX="135.0" layoutY="614.0" prefHeight="31.0" prefWidth="127.0">
                      <font>
                         <Font size="18.0" />
                      </font></Label>

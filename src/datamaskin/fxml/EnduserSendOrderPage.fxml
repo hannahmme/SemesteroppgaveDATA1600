@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="datamaskin.fxml.EnduserSendOrderPageController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="datamaskin.fxml.EnduserSendOrderPageController">
    <children>
       <SplitPane dividerPositions="0.5" prefHeight="670.0" prefWidth="1250.0">
         <items>
@@ -24,15 +24,14 @@
                      <font>
                         <Font name="Arial Bold" size="15.0" />
                      </font></Button>
-                  <ImageView fx:id="mainpageImageView" fitHeight="24.0" fitWidth="37.0" layoutX="139.0" layoutY="18.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
                   <Button fx:id="btnGoBack" alignment="CENTER" layoutX="253.0" layoutY="26.0" mnemonicParsing="false" onAction="#goBack" onKeyPressed="#btnGoBackEnter" prefHeight="31.0" prefWidth="353.0" style="-fx-background-color: grey;" text="Glemt noe? Klikk her for å endre handlekurven" textFill="WHITE" />
-            
-                  <Text layoutX="14.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Har du handlet her før? Logg inn og send bestillingen!" wrappingWidth="205.99999898672104" />
-                  <Text layoutX="14.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Epostadresse" />
+                  <Button fx:id="btnNewUser" layoutX="388.0" layoutY="170.0" mnemonicParsing="false" onAction="#newUser" onKeyPressed="#btnNewUserEnter" style="-fx-background-color: darkseagreen;" text="Opprett ny bruker">
+                     <effect>
+                        <DropShadow />
+                     </effect></Button>
                   <TextField fx:id="txtEmail" layoutX="117.0" layoutY="170.0" prefHeight="31.0" prefWidth="187.0" />
-                  <Text layoutX="14.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" wrappingWidth="86.74073964357376" />
                   <PasswordField fx:id="txtPassword" layoutX="117.0" layoutY="222.0" />
-                  <Label fx:id="lblOrderSent" alignment="TOP_LEFT" layoutX="134.0" layoutY="492.0" prefHeight="77.0" prefWidth="353.0" wrapText="true" />
+                  <TextField fx:id="txtDiscount" layoutX="117.0" layoutY="425.0" />
                   <Button fx:id="btnSendOrder" layoutX="221.0" layoutY="586.0" mnemonicParsing="false" onAction="#sendOrder" onKeyPressed="#btnSendOrderEnter" prefHeight="57.0" prefWidth="178.0" style="-fx-background-color: steelblue;" text="Send bestilling" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
@@ -40,12 +39,13 @@
                      <effect>
                         <DropShadow />
                      </effect></Button>
-                  <Button fx:id="btnNewUser" layoutX="388.0" layoutY="170.0" mnemonicParsing="false" onAction="#newUser" onKeyPressed="#btnNewUserEnter" style="-fx-background-color: darkseagreen;" text="Opprett ny bruker">
-                     <effect>
-                        <DropShadow />
-                     </effect></Button>
+                  <ImageView fx:id="mainpageImageView" fitHeight="24.0" fitWidth="26.0" layoutX="137.0" layoutY="30.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
+            
+                  <Text layoutX="14.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Har du handlet her før? Logg inn og send bestillingen!" wrappingWidth="205.99999898672104" />
+                  <Text layoutX="14.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Epostadresse" />
+                  <Text layoutX="14.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" wrappingWidth="86.74073964357376" />
+                  <Label fx:id="lblOrderSent" alignment="TOP_LEFT" layoutX="134.0" layoutY="492.0" prefHeight="77.0" prefWidth="353.0" wrapText="true" />
                   <Text layoutX="388.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Er du ny kunde? Lag en bruker før du sender bestillingen!" wrappingWidth="217.00000923871994" />
-                  <TextField fx:id="txtDiscount" layoutX="117.0" layoutY="425.0" />
                   <Text layoutX="19.0" layoutY="446.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rabattkode" />
                   <Text layoutX="14.0" layoutY="402.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Har du en rabattkode?" />
                   <Line endX="317.0" layoutX="294.0" layoutY="80.0" startX="-286.0" />

@@ -10,14 +10,24 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="datamaskin.fxml.MainpageController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="datamaskin.fxml.MainpageController">
    <children>
-      <Text layoutX="59.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Er du administrator? Logg inn her!" />
-      <Text layoutX="323.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brukernavn" />
       <TextField fx:id="txtUsername" layoutX="323.0" layoutY="48.0" />
-      <Text layoutX="540.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" />
       <PasswordField fx:id="txtPassword" layoutX="540.0" layoutY="48.0" />
       <Button fx:id="btnSuperuserPage" layoutX="778.0" layoutY="48.0" mnemonicParsing="false" onAction="#toSuperUserPage" onKeyPressed="#btnSuperUserPage" prefHeight="25.0" prefWidth="141.0" style="-fx-background-color: grey;" text="Logg inn" textFill="WHITE" />
+      <TextField fx:id="txtUserEmail" layoutX="183.0" layoutY="331.0" prefHeight="31.0" prefWidth="187.0" />
+      <PasswordField fx:id="txtUserPassword" layoutX="183.0" layoutY="383.0" />
+      <Button fx:id="btnUserOrders" layoutX="211.0" layoutY="491.0" mnemonicParsing="false" onAction="#toUserOrders" onKeyPressed="#btnUserOrdersEnter" style="-fx-background-color: gray;" text="Se dine ordre" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button fx:id="btnEnduserPage" alignment="BASELINE_LEFT" layoutX="714.0" layoutY="549.0" mnemonicParsing="false" onAction="#toEnduserPage" onKeyPressed="#btnEnduserPageEnter" prefHeight="88.0" prefWidth="333.0" style="-fx-background-color: steelblue;" text="Sett opp din pc her!" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font></Button>
+      <Text layoutX="59.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Er du administrator? Logg inn her!" />
+      <Text layoutX="323.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brukernavn" />
+      <Text layoutX="540.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" />
       <ImageView fx:id="adminImageView" fitHeight="20.0" fitWidth="25.0" layoutX="887.0" layoutY="54.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="lblAdminError" layoutX="926.0" layoutY="61.0" prefHeight="21.0" prefWidth="291.0" textFill="RED" />
       <Line endX="1137.0" endY="-1.0" layoutX="101.0" layoutY="107.0" startX="-88.0" startY="-1.0" />
@@ -25,20 +35,10 @@
       <Text layoutX="59.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ønsker du å se dine tidligere bestillinger? " wrappingWidth="281.2829754952727" />
       <Text layoutX="59.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logg inn her!" wrappingWidth="281.282958984375" />
       <Text layoutX="59.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Epostadresse" wrappingWidth="87.59910463861524" />
-      <TextField fx:id="txtUserEmail" layoutX="183.0" layoutY="331.0" prefHeight="31.0" prefWidth="187.0" />
       <Text layoutX="59.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" wrappingWidth="87.59910463861524" />
-      <PasswordField fx:id="txtUserPassword" layoutX="183.0" layoutY="383.0" />
       <Label fx:id="lblUserError" layoutX="59.0" layoutY="438.0" prefHeight="39.0" prefWidth="311.0" textFill="RED" wrapText="true" />
-      <Button fx:id="btnUserOrders" layoutX="211.0" layoutY="491.0" mnemonicParsing="false" onAction="#toUserOrders" onKeyPressed="#btnUserOrdersEnter" style="-fx-background-color: gray;" text="Se dine ordre" textFill="WHITE">
-         <font>
-            <Font size="18.0" />
-         </font></Button>
       <Line endX="340.0" endY="331.0" layoutX="170.0" layoutY="326.0" startX="339.9999694824219" startY="-220.5" />
       <ImageView fx:id="hardwareImageView" fitHeight="351.0" fitWidth="484.0" layoutX="646.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="btnEnduserPage" alignment="BASELINE_LEFT" layoutX="714.0" layoutY="549.0" mnemonicParsing="false" onAction="#toEnduserPage" onKeyPressed="#btnEnduserPageEnter" prefHeight="88.0" prefWidth="333.0" style="-fx-background-color: steelblue;" text="Sett opp din pc her!" textFill="WHITE">
-         <font>
-            <Font name="Arial Bold" size="24.0" />
-         </font></Button>
       <ImageView fx:id="buildImageView" fitHeight="46.0" fitWidth="50.0" layoutX="973.0" layoutY="570.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

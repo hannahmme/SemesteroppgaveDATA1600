@@ -27,12 +27,17 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import static datamaskin.product.ProductCategories.*;
 
-public class ProductAdmPageController implements Initializable{
+public class ProductAdmPageController implements Initializable {
     @FXML private Button toSuperUserPage;
     @FXML private Label wrongInput;
+    @FXML private Button btnAddComponent;
+    @FXML private Button btnDeleteComponent;
 
     private final ConvertersWithErrorHandling.IntegerStringConverter intStrConverter
             = new ConvertersWithErrorHandling.IntegerStringConverter();
@@ -62,16 +67,16 @@ public class ProductAdmPageController implements Initializable{
     public static ProductRegister aRegister = new ProductRegister();
 
     // Setter data i combobox - må velge en av disse kategoriene for å opprette produkter
-    private void setData(){
+    private void setData() {
         cboxCategory.getItems().addAll("Skjermkort", "Minnekort",
                 "Harddisk", "Prosessor", "Strømforsyning", "Lydkort",
-                "Optisk disk" , "Farge", "Andre produkter");
+                "Optisk disk", "Farge", "Andre produkter");
     }
 
     // knappen for å legge til et nytt produkt i listen
     @FXML void addComponent() {
         Product aProduct = createProductObjectFromGUI();
-        if(aProduct != null) {
+        if (aProduct != null) {
             aRegister.addElement(aProduct);
             emptyTextfield();
         }
@@ -104,10 +109,10 @@ public class ProductAdmPageController implements Initializable{
         //todo: kan velge selv hvilket bilde som skal være når de oppretter nye komponenter
         String imageUri = "./src/Datamaskin/images/missingImage.png";
 
-        if (    isEmptyOrBlank(txtComponentname) ||
-                isEmptyOrBlank(txtDescription)   ||
-                isEmptyOrBlank(txtLifetime)      ||
-                isEmptyOrBlank(txtPrice)         ||
+        if (isEmptyOrBlank(txtComponentname) ||
+                isEmptyOrBlank(txtDescription) ||
+                isEmptyOrBlank(txtLifetime) ||
+                isEmptyOrBlank(txtPrice) ||
                 cboxCategory.getSelectionModel().getSelectedItem() == null) {
             wrongInput.setText("Fyll ut alle felter over.");
 
@@ -119,24 +124,24 @@ public class ProductAdmPageController implements Initializable{
                 priceString = txtPrice.getText();
                 category = cboxCategory.getSelectionModel().getSelectedItem();
 
-                if (!ProductValidator.validateName(name)){
+                if (!ProductValidator.validateName(name)) {
                     throw new IllegalArgumentException("Skriv inn et gyldig komponentnavn");
                 }
-                if (!ProductValidator.validateDescription(description)){
+                if (!ProductValidator.validateDescription(description)) {
                     throw new IllegalArgumentException("Skriv inn en gyldig beskrivelse");
                 }
-                if (!ProductValidator.validateLifetime(lifetimeString)){
+                if (!ProductValidator.validateLifetime(lifetimeString)) {
                     throw new InvalidLifetimeException("Skriv inn et gyldig antall år (1-35)");
-                } else{
+                } else {
                     lifetime = Integer.parseInt(txtLifetime.getText());
                 }
-                if (!ProductValidator.validatePrice(priceString)){
+                if (!ProductValidator.validatePrice(priceString)) {
                     throw new InvalidPriceException("Skriv inn en gyldig pris (0.01-99 999.99)");
-                } else{
+                } else {
                     price = Double.parseDouble(txtPrice.getText());
                 }
 
-                if(!ProductValidator.validateCategory(category)){
+                if (!ProductValidator.validateCategory(category)) {
                     throw new IllegalArgumentException("Vennligst velg kategori");
                 }
 
@@ -158,10 +163,11 @@ public class ProductAdmPageController implements Initializable{
 
     // knapp for å slette komponent fra produktlista
     @FXML void btnDeleteComponentEnter(KeyEvent event) throws IOException {
-        if(event.getCode().equals(KeyCode.ENTER)){
+        if (event.getCode().equals(KeyCode.ENTER)) {
             deleteComponent();
         }
     }
+
     @FXML void deleteComponent() throws IOException {
         Product deleteItem = componentTableview.getSelectionModel().getSelectedItem();
         if (deleteItem != null) {
@@ -176,24 +182,24 @@ public class ProductAdmPageController implements Initializable{
     }
 
     // elementet som slettes i TV slettes fra riktig array/ hashmap så det ikke kommer opp i choiceboksene hos sluttbruker
-    private void deleteFromRegister(Product aProduct){
-        if(GraphicCard.contains(aProduct)){
+    private void deleteFromRegister(Product aProduct) {
+        if (GraphicCard.contains(aProduct)) {
             GraphicCard.remove(aProduct);
-        } else if(Memorycard.contains(aProduct)){
+        } else if (Memorycard.contains(aProduct)) {
             Memorycard.remove(aProduct);
-        } else if(Harddrive.contains(aProduct)){
+        } else if (Harddrive.contains(aProduct)) {
             Harddrive.remove(aProduct);
-        } else if(Processor.contains(aProduct)){
+        } else if (Processor.contains(aProduct)) {
             Processor.remove(aProduct);
-        } else if(Power.contains(aProduct)){
+        } else if (Power.contains(aProduct)) {
             Power.remove(aProduct);
-        } else if(Soundcard.contains(aProduct)){
+        } else if (Soundcard.contains(aProduct)) {
             Soundcard.remove(aProduct);
-        } else if(OpticalDisk.contains(aProduct)){
+        } else if (OpticalDisk.contains(aProduct)) {
             OpticalDisk.remove(aProduct);
-        } else if(Color.contains(aProduct)){
+        } else if (Color.contains(aProduct)) {
             Color.remove(aProduct);
-        } else if(OtherProducts.contains(aProduct)){
+        } else if (OtherProducts.contains(aProduct)) {
             OtherProducts.remove(aProduct);
         }
     }
@@ -226,43 +232,39 @@ public class ProductAdmPageController implements Initializable{
     // metode for å legge til produktet ved å trykke enter
     @FXML void btnAddProdEnter(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            Product aProduct = createProductObjectFromGUI();
-            if(aProduct != null) {
-                aRegister.addElement(aProduct);
-                emptyTextfield();
-            }
+            addComponent();
         }
     }
 
     // kode for å komme tilbake til hovedmenyen for superbruker
     @FXML void toSuperUserPage() throws IOException {
-        if(ProductRegister.allCategoriesArePresent()) {
+        if (ProductRegister.allCategoriesArePresent()) {
             Stage primaryStage = (Stage) toSuperUserPage.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
             Page.toSuperuserpage(primaryStage, root);
-        }
-        else {
+        } else {
             Page.simpleAlertInformation("Du kan ikke forlate siden enda. Det må være minst èn komponent " +
                     "i hver kategori før du kan gå tilbake til hovedsiden.");
         }
     }
 
     @FXML void btnGoBackEnter(KeyEvent event) throws IOException {
-        if(ProductRegister.allCategoriesArePresent()) {
+        if (ProductRegister.allCategoriesArePresent()) {
             if (event.getCode().equals(KeyCode.ENTER)) {
                 toSuperUserPage();
             }
         } else {
             Page.simpleAlertInformation("Du kan ikke forlate siden enda! Produkter innenfor en av kategoriene mangler," +
-                " og sluttbruker kan da ikke fullføre handelen sin!");
+                    " og sluttbruker kan da ikke fullføre handelen sin!");
         }
     }
 
-    @FXML void btnMenuEnter(KeyEvent event) {
-        if (event.getCode().equals(KeyCode.ENTER)) {
-                menuDropdown.show();
-                menuDropdown.fire();
-        }
+    //metode for å samle alle elementene som arver fra Control i en liste
+    private Control[] generateListOfControlElements(){
+        return new Control[]{
+            menuDropdown, txtComponentname, txtDescription, txtLifetime,
+            txtPrice, txtSearch, cboxCategory, cBoxFilter, componentTableview,
+            btnAddComponent, btnDeleteComponent};
     }
 
     //metode som leser fra binær fil med tråd - hannah
@@ -277,18 +279,39 @@ public class ProductAdmPageController implements Initializable{
             Thread thread = new Thread(threadReaderBinaryTask);
             thread.start();
             txtSearch.setText("");
+
+            toggleElements(generateListOfControlElements(),true);
         }
     }
-    private void threadDoneReadingBinary(WorkerStateEvent event){
+
+    //Metode som setter disabled på elementer
+    private void toggleElements(Control[] elementList, boolean isDisabled){
+        //Les om denne her https://www.geeksforgeeks.org/arraylist-foreach-method-in-java/
+        //Todo: for å bruke lambda, er man nødt til å ha List<Control> og ikke primitiv liste Control[]
+        //todo: Usikker på om vi skal gå for denne metoden, eller lambda
+
+        //elementList.forEach(element -> element.setDisable(isDisabled));
+
+        for(Control element : elementList){
+            element.setDisable(isDisabled);
+        }
+
+    }
+
+    //når tråden er ferdig med oppgaven, gjør den dette:
+    private void threadDoneReadingBinary(WorkerStateEvent event) {
         txtInfoMessage.setText("");
         if (ProductRegister.ProductRegister.isEmpty()) {
             txtInfoMessage.setText("Filen du lastet inn inneholder ingen produkter.");
         }
+        toggleElements(generateListOfControlElements(), false);
         ProductRegister.setComponentToTV(componentTableview);
     }
 
-    private void threadFailedReadingBinary(WorkerStateEvent event){
+    //hvis tråden feilet i oppgaven (lese fra binær fil)
+    private void threadFailedReadingBinary(WorkerStateEvent event) {
         ProductRegister.clearTableView(componentTableview);
+        toggleElements(generateListOfControlElements(), false);
         txtInfoMessage.setText("Det oppsto en feil. Kunne ikke hente ut ordreoversikt.");
         System.out.println("Feil i henting av binær fil. Kunne ikke lese");
     }
@@ -312,22 +335,26 @@ public class ProductAdmPageController implements Initializable{
         }
         componentTableview.refresh();
     }
+
     @FXML void txtProductLifetimeEdited(TableColumn.CellEditEvent<Product, Integer> event) {
         if (intStrConverter.getSuccessfulIntValue()) {
             event.getRowValue().setLifetime(event.getNewValue());
         }
         componentTableview.refresh();
     }
-    @FXML void txtProductPriceEdited(TableColumn.CellEditEvent<Product, Double> event) {
+
+    @FXML
+    void txtProductPriceEdited(TableColumn.CellEditEvent<Product, Double> event) {
         if (doubleStrConverter.getSuccessfulDoubleValue()) {
             event.getRowValue().setPrice(event.getNewValue());
         }
         componentTableview.refresh();
     }
-    @FXML void txtProductCategoryEdited(TableColumn.CellEditEvent<Product, String> event){
-        if(ConvertersWithErrorHandling.isCategoryMatchingInput(event.getNewValue())){
+
+    @FXML void txtProductCategoryEdited(TableColumn.CellEditEvent<Product, String> event) {
+        if (ConvertersWithErrorHandling.isCategoryMatchingInput(event.getNewValue())) {
             String string = event.getNewValue().toLowerCase();
-            String input = string.substring(0,1).toUpperCase() + string.substring(1);
+            String input = string.substring(0, 1).toUpperCase() + string.substring(1);
             event.getRowValue().setCategory(input);
         }
         componentTableview.refresh();
@@ -359,27 +386,27 @@ public class ProductAdmPageController implements Initializable{
                     }
 
                     // Sammenligner alle kolonner med filtertekst, etter valgt cbox
-                    if(cBoxFilter.getValue().toLowerCase().equals("navn")) {
+                    if (cBoxFilter.getValue().toLowerCase().equals("navn")) {
                         if (aProduct.getName().toLowerCase().contains(smallLetters)) {
                             return true;
                         }
 
                     }
-                    if(cBoxFilter.getValue().toLowerCase().equals("kategori")) {
+                    if (cBoxFilter.getValue().toLowerCase().equals("kategori")) {
                         if (aProduct.getCategory().toLowerCase().contains(smallLetters)) {
                             return true;
                         }
                     }
-                    if(cBoxFilter.getValue().toLowerCase().equals("levetid")) {
-                        if(String.valueOf(aProduct.getLifetime()).startsWith(smallLetters)) {
+                    if (cBoxFilter.getValue().toLowerCase().equals("levetid")) {
+                        if (String.valueOf(aProduct.getLifetime()).startsWith(smallLetters)) {
                             if (String.valueOf(aProduct.getLifetime()).matches(smallLetters)) {
                                 return true;
                             }
                         }
                     }
-                    if(cBoxFilter.getValue().toLowerCase().equals("pris")){
-                        if(String.valueOf(aProduct.getPrice()).startsWith(smallLetters)){
-                            if(smallLetters.endsWith(".0")){
+                    if (cBoxFilter.getValue().toLowerCase().equals("pris")) {
+                        if (String.valueOf(aProduct.getPrice()).startsWith(smallLetters)) {
+                            if (smallLetters.endsWith(".0")) {
                                 if (String.valueOf(aProduct.getPrice()).matches(smallLetters)) {
                                     return true;
                                 }

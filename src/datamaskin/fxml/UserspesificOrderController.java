@@ -1,6 +1,5 @@
 package datamaskin.fxml;
 
-import datamaskin.filbehandling.ReadFromAllOrdersFile;
 import datamaskin.orders.OrderValidator;
 import datamaskin.product.Product;
 import datamaskin.orders.FinalOrderOverview;
@@ -44,7 +43,6 @@ public class UserspesificOrderController implements Initializable {
     @FXML private ThreadReader readerTask;
 
     private final ObservableList<Product> emptyList = FXCollections.observableArrayList();
-    private final ReadFromAllOrdersFile readFromAllOrdersFile = new ReadFromAllOrdersFile();
 
     //Metode som viser innholdet i orderen når bruker trykker på en ordre
     //Lesing fra fil gjennomføres i en egen tråd
@@ -67,7 +65,6 @@ public class UserspesificOrderController implements Initializable {
         productInfo.setCellValueFactory(new PropertyValueFactory<>("Description"));
         productLifetime.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
         productPrice.setCellValueFactory(new PropertyValueFactory<>("Price"));
-
     }
 
     //tråden er ferdig lest:

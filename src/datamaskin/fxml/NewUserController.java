@@ -19,13 +19,9 @@ import javafx.stage.Stage;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-
 public class NewUserController {
-    @FXML private TextField txtEmail;
-    @FXML private TextField txtPassword;
-    @FXML private TextField txtPassword2;
-    @FXML private Label lblErrorEmail;
-    @FXML private Label lblErrorPassword;
+    @FXML private TextField txtEmail, txtPassword, txtPassword2;
+    @FXML private Label lblErrorEmail, lblErrorPassword;
 
     private FileSaverTxt filesaver = new FileSaverTxt();
 
@@ -61,7 +57,6 @@ public class NewUserController {
         }
         return null;
     }
-
 
     // når knappen trykkes kalles metoden for å lage ny bruker og for at vinduet skal lukkes hvis vellykket
     @FXML void makeNewUser(Event event) throws Exception {

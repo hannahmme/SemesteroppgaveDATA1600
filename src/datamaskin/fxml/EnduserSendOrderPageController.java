@@ -31,17 +31,12 @@ import java.util.ResourceBundle;
 import static datamaskin.users.CustomerValidator.getCustomerList;
 
 public class EnduserSendOrderPageController implements Initializable {
-    @FXML private Button btnSendOrder;
-    @FXML private Button btnGoBack;
-    @FXML private Button btnGoToMainpage;
-    @FXML private TextField txtDiscount;
-    @FXML private Label lblOrderSent;
-    @FXML private Label lblTotalPrice;
+    @FXML private Button btnSendOrder, btnGoBack, btnGoToMainpage;
+    @FXML private Label lblOrderSent, lblTotalPrice;
     @FXML private ImageView mainpageImageView;
 
     @FXML private TextField txtEmail;
     @FXML private PasswordField txtPassword;
-
 
     //metode for å sette passord fra bruker når oppretter bruker
     public void setTxtPassword(String inputPassword){
@@ -72,13 +67,11 @@ public class EnduserSendOrderPageController implements Initializable {
 
         shoppingcart.attachTableview(finalOrderRegister);
         image.setImageView(mainpageImageView, homeImage);
-
         shoppingcart.getTotalPrice(lblTotalPrice);
     }
 
-
     public void ifShoppingcartIsNull() {
-        if (shoppingcart.getTotalPrice(lblTotalPrice) == 0 ) {
+        if (shoppingcart.getTotalPrice(lblTotalPrice) == 0 || lblTotalPrice.getText().equals("")) {
             btnSendOrder.setDisable(true);
             btnGoBack.setDisable(true);
         }
@@ -91,7 +84,6 @@ public class EnduserSendOrderPageController implements Initializable {
         if(aFinalOrderOverview != null) {
             txtEmail.setText("");
             txtPassword.setText("");
-            txtDiscount.setText("");
 
             try{
             //kode som lagrer orderen til forhåndsdefinert filsti med generert ordreID.
@@ -108,6 +100,7 @@ public class EnduserSendOrderPageController implements Initializable {
 
             //sletter handlekurven *etter* å ha lagret til fil
             shoppingcart.deleteShoppingcart();
+            lblTotalPrice.setText("");
             } catch(IOException e){
                 System.out.println(e.getMessage());
             }

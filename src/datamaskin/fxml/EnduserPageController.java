@@ -25,21 +25,11 @@ import static datamaskin.cart.Cart.*;
 import static datamaskin.product.ProductCategories.*;
 
 public class EnduserPageController implements Initializable {
-    @FXML private Button btnGoBack;
-    @FXML private Button btnGoToPay;
-    @FXML private Label lblTotalPrice;
-    @FXML private Label lblError;
+    @FXML private Button btnGoBack, btnGoToPay;
     @FXML private ImageView mainpageImageView;
 
-    @FXML private Label lblInfoGraphicCard;
-    @FXML private Label lblInfoMemorycard;
-    @FXML private Label lblInfoHarddrive;
-    @FXML private Label lblInfoProcessor;
-    @FXML private Label lblInfoPower;
-    @FXML private Label lblInfoSoundcard;
-    @FXML private Label lblInfoOpticaldisk;
-    @FXML private Label lblInfoColor;
-    @FXML private Label lblExpectedLifetime;
+    @FXML private Label lblInfoGraphicCard, lblInfoMemorycard, lblInfoHarddrive, lblInfoProcessor, lblInfoPower,
+            lblInfoSoundcard, lblInfoOpticaldisk, lblInfoColor, lblTotalPrice, lblError, lblExpectedLifetime;
 
     @FXML private TableView<Product> tableviewCart;
     @FXML private TableColumn<Product, String> nameColumn;
@@ -47,14 +37,8 @@ public class EnduserPageController implements Initializable {
     @FXML private TableColumn<Product, Integer> lifetimeColumn;
     @FXML private TableColumn<Product, Double> priceColumn;
 
-    @FXML private ComboBox<Product> cBoxGraphicCard;
-    @FXML private ComboBox<Product> cBoxMemorycard;
-    @FXML private ComboBox<Product> cBoxHarddrive;
-    @FXML private ComboBox<Product> cBoxProcessor;
-    @FXML private ComboBox<Product> cBoxPower;
-    @FXML private ComboBox<Product> cBoxSoundcard;
-    @FXML private ComboBox<Product> cBoxOpticaldisk;
-    @FXML private ComboBox<Product> cBoxColor;
+    @FXML private ComboBox<Product> cBoxGraphicCard, cBoxMemorycard, cBoxHarddrive, cBoxProcessor, cBoxPower,
+            cBoxSoundcard, cBoxOpticaldisk, cBoxColor;
 
     private final ImageClass image = new ImageClass();
     private final Image homeImage = image.createImage("./src/Datamaskin/images/mainpage.png");

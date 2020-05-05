@@ -26,22 +26,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainpageController implements Initializable {
-    @FXML private Button btnEnduserPage;
-    @FXML private TextField txtUsername;
-    @FXML private TextField txtPassword;
-    @FXML private Button btnSuperuserPage;
-    @FXML private TextField txtUserEmail;
-    @FXML private TextField txtUserPassword;
-    @FXML private Button btnUserOrders;
-    @FXML private Label lblUserError;
-    @FXML private Label lblAdminError;
+    @FXML private Button btnEnduserPage, btnSuperuserPage, btnUserOrders;
+    @FXML private TextField txtUsername, txtPassword, txtUserEmail, txtUserPassword;
+    @FXML private Label lblUserError, lblAdminError;
 
     private ReadFromCustomerFile readFromCustomerFile = new ReadFromCustomerFile();
     private ImageClass image = new ImageClass();
 
     //Dette kastes pga bildene som lastes inn når siden lastes inn. Skal sjekke om det kan fjernes evt  - Hannah
-    public MainpageController() throws FileNotFoundException {
-    }
+    public MainpageController() throws FileNotFoundException {}
 
     // nøkkel for å sortere ordrelisten for sluttbruker, er eposten som skrives inn
     public static String sortingKey;
@@ -118,18 +111,12 @@ public class MainpageController implements Initializable {
         }
     }
 
-    // kode for bildene som ligger på hovedsiden
-    @FXML private ImageView hardwareImageView;
-    private Image hardwareImage = image.createImage("./src/Datamaskin/images/hardware.jpg");
-
-    @FXML private ImageView orderImageView;
-    private Image orderImage = image.createImage("./src/Datamaskin/images/order.png");
-
-    @FXML private ImageView buildImageView;
-    private Image hammerImage = image.createImage("./src/Datamaskin/images/hammer.png");
-
-    @FXML private ImageView adminImageView;
-    private Image adminImage = image.createImage("./src/Datamaskin/images/admin.png");
+    // kode for bildene som ligger på hovedsiden, final fordi de ikke skal endres
+    @FXML private ImageView hardwareImageView, buildImageView, adminImageView, orderImageView;
+    private final Image hardwareImage = image.createImage("./src/Datamaskin/images/hardware.jpg");
+    private final Image orderImage = image.createImage("./src/Datamaskin/images/order.png");
+    private final Image hammerImage = image.createImage("./src/Datamaskin/images/hammer.png");
+    private final Image adminImage = image.createImage("./src/Datamaskin/images/admin.png");
 
     //Effekt for å blurre bildet på mainpage (det blå bildet)
     private DropShadow shadowEffect = new DropShadow();

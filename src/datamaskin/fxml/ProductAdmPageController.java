@@ -31,10 +31,8 @@ import java.util.ResourceBundle;
 import static datamaskin.product.ProductCategories.*;
 
 public class ProductAdmPageController implements Initializable {
-    @FXML private Button toSuperUserPage;
+    @FXML private Button toSuperUserPage, btnAddComponent, btnDeleteComponent;;
     @FXML private Label wrongInput;
-    @FXML private Button btnAddComponent;
-    @FXML private Button btnDeleteComponent;
 
     private final ConvertersWithErrorHandling.IntegerStringConverter intStrConverter
             = new ConvertersWithErrorHandling.IntegerStringConverter();
@@ -44,11 +42,7 @@ public class ProductAdmPageController implements Initializable {
     private Stage stage;
 
     @FXML private ThreadReaderBinary threadReaderBinaryTask;
-    @FXML private TextField txtComponentname;
-    @FXML private TextField txtDescription;
-    @FXML private TextField txtLifetime;
-    @FXML private TextField txtPrice;
-    @FXML private TextField txtSearch;
+    @FXML private TextField txtComponentname, txtDescription, txtLifetime, txtPrice, txtSearch;
     @FXML private ChoiceBox<String> cboxCategory;
     @FXML private ComboBox<String> cBoxFilter;
     @FXML private MenuButton menuDropdown;

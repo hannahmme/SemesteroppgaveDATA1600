@@ -84,7 +84,6 @@ public class AllOrdersController implements Initializable {
             orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("OrderID"));
             orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("OrderDate"));
             totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
-
     }
 
     //metode som gjør det mulig for admin å trykke på en ordre og se hva den inneholder
@@ -125,7 +124,6 @@ public class AllOrdersController implements Initializable {
         allOrders.setDisable(false);
     }
 
-
     // kode for filtrering
     @FXML private void filterChoiceChanged() throws IOException {
         filter();
@@ -140,53 +138,46 @@ public class AllOrdersController implements Initializable {
         FilteredList<FinalOrderOverview> filtrertData = new FilteredList<>((allOrdersList), p -> true);
 
         // hver gang verdien endres skjer følgende
-        txtFiltering.textProperty().addListener((observable, oldVerdi, newVerdi) -> {
+        txtFiltering.textProperty().addListener((observable, oldValue, newValue) -> {
 
             // listen med filtrert data sjekker gjennom allOrdersList om den finner verdiene av en ordre
             filtrertData.setPredicate(anOrder -> {
 
-                String smallLetters = newVerdi.toLowerCase();           // henter den nye verdien og gjør den om til små bokstaver
-                if (newVerdi.matches("[a-zA-Z. -_0-9()@]*")) {    // Sjekker at det matcher regex
-                    if (newVerdi.isEmpty()) {                           // Hvis feltet er tomt skal alle personer vises
+                String smallLetters = newValue.toLowerCase();           // henter den nye verdien og gjør den om til små bokstaver
+                if (newValue.matches("[a-zA-Z. -_0-9()@]*")) {    // Sjekker at det matcher regex
+                    if (newValue.isEmpty()) {                           // Hvis feltet er tomt skal alle personer vises
                         return true;
                     }
 
                     // Sammenligner alle kolonner med filtertekst, etter valgt cbox
-                    if(filterCBox.getValue().toLowerCase().equals("email")) {
+                    if (filterCBox.getValue().toLowerCase().equals("email")) {
                         if (anOrder.getEmail().endsWith(smallLetters)){             // kan filtrere etter eposter med samme domene
                             if (anOrder.getEmail().toLowerCase().contains(smallLetters)) {
-                                return true;
-                            }
+                                return true;}
                         }
                         if (anOrder.getEmail().toLowerCase().contains(smallLetters)) { // filtrer etter eksakt epostadresse
-                            return true;
-                        }
+                            return true;}
                     }
-                    if(filterCBox.getValue().toLowerCase().equals("ordreid")) {
+                    if (filterCBox.getValue().toLowerCase().equals("ordreid")) {
                         if(!smallLetters.startsWith("ordre-")){
                             if (anOrder.getOrderID().toLowerCase().matches("ordre-" + smallLetters)) {
-                                return true;
-                            }
+                                return true;}
                         }
                         if (anOrder.getOrderID().toLowerCase().matches(smallLetters)) {
-                            return true;
-                        }
+                            return true;}
                     }
-                    if(filterCBox.getValue().toLowerCase().equals("dato")) {
+                    if (filterCBox.getValue().toLowerCase().equals("dato")) {
                         if (anOrder.getOrderDate().startsWith(smallLetters)) {
-                            return true;
-                        }
+                            return true;}
                     }
-                    if(filterCBox.getValue().toLowerCase().equals("totalpris")){
+                    if (filterCBox.getValue().toLowerCase().equals("totalpris")){
                         if(String.valueOf(anOrder.getTotalPrice()).startsWith(smallLetters)) {
                             if (smallLetters.endsWith(".0")) {
                                 if (String.valueOf(anOrder.getTotalPrice()).matches(smallLetters)) {
-                                    return true;
-                                }
+                                    return true;}
                             } else {
                                 if (String.valueOf(anOrder.getTotalPrice()).matches(smallLetters + ".0")) {
-                                    return true;
-                                }
+                                    return true;}
                             }
                         }
                     }

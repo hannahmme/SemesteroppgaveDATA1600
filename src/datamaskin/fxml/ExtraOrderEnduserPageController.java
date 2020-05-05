@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
+import static datamaskin.cart.Cart.findExpectedLifetime;
 import static datamaskin.product.ProductCategories.*;
 
 public class ExtraOrderEnduserPageController implements Initializable {
@@ -38,13 +39,10 @@ public class ExtraOrderEnduserPageController implements Initializable {
     @FXML private TableColumn<Product, Double> extraProductPrice;
     @FXML private TableColumn<Product, Integer> extraProductLifetime;
 
-    @FXML private Button btnGoToPay;
-    @FXML private Button btnGoBack;
-    @FXML private Button btnGoToMainpage;
-    @FXML private Label lblTotalPrice;
-    @FXML private ImageView imgImageView;
+    @FXML private Button btnGoToPay, btnGoBack, btnGoToMainpage;
+    @FXML private Label lblTotalPrice, lblExpectedLifetime;
+    @FXML private ImageView imgImageView, mainpageImageView;
     @FXML private Text txtWarning;
-    @FXML private ImageView mainpageImageView;
 
     private ImageClass image = new ImageClass();
     private Image homeImage = image.createImage("./src/Datamaskin/images/mainpage.png");
@@ -52,8 +50,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
     private Page scene = new Page();
     private Cart shoppingCart = new Cart();
 
-    public ExtraOrderEnduserPageController() throws FileNotFoundException {
-    }
+    public ExtraOrderEnduserPageController() throws FileNotFoundException {}
 
     //metode som legger til elementer i handlekurven, dersom de er huket av
     @FXML void addToCart() throws NullPointerException {
@@ -64,6 +61,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
             } else {
                 shoppingCart.addElement(extraProduct);
                 shoppingCart.getTotalPrice(lblTotalPrice);
+                lblExpectedLifetime.setText(String.valueOf(findExpectedLifetime()));
             }
 
         } catch (NullPointerException nullpointer){
@@ -109,6 +107,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
         shoppingCart.getTotalPrice(lblTotalPrice);
 
         image.setImageView(mainpageImageView, homeImage);
+        lblExpectedLifetime.setText(String.valueOf(findExpectedLifetime()));
     }
 
     //Metode som gjør at bilde av produktet som velges vises i produktinfo-imageviewet
@@ -177,6 +176,6 @@ public class ExtraOrderEnduserPageController implements Initializable {
     @FXML void btnToMainpageEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             goToMainpage();
-            }
         }
+    }
 }

@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="datamaskin.fxml.EnduserPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="datamaskin.fxml.EnduserPageController">
    <children>
       <SplitPane dividerPositions="0.5" prefHeight="670.0" prefWidth="1250.0">
         <items>
@@ -110,8 +110,8 @@
                         <Font size="18.0" />
                      </font></Label>
                   <Line endX="480.0" layoutX="130.0" layoutY="79.0" startX="-120.0" />
-                  <Text layoutX="15.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gjennomsnittlig levetid på konfigurert pc:" wrappingWidth="292.63330078125" />
-                  <Label fx:id="lblExpectedLifetime" layoutX="315.0" layoutY="466.0" prefHeight="21.0" prefWidth="73.0" />
+                  <Text layoutX="14.0" layoutY="605.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gjennomsnittlig levetid på konfigurert pc:" wrappingWidth="292.63330078125" />
+                  <Label fx:id="lblExpectedLifetime" layoutX="307.0" layoutY="589.0" prefHeight="21.0" prefWidth="80.0" />
                </children>
             </AnchorPane>
         </items>

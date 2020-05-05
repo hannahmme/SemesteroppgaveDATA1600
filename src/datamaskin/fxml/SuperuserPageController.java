@@ -18,10 +18,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SuperuserPageController implements Initializable {
-    @FXML private Button toSuperUserProductPage;
-    @FXML private Button toSuperUserOrderPage;
-    @FXML private Button toMainPage;
-    @FXML private Button btnadministrateUsers;
+    @FXML private Button toSuperUserProductPage, toSuperUserOrderPage, toMainPage, btnadministrateUsers;
     private ImageClass image = new ImageClass();
 
     //Denne er pga bildene som lages

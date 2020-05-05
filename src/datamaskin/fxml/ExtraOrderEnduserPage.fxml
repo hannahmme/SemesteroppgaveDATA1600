@@ -30,7 +30,7 @@
                   <ImageView fx:id="mainpageImageView" fitHeight="21.0" fitWidth="23.0" layoutX="125.0" layoutY="35.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
                   <TableView fx:id="tblExtraProduct" layoutX="10.0" layoutY="100.0" onMouseClicked="#selectedItemEvent" prefHeight="340.0" prefWidth="600.0">
                     <columns>
-                      <TableColumn fx:id="extraProductName" prefWidth="108.0" text="Tilbehor">
+                      <TableColumn fx:id="extraProductName" prefWidth="108.0" text="Tilbehør">
                         <cellValueFactory>
                             <PropertyValueFactory property="Name" />
                         </cellValueFactory>

@@ -72,7 +72,7 @@
             </TableColumn>
         </columns>
       </TableView>
-      <Button fx:id="btnDeleteComponent" layoutX="1029.0" layoutY="614.0" mnemonicParsing="false" onAction="#deleteComponent" onKeyPressed="#btnDeleteComponentEnter" prefHeight="31.0" prefWidth="177.0" style="-fx-background-color: red;" text="Slett valgt komponent" textFill="WHITE">
+      <Button fx:id="btnDeleteComponent" layoutX="1029.0" layoutY="614.0" mnemonicParsing="false" onAction="#deleteComponent" onKeyPressed="#btnDeleteComponentEnter" prefHeight="31.0" prefWidth="177.0" style="-fx-background-color: indianred;" text="Slett valgt komponent" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font></Button>

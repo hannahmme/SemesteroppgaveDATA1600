@@ -254,8 +254,8 @@ public class ProductAdmPageController implements Initializable {
                 toSuperUserPage();
             }
         } else {
-            Page.simpleAlertInformation("Du kan ikke forlate siden enda! Produkter innenfor en av kategoriene mangler," +
-                    " og sluttbruker kan da ikke fullføre handelen sin!");
+            Page.simpleAlertInformation("Du kan ikke forlate siden enda. Det må være minst èn komponent " +
+                    "i hver kategori før du kan gå tilbake til hovedsiden.");
         }
     }
 
@@ -264,7 +264,7 @@ public class ProductAdmPageController implements Initializable {
         return new Control[]{
             menuDropdown, txtComponentname, txtDescription, txtLifetime,
             txtPrice, txtSearch, cboxCategory, cBoxFilter, componentTableview,
-            btnAddComponent, btnDeleteComponent};
+            btnAddComponent, btnDeleteComponent, toSuperUserPage};
     }
 
     //metode som leser fra binær fil med tråd - hannah

@@ -7,8 +7,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 
-import java.text.DecimalFormat;
-
 public class Cart {
     public transient static ObservableList<Product> Cart = FXCollections.observableArrayList();
 
@@ -35,7 +33,7 @@ public class Cart {
         for (Product product : Cart) {
             totalSum += product.getPrice();
         }
-        infoLabel.setText(String.valueOf(totalSum) + "0 kr");
+        infoLabel.setText(totalSum + "0 kr");
         return totalSum;
     }
 

@@ -21,5 +21,4 @@ public class Order {
         }
         return "ordre-"+orderNumber;
     }
-
 }

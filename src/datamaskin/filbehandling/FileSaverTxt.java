@@ -17,7 +17,6 @@ public class FileSaverTxt implements iFileSaver{
     public void appendToFile(String str, Path path) throws IOException {
         Files.write(path, str.getBytes(), StandardOpenOption.APPEND);
     }
-
 }
 
 

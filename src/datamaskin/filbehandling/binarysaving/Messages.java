@@ -23,5 +23,4 @@ public class Messages {
 
         alert.showAndWait();
     }
-
 }

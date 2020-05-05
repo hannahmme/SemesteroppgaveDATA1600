@@ -2,11 +2,9 @@ package datamaskin.exceptions;
 
 import javafx.scene.control.Alert;
 import javafx.util.converter.DoubleStringConverter;
-
 import java.io.IOException;
 
 public class ConvertersWithErrorHandling {
-
 
     //Metode som konverterer en input til en Integer. Gir feilmelding til admin
     //dersom inputen ikke kan konverteres til Integer
@@ -37,7 +35,6 @@ public class ConvertersWithErrorHandling {
                 return 0;
             }
         }
-
         //metode som returnerer og konverteringen er true eller false
         public boolean getSuccessfulIntValue() {
             return conversionSuccessful;
@@ -72,12 +69,10 @@ public class ConvertersWithErrorHandling {
                 return 0.0;
             }
         }
-
         public boolean getSuccessfulDoubleValue() {
             return convertSuccessfull;
         }
     }
-
 
     //metode som sjekker om inputverdier er tomme
     public static boolean isInputNotNull(String str) throws NullPointerException {

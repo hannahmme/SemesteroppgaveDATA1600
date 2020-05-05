@@ -5,8 +5,8 @@ import java.nio.file.Path;
 
 //hensikten med interfacet er at denne metoden kan implementeres der den trengs
 public interface iFileSaver {
-    public void saveToFile(String string, Path path) throws IOException;
+    void saveToFile(String string, Path path) throws IOException;
 
-    public void appendToFile(String str, Path path) throws IOException;
+    void appendToFile(String str, Path path) throws IOException;
 }
 

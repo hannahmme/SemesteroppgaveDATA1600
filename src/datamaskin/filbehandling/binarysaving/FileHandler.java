@@ -69,6 +69,5 @@ public class FileHandler {
         String fileName = file.getName();
         return fileName.substring(fileName.lastIndexOf('.'));
     }
-
 }
 

@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
-
 import static datamaskin.users.CustomerValidator.getCustomerList;
 
 public class AllUsersController implements Initializable {

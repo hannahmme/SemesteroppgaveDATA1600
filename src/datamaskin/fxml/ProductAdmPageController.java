@@ -136,15 +136,9 @@ public class ProductAdmPageController implements Initializable {
                     throw new IllegalArgumentException("Vennligst velg kategori");
                 }
 
-                //oppretter produktet med alle riktige attributter etter at de er sjekket for feil
                 Product aProduct = new Product(name, description, lifetime, price, category, imageUri);
-
-                // metode som også legger til produktet i riktig kategori-array
                 ProductCategories.setData(aProduct, category);
-
-                // returnerer produktet
                 return aProduct;
-
             } catch (InvalidPriceException | IllegalArgumentException | InvalidLifetimeException e) {
                 wrongInput.setText(e.getMessage());
             }
@@ -165,8 +159,6 @@ public class ProductAdmPageController implements Initializable {
             boolean deleteConfirmed = Page.alertConfirmed("Ønsker du å slette " + deleteItem.getName() + " fra listen?");
             if (deleteConfirmed) {
                 ProductRegister.deleteElement(deleteItem);
-
-                // her slettes elementet også fra arrayet
                 deleteFromRegister(deleteItem);
             }
         }
@@ -346,14 +338,6 @@ public class ProductAdmPageController implements Initializable {
     }
 
     // kode for filtrering
-    @FXML void filterChoiceChanged(ActionEvent event) throws IOException {
-        filter();
-    }
-
-    @FXML void searchTxtChanged(KeyEvent event) throws IOException {
-        filter();
-    }
-
     @FXML void searchTxtEntered(KeyEvent event) throws IOException {
         filter();
     }

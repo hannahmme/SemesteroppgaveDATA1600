@@ -105,13 +105,13 @@
                      <font>
                         <Font size="18.0" />
                      </font></Label>
-                  <Label fx:id="lblTotalPrice" layoutX="129.0" layoutY="621.0" prefHeight="21.0" prefWidth="141.0" wrapText="true">
+                  <Label fx:id="lblTotalPrice" layoutX="143.0" layoutY="619.0" prefHeight="21.0" prefWidth="141.0" wrapText="true">
                      <font>
                         <Font size="18.0" />
                      </font></Label>
                   <Line endX="480.0" layoutX="130.0" layoutY="79.0" startX="-120.0" />
-                  <Text layoutX="14.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gjennomsnittlig levetid på konfigurert pc:" wrappingWidth="292.63330078125" />
-                  <Label fx:id="lblExpectedLifetime" layoutX="242.0" layoutY="467.0" prefHeight="21.0" prefWidth="73.0" />
+                  <Text layoutX="14.0" layoutY="608.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gjennomsnittlig levetid på konfigurert pc:" wrappingWidth="292.63330078125" />
+                  <Label fx:id="lblExpectedLifetime" layoutX="307.0" layoutY="592.0" prefHeight="21.0" prefWidth="73.0" />
                </children>
             </AnchorPane>
         </items>

@@ -6,6 +6,8 @@ import datamaskin.Page;
 import datamaskin.orders.OrderValidator;
 import datamaskin.product.Product;
 import datamaskin.threadprogramming.ThreadReader;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -122,11 +124,6 @@ public class AllOrdersController implements Initializable {
         System.out.println("Feil i filen, se gjennom ordrespesifikasjon");
         tblOrderContent.setItems(emptyList);
         allOrders.setDisable(false);
-    }
-
-    // kode for filtrering
-    @FXML private void filterChoiceChanged() throws IOException {
-        filter();
     }
 
     @FXML private void searchTxtEntered() throws IOException {

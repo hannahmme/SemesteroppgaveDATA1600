@@ -11,14 +11,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="datamaskin.fxml.AllOrdersController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="datamaskin.fxml.AllOrdersController">
    <children>
       <Button fx:id="toSuperuserpage" layoutX="14.0" layoutY="19.0" mnemonicParsing="false" onAction="#toSuperuserpage" onKeyPressed="#btnSuperUserPageEnter" prefHeight="31.0" prefWidth="129.0" style="-fx-background-color: grey;" text="Gå tilbake" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font></Button>
       <Text layoutX="1077.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logget inn som admin" wrappingWidth="158.9599609375" />
-      <ComboBox fx:id="filterCBox" layoutX="304.0" layoutY="85.0" onAction="#filterChoiceChanged" prefWidth="150.0" promptText="Velg kolonne" />
+      <ComboBox fx:id="filterCBox" layoutX="304.0" layoutY="85.0" prefWidth="150.0" promptText="Velg kolonne" />
       <TextField fx:id="txtFiltering" layoutX="463.0" layoutY="85.0" onKeyTyped="#searchTxtEntered" promptText="Skriv inn for å filtrere" />
       <TableView fx:id="allOrders" layoutX="14.0" layoutY="121.0" onMouseClicked="#selectedItemEvent" prefHeight="513.0" prefWidth="636.0">
         <columns>

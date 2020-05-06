@@ -107,13 +107,13 @@
                      <font>
                         <Font size="18.0" />
                      </font></Label>
-                  <Label fx:id="lblTotalPrice" layoutX="135.0" layoutY="622.0" prefHeight="21.0" prefWidth="115.0">
+                  <Label fx:id="lblTotalPrice" layoutX="146.0" layoutY="620.0" prefHeight="21.0" prefWidth="115.0">
                      <font>
                         <Font size="18.0" />
                      </font></Label>
                   <Line endX="500.0" fill="BLACK" layoutX="110.0" layoutY="80.0" startX="-100.0" />
                   <Text layoutX="15.0" layoutY="605.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gjennomsnittlig levetid på konfigurert pc:" />
-                  <Label fx:id="lblExpectedLifetime" layoutX="243.0" layoutY="590.0" prefHeight="21.0" prefWidth="70.0" />
+                  <Label fx:id="lblExpectedLifetime" layoutX="310.0" layoutY="588.0" prefHeight="21.0" prefWidth="70.0" />
                </children>
             </AnchorPane>
         </items>

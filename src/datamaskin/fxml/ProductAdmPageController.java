@@ -139,7 +139,7 @@ public class ProductAdmPageController implements Initializable {
         return null;
     }
 
-    // knapp for å slette komponent fra produktlista
+    // sletter komponent fra produktlista med enter
     @FXML void btnDeleteComponentEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             deleteComponent();
@@ -179,18 +179,17 @@ public class ProductAdmPageController implements Initializable {
         cBoxFilter.setItems(filterChoices);
         cBoxFilter.setValue("Kategori");
 
-        // for å ha kategoriene i nedtrekkslista fra før av
         setData();
     }
 
-    // metode for å legge til produktet ved å trykke enter
+    // legger til produktet ved å trykke enter
     @FXML void btnAddProdEnter(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             addComponent();
         }
     }
 
-    // kode for å komme tilbake til hovedmenyen for superbruker
+    // kommer tilbake til hovedmenyen for superbruker
     @FXML void toSuperUserPage() throws IOException {
         if (allCategoriesArePresent()) {
             Stage primaryStage = (Stage) toSuperUserPage.getScene().getWindow();
@@ -202,6 +201,7 @@ public class ProductAdmPageController implements Initializable {
         }
     }
 
+    // går tilbake til forrige side ved enter
     @FXML void btnGoBackEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             toSuperUserPage();

@@ -1,7 +1,8 @@
-package datamaskin.cart;
+/*package datamaskin.cart;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
+
 
 public class AllProductsCart {
     private SimpleStringProperty name;
@@ -21,3 +22,4 @@ public class AllProductsCart {
         this.price = new SimpleDoubleProperty(componentPrice);
     }
 }
+*/

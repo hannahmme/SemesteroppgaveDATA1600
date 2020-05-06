@@ -7,7 +7,6 @@ import datamaskin.filbehandling.FileSaverTxt;
 import datamaskin.filbehandling.OrderFormatter;
 import datamaskin.images.ImageClass;
 import datamaskin.orders.FinalOrderOverview;
-import datamaskin.orders.Order;
 import datamaskin.product.Product;
 import datamaskin.Page;
 import javafx.fxml.FXML;
@@ -78,7 +77,7 @@ public class EnduserSendOrderPageController implements Initializable {
     }
 
     @FXML void sendOrder() throws IOException {
-        String orderID = Order.generateOrderID();
+        String orderID = FinalOrderOverview.generateOrderID();
         FinalOrderOverview aFinalOrderOverview = createOrderObjectFromGUI(orderID);
 
         if(aFinalOrderOverview != null) {
@@ -162,7 +161,7 @@ public class EnduserSendOrderPageController implements Initializable {
     // metode for å gå tilbake til forrige side
     @FXML void goBack() throws IOException {
         Stage primaryStage = (Stage) btnGoBack.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("ExtraOrderEnduserPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("EnduserExtraOrderPage.fxml"));
         Page.toExtraOrderEnduserPage(primaryStage, root);
         primaryStage.show();
     }

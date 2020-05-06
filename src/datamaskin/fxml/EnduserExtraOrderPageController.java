@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 import static datamaskin.cart.Cart.findExpectedLifetime;
 import static datamaskin.product.ProductCategories.*;
 
-public class ExtraOrderEnduserPageController implements Initializable {
+public class EnduserExtraOrderPageController implements Initializable {
     //Handlekurv på høyre side
     @FXML private TableView<Product> tableviewCart;
     @FXML private TableColumn<Product, String> nameColumn;
@@ -50,7 +50,7 @@ public class ExtraOrderEnduserPageController implements Initializable {
     private Page scene = new Page();
     private Cart shoppingCart = new Cart();
 
-    public ExtraOrderEnduserPageController() throws FileNotFoundException {}
+    public EnduserExtraOrderPageController() throws FileNotFoundException {}
 
     //metode som legger til elementer i handlekurven, dersom de er huket av
     @FXML void addToCart() throws NullPointerException {

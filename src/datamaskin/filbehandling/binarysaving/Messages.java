@@ -8,7 +8,7 @@ public class Messages {
     public static void showErrorDialog(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Feil!");
-        alert.setHeaderText("Ugyldig data!");
+        alert.setHeaderText("Ugyldige data!");
         alert.setContentText(message);
 
         alert.showAndWait();
@@ -18,7 +18,7 @@ public class Messages {
     public static void showSuccessDialog(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Produktregister");
-        alert.setHeaderText("Operasjon vellykket");
+        alert.setHeaderText("Operasjonen var vellykket");
         alert.setContentText(message);
 
         alert.showAndWait();

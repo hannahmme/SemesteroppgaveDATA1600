@@ -23,7 +23,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import static datamaskin.cart.Cart.*;
 import static datamaskin.product.ProductCategories.*;
-import static datamaskin.product.ProductRegister.*;
 
 public class EnduserPageController implements Initializable {
     @FXML private Button btnGoBack, btnGoToPay;
@@ -151,7 +150,7 @@ public class EnduserPageController implements Initializable {
             return;
         }
         Stage primaryStage = (Stage) btnGoToPay.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("ExtraOrderEnduserPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("EnduserExtraOrderPage.fxml"));
         Page.toExtraOrderEnduserPage(primaryStage, root);
     }
 

@@ -33,7 +33,7 @@ public class ProductRegister implements Serializable {
         tableview.setItems(emptyList);
     }
 
-    //metode som gjør det mulig å slette et produkt i listen og i produktkategoriene
+    //metode som gjør det mulig å slette et produkt i registeret
     public static void deleteElement(Product itemToDelete){
         if(itemToDelete == null){
             return;

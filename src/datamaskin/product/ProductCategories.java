@@ -19,6 +19,7 @@ public class ProductCategories implements Serializable {
     public static ObservableList<Product> Color = FXCollections.observableArrayList();          // Farge
     public static ObservableList<Product> OtherProducts = FXCollections.observableArrayList();  // Andre produkter som mus, tastatur, skjerm osv
 
+    // metode som sletter all data fra kategoriene
     public static void deleteDataFromCategories(){
         GraphicCard.clear();
         Memorycard.clear();
@@ -31,6 +32,7 @@ public class ProductCategories implements Serializable {
         OtherProducts.clear();
     }
 
+    // metode som legger til produkter i hver kategori basert på produktene som ligger i Produktregisteret
     public static void addDataToCategories(){
             for(Product aProduct : ProductRegister) {
                 switch (aProduct.getCategory()) {

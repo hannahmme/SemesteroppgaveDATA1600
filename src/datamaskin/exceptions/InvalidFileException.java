@@ -1,4 +1,4 @@
-package datamaskin.exceptions;
+/*package datamaskin.exceptions;
 
 import java.io.IOException;
 
@@ -7,3 +7,4 @@ public class InvalidFileException  extends IOException {
         super(msg);
     }
 }
+*/

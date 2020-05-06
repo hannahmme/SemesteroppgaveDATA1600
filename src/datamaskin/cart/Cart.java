@@ -7,6 +7,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 
+// klasse som representerer en midletidig handlekurv - før sluttbruker sender ordren
 public class Cart {
     public transient static ObservableList<Product> Cart = FXCollections.observableArrayList();
 

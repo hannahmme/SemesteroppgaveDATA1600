@@ -12,7 +12,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.concurrent.WorkerStateEvent;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,17 +21,29 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.util.ResourceBundle;
 import static datamaskin.product.ProductCategories.*;
+import static datamaskin.product.ProductRegister.*;
 
 public class ProductAdmPageController implements Initializable {
-    @FXML private Button toSuperUserPage, btnAddComponent, btnDeleteComponent;;
-    @FXML private Label wrongInput;
+    @FXML private Button toSuperUserPage, btnAddComponent, btnDeleteComponent;
+    @FXML private Label wrongInput, txtInfoMessage;
+    @FXML private TextField txtComponentname, txtDescription, txtLifetime, txtPrice, txtSearch;
+    @FXML private MenuButton menuDropdown;
+    @FXML private ThreadReaderBinary threadReaderBinaryTask;
+    @FXML private ChoiceBox<String> cboxCategory;
+    @FXML private ComboBox<String> cBoxFilter;
+
+    @FXML private TableView<Product> componentTableview;
+    @FXML private TableColumn<Product, String> nameColumn;
+    @FXML private TableColumn<Product, String> descriptionColumn;
+    @FXML private TableColumn<Product, Integer> lifetimeColumn;
+    @FXML private TableColumn<Product, Double> priceColumn;
+    @FXML private TableColumn<Product, String> categoryColumn;
 
     private final ConvertersWithErrorHandling.IntegerStringConverter intStrConverter
             = new ConvertersWithErrorHandling.IntegerStringConverter();
@@ -40,20 +51,6 @@ public class ProductAdmPageController implements Initializable {
             = new ConvertersWithErrorHandling.DoubleFromStringConverter();
 
     private Stage stage;
-
-    @FXML private ThreadReaderBinary threadReaderBinaryTask;
-    @FXML private TextField txtComponentname, txtDescription, txtLifetime, txtPrice, txtSearch;
-    @FXML private ChoiceBox<String> cboxCategory;
-    @FXML private ComboBox<String> cBoxFilter;
-    @FXML private MenuButton menuDropdown;
-
-    @FXML private Text txtInfoMessage;
-    @FXML private TableView<Product> componentTableview;
-    @FXML private TableColumn<Product, String> nameColumn;
-    @FXML private TableColumn<Product, String> descriptionColumn;
-    @FXML private TableColumn<Product, Integer> lifetimeColumn;
-    @FXML private TableColumn<Product, Double> priceColumn;
-    @FXML private TableColumn<Product, String> categoryColumn;
 
     public static ProductRegister aRegister = new ProductRegister();
 
@@ -96,8 +93,6 @@ public class ProductAdmPageController implements Initializable {
         String priceString;
         double price;
         String category;
-        //Todo: Denne er satt til "missing-Image" enn så lenge, til vi får lagt til at admin
-        //todo: kan velge selv hvilket bilde som skal være når de oppretter nye komponenter
         String imageUri = "./src/Datamaskin/images/missingImage.png";
 
         if (isEmptyOrBlank(txtComponentname) ||
@@ -136,9 +131,7 @@ public class ProductAdmPageController implements Initializable {
                     throw new IllegalArgumentException("Vennligst velg kategori");
                 }
 
-                Product aProduct = new Product(name, description, lifetime, price, category, imageUri);
-                ProductCategories.setData(aProduct, category);
-                return aProduct;
+                return new Product(name, description, lifetime, price, category, imageUri);
             } catch (InvalidPriceException | IllegalArgumentException | InvalidLifetimeException e) {
                 wrongInput.setText(e.getMessage());
             }
@@ -158,34 +151,12 @@ public class ProductAdmPageController implements Initializable {
         if (deleteItem != null) {
             boolean deleteConfirmed = Page.alertConfirmed("Ønsker du å slette " + deleteItem.getName() + " fra listen?");
             if (deleteConfirmed) {
-                ProductRegister.deleteElement(deleteItem);
-                deleteFromRegister(deleteItem);
+                deleteElement(deleteItem);
+                ProductRegister.remove(deleteItem);
             }
         }
     }
 
-    // elementet som slettes i TV slettes fra riktig array/ hashmap så det ikke kommer opp i choiceboksene hos sluttbruker
-    private void deleteFromRegister(Product aProduct) {
-        if (GraphicCard.contains(aProduct)) {
-            GraphicCard.remove(aProduct);
-        } else if (Memorycard.contains(aProduct)) {
-            Memorycard.remove(aProduct);
-        } else if (Harddrive.contains(aProduct)) {
-            Harddrive.remove(aProduct);
-        } else if (Processor.contains(aProduct)) {
-            Processor.remove(aProduct);
-        } else if (Power.contains(aProduct)) {
-            Power.remove(aProduct);
-        } else if (Soundcard.contains(aProduct)) {
-            Soundcard.remove(aProduct);
-        } else if (OpticalDisk.contains(aProduct)) {
-            OpticalDisk.remove(aProduct);
-        } else if (Color.contains(aProduct)) {
-            Color.remove(aProduct);
-        } else if (OtherProducts.contains(aProduct)) {
-            OtherProducts.remove(aProduct);
-        }
-    }
 
     @Override public void initialize(URL url, ResourceBundle rb) {
         lifetimeColumn.setCellFactory(TextFieldTableCell.forTableColumn(intStrConverter));
@@ -200,7 +171,7 @@ public class ProductAdmPageController implements Initializable {
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("Category"));
 
-        ProductRegister.setComponentToTV(componentTableview);
+        setComponentToTV(componentTableview);
 
         ObservableList<String> filterChoices = FXCollections.observableArrayList();
         filterChoices.addAll("Navn", "Kategori", "Levetid", "Pris");
@@ -221,7 +192,7 @@ public class ProductAdmPageController implements Initializable {
 
     // kode for å komme tilbake til hovedmenyen for superbruker
     @FXML void toSuperUserPage() throws IOException {
-        if (ProductRegister.allCategoriesArePresent()) {
+        if (allCategoriesArePresent()) {
             Stage primaryStage = (Stage) toSuperUserPage.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
             Page.toSuperuserpage(primaryStage, root);
@@ -245,12 +216,14 @@ public class ProductAdmPageController implements Initializable {
             btnAddComponent, btnDeleteComponent, toSuperUserPage};
     }
 
-    //metode som leser fra binær fil med tråd - hannah
-    @FXML void openFromFile(ActionEvent event) {
+    //metode som leser fra binær fil med tråd
+    @FXML void openFromFile() {
         Path filePathToRead = FileHandler.getFilePathToJobj(stage);
         if (filePathToRead != null) {
             txtInfoMessage.setText("Laster inn valgt fil....");
-            ProductRegister.clearTableView(componentTableview);
+            clearTableView(componentTableview);
+            removeAll();
+
             threadReaderBinaryTask = new ThreadReaderBinary(filePathToRead);
             threadReaderBinaryTask.setOnSucceeded(this::threadDoneReadingBinary);
             threadReaderBinaryTask.setOnFailed(this::threadFailedReadingBinary);
@@ -279,23 +252,23 @@ public class ProductAdmPageController implements Initializable {
     //når tråden er ferdig med oppgaven, gjør den dette:
     private void threadDoneReadingBinary(WorkerStateEvent event) {
         txtInfoMessage.setText("");
-        if (ProductRegister.ProductRegister.isEmpty()) {
+        if (ProductRegister.isEmpty()) {
             txtInfoMessage.setText("Filen du lastet inn inneholder ingen produkter.");
         }
         toggleElements(generateListOfControlElements(), false);
-        ProductRegister.setComponentToTV(componentTableview);
+        setComponentToTV(componentTableview);
     }
 
     //hvis tråden feilet i oppgaven (lese fra binær fil)
     private void threadFailedReadingBinary(WorkerStateEvent event) {
-        ProductRegister.clearTableView(componentTableview);
+        clearTableView(componentTableview);
         toggleElements(generateListOfControlElements(), false);
         txtInfoMessage.setText("Det oppsto en feil. Kunne ikke hente ut ordreoversikt.");
         System.out.println("Feil i henting av binær fil. Kunne ikke lese");
     }
 
     //lagre til binær fil
-    @FXML void saveToFile(ActionEvent event) {
+    @FXML void saveToFile() {
         FileHandler.saveFile(stage, aRegister);
     }
 
@@ -338,13 +311,13 @@ public class ProductAdmPageController implements Initializable {
     }
 
     // kode for filtrering
-    @FXML void searchTxtEntered(KeyEvent event) throws IOException {
+    @FXML void searchTxtEntered() {
         filter();
     }
 
-    private void filter() throws IOException {
+    private void filter() {
         // oppretter en ny liste for filtrert data med alle produktene
-        FilteredList<Product> filteredData = new FilteredList<>((ProductRegister.ProductRegister), p -> true);
+        FilteredList<Product> filteredData = new FilteredList<>((ProductRegister), p -> true);
 
         // hver gang verdien i søkefeltet endres skjer følgende
         txtSearch.textProperty().addListener((observable, oldVerdi, newVerdi) -> {
@@ -380,13 +353,9 @@ public class ProductAdmPageController implements Initializable {
                     if (cBoxFilter.getValue().toLowerCase().equals("pris")) {
                         if (String.valueOf(aProduct.getPrice()).startsWith(smallLetters)) {
                             if (smallLetters.endsWith(".0")) {
-                                if (String.valueOf(aProduct.getPrice()).matches(smallLetters)) {
-                                    return true;
-                                }
+                                return String.valueOf(aProduct.getPrice()).matches(smallLetters);
                             } else {
-                                if (String.valueOf(aProduct.getPrice()).matches(smallLetters + ".0")) {
-                                    return true;
-                                }
+                                return String.valueOf(aProduct.getPrice()).matches(smallLetters + ".0");
                             }
                         }
                     }

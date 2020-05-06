@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import static datamaskin.product.ProductCategories.*;
 
 public class ProductRegister implements Serializable {
     private static final long serialVersionUID = 1;
@@ -16,13 +17,11 @@ public class ProductRegister implements Serializable {
     public static transient ObservableList<Product> ProductRegister = FXCollections.observableArrayList();
     private static ObservableList<Product> emptyList = FXCollections.observableArrayList();
 
-    public List<Product> getRegister(){ return ProductRegister;}
-
     public void addElement(Product aProduct) {
         ProductRegister.add(aProduct);
     }
 
-    public void removeAll() {
+    public static void removeAll() {
         ProductRegister.clear();
     }
 
@@ -34,7 +33,7 @@ public class ProductRegister implements Serializable {
         tableview.setItems(emptyList);
     }
 
-    //metode som gjør det mulig å slette et produkt i listen - Hannah
+    //metode som gjør det mulig å slette et produkt i listen og i produktkategoriene
     public static void deleteElement(Product itemToDelete){
         if(itemToDelete == null){
             return;

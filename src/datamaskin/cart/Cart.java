@@ -108,7 +108,6 @@ public class Cart {
             lifetime += aProduct.getLifetime();
         }
         expectedLifetime =  lifetime / count;
-        double roundedExpectedLifetime = Math.round(expectedLifetime * 10) / 10.0;
-        return roundedExpectedLifetime;
+        return Math.round(expectedLifetime * 10) / 10.0;
     }
 }

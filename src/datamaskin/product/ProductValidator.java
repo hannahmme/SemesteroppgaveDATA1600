@@ -8,8 +8,9 @@ public class ProductValidator {
         return false;
     }
 
+    // Beskrivelsen kan starte eller slutte med tall, men kan ikke inneholde kun tall
     public static boolean validateDescription(String description) throws IllegalArgumentException {
-        if (description.matches("[a-zA-ZæøåÆØÅ]{1}[a-zA-ZæøåÆØÅ.! \\-0-9]{1,199}")) {
+        if (description.matches("[0-9-a-zA-ZæøåÆØÅ]{1}[a-zA-ZæøåÆØÅ.,! 0-9]{1,199}") && !description.matches("[0-9]{1,}")) {
             return true;
         }
         return false;

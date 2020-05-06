@@ -23,6 +23,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import static datamaskin.cart.Cart.*;
 import static datamaskin.product.ProductCategories.*;
+import static datamaskin.product.ProductRegister.*;
 
 public class EnduserPageController implements Initializable {
     @FXML private Button btnGoBack, btnGoToPay;
@@ -62,11 +63,10 @@ public class EnduserPageController implements Initializable {
     private void createCartObjectsFromGUI() {
         if (Cart.isEmpty()) {  // kun hvis handlekurven er tom skal det lages helt nye produkter som legges til
             createProducts();
-            lblExpectedLifetime.setText(findExpectedLifetime() + " år");
         } else {
             updateCart();               // oppdater alltid handlekurven ut fra det som er i choicebox
-            lblExpectedLifetime.setText(findExpectedLifetime() + " år");
         }
+        lblExpectedLifetime.setText(findExpectedLifetime() + " år");
     }
 
     // sjekke om handlekurven allerede har komponenter, da må de slettes for å legge til nye komponenter som bruker vil endre til
@@ -104,14 +104,16 @@ public class EnduserPageController implements Initializable {
 
         image.setImageView(mainpageImageView, homeImage);
 
-        setProducts(cBoxGraphicCard, GraphicCard, lblInfoGraphicCard);
-        setProducts(cBoxMemorycard, Memorycard, lblInfoMemorycard);
-        setProducts(cBoxHarddrive, Harddrive, lblInfoHarddrive);
-        setProducts(cBoxProcessor, Processor, lblInfoProcessor);
-        setProducts(cBoxPower, Power, lblInfoPower);
-        setProducts(cBoxSoundcard, Soundcard, lblInfoSoundcard);
-        setProducts(cBoxOpticaldisk, OpticalDisk, lblInfoOpticaldisk);
-        setProducts(cBoxColor, Color, lblInfoColor);
+        deleteDataFromCategories();
+        addDataToCategories();
+        setCBox(cBoxGraphicCard, GraphicCard, lblInfoGraphicCard);
+        setCBox(cBoxMemorycard, Memorycard, lblInfoMemorycard);
+        setCBox(cBoxHarddrive, Harddrive, lblInfoHarddrive);
+        setCBox(cBoxProcessor,Processor, lblInfoProcessor);
+        setCBox(cBoxPower, Power, lblInfoPower);
+        setCBox(cBoxSoundcard, Soundcard, lblInfoSoundcard);
+        setCBox(cBoxOpticaldisk, OpticalDisk, lblInfoOpticaldisk);
+        setCBox(cBoxColor, Color, lblInfoColor);
 
         // kaller metode for å velge riktige choicebokser/ sette totalpris når man går tilbake fra neste side
         if (!Cart.isEmpty()) {
@@ -121,10 +123,9 @@ public class EnduserPageController implements Initializable {
         }
     }
 
-    // metode som setter comboboxer og lbl til verdier fra liste
-    public void setProducts(ComboBox<Product> cBox, ObservableList<Product> aCategory, Label infoLabel){
-        cBox.setItems(aCategory);
-        formatComboBoxDexcription(cBox, infoLabel);
+    private void setCBox(ComboBox<Product> aCbox, ObservableList<Product> aList, Label aLabel){
+        aCbox.setItems(aList);
+        formatComboBoxDexcription(aCbox, aLabel);
     }
 
     // metode for å sjekke om alle choiceboksene er valgt

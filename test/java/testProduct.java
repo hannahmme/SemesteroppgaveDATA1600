@@ -26,6 +26,8 @@ public class testProduct {
         assertTrue(ProductValidator.validateDescription("Beste på markedet"));
         assertTrue(ProductValidator.validateDescription("Superbra tastatur."));
         assertTrue(ProductValidator.validateDescription("Bedre enn noen andre!"));
+        assertTrue(ProductValidator.validateDescription("150 GB"));
+        assertTrue(ProductValidator.validateDescription("Bra minne, GB 100"));
     }
 
     @Test

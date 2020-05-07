@@ -22,10 +22,10 @@ public class testOrderOverview {
 
     @Test
     public void testValidDate() {
-        assertTrue(OrderValidator.validateDate("2020-08-22"));
+        assertTrue(OrderValidator.validateDate("2020-02-29"));
         assertTrue(OrderValidator.validateDate("2019-01-01"));
         assertTrue(OrderValidator.validateDate("2020-12-31"));
-        assertTrue(OrderValidator.validateDate("2016-01-31"));
+        assertTrue(OrderValidator.validateDate("2010-01-01"));
     }
 
     @Test
@@ -33,8 +33,8 @@ public class testOrderOverview {
         assertFalse(OrderValidator.validateDate("-2020-02-02"));
         assertFalse(OrderValidator.validateDate("20190820"));
         assertFalse(OrderValidator.validateDate("2020.01.01"));
-        assertFalse(OrderValidator.validateDate("2020-02-32"));
-        assertFalse(OrderValidator.validateDate("2013-08-20"));
+        assertFalse(OrderValidator.validateDate("2019-02-29"));
+        assertFalse(OrderValidator.validateDate("2009-08-20"));
         assertFalse(OrderValidator.validateDate("2020-13-01"));
     }
 

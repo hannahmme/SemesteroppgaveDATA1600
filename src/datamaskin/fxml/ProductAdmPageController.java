@@ -239,16 +239,9 @@ public class ProductAdmPageController implements Initializable {
 
     //Metode som setter disabled på elementer
     private void toggleElements(Control[] elementList, boolean isDisabled){
-        //Les om denne her https://www.geeksforgeeks.org/arraylist-foreach-method-in-java/
-        //Todo: for å bruke lambda, er man nødt til å ha List<Control> og ikke primitiv liste Control[]
-        //todo: Usikker på om vi skal gå for denne metoden, eller lambda
-
-        //elementList.forEach(element -> element.setDisable(isDisabled));
-
         for(Control element : elementList){
             element.setDisable(isDisabled);
         }
-
     }
 
     //når tråden er ferdig med oppgaven, gjør den dette:

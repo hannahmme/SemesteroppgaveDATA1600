@@ -55,5 +55,10 @@
       <Line endX="-25.0" endY="599.0" layoutX="650.0" layoutY="71.0" startX="-25.0" startY="-4.0" />
       <Text fx:id="txtTblHeader" layoutX="641.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spesifikasjon av ordre" wrappingWidth="406.8289794921875" />
       <Line endX="575.0" layoutX="675.0" layoutY="67.0" startX="-675.0" />
+      <Text layoutX="90.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Velg en kategori å søke i:" wrappingWidth="158.9599609375">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

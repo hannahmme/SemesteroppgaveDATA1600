@@ -32,7 +32,8 @@ import static datamaskin.product.ProductRegister.*;
 public class ProductAdmPageController implements Initializable {
     @FXML private Button toSuperUserPage, btnAddComponent, btnDeleteComponent;
     @FXML private Label wrongInput, txtInfoMessage;
-    @FXML private TextField txtComponentname, txtDescription, txtLifetime, txtPrice, txtSearch;
+    @FXML private TextField txtComponentname, txtLifetime, txtPrice, txtSearch;
+    @FXML private TextArea txtDescription;
     @FXML private MenuButton menuDropdown;
     @FXML private ThreadReaderBinary threadReaderBinaryTask;
     @FXML private ChoiceBox<String> cboxCategory;
@@ -95,8 +96,7 @@ public class ProductAdmPageController implements Initializable {
         String category;
         String imageUri = "./src/Datamaskin/images/missingImage.png";
 
-        if (isEmptyOrBlank(txtComponentname) ||
-                isEmptyOrBlank(txtDescription) ||
+        if (isEmptyOrBlank(txtComponentname) ||  txtDescription.getText() == "" || txtDescription.getText() == " " ||
                 isEmptyOrBlank(txtLifetime) ||
                 isEmptyOrBlank(txtPrice) ||
                 cboxCategory.getSelectionModel().getSelectedItem() == null) {

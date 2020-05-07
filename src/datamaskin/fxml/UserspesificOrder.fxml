@@ -12,37 +12,37 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="datamaskin.fxml.UserspesificOrderController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="datamaskin.fxml.UserspesificOrderController">
     <children>
         <Button fx:id="toMainpage" layoutX="26.0" layoutY="35.0" mnemonicParsing="false" onAction="#toMainpage" onKeyPressed="#btnToMainpageEnter" prefHeight="31.0" prefWidth="140.0" style="-fx-background-color: grey;" text="Gå tilbake" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font></Button>
-        <TableView fx:id="tblAllOrders" layoutX="26.0" layoutY="135.0" onMouseClicked="#selectedOrderItemEvent" prefHeight="489.0" prefWidth="595.0">
+        <TableView fx:id="tblAllOrders" layoutX="14.0" layoutY="135.0" onMouseClicked="#selectedOrderItemEvent" prefHeight="489.0" prefWidth="595.0">
             <columns>
-                <TableColumn fx:id="emailColumn" prefWidth="226.0" text="E-post">
+                <TableColumn fx:id="emailColumn" prefWidth="208.0" text="E-post">
                     <cellValueFactory>
                         <PropertyValueFactory property="Email" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn fx:id="orderIDColumn" prefWidth="138.0" text="OrdreID">
+                <TableColumn fx:id="orderIDColumn" prefWidth="127.0" text="OrdreID">
                     <cellValueFactory>
                         <PropertyValueFactory property="OrderID" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn fx:id="orderDateColumn" prefWidth="122.0" text="Bestillingsdato">
+                <TableColumn fx:id="orderDateColumn" prefWidth="133.0" text="Bestillingsdato">
                     <cellValueFactory>
                         <PropertyValueFactory property="OrderDate" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn fx:id="totalPriceColumn" prefWidth="106.0" text="Totalpris (kr)">
+                <TableColumn fx:id="totalPriceColumn" prefWidth="121.0" text="Totalpris (kr)">
                     <cellValueFactory>
                         <PropertyValueFactory property="TotalPrice" />
                     </cellValueFactory>
                 </TableColumn>
             </columns>
         </TableView>
-      <TableView fx:id="tblOrderInfo" layoutX="661.0" layoutY="135.0" prefHeight="489.0" prefWidth="584.0">
+      <TableView fx:id="tblOrderInfo" layoutX="634.0" layoutY="135.0" prefHeight="489.0" prefWidth="595.0">
         <columns>
             <TableColumn fx:id="productName" prefWidth="106.857177734375" text="Produktnavn">
                 <cellValueFactory>
@@ -54,12 +54,12 @@
                     <PropertyValueFactory property="Description" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="productLifetime" prefWidth="71.0" text="Levetid (år)">
+            <TableColumn fx:id="productLifetime" prefWidth="93.0" text="Levetid (år)">
                 <cellValueFactory>
                     <PropertyValueFactory property="Lifetime" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="productPrice" prefWidth="96.0" text="Pris (kr)">
+            <TableColumn fx:id="productPrice" prefWidth="82.0" text="Pris (kr)">
                 <cellValueFactory>
                     <PropertyValueFactory property="Price" />
                 </cellValueFactory>
@@ -71,8 +71,8 @@
          <font>
             <Font name="Arial Bold" size="36.0" />
          </font></Text>
-      <Line endX="591.0" layoutX="648.0" layoutY="89.0" startX="-634.0" />
-      <Line endX="-3.0" endY="563.0" layoutX="645.0" layoutY="111.0" startX="-3.0" startY="-22.5" />
-      <Text fx:id="txtTblHeader" layoutX="665.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ordreinnhold" wrappingWidth="330.7081298828125" />
+      <Line endX="602.0" layoutX="648.0" layoutY="89.0" startX="-648.0" />
+      <Line endY="578.21875" layoutX="625.0" layoutY="111.0" startX="-3.0" startY="-22.5" />
+      <Text fx:id="txtTblHeader" layoutX="634.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ordreinnhold" wrappingWidth="330.7081298828125" />
     </children>
 </AnchorPane>

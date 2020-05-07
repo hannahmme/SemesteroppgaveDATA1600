@@ -17,34 +17,34 @@
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font></Button>
-      <Text layoutX="1077.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logget inn som admin" wrappingWidth="158.9599609375" />
-      <ComboBox fx:id="filterCBox" layoutX="304.0" layoutY="85.0" prefWidth="150.0" promptText="Velg kolonne" />
-      <TextField fx:id="txtFiltering" layoutX="463.0" layoutY="85.0" onKeyTyped="#searchTxtEntered" promptText="Skriv inn for å filtrere" />
-      <TableView fx:id="allOrders" layoutX="14.0" layoutY="121.0" onMouseClicked="#selectedItemEvent" prefHeight="513.0" prefWidth="636.0">
+      <Text layoutX="1078.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logget inn som admin" wrappingWidth="158.9599609375" />
+      <ComboBox fx:id="filterCBox" layoutX="257.0" layoutY="85.0" prefWidth="150.0" promptText="Velg kolonne" />
+      <TextField fx:id="txtFiltering" layoutX="422.0" layoutY="85.0" onKeyTyped="#searchTxtEntered" promptText="Skriv inn for å filtrere" />
+      <TableView fx:id="allOrders" layoutX="14.0" layoutY="121.0" onMouseClicked="#selectedItemEvent" prefHeight="513.0" prefWidth="595.0">
         <columns>
-          <TableColumn fx:id="emailColumn" prefWidth="212.0" text="E-post">
+          <TableColumn fx:id="emailColumn" prefWidth="223.0" text="E-post">
               <cellValueFactory>
                   <PropertyValueFactory property="Email" />
               </cellValueFactory>
           </TableColumn>
-          <TableColumn fx:id="orderIDColumn" prefWidth="145.0" text="OrdreID">
+          <TableColumn fx:id="orderIDColumn" prefWidth="113.0" text="OrdreID">
               <cellValueFactory>
                   <PropertyValueFactory property="OrderID" />
               </cellValueFactory>
           </TableColumn>
-            <TableColumn fx:id="orderDateColumn" prefWidth="144.0" text="Bestillingsdato">
+            <TableColumn fx:id="orderDateColumn" prefWidth="123.0" text="Bestillingsdato">
                 <cellValueFactory>
                     <PropertyValueFactory property="OrderDate" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="totalPriceColumn" prefWidth="132.0" text="Totalpris (kr)">
+            <TableColumn fx:id="totalPriceColumn" prefWidth="129.0" text="Totalpris (kr)">
                 <cellValueFactory>
                     <PropertyValueFactory property="TotalPrice" />
                 </cellValueFactory>
             </TableColumn>
         </columns>
       </TableView>
-      <TableView fx:id="tblOrderContent" layoutX="682.0" layoutY="121.0" prefHeight="513.0" prefWidth="560.0">
+      <TableView fx:id="tblOrderContent" layoutX="641.0" layoutY="121.0" prefHeight="513.0" prefWidth="595.0">
         <columns>
           <TableColumn fx:id="productName" prefWidth="131.0" text="Produktnavn" />
           <TableColumn fx:id="productInfo" prefWidth="258.0" text="Beskrivelse" />
@@ -52,8 +52,8 @@
             <TableColumn fx:id="productPrice" prefWidth="65.0" text="Pris (kr)" />
         </columns>
       </TableView>
-      <Line endX="-25.0" endY="574.0" layoutX="700.0" layoutY="71.0" startX="-25.0" startY="-4.0" />
-      <Text fx:id="txtTblHeader" layoutX="694.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spesifikasjon av ordre" wrappingWidth="406.8289794921875" />
-      <Line endX="568.0" layoutX="675.0" layoutY="67.0" startX="-667.0" />
+      <Line endX="-25.0" endY="599.0" layoutX="650.0" layoutY="71.0" startX="-25.0" startY="-4.0" />
+      <Text fx:id="txtTblHeader" layoutX="641.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spesifikasjon av ordre" wrappingWidth="406.8289794921875" />
+      <Line endX="575.0" layoutX="675.0" layoutY="67.0" startX="-675.0" />
    </children>
 </AnchorPane>

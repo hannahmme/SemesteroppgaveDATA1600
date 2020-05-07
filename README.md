@@ -42,7 +42,7 @@ Dette er vår semesteroppgave i Programutvikling 1600.
   Brukeren vil gå gjennom tre ulike sider ved konfigurering av sin pc.
   - På første side må sluttbruker velge essensielle komponenter. Disse er listet opp i de ulike nedtrekkslistene på venstre side. På høyre side vil det være en handlekurv som oppdateres når bruker har valgt en verdi i alle boksene og trykket på “Oppdater handlekurv med valgte komponenter”. Dersom ikke alle boksene har en verdi vil det komme ut en feilmelding. Boksene kan også endres. Totalpris og forventet levetid for valgte komponenter vises under handlekurven.
   - På neste side kan bruker velge å legge til ekstra produkter om det er ønskelig. Ekstra produkter kan slettes fra listen, mens essensielle komponenter kun kan endres fra den første brukersiden. Handlekurv, totalpris og levetid vises fortsatt på høyre side.
-  - På den siste siden kan bruker ferdigstille ordren. Her er det nødvendig å logge inn med en epost og et passord. Dersom man ikke har handlet her før kan man opprette en ny bruker. Når innloggingsdetaljer er skrevet inn korrekt og bruker har sendt bestillingen vil det kun være mulig å opprette nye brukere eller å gå tilbake til startsiden.
+  - På den siste siden kan bruker ferdigstille ordren. Her er det nødvendig å logge inn med en epost og et passord. Dersom man ikke har handlet her før kan man opprette en ny bruker. Når innloggingsdetaljer er skrevet inn korrekt og bruker har sendt bestillingen vil det kun være mulig å gå tilbake til startsiden.
   
   
   ####Ordre

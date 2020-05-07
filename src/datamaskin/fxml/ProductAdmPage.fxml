@@ -22,17 +22,17 @@
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font></Button>
-      <Text layoutX="22.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Komponentnavn" />
-      <TextField fx:id="txtComponentname" layoutX="22.0" layoutY="132.0" prefHeight="31.0" prefWidth="187.0" />
-      <Text layoutX="21.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beskrivelse av komponent" />
-       <TextArea fx:id="txtDescription" layoutX="22.0" layoutY="220.0" prefHeight="115.0" prefWidth="187.0" wrapText="true"/>
-       <Text layoutX="22.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Levetid (i år)" />
-      <TextField fx:id="txtLifetime" layoutX="22.0" layoutY="357.0" prefHeight="31.0" prefWidth="187.0" />
-      <Text layoutX="23.0" layoutY="427.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pris (i KR)" />
-      <TextField fx:id="txtPrice" layoutX="22.0" layoutY="431.0" prefHeight="31.0" prefWidth="187.0" />
-      <Text layoutX="21.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kategori" />
-      <ChoiceBox fx:id="cboxCategory" layoutX="22.0" layoutY="509.0" prefHeight="31.0" prefWidth="187.0" />
-      <Button fx:id="btnAddComponent" layoutX="26.0" layoutY="604.0" mnemonicParsing="false" onAction="#addComponent" onKeyPressed="#btnAddProdEnter" prefHeight="51.0" prefWidth="187.0" style="-fx-background-color: steelblue;" text="Legg til komponent" textFill="WHITE" wrapText="true">
+      <Text layoutX="22.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Komponentnavn" />
+      <TextField fx:id="txtComponentname" layoutX="22.0" layoutY="126.0" prefHeight="31.0" prefWidth="187.0" />
+      <Text layoutX="22.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beskrivelse av komponent" />
+       <TextArea fx:id="txtDescription" layoutX="22.0" layoutY="194.0" prefHeight="115.0" prefWidth="187.0" wrapText="true" />
+       <Text layoutX="22.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Levetid (i år)" />
+      <TextField fx:id="txtLifetime" layoutX="22.0" layoutY="345.0" prefHeight="31.0" prefWidth="187.0" />
+      <Text layoutX="22.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pris (i KR)" />
+      <TextField fx:id="txtPrice" layoutX="22.0" layoutY="415.0" prefHeight="31.0" prefWidth="187.0" />
+      <Text layoutX="22.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kategori" />
+      <ChoiceBox fx:id="cboxCategory" layoutX="22.0" layoutY="488.0" prefHeight="31.0" prefWidth="187.0" />
+      <Button fx:id="btnAddComponent" layoutX="22.0" layoutY="604.0" mnemonicParsing="false" onAction="#addComponent" onKeyPressed="#btnAddProdEnter" prefHeight="51.0" prefWidth="187.0" style="-fx-background-color: steelblue;" text="Legg til komponent" textFill="WHITE" wrapText="true">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font></Button>
@@ -79,7 +79,7 @@
          </font></Button>
       <Text layoutX="921.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logget inn som admin" />
        <Line endX="-18.0" endY="-8.5" layoutX="257.0" layoutY="71.0" startX="-18.0" startY="588.0" />
-       <Label fx:id="wrongInput" layoutX="26.0" layoutY="550.0" prefHeight="43.0" prefWidth="187.0" textFill="indianred" wrapText="true" />
+       <Label fx:id="wrongInput" layoutX="13.0" layoutY="524.0" prefHeight="74.0" prefWidth="216.0" textFill="indianred" wrapText="true" />
        <Line endX="1111.0" layoutX="119.0" layoutY="62.0" startX="-100.0" />
       <Label fx:id="txtInfoMessage" layoutX="271.0" layoutY="77.0" prefHeight="21.0" prefWidth="557.0" wrapText="true" />
 

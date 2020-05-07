@@ -19,9 +19,10 @@ public class FileHandler {
             String fileExt = getFileExt(selectedFile);
             FileSaverJobj saver = null;
 
-            switch (fileExt) {
-                case ".jobj" : saver = new FileSaverJobj(); break;
-                default : Messages.showErrorDialog("Du kan bare lagre til jobj filer.");
+            if (".jobj".equals(fileExt)) {
+                saver = new FileSaverJobj();
+            } else {
+                Messages.showErrorDialog("Du kan bare lagre til jobj filer.");
             }
 
             if(saver != null) {
@@ -42,10 +43,10 @@ public class FileHandler {
         if (selectedFile != null) {
             String fileExt = getFileExt(selectedFile);
 
-            switch (fileExt) {
-                case ".jobj" : return selectedFile.toPath();
-                default : return null;
+            if (".jobj".equals(fileExt)) {
+                return selectedFile.toPath();
             }
+            return null;
         }
         return null;
     }

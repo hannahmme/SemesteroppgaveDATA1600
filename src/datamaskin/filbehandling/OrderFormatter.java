@@ -5,7 +5,7 @@ import datamaskin.product.Product;
 import java.util.List;
 
 public class OrderFormatter {
-    private static String DELIMITER = ";";
+    private static final String DELIMITER = ";";
 
     //metode som tar imot en liste av produkter (her regnes det som en ferdig ordre som sendes inn)
     //metoden gjør om hvert produkt i listen til en String og "appender" det til en større String.
@@ -25,18 +25,6 @@ public class OrderFormatter {
                 DELIMITER + product.getLifetime() + DELIMITER + product.getPrice() +
                 DELIMITER + product.getCategory() + DELIMITER + product.getImageUri();
     }
-
-//todo: Kan denne slettes?
-/*    //Metode som gjør om en liste til en String og "appender" den til en StringBuffer.
-    public static StringBuffer formatListOfFinalOrdersToString(List<FinalOrderOverview> listOfFinalOrders) {
-        StringBuffer stringOfFinalOrders = new StringBuffer();
-        for (FinalOrderOverview finalOrder : listOfFinalOrders) {
-            String formattedFinalOrder = formatFinalOrderOverViewToString(finalOrder);
-            stringOfFinalOrders.append(formattedFinalOrder);
-            stringOfFinalOrders.append("\n");
-        }
-        return stringOfFinalOrders;
-    }*/
 
     //Metode som lager bestilling til en String med en DELIMITER som skiller hver attributt-verdi.
     public static String formatFinalOrderOverViewToString(FinalOrderOverview finalOrder) {

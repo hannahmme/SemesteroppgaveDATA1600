@@ -32,16 +32,17 @@ public class NewUserController {
             String password = txtPassword.getText();
             String password2 = txtPassword2.getText();
 
-            // validerer epost og passord og sjekker om de er i riktig format/ lengde
-            if(!CustomerValidator.validatePassword(password)){ // false returneres om passordet er for kort
-                lblErrorPassword.setText("Passordet må fylle følgende krav: Minst 3 tegn langt, uten mellomrom og uten æ, ø og å");}
+            // sjekker om eposten finnes fra før og om passordene er like
+            if(CustomerValidator.validateAvailability(email, CustomerValidator.getCustomerList())){ // true returneres om eposten finnes fra før
+                lblErrorEmail.setText("Epostadressen er allerede tilknyttet en kunde");}
 
             else if(!CustomerValidator.validateEmail(email)){ // false returneres om eposten er ugyldig
                 lblErrorEmail.setText("Skriv inn en gyldig epostadresse");}
 
-            // sjekker om eposten finnes fra før og om passordene er like
-            else if(CustomerValidator.validateAvailability(email, CustomerValidator.getCustomerList())){ // true returneres om eposten finnes fra før
-                lblErrorEmail.setText("Epostadressen er allerede tilknyttet en kunde");}
+            // validerer epost og passord og sjekker om de er i riktig format/ lengde
+            else if(!CustomerValidator.validatePassword(password)){ // false returneres om passordet er for kort
+                lblErrorEmail.setText("");
+                 lblErrorPassword.setText("Passordet må fylle følgende krav: Minst 3 tegn langt, uten mellomrom og uten æ, ø og å");}
 
             else if(!password.equals(password2)){ // false returneres om passordene er ulike
                 lblErrorPassword.setText("Passordene du har skrevet inn er ikke like!");}

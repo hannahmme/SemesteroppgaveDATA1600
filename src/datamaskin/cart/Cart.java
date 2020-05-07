@@ -59,9 +59,9 @@ public class Cart {
     // Henter frem riktig produkt fra listen og legger til produktet i handlekurven
     public static Product addProduct(String productname, ObservableList<Product> aCategorylist) {
         Product aProduct = null;
-        for (int i = 0; i < aCategorylist.size(); i++) {
-            if (productname.equals(aCategorylist.get(i).getName())) {
-                aProduct = aCategorylist.get(i);
+        for (Product product : aCategorylist) {
+            if (productname.equals(product.getName())) {
+                aProduct = product;
             }
         }
         return aProduct;

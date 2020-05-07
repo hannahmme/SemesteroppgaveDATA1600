@@ -81,7 +81,7 @@ public class ProductAdmPageController implements Initializable {
     }
 
     //metode som sjekker om tekstfeltene på adminsiden er tomme eller med white-spaces - Hannah
-    private boolean isEmptyOrBlank(TextField textfield) {
+    private boolean isEmptyOrBlank(TextInputControl textfield) {
         return textfield.getText().isEmpty() || textfield.getText().trim().isEmpty();
     }
 
@@ -96,19 +96,18 @@ public class ProductAdmPageController implements Initializable {
         String category;
         String imageUri = "./src/Datamaskin/images/missingImage.png";
 
-        if (isEmptyOrBlank(txtComponentname) ||
-                txtDescription.getText().isEmpty() ||
-                txtDescription.getText().trim().isEmpty() ||
-                isEmptyOrBlank(txtLifetime) ||
-                isEmptyOrBlank(txtPrice) ||
+        if      (isEmptyOrBlank(txtComponentname)         ||
+                isEmptyOrBlank(txtDescription)            ||
+                isEmptyOrBlank(txtLifetime)               ||
+                isEmptyOrBlank(txtPrice)                  ||
                 cboxCategory.getSelectionModel().getSelectedItem() == null) {
-            wrongInput.setText("Fyll ut alle felter over.");
+                wrongInput.setText("Fyll ut alle felter over.");
 
         } else {
             try {
                 name = txtComponentname.getText();
                 description = txtDescription.getText();
-                lifetimeString = txtLifetime.getText();
+                lifetimeString = txtLifetime.getText().trim();
                 priceString = txtPrice.getText();
                 category = cboxCategory.getSelectionModel().getSelectedItem();
 
@@ -118,12 +117,12 @@ public class ProductAdmPageController implements Initializable {
                 if (!ProductValidator.validateDescription(description)) {
                     throw new IllegalArgumentException("Skriv inn en gyldig beskrivelse: Maks lengde er 80 tegn.");
                 }
-                if (!ProductValidator.validateLifetime(lifetimeString)) {
+                if (!ProductValidator.validateLifetime(lifetimeString.trim())) {
                     throw new InvalidLifetimeException("Skriv inn et gyldig antall år (1-35)");
                 } else {
                     lifetime = Integer.parseInt(txtLifetime.getText());
                 }
-                if (!ProductValidator.validatePrice(priceString)) {
+                if (!ProductValidator.validatePrice(priceString.trim())) {
                     throw new InvalidPriceException("Skriv inn en gyldig pris (0.01-99 999.99)");
                 } else {
                     price = Double.parseDouble(txtPrice.getText());
@@ -133,7 +132,7 @@ public class ProductAdmPageController implements Initializable {
                     throw new IllegalArgumentException("Vennligst velg kategori");
                 }
 
-                return new Product(name, description, lifetime, price, category, imageUri);
+                return new Product(name.trim(), description.trim(), lifetime, price, category, imageUri);
             } catch (InvalidPriceException | IllegalArgumentException | InvalidLifetimeException e) {
                 wrongInput.setText(e.getMessage());
             }

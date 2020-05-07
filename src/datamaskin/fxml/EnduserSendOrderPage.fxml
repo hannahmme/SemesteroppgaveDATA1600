@@ -28,12 +28,12 @@
                      <font>
                         <Font name="Arial Bold" size="15.0" />
                      </font></Button>
-                  <Button fx:id="btnNewUser" layoutX="388.0" layoutY="179.0" mnemonicParsing="false" onAction="#newUser" onKeyPressed="#btnNewUserEnter" prefHeight="31.0" prefWidth="187.0" style="-fx-background-color: darkseagreen;" text="Opprett en ny bruker">
+                  <Button fx:id="btnNewUser" layoutX="388.0" layoutY="258.0" mnemonicParsing="false" onAction="#newUser" onKeyPressed="#btnNewUserEnter" prefHeight="31.0" prefWidth="187.0" style="-fx-background-color: darkseagreen;" text="Opprett en ny bruker">
                      <effect>
                         <DropShadow />
                      </effect></Button>
-                  <TextField fx:id="txtEmail" layoutX="117.0" layoutY="179.0" prefHeight="31.0" prefWidth="187.0" />
-                  <PasswordField fx:id="txtPassword" layoutX="117.0" layoutY="234.0" prefHeight="31.0" prefWidth="187.0" />
+                  <TextField fx:id="txtEmail" layoutX="117.0" layoutY="258.0" prefHeight="31.0" prefWidth="187.0" />
+                  <PasswordField fx:id="txtPassword" layoutX="117.0" layoutY="303.0" prefHeight="31.0" prefWidth="187.0" />
                   <Button fx:id="btnSendOrder" layoutX="169.0" layoutY="513.0" mnemonicParsing="false" onAction="#sendOrder" onKeyPressed="#btnSendOrderEnter" prefHeight="77.0" prefWidth="270.0" style="-fx-background-color: steelblue;" text="Send bestilling" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
@@ -43,29 +43,29 @@
                      </effect></Button>
                   <ImageView fx:id="mainpageImageView" fitHeight="24.0" fitWidth="26.0" layoutX="137.0" layoutY="30.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
             
-                  <Text layoutX="14.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Har du handlet her før? Logg inn og send bestillingen!" wrappingWidth="205.99999898672104" />
-                  <Text layoutX="14.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Epostadresse" />
-                  <Text layoutX="14.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" wrappingWidth="86.74073964357376" />
-                  <Label fx:id="lblOrderSent" alignment="TOP_LEFT" layoutX="122.0" layoutY="318.0" prefHeight="95.0" prefWidth="364.0" textFill="#0a681e" wrapText="true" />
-                  <Text layoutX="388.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Er du ny kunde? Lag en bruker før du sender bestillingen!" wrappingWidth="217.00000923871994" />
+                  <Text layoutX="14.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Har du handlet her før? Logg inn og send bestillingen!" wrappingWidth="205.99999898672104" />
+                  <Text layoutX="14.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Epostadresse" />
+                  <Text layoutX="20.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" wrappingWidth="86.74073964357376" />
+                  <Label fx:id="lblOrderSent" alignment="TOP_LEFT" layoutX="122.0" layoutY="396.0" prefHeight="71.0" prefWidth="364.0" textFill="#0a681e" wrapText="true" />
+                  <Text layoutX="388.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Er du ny kunde? Lag en bruker før du sender bestillingen!" wrappingWidth="217.00000923871994" />
                   <Line endX="317.0" layoutX="294.0" layoutY="80.0" startX="-286.0" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="731.0" prefWidth="415.0">
                <children>
-                  <TableView fx:id="finalOrderRegister" layoutX="61.0" layoutY="92.0" prefHeight="500.0" prefWidth="500.0">
+                  <TableView fx:id="finalOrderRegister" layoutX="61.0" layoutY="92.0" prefHeight="468.0" prefWidth="500.0">
                     <columns>
                       <TableColumn fx:id="nameColumn" prefWidth="324.0" text="Navn" />
                       <TableColumn fx:id="priceColumn" prefWidth="173.0" text="Pris (kr)" />
                     </columns>
                   </TableView>
-                  <Text layoutX="61.0" layoutY="636.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Totalpris:" wrappingWidth="74.33105260133743">
+                  <Text layoutX="61.0" layoutY="635.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Totalt å betale:" underline="true" wrappingWidth="138.9999984651804">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Arial Bold" size="18.0" />
                      </font></Text>
-                  <Label fx:id="lblTotalPrice" layoutX="135.0" layoutY="614.0" prefHeight="31.0" prefWidth="127.0">
+                  <Label fx:id="lblTotalPrice" layoutX="200.0" layoutY="613.0" prefHeight="31.0" prefWidth="127.0" underline="true" wrapText="true">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Arial Bold" size="18.0" />
                      </font></Label>
                   <Text layoutX="60.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Handlekurv" textAlignment="CENTER" wrappingWidth="500.00001210719347">
                      <font>
@@ -73,6 +73,8 @@
                      </font>
                   </Text>
                   <Line endX="317.0" layoutX="295.0" layoutY="80.0" startX="-286.0" />
+                  <Text layoutX="61.0" layoutY="592.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gjennomsnittlig levetid på konfigurert pc:" />
+                  <Label fx:id="lblExpectedLifetime" layoutX="353.0" layoutY="576.0" prefHeight="21.0" prefWidth="114.0" />
                </children>
             </AnchorPane>
         </items>

@@ -23,7 +23,7 @@
                      <font>
                         <Font name="Arial Bold" size="15.0" />
                      </font></Button>
-                  <Button fx:id="btnGoBack" alignment="BASELINE_CENTER" layoutX="157.0" layoutY="30.0" mnemonicParsing="false" onAction="#goBack" onKeyPressed="#btnGoBackEnter" prefHeight="31.0" prefWidth="148.0" style="-fx-background-color: grey;" text="Gå til forrige side" textFill="WHITE">
+                  <Button fx:id="btnGoBack" alignment="BASELINE_CENTER" layoutX="157.0" layoutY="30.0" mnemonicParsing="false" onAction="#goBack" onKeyPressed="#btnGoBackEnter" prefHeight="31.0" prefWidth="147.0" style="-fx-background-color: grey;" text="Gå til forrige side" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="15.0" />
                      </font></Button>
@@ -35,12 +35,12 @@
                             <PropertyValueFactory property="Name" />
                         </cellValueFactory>
                       </TableColumn>
-                      <TableColumn fx:id="extraProductInfo" prefWidth="322.0" text="Beskrivelse">
+                      <TableColumn fx:id="extraProductInfo" prefWidth="302.0000305175781" text="Beskrivelse">
                         <cellValueFactory>
                             <PropertyValueFactory property="Description" />
                         </cellValueFactory>
                       </TableColumn>
-                        <TableColumn fx:id="extraProductLifetime" prefWidth="68.0" text="Levetid (år)" />
+                        <TableColumn fx:id="extraProductLifetime" prefWidth="88.0" text="Levetid (år)" />
                         <TableColumn fx:id="extraProductPrice" prefWidth="99.0" text="Pris (kr)">
                             <cellValueFactory>
                                 <PropertyValueFactory property="Price" />
@@ -48,7 +48,7 @@
                         </TableColumn>
                     </columns>
                   </TableView>
-                  <Button fx:id="btnSaveToCart" layoutX="266.0" layoutY="556.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="60.0" prefWidth="340.0" style="-fx-background-color: darkseagreen;" text="Legg til valgt produkt" wrapText="true">
+                  <Button fx:id="btnSaveToCart" layoutX="266.0" layoutY="594.0" mnemonicParsing="false" onAction="#addToCart" onKeyPressed="#btnAddEnter" prefHeight="60.0" prefWidth="340.0" style="-fx-background-color: darkseagreen;" text="Legg til valgt produkt" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
@@ -58,7 +58,7 @@
                   <Text fx:id="txtWarning" layoutX="13.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="599.9999865889549" />
                   <ImageView fx:id="imgImageView" fitHeight="201.0" fitWidth="230.0" layoutX="16.0" layoutY="455.0" pickOnBounds="true" preserveRatio="true" />
                   <Line endX="500.0" layoutX="110.0" layoutY="80.0" startX="-100.0" />
-                  <Text layoutX="344.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ekstra tilbehør" wrappingWidth="261.951171875">
+                  <Text layoutX="310.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tilleggsprodukter" wrappingWidth="315.951171875">
                      <font>
                         <Font name="Arial Bold" size="36.0" />
                      </font>
@@ -74,12 +74,12 @@
                                    <PropertyValueFactory property="Name" />
                                </cellValueFactory>
                            </TableColumn>
-                           <TableColumn fx:id="descriptionColumn" prefWidth="299.0" text="Beskrivelse">
+                           <TableColumn fx:id="descriptionColumn" prefWidth="281.0" text="Beskrivelse">
                                <cellValueFactory>
                                    <PropertyValueFactory property="Description" />
                                </cellValueFactory>
                            </TableColumn>
-                           <TableColumn fx:id="lifetimeColumn" prefWidth="75.0" text="Levetid (år)">
+                           <TableColumn fx:id="lifetimeColumn" prefWidth="93.0" text="Levetid (år)">
                                <cellValueFactory>
                                    <PropertyValueFactory property="Lifetime" />
                                </cellValueFactory>
@@ -103,13 +103,13 @@
                      <font>
                         <Font name="Arial Bold" size="36.0" />
                      </font></Text>
-                  <Label layoutX="15.0" layoutY="620.0" prefHeight="27.0" prefWidth="131.0" text="Totalt å betale:">
+                  <Label layoutX="15.0" layoutY="620.0" prefHeight="27.0" prefWidth="131.0" text="Totalt å betale:" underline="true" wrapText="true">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Arial Bold" size="18.0" />
                      </font></Label>
-                  <Label fx:id="lblTotalPrice" layoutX="146.0" layoutY="620.0" prefHeight="21.0" prefWidth="115.0">
+                  <Label fx:id="lblTotalPrice" layoutX="152.0" layoutY="620.0" prefHeight="27.0" prefWidth="115.0" underline="true" wrapText="true">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Arial Bold" size="18.0" />
                      </font></Label>
                   <Line endX="500.0" fill="BLACK" layoutX="110.0" layoutY="80.0" startX="-100.0" />
                   <Text layoutX="15.0" layoutY="605.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gjennomsnittlig levetid på konfigurert pc:" />

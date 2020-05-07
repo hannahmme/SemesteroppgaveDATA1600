@@ -27,11 +27,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+
+import static datamaskin.cart.Cart.findExpectedLifetime;
 import static datamaskin.users.CustomerValidator.getCustomerList;
 
 public class EnduserSendOrderPageController implements Initializable {
     @FXML private Button btnSendOrder, btnGoBack, btnGoToMainpage;
-    @FXML private Label lblOrderSent, lblTotalPrice;
+    @FXML private Label lblOrderSent, lblTotalPrice, lblExpectedLifetime;
     @FXML private ImageView mainpageImageView;
 
     @FXML private TextField txtEmail;
@@ -67,6 +69,7 @@ public class EnduserSendOrderPageController implements Initializable {
         shoppingcart.attachTableview(finalOrderRegister);
         image.setImageView(mainpageImageView, homeImage);
         shoppingcart.getTotalPrice(lblTotalPrice);
+        lblExpectedLifetime.setText(findExpectedLifetime() + " år");
     }
 
     public void ifShoppingcartIsNull() {

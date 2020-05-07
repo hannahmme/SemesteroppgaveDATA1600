@@ -10,14 +10,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="datamaskin.fxml.MainpageController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="datamaskin.fxml.MainpageController">
    <children>
       <TextField fx:id="txtUsername" layoutX="323.0" layoutY="48.0" />
       <PasswordField fx:id="txtPassword" layoutX="540.0" layoutY="48.0" />
-      <Button fx:id="btnSuperuserPage" layoutX="778.0" layoutY="48.0" mnemonicParsing="false" onAction="#toSuperUserPage" onKeyPressed="#btnSuperUserPage" prefHeight="25.0" prefWidth="141.0" style="-fx-background-color: grey;" text="Logg inn" textFill="WHITE" />
+      <Button fx:id="btnSuperuserPage" layoutX="778.0" layoutY="48.0" mnemonicParsing="false" onAction="#toSuperUserPage" onKeyPressed="#btnSuperUserPage" prefHeight="25.0" prefWidth="141.0" style="-fx-background-color: steelblue;" text="Logg inn" textFill="WHITE" />
       <TextField fx:id="txtUserEmail" layoutX="183.0" layoutY="331.0" prefHeight="31.0" prefWidth="187.0" />
       <PasswordField fx:id="txtUserPassword" layoutX="183.0" layoutY="383.0" />
-      <Button fx:id="btnUserOrders" layoutX="211.0" layoutY="491.0" mnemonicParsing="false" onAction="#toUserOrders" onKeyPressed="#btnUserOrdersEnter" style="-fx-background-color: gray;" text="Se dine ordre" textFill="WHITE">
+      <Button fx:id="btnUserOrders" layoutX="211.0" layoutY="500.0" mnemonicParsing="false" onAction="#toUserOrders" onKeyPressed="#btnUserOrdersEnter" style="-fx-background-color: steelblue;" text="Se dine ordre" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font></Button>
@@ -25,18 +25,24 @@
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font></Button>
-      <Text layoutX="59.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Er du administrator? Logg inn her!" />
+      <Text layoutX="14.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Er du administrator? Logg inn her!">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
       <Text layoutX="323.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brukernavn" />
       <Text layoutX="540.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" />
       <ImageView fx:id="adminImageView" fitHeight="20.0" fitWidth="25.0" layoutX="887.0" layoutY="54.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="lblAdminError" layoutX="926.0" layoutY="61.0" prefHeight="21.0" prefWidth="291.0" textFill="indianred" />
       <Line endX="1137.0" endY="-1.0" layoutX="101.0" layoutY="107.0" startX="-88.0" startY="-1.0" />
-      <ImageView fx:id="orderImageView" fitHeight="100.0" fitWidth="128.0" layoutX="353.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true" />
-      <Text layoutX="59.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ønsker du å se dine tidligere bestillinger? " wrappingWidth="281.2829754952727" />
-      <Text layoutX="59.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logg inn her!" wrappingWidth="281.282958984375" />
+      <ImageView fx:id="orderImageView" fitHeight="100.0" fitWidth="128.0" layoutX="353.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true" />
+      <Text layoutX="59.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ønsker du å se dine tidligere bestillinger? " wrappingWidth="301.2829754952727">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text layoutX="59.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logg inn her!" wrappingWidth="281.282958984375" />
       <Text layoutX="59.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Epostadresse" wrappingWidth="87.59910463861524" />
       <Text layoutX="59.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" wrappingWidth="87.59910463861524" />
-      <Label fx:id="lblUserError" layoutX="59.0" layoutY="438.0" prefHeight="39.0" prefWidth="311.0" textFill="indianred" wrapText="true" />
+      <Label fx:id="lblUserError" layoutX="57.0" layoutY="430.0" prefHeight="61.0" prefWidth="439.0" textFill="indianred" wrapText="true" />
       <Line endX="340.0" endY="331.0" layoutX="170.0" layoutY="326.0" startX="339.9999694824219" startY="-220.5" />
       <ImageView fx:id="hardwareImageView" fitHeight="351.0" fitWidth="484.0" layoutX="646.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="buildImageView" fitHeight="46.0" fitWidth="50.0" layoutX="973.0" layoutY="570.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />

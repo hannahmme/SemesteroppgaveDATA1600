@@ -32,7 +32,7 @@
          </font></Button>
       <ImageView fx:id="allOrdersImageView" fitHeight="330.0" fitWidth="330.0" layoutX="494.0" layoutY="279.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
       <Line endX="-4.785688400268555" endY="585.0" layoutX="833.33" layoutY="86.0" startX="-4.785688400268555" startY="-6.5" />
-      <Button fx:id="btnadministrateUsers" layoutX="877.0" layoutY="140.0" mnemonicParsing="false" onAction="#toAllUsersPage" onKeyTyped="#btnadministrateUsers" prefHeight="50.0" prefWidth="330.0" style="-fx-background-color: steelblue;" text="Kunderegister" textFill="WHITE">
+      <Button fx:id="toAllOrdersPage" layoutX="877.0" layoutY="140.0" mnemonicParsing="false" onAction="#toAllUsersPage" onKeyPressed="#btnAllUsersEnter" prefHeight="50.0" prefWidth="330.0" style="-fx-background-color: steelblue;" text="Kunderegister" textFill="WHITE">
          <font>
             <Font name="Arial" size="15.0" />
          </font></Button>

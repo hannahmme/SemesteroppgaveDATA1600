@@ -18,7 +18,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SuperuserPageController implements Initializable {
-    @FXML private Button toSuperUserProductPage, toSuperUserOrderPage, toMainPage, btnadministrateUsers;
+    @FXML private Button toSuperUserProductPage, toSuperUserOrderPage, toMainPage, toAllOrdersPage;
     private ImageClass image = new ImageClass();
 
     //Denne er pga bildene som lages
@@ -87,13 +87,12 @@ public class SuperuserPageController implements Initializable {
 
     // knappen skal ta deg med til en side der man kan se alle brukere som er i systemet
     @FXML void toAllUsersPage() throws IOException {
-        Stage primaryStage = (Stage) btnadministrateUsers.getScene().getWindow();
+        Stage primaryStage = (Stage) toAllOrdersPage.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("AllUsers.fxml"));
         Page.toAllUsersPage(primaryStage, root);
     }
 
-    @FXML
-    void btnadministrateUsers(KeyEvent event) throws IOException {
+    @FXML void btnAllUsersEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             toAllUsersPage();
         }

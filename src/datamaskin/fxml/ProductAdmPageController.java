@@ -120,7 +120,7 @@ public class ProductAdmPageController implements Initializable {
                 if (!ProductValidator.validateLifetime(lifetimeString.trim())) {
                     throw new InvalidLifetimeException("Skriv inn et gyldig antall år (1-35)");
                 } else {
-                    lifetime = Integer.parseInt(txtLifetime.getText());
+                    lifetime = Integer.parseInt(txtLifetime.getText().trim());
                 }
                 if (!ProductValidator.validatePrice(priceString.trim())) {
                     throw new InvalidPriceException("Skriv inn en gyldig pris (0.01-99 999.99)");

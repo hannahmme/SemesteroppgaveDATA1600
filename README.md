@@ -1,8 +1,8 @@
 # SemesteroppgaveDATA1600
 
-Dette er vår semesteroppgave i Programutvikling 1600.
+Dette er vår semesteroppgave i Programutvikling DATA1600.
 
-## Konfigureringssystem for datamaskiner
+## Konfigurasjonssystem for datamaskiner
   Et konfigurasjonssystem laget med JavaFX. Systemet består av et GUI for sluttbruker som kan bestille en egentilpasset pc, og et GUI for superbruker som kan administrere produktene som er med i tilpasningen. 
   Startsiden
   Applikasjonen starter med en side med tre valg. Her kan superbruker logge inn på sin side helt øverst, sluttbruker kan klikke seg videre for å konfigurere sin egen datamaskin eller sluttbruker kan logge seg inn til venstre for å se sine gamle ordre.

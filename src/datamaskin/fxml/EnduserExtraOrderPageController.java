@@ -69,7 +69,7 @@ public class EnduserExtraOrderPageController implements Initializable {
         }
     }
 
-    @FXML void deleteFromCart(ActionEvent event) throws IOException {
+    @FXML void deleteFromCart() throws IOException {
         Product chosenProduct = tableviewCart.getSelectionModel().getSelectedItem();
         if(chosenProduct!=null) {
             if (chosenProduct.getCategory().equals("Andre produkter")) {
@@ -111,12 +111,10 @@ public class EnduserExtraOrderPageController implements Initializable {
     }
 
     //Metode som gjør at bilde av produktet som velges vises i produktinfo-imageviewet
-    @FXML void selectedItemEvent(MouseEvent event) throws FileNotFoundException {
+    @FXML void selectedItemEvent() {
         Product selectedProduct = tblExtraProduct.getSelectionModel().getSelectedItem();
         if (selectedProduct == null) return;
-        if (selectedProduct != null){
-            txtWarning.setText("");
-        }
+        txtWarning.setText("");
 
         // Forsøker å hente ut bildet og vise det
         try {

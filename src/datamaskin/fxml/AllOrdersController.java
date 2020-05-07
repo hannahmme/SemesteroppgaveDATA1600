@@ -90,7 +90,7 @@ public class AllOrdersController implements Initializable {
 
     //metode som gjør det mulig for admin å trykke på en ordre og se hva den inneholder
     //Lesing fra fil gjennomføres i en egen tråd, og setter tableViewet disablet imens det leser
-    @FXML void selectedItemEvent(MouseEvent event) throws IOException{
+    @FXML void selectedItemEvent() {
         FinalOrderOverview finalOrder = allOrders.getSelectionModel().getSelectedItem();
         if (finalOrder == null) { return; }
 

@@ -113,10 +113,10 @@ public class ProductAdmPageController implements Initializable {
                 category = cboxCategory.getSelectionModel().getSelectedItem();
 
                 if (!ProductValidator.validateName(name)) {
-                    throw new IllegalArgumentException("Skriv inn et gyldig komponentnavn");
+                    throw new IllegalArgumentException("Skriv inn et gyldig komponentnavn: Maks lengde er 30 tegn.");
                 }
                 if (!ProductValidator.validateDescription(description)) {
-                    throw new IllegalArgumentException("Skriv inn en gyldig beskrivelse");
+                    throw new IllegalArgumentException("Skriv inn en gyldig beskrivelse: Maks lengde er 80 tegn.");
                 }
                 if (!ProductValidator.validateLifetime(lifetimeString)) {
                     throw new InvalidLifetimeException("Skriv inn et gyldig antall år (1-35)");

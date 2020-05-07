@@ -104,6 +104,8 @@ public class EnduserSendOrderPageController implements Initializable {
             //sletter handlekurven *etter* å ha lagret til fil
             shoppingcart.deleteShoppingcart();
             lblTotalPrice.setText("");
+            lblExpectedLifetime.setText("");
+            btnNewUser.setDisable(true);
             } catch(IOException e){
                 System.out.println(e.getMessage());
             }

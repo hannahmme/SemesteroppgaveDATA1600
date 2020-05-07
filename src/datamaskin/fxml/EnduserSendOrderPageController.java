@@ -33,7 +33,7 @@ import static datamaskin.users.CustomerValidator.getCustomerList;
 
 public class EnduserSendOrderPageController implements Initializable {
     @FXML private Button btnSendOrder, btnGoBack, btnGoToMainpage;
-    @FXML private Label lblOrderSent, lblTotalPrice, lblExpectedLifetime;
+    @FXML private Label lblOrderSent, lblTotalPrice, lblExpectedLifetime, lblErrorLogin;
     @FXML private ImageView mainpageImageView;
 
     @FXML private TextField txtEmail;
@@ -128,6 +128,7 @@ public class EnduserSendOrderPageController implements Initializable {
                 String date = String.valueOf(LocalDate.now());
 
                 //lager en ordreID for bestillingen og viser den til bruker
+                lblErrorLogin.setText("");
                 lblOrderSent.setText("Takk for din ordre.\nOrdrenummer: " + orderID);
 
                 // setter knappene som disabled fordi bestillingen er gjennomført og man må starte på nytt
@@ -138,7 +139,7 @@ public class EnduserSendOrderPageController implements Initializable {
                 return new FinalOrderOverview(orderID, email, date, totalPrice);
             }
         } catch (InvalidEmailException e){
-            lblOrderSent.setText(e.getMessage());
+            lblErrorLogin.setText(e.getMessage());
         }
         return null;
     }

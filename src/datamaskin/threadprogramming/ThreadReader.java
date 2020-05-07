@@ -50,7 +50,6 @@ public class ThreadReader extends Task<ObservableList<Product>> {
         return new Product(productName, produtInfo, producLifetime, productPrice, productCategory, imageUri);
     }
 
-    //Todo: har prøvd å lage disse to metodene under til generiske metoder. Får prøve igjen senere
     private double parseToDouble(String str) throws IOException {
         double stringToDouble;
         try{

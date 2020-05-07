@@ -2,7 +2,8 @@ package datamaskin.product;
 
 public class ProductValidator {
     public static boolean validateName(String name) throws IllegalArgumentException {
-        if (name.matches("[a-zA-ZæøåÆØÅ 0-9]{1}[a-zA-ZæøåÆØÅ. \\-0-9]{1,29}") && name.matches("[0-9]{1,}")) {
+        if (name.matches("[a-zA-ZæøåÆØÅ 0-9]{1}[a-zA-ZæøåÆØÅ. \\-0-9]{1,29}") && name.matches("[0-9]{1,}")
+        && !name.matches("[ ]{1,}")) {
             return true;
         }
         return false;
@@ -10,7 +11,8 @@ public class ProductValidator {
 
     // Beskrivelsen kan starte eller slutte med tall, men kan ikke inneholde kun tall
     public static boolean validateDescription(String description) throws IllegalArgumentException {
-        if (description.matches("[0-9-a-zA-ZæøåÆØÅ ]{1}[a-zA-ZæøåÆØÅ.,! 0-9]{1,79}") && !description.matches("[0-9]{1,}")) {
+        if (description.matches("[0-9-a-zA-ZæøåÆØÅ ]{1}[a-zA-ZæøåÆØÅ.,! 0-9]{1,79}") && !description.matches("[0-9]{1,}")
+        && !description.matches("[ ]{1,}")) {
             return true;
         }
         return false;

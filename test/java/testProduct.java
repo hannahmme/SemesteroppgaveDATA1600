@@ -15,7 +15,7 @@ public class testProduct {
     @Test
     public void testInvalidComponentName() {
         assertFalse(ProductValidator.validateName(""));
-        assertFalse(ProductValidator.validateName(" "));
+        assertFalse(ProductValidator.validateName("       "));
         assertFalse(ProductValidator.validateName("123"));
         assertFalse(ProductValidator.validateName("abcdefghijklmnopqrstuvwxyzæøåab"));
         assertFalse(ProductValidator.validateName("test@"));
@@ -36,6 +36,7 @@ public class testProduct {
         assertFalse(ProductValidator.validateDescription(" "));
         assertFalse(ProductValidator.validateDescription("123"));
         assertFalse(ProductValidator.validateDescription("test@"));
+        assertFalse(ProductValidator.validateDescription("              "));
     }
 
     @Test

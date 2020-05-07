@@ -34,18 +34,24 @@ public class NewUserController {
 
             // sjekker om eposten finnes fra før og om passordene er like
             if(CustomerValidator.validateAvailability(email, CustomerValidator.getCustomerList())){ // true returneres om eposten finnes fra før
-                lblErrorEmail.setText("Epostadressen er allerede tilknyttet en kunde");}
+                lblErrorEmail.setText("Epostadressen er allerede tilknyttet en kunde");
+                lblErrorPassword.setText("");
+            }
 
             else if(!CustomerValidator.validateEmail(email)){ // false returneres om eposten er ugyldig
-                lblErrorEmail.setText("Skriv inn en gyldig epostadresse");}
+                lblErrorEmail.setText("Skriv inn en gyldig epostadresse");
+                lblErrorPassword.setText("");
+            }
 
             // validerer epost og passord og sjekker om de er i riktig format/ lengde
             else if(!CustomerValidator.validatePassword(password)){ // false returneres om passordet er for kort
                 lblErrorEmail.setText("");
-                 lblErrorPassword.setText("Passordet må fylle følgende krav: Minst 3 tegn langt, uten mellomrom og uten æ, ø og å");}
+                lblErrorPassword.setText("Passordet må fylle følgende krav: Minst 3 tegn langt, uten mellomrom og uten æ, ø og å");}
 
             else if(!password.equals(password2)){ // false returneres om passordene er ulike
-                lblErrorPassword.setText("Passordene du har skrevet inn er ikke like!");}
+                lblErrorPassword.setText("Passordene du har skrevet inn er ikke like!");
+                lblErrorEmail.setText("");
+            }
 
             // hvis epost og passord er i riktig format, og de andre if-ene ikke slår inn lages en ny kunde
             else if(CustomerValidator.validateEmail(email) && CustomerValidator.validatePassword(password) &&

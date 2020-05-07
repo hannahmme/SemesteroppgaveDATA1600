@@ -119,7 +119,7 @@ public class MainpageController implements Initializable {
     private final Image adminImage = image.createImage("./src/Datamaskin/images/admin.png");
 
     //Effekt for å blurre bildet på mainpage (det blå bildet)
-    private DropShadow shadowEffect = new DropShadow();
+    private final DropShadow shadowEffect = new DropShadow();
 
     //Bilder settes i ImageViewet når siden lastes inn, samt effekt på bildet
     @Override

@@ -10,14 +10,14 @@ import java.io.IOException;
 public class CustomerValidator {
 
     public static boolean validateEmail(String email) {
-        if (email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}") && !email.isEmpty() && email != null && !email.equals("")){
+        if (email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}") && !email.isEmpty()){
             return true;
         }
         return false;
     }
 
     public static boolean validatePassword(String password) {
-        if (password.matches("[a-zA-Z0-9._%+!-<>@£$€#¤%&*|§]{3,}") && !password.isEmpty() && password != null && !password.equals("")){
+        if (password.matches("[a-zA-Z0-9._%+!-<>@£$€#¤&*|§]{3,}") && !password.isEmpty()){
             return true;
         }
         return false;

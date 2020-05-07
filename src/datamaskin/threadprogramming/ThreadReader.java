@@ -43,30 +43,30 @@ public class ThreadReader extends Task<ObservableList<Product>> {
 
         String productName      = split[0];
         String produtInfo       = split[1];
-        int producLifetime      = parseToInteger(split[2], "Levetid er ikke et tall.");
-        double productPrice     = parseToDouble(split[3], "Prisen er ikke et tall.");
+        int producLifetime      = parseToInteger(split[2]);
+        double productPrice     = parseToDouble(split[3]);
         String productCategory  = split[4];
         String imageUri         = split[5];
         return new Product(productName, produtInfo, producLifetime, productPrice, productCategory, imageUri);
     }
 
     //Todo: har prøvd å lage disse to metodene under til generiske metoder. Får prøve igjen senere
-    private double parseToDouble(String str, String errorMessage) throws IOException {
+    private double parseToDouble(String str) throws IOException {
         double stringToDouble;
         try{
             stringToDouble = Double.parseDouble(str);
         } catch (NumberFormatException e){
-            throw new IOException(errorMessage);
+            throw new IOException("Prisen er ikke et tall.");
         }
         return stringToDouble;
     }
 
-    private int parseToInteger(String str, String errorMessage) throws IOException {
+    private int parseToInteger(String str) throws IOException {
         int stringToInt;
         try{
             stringToInt = Integer.parseInt(str);
         } catch (NumberFormatException e){
-            throw new IOException(errorMessage);
+            throw new IOException("Levetid er ikke et tall.");
         }
         return stringToInt;
     }

@@ -24,7 +24,4 @@ public class Customer {
     public void setPassword(String password) {
         this.password = new SimpleStringProperty(password);
     }
-
-
-
 }

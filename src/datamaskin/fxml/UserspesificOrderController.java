@@ -46,7 +46,7 @@ public class UserspesificOrderController implements Initializable {
 
     //Metode som viser innholdet i orderen når bruker trykker på en ordre
     //Lesing fra fil gjennomføres i en egen tråd
-    @FXML void selectedOrderItemEvent(MouseEvent event) throws IOException {
+    @FXML void selectedOrderItemEvent() {
         FinalOrderOverview order = tblAllOrders.getSelectionModel().getSelectedItem();
 
         if (order == null){ return; }

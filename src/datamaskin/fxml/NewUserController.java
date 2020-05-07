@@ -26,7 +26,7 @@ public class NewUserController {
     private FileSaverTxt filesaver = new FileSaverTxt();
 
     // metode som lager en ny bruker hvis den møter kravene
-    public Customer createCustomerFromGUI() throws Exception {
+    public Customer createCustomerFromGUI() {
         try{
             String email = txtEmail.getText();
             String password = txtPassword.getText();

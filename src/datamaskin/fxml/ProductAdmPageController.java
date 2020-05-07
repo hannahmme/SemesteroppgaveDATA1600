@@ -257,8 +257,8 @@ public class ProductAdmPageController implements Initializable {
     private void threadFailedReadingBinary(WorkerStateEvent event) {
         clearTableView(componentTableview);
         toggleElements(generateListOfControlElements(), false);
-        txtInfoMessage.setText("Det oppsto en feil. Kunne ikke hente ut ordreoversikt.");
-        System.out.println("Feil i henting av binær fil. Kunne ikke lese");
+        txtInfoMessage.setText("Det oppsto en feil. Kunne ikke hente ut produktoversikten.");
+        System.out.println("Feil i henting av binær fil. Syntaksfeil i jobj-fil i mappen binaryFilesPath.");
     }
 
     //lagre til binær fil

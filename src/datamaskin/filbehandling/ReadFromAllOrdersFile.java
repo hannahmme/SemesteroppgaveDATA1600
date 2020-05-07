@@ -47,7 +47,8 @@ public class ReadFromAllOrdersFile implements iReadFromAllOrdersFile{
         try{
             stringToDouble = Double.parseDouble(str);
         } catch(NumberFormatException nfe){
-            throw new IOException("Ikke gyldig tall.");
+            throw new IOException("Ikke riktig tall i ordrefilen tabellen prøver å lese inn." +
+                                  " Feil kastet fra ReadFromAllOrdersFile.java");
         }
         return stringToDouble;
     }

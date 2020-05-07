@@ -107,7 +107,7 @@ public class EnduserSendOrderPageController implements Initializable {
             lblExpectedLifetime.setText("");
             btnNewUser.setDisable(true);
             } catch(IOException e){
-                System.out.println(e.getMessage());
+                System.err.println(e.getMessage());
             }
         }
     }

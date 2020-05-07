@@ -99,7 +99,7 @@ public class UserspesificOrderController implements Initializable {
                 tblAllOrders.setItems(userSpecifiedOrderList);
             }
         } catch (IOException e) {
-            System.out.println("Filsti ikke funnet " + e.getMessage());
+            System.err.println("Filsti ikke funnet " + e.getMessage());
         }
 
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));

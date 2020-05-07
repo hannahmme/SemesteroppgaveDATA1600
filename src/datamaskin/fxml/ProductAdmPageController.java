@@ -258,7 +258,7 @@ public class ProductAdmPageController implements Initializable {
         clearTableView(componentTableview);
         toggleElements(generateListOfControlElements(), false);
         txtInfoMessage.setText("Det oppsto en feil. Kunne ikke hente ut produktoversikten.");
-        System.out.println("Feil i henting av binær fil. Syntaksfeil i jobj-fil i mappen binaryFilesPath.");
+        System.err.println("Feil i henting av binær fil. Syntaksfeil i jobj-filen du prøver å importere");
     }
 
     //lagre til binær fil

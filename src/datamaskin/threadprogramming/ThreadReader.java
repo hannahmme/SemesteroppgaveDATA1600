@@ -49,7 +49,7 @@ public class ThreadReader extends Task<ObservableList<Product>> {
         String imageUri         = split[5];
         return new Product(productName, produtInfo, producLifetime, productPrice, productCategory, imageUri);
     }
-    
+
     private double parseToDouble(String str) throws IOException {
         double stringToDouble;
         try{

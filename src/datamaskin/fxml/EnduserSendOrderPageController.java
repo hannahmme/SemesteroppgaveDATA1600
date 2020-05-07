@@ -32,7 +32,7 @@ import static datamaskin.cart.Cart.findExpectedLifetime;
 import static datamaskin.users.CustomerValidator.getCustomerList;
 
 public class EnduserSendOrderPageController implements Initializable {
-    @FXML private Button btnSendOrder, btnGoBack, btnGoToMainpage;
+    @FXML private Button btnSendOrder, btnGoBack, btnGoToMainpage, btnNewUser;;
     @FXML private Label lblOrderSent, lblTotalPrice, lblExpectedLifetime, lblErrorLogin;
     @FXML private ImageView mainpageImageView;
 
@@ -76,6 +76,7 @@ public class EnduserSendOrderPageController implements Initializable {
         if (shoppingcart.getTotalPrice(lblTotalPrice) == 0 || lblTotalPrice.getText().equals("")) {
             btnSendOrder.setDisable(true);
             btnGoBack.setDisable(true);
+            btnNewUser.setDisable(true);
         }
     }
 

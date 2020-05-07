@@ -36,10 +36,20 @@ public class testOrderOverview {
         assertFalse(OrderValidator.validateDate("2020-02-32"));
         assertFalse(OrderValidator.validateDate("2013-08-20"));
         assertFalse(OrderValidator.validateDate("2020-13-01"));
-
-
     }
 
 
+    @Test
+    public void testValidTotalprice() {
+        assertTrue(OrderValidator.validateTotalPrice(2000, 2000));
+        assertTrue(OrderValidator.validateTotalPrice(99999.99, 99999.99));
+        assertTrue(OrderValidator.validateTotalPrice(1,1));
+    }
 
+    @Test
+    public void testInvalidTotalprice() {
+        assertFalse(OrderValidator.validateTotalPrice(-1,-1));
+        assertFalse(OrderValidator.validateTotalPrice(2000,2000.01));
+        assertFalse(OrderValidator.validateTotalPrice(100000,10000));
+    }
 }

@@ -45,7 +45,7 @@ public class OrderValidator {
     }
 
     public static boolean validateTotalPrice(double totalprice, double expectedTotalprice){
-        if(totalprice==expectedTotalprice){
+        if(totalprice==expectedTotalprice && totalprice>0){
             return true;
         }
         return false;

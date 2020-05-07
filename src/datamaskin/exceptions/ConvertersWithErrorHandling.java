@@ -16,6 +16,10 @@ public class ConvertersWithErrorHandling {
         public Integer fromString(String str) {
             Integer intResult;
             try {
+                if(str == null || str.isEmpty()){
+                    conversionSuccessful = false;
+                    return 0;
+                }
                 intResult = super.fromString(str);
                 if (intResult > 0 && intResult < 36) {
                     conversionSuccessful = true;
@@ -50,6 +54,10 @@ public class ConvertersWithErrorHandling {
         public Double fromString(String str) {
             Double doubleResult;
             try {
+                if(str == null || str.isEmpty()){
+                    convertSuccessfull = false;
+                    return 0.0;
+                }
                 doubleResult = super.fromString(str);
                 if (doubleResult > 0 && doubleResult < 100000) {
                     convertSuccessfull = true;

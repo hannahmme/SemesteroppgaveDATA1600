@@ -17,5 +17,7 @@ public class testAdmin {
         assertFalse(AdminValidator.validateAdmin(" ", " "));
         assertFalse(AdminValidator.validateAdmin("hei", "admin"));
         assertFalse(AdminValidator.validateAdmin("admin", "hei"));
+        assertFalse(AdminValidator.validateAdmin(" admin", "admin"));
+        assertFalse(AdminValidator.validateAdmin("admin", "admin "));
     }
 }

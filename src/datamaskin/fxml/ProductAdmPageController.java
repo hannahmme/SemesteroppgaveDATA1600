@@ -96,7 +96,9 @@ public class ProductAdmPageController implements Initializable {
         String category;
         String imageUri = "./src/Datamaskin/images/missingImage.png";
 
-        if (isEmptyOrBlank(txtComponentname) ||  txtDescription.getText() == "" || txtDescription.getText() == " " ||
+        if (isEmptyOrBlank(txtComponentname) ||
+                txtDescription.getText().isEmpty() ||
+                txtDescription.getText().trim().isEmpty() ||
                 isEmptyOrBlank(txtLifetime) ||
                 isEmptyOrBlank(txtPrice) ||
                 cboxCategory.getSelectionModel().getSelectedItem() == null) {

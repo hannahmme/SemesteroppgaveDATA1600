@@ -35,7 +35,7 @@
       <ImageView fx:id="createProdImageView" fitHeight="160.0" fitWidth="330.0" layoutX="34.0" layoutY="279.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
       <Line endX="-4.78564453125" endY="593.0" layoutX="417.0" layoutY="77.0" startX="-4.78564453125" startY="3.5" />
       <ImageView fx:id="allOrdersImageView" fitHeight="160.0" fitWidth="330.0" layoutX="452.0" layoutY="279.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="allOrdersImageView1" fitHeight="160.0" fitWidth="330.0" layoutX="877.0" layoutY="279.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="customersRegImageView" fitHeight="160.0" fitWidth="330.0" layoutX="877.0" layoutY="279.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
       <Line endX="-4.785688400268555" endY="585.0" layoutX="833.33" layoutY="86.0" startX="-4.785688400268555" startY="-6.5" />
    </children>
 </AnchorPane>

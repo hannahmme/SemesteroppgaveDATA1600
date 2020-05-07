@@ -33,12 +33,16 @@ public class SuperuserPageController implements Initializable {
     @FXML private ImageView allOrdersImageView;
     private Image allOrdersImage = image.createImage("./src/Datamaskin/images/order.png");
 
+    @FXML private ImageView customersRegImageView;
+    private Image customersRegImage = image.createImage("./src/Datamaskin/images/user.png");
+
     //Kobler ImageViewet med bildene når siden lastes inn
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         image.setImageView(logOutImageView, logOutImage);
         image.setImageView(createProdImageView, createProdImage);
         image.setImageView(allOrdersImageView, allOrdersImage);
+        image.setImageView(customersRegImageView, customersRegImage);
     }
 
     //metode som sender bruker tilbake til hovedsiden

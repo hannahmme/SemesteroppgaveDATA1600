@@ -35,6 +35,7 @@ public class EnduserSendOrderPageController implements Initializable {
     @FXML private Label lblOrderSent, lblTotalPrice;
     @FXML private ImageView mainpageImageView;
 
+    @FXML private TextField txtDiscount;
     @FXML private TextField txtEmail;
     @FXML private PasswordField txtPassword;
 
@@ -78,7 +79,13 @@ public class EnduserSendOrderPageController implements Initializable {
     }
 
     @FXML void sendOrder() throws IOException {
+        String discountPassword = txtDiscount.getText();
         String orderID = Order.generateOrderID();
+
+        if(discountPassword.matches("studentrabatt")){
+
+        }
+
         FinalOrderOverview aFinalOrderOverview = createOrderObjectFromGUI(orderID);
 
         if(aFinalOrderOverview != null) {

@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="datamaskin.fxml.EnduserSendOrderPageController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="datamaskin.fxml.EnduserSendOrderPageController">
    <children>
       <SplitPane dividerPositions="0.5" prefHeight="670.0" prefWidth="1250.0">
         <items>
@@ -46,9 +46,11 @@
                   <Text layoutX="14.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Har du handlet her før? Logg inn og send bestillingen!" wrappingWidth="205.99999898672104" />
                   <Text layoutX="14.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Epostadresse" />
                   <Text layoutX="14.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" wrappingWidth="86.74073964357376" />
-                  <Label fx:id="lblOrderSent" alignment="TOP_LEFT" layoutX="122.0" layoutY="318.0" prefHeight="95.0" prefWidth="364.0" textFill="#0a681e" wrapText="true" />
+                  <Label fx:id="lblOrderSent" alignment="TOP_LEFT" layoutX="122.0" layoutY="402.0" prefHeight="95.0" prefWidth="364.0" textFill="#0a681e" wrapText="true" />
                   <Text layoutX="388.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Er du ny kunde? Lag en bruker før du sender bestillingen!" wrappingWidth="217.00000923871994" />
                   <Line endX="317.0" layoutX="294.0" layoutY="80.0" startX="-286.0" />
+                  <Text layoutX="14.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Er du student? Skriv inn rabattkode for å få studentrabatt: " wrappingWidth="127.42857142857133" />
+                  <TextField fx:id="txtDiscount" layoutX="150.0" layoutY="295.0" prefHeight="31.0" prefWidth="187.0" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="731.0" prefWidth="415.0">

@@ -37,11 +37,15 @@ public class ProductValidator {
         return false;
     }
 
-    public static boolean validateCategory (String category){
-        if (category.isEmpty()) {
-            return false;
+    public static boolean validateCategory (String category) {
+        if (category.trim().toLowerCase().equals("skjermkort") || category.trim().toLowerCase().equals("minnekort") ||
+                category.trim().toLowerCase().equals("harddisk") || category.trim().toLowerCase().equals("lydkort") ||
+                category.trim().toLowerCase().equals("strømforsyning") || category.trim().toLowerCase().equals("optisk disk") ||
+                category.trim().toLowerCase().equals("farge") || category.trim().toLowerCase().equals("andre produkter") ||
+                category.trim().toLowerCase().equals("prosessor")) {
+            return true;
         }
-        return true;
+        return false;
     }
 }
 

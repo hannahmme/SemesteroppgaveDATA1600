@@ -71,4 +71,25 @@ public class testProduct {
         assertFalse(ProductValidator.validatePrice("123.123"));
         assertFalse(ProductValidator.validatePrice(".123"));
     }
+
+    @Test
+    public void testValidCategory() {
+        assertTrue(ProductValidator.validateCategory("    skjermkort        "));
+        assertTrue(ProductValidator.validateCategory(" minnekort"));
+        assertTrue(ProductValidator.validateCategory("harddisk"));
+        assertTrue(ProductValidator.validateCategory(" Prosessor"));
+        assertTrue(ProductValidator.validateCategory("LydKORT"));
+        assertTrue(ProductValidator.validateCategory("Optisk Disk"));
+        assertTrue(ProductValidator.validateCategory("StRømForsyning"));
+        assertTrue(ProductValidator.validateCategory(" farge"));
+        assertTrue(ProductValidator.validateCategory("andre produkter"));
+    }
+
+    @Test
+    public void testInvalidCategory() {
+        assertFalse(ProductValidator.validateCategory("optisk"));
+        assertFalse(ProductValidator.validateCategory("far1ge"));
+        assertFalse(ProductValidator.validateCategory("     "));
+        assertFalse(ProductValidator.validateCategory("123..4"));
+    }
 }

@@ -29,10 +29,10 @@ public class AllUsersController implements Initializable {
     @FXML private Button toSuperuserpage;
 
     @Override public void initialize(URL url, ResourceBundle rb) {
-        ObservableList<Customer> validCustomersList = FXCollections.observableArrayList();
+        ObservableList<Customer> validCustomersList;
         try {
             validCustomersList = getCustomerList();
-            customerTV.getItems().addAll(validCustomersList));
+            customerTV.getItems().addAll(validCustomersList);
             customerTV.setItems(validCustomersList);
         } catch (IOException e) {
             System.err.println("Filsti ikke funnet: " + e.getMessage());

@@ -39,7 +39,7 @@ public class NewUserController {
             }
 
             else if(!CustomerValidator.validateEmail(email)){ // false returneres om eposten er ugyldig
-                lblErrorEmail.setText("Skriv inn en gyldig epostadresse");
+                lblErrorEmail.setText("Skriv inn en gyldig epostadresse (æ,ø og å er ikke tillatt)");
                 lblErrorPassword.setText("");
             }
 

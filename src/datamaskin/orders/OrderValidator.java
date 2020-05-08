@@ -18,7 +18,6 @@ public class OrderValidator {
     private static boolean checkDuplicate(ObservableList<FinalOrderOverview> validOrdersList, FinalOrderOverview anOrder) {
         for (FinalOrderOverview anotherO : validOrdersList) {
             if (anOrder.getOrderID().equals(anotherO.getOrderID())) {
-                System.err.println("Duplikat: Det finnes to ordreIDer som er identiske i csv-filen");
                 return true;
             }
         }

@@ -24,7 +24,7 @@ public class testOrderOverview {
     public void testValidDate() {
         assertTrue(OrderValidator.validateDate("2020-02-29"));
         assertTrue(OrderValidator.validateDate("2019-01-01"));
-        assertTrue(OrderValidator.validateDate("2020-12-31"));
+        assertTrue(OrderValidator.validateDate("2020-05-08"));
         assertTrue(OrderValidator.validateDate("2010-01-01"));
     }
 
@@ -35,9 +35,9 @@ public class testOrderOverview {
         assertFalse(OrderValidator.validateDate("2020.01.01"));
         assertFalse(OrderValidator.validateDate("2019-02-29"));
         assertFalse(OrderValidator.validateDate("2009-08-20"));
-        assertFalse(OrderValidator.validateDate("2020-13-01"));
+        assertFalse(OrderValidator.validateDate("2020-13-12"));
+        assertFalse(OrderValidator.validateDate("2020-12-12"));
     }
-
 
     @Test
     public void testValidTotalprice() {

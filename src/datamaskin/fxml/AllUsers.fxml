@@ -34,5 +34,10 @@
             <Font name="Arial Bold" size="36.0" />
          </font>
       </Text>
+      <Text fx:id="txtErrorMessage" layoutX="347.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="278.13671875">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

@@ -14,7 +14,7 @@ public class ReadFromAnOrderFile implements iReadFromAnOrderFile{
         @Override
         public ObservableList<Product> readFromAnOrderFile(String path) throws IOException {
             ObservableList<Product> listOfSpecificOrders = FXCollections.observableArrayList();
-            
+
 
             try(BufferedReader reader = Files.newBufferedReader(Paths.get(path))){
                 String line = reader.readLine();

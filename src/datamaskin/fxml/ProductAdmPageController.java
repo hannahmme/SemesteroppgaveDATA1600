@@ -26,7 +26,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.util.ResourceBundle;
-import static datamaskin.product.ProductCategories.*;
 import static datamaskin.product.ProductRegister.*;
 
 public class ProductAdmPageController implements Initializable {

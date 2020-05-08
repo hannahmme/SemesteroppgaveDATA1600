@@ -14,8 +14,8 @@ import static datamaskin.product.ProductCategories.*;
 public class ProductRegister implements Serializable {
     private static final long serialVersionUID = 1;
 
-    public static transient ObservableList<Product> ProductRegister = FXCollections.observableArrayList();
-    private static ObservableList<Product> emptyList = FXCollections.observableArrayList();
+    public static ObservableList<Product> ProductRegister = FXCollections.observableArrayList();
+    private static final transient ObservableList<Product> emptyList = FXCollections.observableArrayList();
 
     public void addElement(Product aProduct) {
         ProductRegister.add(aProduct);

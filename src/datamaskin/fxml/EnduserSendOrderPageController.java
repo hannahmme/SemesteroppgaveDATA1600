@@ -130,7 +130,7 @@ public class EnduserSendOrderPageController implements Initializable {
 
                 //lager en ordreID for bestillingen og viser den til bruker
                 lblErrorLogin.setText("");
-                lblOrderSent.setText("Takk for din ordre.\nOrdrenummer: " + orderID);
+                lblOrderSent.setText("Takk for din ordre.\nOrdrenummer: " + orderID + "\nDu får en e-post når din ordre er klar til henting.");
 
                 // setter knappene som disabled fordi bestillingen er gjennomført og man må starte på nytt
                 btnSendOrder.setDisable(true);

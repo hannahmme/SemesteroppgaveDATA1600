@@ -14,7 +14,7 @@
             <Font name="Arial Bold" size="15.0" />
          </font></Button>
       <ImageView fx:id="logOutImageView" fitHeight="24.0" fitWidth="32.0" layoutX="132.0" layoutY="34.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
-      <Text layoutX="430.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Velkommen superbruker" wrappingWidth="394.08837890625">
+      <Text layoutX="462.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Velkommen admin" wrappingWidth="394.08837890625">
          <font>
             <Font size="36.0" />
          </font>

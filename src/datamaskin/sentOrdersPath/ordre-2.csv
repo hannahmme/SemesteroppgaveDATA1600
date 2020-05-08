@@ -1,8 +1,11 @@
-Skjermkort 2;Dette er vårt nest billigste skjermkort;10;399.0;Skjermkort;./src/Datamaskin/images/missingImage.png
-8GB RAM;Dette er vårt beste skjermkort;10;699.0;Minnekort;./src/Datamaskin/images/missingImage.png
-256 GB SSD;Dette er et minnekort med rask lagring;7;999.0;Harddisk;./src/Datamaskin/images/missingImage.png
-Intel Core I5;Nyere versjon av prosessor;5;499.0;Prosessor;./src/Datamaskin/images/missingImage.png
-Strømforsyning 2;1.5 meter ledning;5;399.0;Strømforsyning;./src/Datamaskin/images/missingImage.png
-Lydkort 2;Den beste lyden på markedet;7;799.0;Lydkort;./src/Datamaskin/images/missingImage.png
-Optisk disk 2;Godt egnet for gaming;7;1429.0;Optisk disk;./src/Datamaskin/images/missingImage.png
-Rød;En fin farge inspirert av rød rose;10;299.0;Farge;./src/Datamaskin/images/missingImage.png
+Skjermkort 2;Dette er vårt nest billigste skjermkort.;10;7299.0;Skjermkort;./src/Datamaskin/images/missingImage.png
+8GB RAM;Dette er vårt beste minnekort.;10;1699.0;Minnekort;./src/Datamaskin/images/missingImage.png
+256 GB SSD;Dette er en harddisk med rask lagring.;7;2999.0;Harddisk;./src/Datamaskin/images/missingImage.png
+Intel Core I5;Nyere versjon av prosessor.;8;3499.0;Prosessor;./src/Datamaskin/images/missingImage.png
+Strømforsyning 2000;Nesten stillegående. Ekstremt tett spenningskontroll. Japanske kondensatorer;7;3399.0;Strømforsyning;./src/Datamaskin/images/missingImage.png
+Soundblaster AE9;Banebrytende audiofilteknologi. Det beste PCI-lydkortet som er laget.;7;3490.0;Lydkort;./src/Datamaskin/images/missingImage.png
+Optisk disk 2;Godt egnet for gaming.;7;1429.0;Optisk disk;./src/Datamaskin/images/missingImage.png
+Svart som olje;En tøff oljesvart farge med glans.;10;499.0;Farge;./src/Datamaskin/images/missingImage.png
+Tastatur 1;Dette er vårt billigste tastatur.;3;179.0;Andre produkter;./src/Datamaskin/images/keyboard1.jpg
+Ekstern skjerm 1;Stor skjerm så man ikke får vondt i øynene.;3;2179.0;Andre produkter;./src/Datamaskin/images/missingImage.png
+Webkamera 2;Større kamera med vidvinkel.;2;1399.0;Andre produkter;./src/Datamaskin/images/webkamera2.jpg

@@ -1,8 +1,9 @@
-Skjermkort 1;Dette er vårt billigste skjermkort;7;299.0;Skjermkort;./src/Datamaskin/images/missingImage.png
-4GB RAM;Dette er vårt billigste minnekort;5;299.0;Minnekort;./src/Datamaskin/images/missingImage.png
-128 GB SSD;Egnet til pcer for vanlig bruk;5;299.0;Harddisk;./src/Datamaskin/images/missingImage.png
-Intel Core I3;Eldre versjon av prosessor;5;299.0;Prosessor;./src/Datamaskin/images/missingImage.png
-Strømforsyning 1;0.5 meter ledning;5;299.0;Strømforsyning;./src/Datamaskin/images/missingImage.png
-Lydkort 1;God lyd;5;299.0;Lydkort;./src/Datamaskin/images/missingImage.png
-Optisk disk 1;God opplevelse til daglige gjøremål;5;299.0;Optisk disk;./src/Datamaskin/images/missingImage.png
+Skjermkort 1;Dette er vårt billigste skjermkort.;7;3299.0;Skjermkort;./src/Datamaskin/images/missingImage.png
+8GB RAM;Dette er vårt beste minnekort.;10;1699.0;Minnekort;./src/Datamaskin/images/missingImage.png
+128 GB SSD;Egnet til pcer for vanlig bruk.;5;1299.0;Harddisk;./src/Datamaskin/images/missingImage.png
+Intel Core I5;Nyere versjon av prosessor.;8;3499.0;Prosessor;./src/Datamaskin/images/missingImage.png
+Strømforsyning 1000;Effektkapasitet: stram spenningsregulering, nesten lydløs operasjon;5;1595.0;Strømforsyning;./src/Datamaskin/images/missingImage.png
+Soundblaster AE9;Banebrytende audiofilteknologi. Det beste PCI-lydkortet som er laget.;7;3490.0;Lydkort;./src/Datamaskin/images/missingImage.png
+Optisk disk 1;God opplevelse til daglige gjøremål.;5;429.0;Optisk disk;./src/Datamaskin/images/missingImage.png
 Svart som olje;En tøff oljesvart farge med glans.;10;499.0;Farge;./src/Datamaskin/images/missingImage.png
+Tastatur 1;Dette er vårt billigste tastatur.;3;179.0;Andre produkter;./src/Datamaskin/images/keyboard1.jpg

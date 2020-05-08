@@ -30,7 +30,6 @@ public class EnduserPageController implements Initializable {
 
     @FXML private Label lblInfoGraphicCard, lblInfoMemorycard, lblInfoHarddrive, lblInfoProcessor, lblInfoPower,
             lblInfoSoundcard, lblInfoOpticaldisk, lblInfoColor, lblTotalPrice, lblError, lblExpectedLifetime;
-
     @FXML private TableView<Product> tableviewCart;
     @FXML private TableColumn<Product, String> nameColumn;
     @FXML private TableColumn<Product, String> descriptionColumn;
@@ -43,6 +42,35 @@ public class EnduserPageController implements Initializable {
     private final ImageClass image = new ImageClass();
     private final Image homeImage = image.createImage("./src/Datamaskin/images/mainpage.png");
     private static final Cart aCart = new Cart();
+
+
+    @Override public void initialize(URL url, ResourceBundle rb) {
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        lifetimeColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
+        aCart.attachTableview(tableviewCart);
+
+        image.setImageView(mainpageImageView, homeImage);
+
+        deleteDataFromCategories();
+        addDataToCategories();
+        setCBox(cBoxGraphicCard, GraphicCard, lblInfoGraphicCard);
+        setCBox(cBoxMemorycard, Memorycard, lblInfoMemorycard);
+        setCBox(cBoxHarddrive, Harddrive, lblInfoHarddrive);
+        setCBox(cBoxProcessor,Processor, lblInfoProcessor);
+        setCBox(cBoxPower, Power, lblInfoPower);
+        setCBox(cBoxSoundcard, Soundcard, lblInfoSoundcard);
+        setCBox(cBoxOpticaldisk, OpticalDisk, lblInfoOpticaldisk);
+        setCBox(cBoxColor, Color, lblInfoColor);
+
+        // kaller metode for å velge riktige choicebokser/ sette totalpris når man går tilbake fra neste side
+        if (!Cart.isEmpty()) {
+            setChosenCombobox(cBoxGraphicCard, cBoxMemorycard, cBoxHarddrive, cBoxProcessor, cBoxPower, cBoxSoundcard, cBoxOpticaldisk, cBoxColor);
+            aCart.getTotalPrice(lblTotalPrice);
+            lblExpectedLifetime.setText(findExpectedLifetime() + " år");
+        }
+    }
 
     @FXML void addToCart() {
         if (comboBoxesAreEmpty()) {
@@ -92,34 +120,6 @@ public class EnduserPageController implements Initializable {
         aCart.addElement(addProduct(cBoxSoundcard.getValue().getName(), ProductCategories.Soundcard));
         aCart.addElement(addProduct(cBoxOpticaldisk.getValue().getName(), ProductCategories.OpticalDisk));
         aCart.addElement(addProduct(cBoxColor.getValue().getName(), ProductCategories.Color));
-    }
-
-    @Override public void initialize(URL url, ResourceBundle rb) {
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        lifetimeColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
-        aCart.attachTableview(tableviewCart);
-
-        image.setImageView(mainpageImageView, homeImage);
-
-        deleteDataFromCategories();
-        addDataToCategories();
-        setCBox(cBoxGraphicCard, GraphicCard, lblInfoGraphicCard);
-        setCBox(cBoxMemorycard, Memorycard, lblInfoMemorycard);
-        setCBox(cBoxHarddrive, Harddrive, lblInfoHarddrive);
-        setCBox(cBoxProcessor,Processor, lblInfoProcessor);
-        setCBox(cBoxPower, Power, lblInfoPower);
-        setCBox(cBoxSoundcard, Soundcard, lblInfoSoundcard);
-        setCBox(cBoxOpticaldisk, OpticalDisk, lblInfoOpticaldisk);
-        setCBox(cBoxColor, Color, lblInfoColor);
-
-        // kaller metode for å velge riktige choicebokser/ sette totalpris når man går tilbake fra neste side
-        if (!Cart.isEmpty()) {
-            setChosenCombobox(cBoxGraphicCard, cBoxMemorycard, cBoxHarddrive, cBoxProcessor, cBoxPower, cBoxSoundcard, cBoxOpticaldisk, cBoxColor);
-            aCart.getTotalPrice(lblTotalPrice);
-            lblExpectedLifetime.setText(findExpectedLifetime() + " år");
-        }
     }
 
     private void setCBox(ComboBox<Product> aCbox, ObservableList<Product> aList, Label aLabel){

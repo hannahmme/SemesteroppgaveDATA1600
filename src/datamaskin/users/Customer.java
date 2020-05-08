@@ -3,8 +3,8 @@ package datamaskin.users;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Customer {
-    SimpleStringProperty email;
-    SimpleStringProperty password;
+    private SimpleStringProperty email;
+    private SimpleStringProperty password;
 
     public Customer (String email, String password) {
         this.email = new SimpleStringProperty(email);

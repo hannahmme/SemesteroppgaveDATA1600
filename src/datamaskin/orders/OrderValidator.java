@@ -13,7 +13,7 @@ import java.io.IOException;
 public class OrderValidator {
     private static final ReadFromAllOrdersFile readFromAllOrdersFile = new ReadFromAllOrdersFile();
 
-    public static boolean checkDuplicate(ObservableList<FinalOrderOverview> validOrdersList, FinalOrderOverview anOrder){
+    private static boolean checkDuplicate(ObservableList<FinalOrderOverview> validOrdersList, FinalOrderOverview anOrder){
         for(FinalOrderOverview anotherO : validOrdersList){
             if(anOrder.getOrderID().equals(anotherO.getOrderID())) {
                 System.err.println("Duplikat: Det finnes to ordreIDer som er identiske i csv-filen");
@@ -63,9 +63,9 @@ public class OrderValidator {
     }
 
     private static final ReadFromAnOrderFile readFromAnOrderFile = new ReadFromAnOrderFile();
-    public static final ReadFromCustomerFile readFromCustomerFile = new ReadFromCustomerFile();
+    private static final ReadFromCustomerFile readFromCustomerFile = new ReadFromCustomerFile();
 
-    public static double getExpectedPrice(String orderID) throws IOException {
+    private static double getExpectedPrice(String orderID) throws IOException {
         ObservableList<Product> specificOrder = readFromAnOrderFile.readFromAnOrderFile("./src/Datamaskin/sentOrdersPath/"+orderID+".csv");
         double totalprice = 0;
 
@@ -75,7 +75,7 @@ public class OrderValidator {
         return totalprice;
     }
 
-    public static boolean getExpectedEmail(String email) throws IOException {
+    private static boolean getExpectedEmail(String email) throws IOException {
         ObservableList<Customer> customerReg = readFromCustomerFile.readFromCustomerFile("./src/Datamaskin/users/allCustomers.csv");
 
         for(Customer aCustomer : customerReg){

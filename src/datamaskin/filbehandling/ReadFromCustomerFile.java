@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 
 public class ReadFromCustomerFile implements iReadFromCustomerFile{
 
+    //metode som leser hver linje i allCustomers.csv og parser linjen til en kunde
     @Override
     public ObservableList<Customer> readFromCustomerFile(String path) throws IOException {
         ObservableList<Customer> listOfFinalOrders = FXCollections.observableArrayList();
@@ -25,12 +26,11 @@ public class ReadFromCustomerFile implements iReadFromCustomerFile{
         return listOfFinalOrders;
     }
 
-
     @Override
     public Customer parseToCustomer(String line) throws IOException {
         String[] split = line.split(";");
         if(split.length != 2){
-            throw new IOException("Ikke riktig bruk av delimiter");
+            throw new IOException("Ikke riktig bruk av delimiter i allCustomers.csv");
         }
 
         String email    = split[0];

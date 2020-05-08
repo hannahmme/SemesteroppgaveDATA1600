@@ -9,6 +9,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class ReadFromAnOrderFile implements iReadFromAnOrderFile{
+        //metode som leser fra en spesifikk ordrefil og parser hver linje til et produkt.
+        //Produktet legges i en ObservableList<Product> og returneres.
         @Override
         public ObservableList<Product> readFromAnOrderFile(String path) throws IOException {
             ObservableList<Product> listOfSpecificOrders = FXCollections.observableArrayList();

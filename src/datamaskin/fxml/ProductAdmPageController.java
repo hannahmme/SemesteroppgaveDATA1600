@@ -52,8 +52,32 @@ public class ProductAdmPageController implements Initializable {
             = new ConvertersWithErrorHandling.DoubleFromStringConverter();
 
     private Stage stage;
+    private static ProductRegister aRegister = new ProductRegister();
 
-    public static ProductRegister aRegister = new ProductRegister();
+    @Override public void initialize(URL url, ResourceBundle rb) {
+        lifetimeColumn.setCellFactory(TextFieldTableCell.forTableColumn(intStrConverter));
+        priceColumn.setCellFactory(TextFieldTableCell.forTableColumn(doubleStrConverter));
+        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        categoryColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        lifetimeColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
+        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("Category"));
+
+        setComponentToTV(componentTableview);
+
+        ObservableList<String> filterChoices = FXCollections.observableArrayList();
+        filterChoices.addAll("Navn", "Kategori", "Levetid", "Pris");
+
+        cBoxFilter.setItems(filterChoices);
+        cBoxFilter.setValue("Kategori");
+
+        setData();
+    }
+
 
     // Setter data i combobox - må velge en av disse kategoriene for å opprette produkter
     private void setData() {
@@ -156,31 +180,6 @@ public class ProductAdmPageController implements Initializable {
                 ProductRegister.remove(deleteItem);
             }
         }
-    }
-
-
-    @Override public void initialize(URL url, ResourceBundle rb) {
-        lifetimeColumn.setCellFactory(TextFieldTableCell.forTableColumn(intStrConverter));
-        priceColumn.setCellFactory(TextFieldTableCell.forTableColumn(doubleStrConverter));
-        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        categoryColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        lifetimeColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
-        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("Category"));
-
-        setComponentToTV(componentTableview);
-
-        ObservableList<String> filterChoices = FXCollections.observableArrayList();
-        filterChoices.addAll("Navn", "Kategori", "Levetid", "Pris");
-
-        cBoxFilter.setItems(filterChoices);
-        cBoxFilter.setValue("Kategori");
-
-        setData();
     }
 
     // legger til produktet ved å trykke enter

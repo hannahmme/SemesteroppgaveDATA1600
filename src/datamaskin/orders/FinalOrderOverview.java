@@ -1,7 +1,11 @@
 package datamaskin.orders;
 
+import datamaskin.filbehandling.ReadFromAllOrdersFile;
+import datamaskin.filbehandling.ReadFromAnOrderFile;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.io.File;
 import java.io.IOException;
@@ -56,11 +60,39 @@ public class FinalOrderOverview {
             File orderPath = new File(
                     "./src/Datamaskin/sentOrdersPath/ordre-" + i + ".csv");
             pathNotUsed = orderPath.exists();
-            if (!pathNotUsed) {
+
+            if (!pathNotUsed && doesOrderExistInAllOrders(i)) {
+                System.err.println("Ordrenummer finnes i allOrders.csv, men ikke som en spesifikasjon. Se gjennom filnavn i sentOrdersPath.");
+            }
+
+
+            else if (!pathNotUsed && !doesOrderExistInAllOrders(i)) {
                 orderNumber = i;
                 break;
             }
+
         }
         return "ordre-"+orderNumber;
     }
+
+    private static final ReadFromAllOrdersFile readFromAllOrdersFile = new ReadFromAllOrdersFile();
+
+    public static boolean doesOrderExistInAllOrders(int i){
+        ObservableList<FinalOrderOverview> allOrdersList = FXCollections.observableArrayList();
+
+        try {
+            allOrdersList = readFromAllOrdersFile.readFromAllOrdersFile("./src/datamaskin/sentOrdersPath/allOrders.csv");
+        } catch (IOException e) {
+            System.err.println("Filsti ikke funnet: " + e.getMessage() + ".");
+        }
+        for(FinalOrderOverview anOrder : allOrdersList){
+            if(anOrder.getOrderID().equals("ordre-"+i)){
+                return true;
+            }
+        }
+
+
+        return false;
+    }
+
 }

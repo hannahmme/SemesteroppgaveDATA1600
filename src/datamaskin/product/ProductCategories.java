@@ -86,7 +86,7 @@ public class ProductCategories implements Serializable {
         ProductRegister.addAll(processor1, processor2);
 
         Product Power1 = new Product("Strømforsyning 1000", "Effektkapasitet: stram spenningsregulering, nesten lydløs operasjon", 5, 1595, "Strømforsyning", "./src/Datamaskin/images/missingImage.png");
-        Product Power2 = new Product("Strømforsyning 2000", "Nesten stillegående. Ekstremt tett spenningskontroll. Japanske kondensatorer", 7, 3399, "Strømforsyning", "./src/Datamaskin/images/missingImage.png");
+        Product Power2 = new Product("Strømforsyning 2000", "Ekstremt tett spenningskontroll. Japanske kondensatorer", 7, 3399, "Strømforsyning", "./src/Datamaskin/images/missingImage.png");
         ProductRegister.addAll(Power1, Power2);
 
         Product Soundcard1 = new Product("Soundblaster X Æ A-12", "Høy oppløsning. Diskré hodetelefonforsterker.", 5, 1299, "Lydkort", "./src/Datamaskin/images/missingImage.png");

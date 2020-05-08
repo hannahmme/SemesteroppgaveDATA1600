@@ -9,7 +9,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import static datamaskin.product.ProductCategories.*;
 
 public class ProductRegister implements Serializable {
     private static final long serialVersionUID = 1;

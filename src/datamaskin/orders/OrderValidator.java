@@ -9,6 +9,7 @@ import datamaskin.users.CustomerValidator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.io.IOException;
+import java.util.Calendar;
 
 public class OrderValidator {
     private static final ReadFromAllOrdersFile readFromAllOrdersFile = new ReadFromAllOrdersFile();
@@ -31,26 +32,44 @@ public class OrderValidator {
     }
 
     public static boolean validateDate (String date){
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        // den tror at vi er i feil måned - må legge til en måned for å få riktig
+        int currentMonth = Calendar.getInstance().get(Calendar.MONTH)+1;
+        int currentDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+
         if(date.matches("[0-9]{4,}"+"-"+"[0-1]+"+"[0-9]+"+"-"+"[0-9]{2,}")){
             String[] split = date.split("-");
             int year = Integer.parseInt(split[0]);
             int month = Integer.parseInt(split[1]);
             int day = Integer.parseInt(split[2]);
 
-            if(year<2021 && year>2009 && day>0){
-                if(month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12 && day<32){
-                    return true;
+            if(year<=currentYear && year>2009 && day>0) {
+                if (year == currentYear && month > currentMonth) {
+                    return false;
                 }
-                if(month == 4 || month == 6 || month == 9 || month == 11 && day<31){
-                    return true;
+                else if (year == currentYear && month == currentMonth && day>currentDay){
+                    return false;
                 }
-                if (month == 2 && day < 30 && year %4 == 0){
-                    return true;
-                }
-                if (month == 2 && day < 29){
-                    return true;
-                }
+
+                else if (checkDate(year, month, day)) return true;
+
             }
+        }
+        return false;
+    }
+
+    private static boolean checkDate(int year, int month, int day) {
+        if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12 && day < 32) {
+            return true;
+        }
+        if (month == 4 || month == 6 || month == 9 || month == 11 && day < 31) {
+            return true;
+        }
+        if (month == 2 && day < 30 && year % 4 == 0) {
+            return true;
+        }
+        if (month == 2 && day < 29) {
+            return true;
         }
         return false;
     }

@@ -18,6 +18,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 public class NewUserController {
     @FXML private TextField txtEmail, txtPassword, txtPassword2;
@@ -26,14 +27,14 @@ public class NewUserController {
     private FileSaverTxt filesaver = new FileSaverTxt();
 
     // metode som lager en ny bruker hvis den møter kravene
-    public Customer createCustomerFromGUI() {
+    private Customer createCustomerFromGUI() {
         try{
             String email = txtEmail.getText();
             String password = txtPassword.getText();
             String password2 = txtPassword2.getText();
 
             // sjekker om eposten finnes fra før og om passordene er like
-            if(CustomerValidator.validateAvailability(email, CustomerValidator.getCustomerList())){ // true returneres om eposten finnes fra før
+            if(CustomerValidator.validateAvailability(email, Objects.requireNonNull(CustomerValidator.getCustomerList()))){ // true returneres om eposten finnes fra før
                 lblErrorEmail.setText("Epostadressen er allerede tilknyttet en kunde");
                 lblErrorPassword.setText("");
             }
@@ -67,11 +68,12 @@ public class NewUserController {
 
     // når knappen trykkes kalles metoden for å lage ny bruker og for at vinduet skal lukkes hvis vellykket
     @FXML void makeNewUser(Event event) throws Exception {
-        if(createCustomerFromGUI()!=null){
+        if( createCustomerFromGUI() != null ){
             Customer aCustomer = createCustomerFromGUI();
 
-            //kode som lagrer orderen til forhåndsdefinert filsti (alle ordre samlet i csv.fil)
+            //kode som lagrer brukeren til forhåndsdefinert filsti (alle brukere samles i allOrders.csv)
             Path customerPath = Paths.get("./src/Datamaskin/users/allCustomers.csv");
+            assert aCustomer != null;
             String formattedCustomer = CustomerFormatter.formatCustomerToString(aCustomer);
             filesaver.appendToFile("\n", customerPath);
             filesaver.appendToFile(formattedCustomer, customerPath);
@@ -110,7 +112,7 @@ public class NewUserController {
     }
 
     // metode som lukker vinduet automatisk når det er laget en ny bruker
-    public void closeWindow(Event event){
+    private void closeWindow(Event event){
         ((Node)(event.getSource())).getScene().getWindow().hide();
     }
 }

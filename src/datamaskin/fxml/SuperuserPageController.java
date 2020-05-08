@@ -21,7 +21,16 @@ public class SuperuserPageController implements Initializable {
     @FXML private Button toSuperUserProductPage, toSuperUserOrderPage, toMainPage, toAllOrdersPage;
     private ImageClass image = new ImageClass();
 
-    //Denne er pga bildene som lages
+    //Kobler ImageViewet med bildene når siden lastes inn
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        image.setImageView(logOutImageView, logOutImage);
+        image.setImageView(createProdImageView, createProdImage);
+        image.setImageView(allOrdersImageView, allOrdersImage);
+        image.setImageView(customersRegImageView, customersRegImage);
+    }
+
+    //Kastes fordi createImage-metoden kalles
     public SuperuserPageController() throws FileNotFoundException {}
 
     @FXML private ImageView logOutImageView;
@@ -35,15 +44,6 @@ public class SuperuserPageController implements Initializable {
 
     @FXML private ImageView customersRegImageView;
     private Image customersRegImage = image.createImage("./src/Datamaskin/images/user.png");
-
-    //Kobler ImageViewet med bildene når siden lastes inn
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        image.setImageView(logOutImageView, logOutImage);
-        image.setImageView(createProdImageView, createProdImage);
-        image.setImageView(allOrdersImageView, allOrdersImage);
-        image.setImageView(customersRegImageView, customersRegImage);
-    }
 
     //metode som sender bruker tilbake til hovedsiden
     @FXML void toMainPage() throws IOException {

@@ -47,9 +47,33 @@ public class EnduserExtraOrderPageController implements Initializable {
     private ImageClass image = new ImageClass();
     private Image homeImage = image.createImage("./src/Datamaskin/images/mainpage.png");
 
-    private Page scene = new Page();
+  /*  private Page scene = new Page();*/
     private Cart shoppingCart = new Cart();
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // TV på venstre side
+        extraProductName.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        extraProductInfo.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        extraProductLifetime.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
+        extraProductPrice.setCellValueFactory(new PropertyValueFactory<>("Price"));
+
+        tblExtraProduct.getItems().addAll(OtherProducts);
+        tblExtraProduct.setItems(OtherProducts);
+
+        // Handlekurven på høyre side
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        lifetimeColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
+        shoppingCart.attachTableview(tableviewCart);
+        shoppingCart.getTotalPrice(lblTotalPrice);
+
+        image.setImageView(mainpageImageView, homeImage);
+        lblExpectedLifetime.setText(findExpectedLifetime() + " år");
+    }
+
+    //Kastes fordi createImage-metoden kalles
     public EnduserExtraOrderPageController() throws FileNotFoundException {}
 
     //metode som legger til elementer i handlekurven, dersom de er huket av
@@ -85,29 +109,6 @@ public class EnduserExtraOrderPageController implements Initializable {
                 }
             }
         }
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // TV på venstre side
-        extraProductName.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        extraProductInfo.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        extraProductLifetime.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
-        extraProductPrice.setCellValueFactory(new PropertyValueFactory<>("Price"));
-
-        tblExtraProduct.getItems().addAll(OtherProducts);
-        tblExtraProduct.setItems(OtherProducts);
-
-        // Handlekurven på høyre side
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        lifetimeColumn.setCellValueFactory(new PropertyValueFactory<>("Lifetime"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
-        shoppingCart.attachTableview(tableviewCart);
-        shoppingCart.getTotalPrice(lblTotalPrice);
-
-        image.setImageView(mainpageImageView, homeImage);
-        lblExpectedLifetime.setText(findExpectedLifetime() + " år");
     }
 
     //Metode som gjør at bilde av produktet som velges vises i produktinfo-imageviewet

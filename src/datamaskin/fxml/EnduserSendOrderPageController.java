@@ -35,20 +35,8 @@ public class EnduserSendOrderPageController implements Initializable {
     @FXML private Button btnSendOrder, btnGoBack, btnGoToMainpage, btnNewUser;
     @FXML private Label lblOrderSent, lblTotalPrice, lblExpectedLifetime, lblErrorLogin;
     @FXML private ImageView mainpageImageView;
-
     @FXML private TextField txtEmail;
     @FXML private PasswordField txtPassword;
-
-    //metode for å sette passord fra bruker når oppretter bruker
-    public void setTxtPassword(String inputPassword){
-        this.txtPassword.setText(inputPassword);
-    }
-
-    //metode for å sette epost i feltet når bruker oppretter ny bruker
-    public void setTxtEmail(String inputEmail){
-        this.txtEmail.setText(inputEmail);
-    }
-
     @FXML private TableView<FinalOrderOverview> finalOrderRegister;
     @FXML private TableColumn<Product, String> nameColumn;
     @FXML private TableColumn<Product, Double> priceColumn;
@@ -57,10 +45,6 @@ public class EnduserSendOrderPageController implements Initializable {
     private ImageClass image = new ImageClass();
     private Image homeImage = image.createImage("./src/Datamaskin/images/mainpage.png");
     private Cart shoppingcart = new Cart();
-
-    //denne kastes fordi image.createImage kalles
-    public EnduserSendOrderPageController() throws FileNotFoundException {
-    }
 
     @Override public void initialize(URL location, ResourceBundle resources) {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -78,6 +62,20 @@ public class EnduserSendOrderPageController implements Initializable {
             btnGoBack.setDisable(true);
             btnNewUser.setDisable(true);
         }
+    }
+
+    //metode for å sette passord fra bruker når oppretter bruker
+    public void setTxtPassword(String inputPassword){
+        this.txtPassword.setText(inputPassword);
+    }
+
+    //metode for å sette epost i feltet når bruker oppretter ny bruker
+    public void setTxtEmail(String inputEmail){
+        this.txtEmail.setText(inputEmail);
+    }
+
+    //denne kastes fordi image.createImage kalles
+    public EnduserSendOrderPageController() throws FileNotFoundException {
     }
 
     @FXML void sendOrder() throws IOException {

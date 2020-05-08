@@ -29,15 +29,37 @@ public class MainpageController implements Initializable {
     @FXML private Button btnEnduserPage, btnSuperuserPage, btnUserOrders;
     @FXML private TextField txtUsername, txtPassword, txtUserEmail, txtUserPassword;
     @FXML private Label lblUserError, lblAdminError;
-
     private ReadFromCustomerFile readFromCustomerFile = new ReadFromCustomerFile();
     private ImageClass image = new ImageClass();
 
-    //Dette kastes pga bildene som lastes inn når siden lastes inn. Skal sjekke om det kan fjernes evt  - Hannah
+    //Bilder settes i ImageViewet når siden lastes inn, samt effekt på bildet
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        image.setImageView(orderImageView, orderImage);
+        image.setImageView(buildImageView, hammerImage);
+        image.setImageView(adminImageView, adminImage);
+        image.setImageView(hardwareImageView, hardwareImage);
+        shadowEffect.setRadius(50);
+        shadowEffect.setWidth(50);
+        shadowEffect.setHeight(25);
+        hardwareImageView.setEffect(shadowEffect);
+    }
+
+    // kode for bildene som ligger på hovedsiden, final fordi de ikke skal endres
+    @FXML private ImageView hardwareImageView, buildImageView, adminImageView, orderImageView;
+    private final Image hardwareImage = image.createImage("./src/Datamaskin/images/hardware.jpg");
+    private final Image orderImage = image.createImage("./src/Datamaskin/images/order.png");
+    private final Image hammerImage = image.createImage("./src/Datamaskin/images/hammer.png");
+    private final Image adminImage = image.createImage("./src/Datamaskin/images/admin.png");
+
+    //Effekt for å blurre bildet på mainpage (det blå bildet)
+    private final DropShadow shadowEffect = new DropShadow();
+
+    //Kastes fordi createImage-metoden kalles
     public MainpageController() throws FileNotFoundException {}
 
-    // nøkkel for å sortere ordrelisten for sluttbruker, er eposten som skrives inn
-    public static String sortingKey;
+    //nøkkel for å sortere ordrelisten for sluttbruker, er eposten som skrives inn
+    static String sortingKey;
 
     // metode som sender brukeren til ordresiden for bruker, må valideres med epost og passord
     @FXML void toUserOrders() throws IOException {
@@ -54,8 +76,7 @@ public class MainpageController implements Initializable {
                 throw new InvalidEmailException("Skriv inn gyldig e-postadresse");
             } else if(sortingKey == null){
                 lblUserError.setText("Du har skrevet inn feil kombinasjon av epost og passord");
-            }
-            else {
+            } else {
                 Stage primaryStage = (Stage) btnUserOrders.getScene().getWindow();
                 Parent root = FXMLLoader.load(getClass().getResource("UserspesificOrder.fxml"));
                 Page.toUserspesificOrder(primaryStage, root);
@@ -95,6 +116,8 @@ public class MainpageController implements Initializable {
             System.err.println(npe.getMessage());
         }
     }
+
+    //Enter-funksjon på buttons
     @FXML void btnUserOrdersEnter(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             toUserOrders();
@@ -109,28 +132,5 @@ public class MainpageController implements Initializable {
         if (event.getCode().equals(KeyCode.ENTER)) {
             toSuperUserPage();
         }
-    }
-
-    // kode for bildene som ligger på hovedsiden, final fordi de ikke skal endres
-    @FXML private ImageView hardwareImageView, buildImageView, adminImageView, orderImageView;
-    private final Image hardwareImage = image.createImage("./src/Datamaskin/images/hardware.jpg");
-    private final Image orderImage = image.createImage("./src/Datamaskin/images/order.png");
-    private final Image hammerImage = image.createImage("./src/Datamaskin/images/hammer.png");
-    private final Image adminImage = image.createImage("./src/Datamaskin/images/admin.png");
-
-    //Effekt for å blurre bildet på mainpage (det blå bildet)
-    private final DropShadow shadowEffect = new DropShadow();
-
-    //Bilder settes i ImageViewet når siden lastes inn, samt effekt på bildet
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        image.setImageView(orderImageView, orderImage);
-        image.setImageView(buildImageView, hammerImage);
-        image.setImageView(adminImageView, adminImage);
-        image.setImageView(hardwareImageView, hardwareImage);
-        shadowEffect.setRadius(50);
-        shadowEffect.setWidth(50);
-        shadowEffect.setHeight(25);
-        hardwareImageView.setEffect(shadowEffect);
     }
 }

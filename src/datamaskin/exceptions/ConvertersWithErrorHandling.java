@@ -104,7 +104,7 @@ public class ConvertersWithErrorHandling {
     //metode som sjekker om input i kategori-feltet på adminsiden matcher kategoriene som allerede er definert
     public static boolean isCategoryMatchingInput(String str) {
         try {
-            String input = str.toLowerCase();
+            String input = str.toLowerCase().trim();
             if (    input.matches("skjermkort")     ||
                     input.matches("minnekort")      ||
                     input.matches("strømforsyning") ||

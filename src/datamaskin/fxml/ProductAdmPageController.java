@@ -131,7 +131,7 @@ public class ProductAdmPageController implements Initializable {
                 name = txtComponentname.getText();
                 description = txtDescription.getText();
                 lifetimeString = txtLifetime.getText().trim();
-                priceString = txtPrice.getText();
+                priceString = txtPrice.getText().trim();
                 category = cboxCategory.getSelectionModel().getSelectedItem();
 
                 if (!ProductValidator.validateName(name)) {
@@ -150,12 +150,11 @@ public class ProductAdmPageController implements Initializable {
                 } else {
                     price = Double.parseDouble(txtPrice.getText());
                 }
-
                 if (!ProductValidator.validateCategory(category)) {
                     throw new IllegalArgumentException("Vennligst velg kategori");
                 }
 
-                return new Product(name.trim(), description.trim(), lifetime, price, category, imageUri);
+                return new Product(name.trim(), description.trim(), lifetime, price, category.trim(), imageUri);
             } catch (InvalidPriceException | IllegalArgumentException | InvalidLifetimeException e) {
                 wrongInput.setText(e.getMessage());
             }
@@ -295,7 +294,8 @@ public class ProductAdmPageController implements Initializable {
 
     @FXML void txtProductCategoryEdited(TableColumn.CellEditEvent<Product, String> event) {
         if (ConvertersWithErrorHandling.isCategoryMatchingInput(event.getNewValue())) {
-            String string = event.getNewValue().toLowerCase();
+            String trimmedString = event.getNewValue().trim();
+            String string = trimmedString.toLowerCase();
             String input = string.substring(0, 1).toUpperCase() + string.substring(1);
             event.getRowValue().setCategory(input);
         }

@@ -45,7 +45,7 @@ public class ProductRegister implements Serializable {
         }
     }
 
-    public static boolean checkIfCategoryIsPresent(String category){
+    private static boolean checkIfCategoryIsPresent(String category){
         for(Product aProduct : ProductRegister){
             if(aProduct.getCategory().equals(category)){
                 return true;

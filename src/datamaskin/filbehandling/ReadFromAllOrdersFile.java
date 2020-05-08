@@ -9,6 +9,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class ReadFromAllOrdersFile implements iReadFromAllOrdersFile{
+
+    //metode som leser fra allOrders.csv og parser hver linje til en ordre
     @Override
     public ObservableList<FinalOrderOverview> readFromAllOrdersFile(String path) throws IOException {
         ObservableList<FinalOrderOverview> listOfFinalOrders = FXCollections.observableArrayList();

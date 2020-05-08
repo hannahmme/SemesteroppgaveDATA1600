@@ -50,17 +50,6 @@ public class AllOrdersController implements Initializable {
     private final ReadFromAllOrdersFile readFromAllOrdersFile = new ReadFromAllOrdersFile();
     private final ObservableList<Product> emptyList = FXCollections.observableArrayList();
 
-    @FXML void toSuperuserpage() throws IOException {
-        Stage primaryStage = (Stage) toSuperuserpage.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
-        Page.toSuperuserpage(primaryStage, root);
-    }
-    @FXML void btnSuperUserPageEnter(KeyEvent event) throws IOException {
-        if (event.getCode().equals(KeyCode.ENTER)) {
-            toSuperuserpage();
-        }
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
@@ -74,6 +63,17 @@ public class AllOrdersController implements Initializable {
         filterChoices.addAll("Email", "OrdreID", "Dato", "Totalpris");
         filterCBox.setItems(filterChoices);
         filterCBox.setValue("Email");
+    }
+
+    @FXML void toSuperuserpage() throws IOException {
+        Stage primaryStage = (Stage) toSuperuserpage.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("SuperuserPage.fxml"));
+        Page.toSuperuserpage(primaryStage, root);
+    }
+    @FXML void btnSuperUserPageEnter(KeyEvent event) throws IOException {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            toSuperuserpage();
+        }
     }
 
     private void setTV() throws IOException {

@@ -69,7 +69,7 @@ public class CustomerValidator {
         return null;
     }
 
-    public static boolean checkDuplicate(ObservableList<Customer> validCustomersList, Customer aCustomer){
+    private static boolean checkDuplicate(ObservableList<Customer> validCustomersList, Customer aCustomer){
 
         for(Customer anotherC : validCustomersList){
             if(aCustomer.getEmail().equals(anotherC.getEmail())) {

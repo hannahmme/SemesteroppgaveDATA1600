@@ -82,6 +82,11 @@
        <Label fx:id="wrongInput" layoutX="13.0" layoutY="524.0" prefHeight="74.0" prefWidth="216.0" textFill="indianred" wrapText="true" />
        <Line endX="1111.0" layoutX="119.0" layoutY="62.0" startX="-100.0" />
       <Label fx:id="txtInfoMessage" layoutX="271.0" layoutY="77.0" prefHeight="21.0" prefWidth="557.0" wrapText="true" />
+      <Text layoutX="702.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Velg en kategori å søke i:" wrappingWidth="169.3555297851562">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
 
 
    </children>

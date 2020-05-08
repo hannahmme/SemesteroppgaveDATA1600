@@ -9,6 +9,7 @@ import datamaskin.users.CustomerValidator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.io.IOException;
+import java.nio.file.NoSuchFileException;
 import java.util.Calendar;
 
 public class OrderValidator {
@@ -82,13 +83,21 @@ public class OrderValidator {
     private static final ReadFromCustomerFile readFromCustomerFile = new ReadFromCustomerFile();
 
     private static double getExpectedPrice(String orderID) throws IOException {
-        ObservableList<Product> specificOrder = readFromAnOrderFile.readFromAnOrderFile("./src/Datamaskin/sentOrdersPath/" + orderID + ".csv");
-        double totalprice = 0;
+        ObservableList<Product> specificOrder = FXCollections.observableArrayList();
 
-        for (Product aProductLine : specificOrder) {
-            totalprice += aProductLine.getPrice();
+        try {
+            specificOrder = readFromAnOrderFile.readFromAnOrderFile("./src/Datamaskin/sentOrdersPath/" + orderID + ".csv");
+        } catch(NoSuchFileException e) {
+            System.err.println("Finner ikke følgende fil " +e.getMessage() + " i " + orderID);
+        }catch (IOException e) {
+            System.err.println(e.getMessage() +" i "+ orderID);
         }
-        return totalprice;
+
+            double totalprice = 0;
+            for (Product aProductLine : specificOrder) {
+                totalprice += aProductLine.getPrice();
+            }
+            return totalprice;
     }
 
     private static boolean getExpectedEmail(String email) throws IOException {
@@ -118,6 +127,7 @@ public class OrderValidator {
             System.err.println("Filen som skal inneholde ordreregisteret er tom.");
         } else {
             for (FinalOrderOverview anOrder : allOrdersList) {
+                double expectedPrice = getExpectedPrice(anOrder.getOrderID());
                 if (!CustomerValidator.validateEmail(anOrder.getEmail())) {
                     System.err.println("Eposten er i feil format på følgende ordrenr.: " + anOrder.getOrderID());
                 } else if (!getExpectedEmail(anOrder.getEmail())) {
@@ -128,7 +138,7 @@ public class OrderValidator {
                     System.err.println("Duplikat: Det finnes to ordreID-er som er identiske i csv-filen: " + anOrder.getOrderID());
                 } else if (!validateDate(anOrder.getOrderDate())) {
                     System.err.println("Dato er i feil format i csv-filen på følgende ordrenr.: " + anOrder.getOrderID());
-                } else if (!validateTotalPrice(anOrder.getTotalPrice(), getExpectedPrice(anOrder.getOrderID()))) {
+                } else if (!validateTotalPrice(anOrder.getTotalPrice(), expectedPrice) && expectedPrice != 0.0 ) {
                     System.err.println("Totalprisen i filen stemmer ikke overens med totalprisen av produktene i ordrenr: " + anOrder.getOrderID());
                 } else {
                     validOrdersList.add(anOrder);

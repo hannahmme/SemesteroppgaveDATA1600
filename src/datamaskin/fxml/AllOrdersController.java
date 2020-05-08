@@ -117,7 +117,7 @@ public class AllOrdersController implements Initializable {
     //hvis tråden feiler:
     private void threadFailedReading(WorkerStateEvent event){
         txtTblHeader.setText("Det oppsto en feil. Kunne ikke hente ordreinfo.....");
-        System.err.println("Feil i filen, se gjennom ordrespesifikasjon");
+        /*System.err.println("Feil i filen, se gjennom ordrespesifikasjon");*/
         tblOrderContent.setItems(emptyList);
         allOrders.setDisable(false);
     }

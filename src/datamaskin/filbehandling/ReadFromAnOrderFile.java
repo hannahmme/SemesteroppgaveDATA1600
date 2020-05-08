@@ -14,17 +14,21 @@ public class ReadFromAnOrderFile implements iReadFromAnOrderFile{
         @Override
         public ObservableList<Product> readFromAnOrderFile(String path) throws IOException {
             ObservableList<Product> listOfSpecificOrders = FXCollections.observableArrayList();
-            
 
-            try(BufferedReader reader = Files.newBufferedReader(Paths.get(path))){
+            if (path == null) {
+                throw new IOException("Det finnes ingen fil");
+            }
+
+            try (BufferedReader reader = Files.newBufferedReader(Paths.get(path))) {
                 String line = reader.readLine();
 
-                while(line != null && parseToAnOrder(line)!=null){
+                while (line != null && parseToAnOrder(line) != null) {
                     listOfSpecificOrders.add(parseToAnOrder(line));
                     line = reader.readLine();
                 }
+
+                return listOfSpecificOrders;
             }
-            return listOfSpecificOrders;
         }
 
         @Override
@@ -42,7 +46,7 @@ public class ReadFromAnOrderFile implements iReadFromAnOrderFile{
                 return new Product(name, description, lifetime, price, category, imageUri);
 
             } else {
-                throw new IOException("Ikke riktig bruk av delimiter. Se følgende linje: \n" + line);
+                throw new IOException("Ikke riktig bruk av delimiter. Se følgende linje: " + line );
             }
         }
 

@@ -277,28 +277,24 @@ public class ProductAdmPageController implements Initializable {
         }
         componentTableview.refresh();
     }
-
     @FXML void txtProductDescriptionEdited(TableColumn.CellEditEvent<Product, String> event) {
         if (ConvertersWithErrorHandling.isInputNotNull(event.getNewValue())) {
             event.getRowValue().setDescription(event.getNewValue());
         }
         componentTableview.refresh();
     }
-
     @FXML void txtProductLifetimeEdited(TableColumn.CellEditEvent<Product, Integer> event) {
         if (intStrConverter.getSuccessfulIntValue()) {
             event.getRowValue().setLifetime(event.getNewValue());
         }
         componentTableview.refresh();
     }
-
     @FXML void txtProductPriceEdited(TableColumn.CellEditEvent<Product, Double> event) {
         if (doubleStrConverter.getSuccessfulDoubleValue()) {
             event.getRowValue().setPrice(event.getNewValue());
         }
         componentTableview.refresh();
     }
-
     @FXML void txtProductCategoryEdited(TableColumn.CellEditEvent<Product, String> event) {
         if (ConvertersWithErrorHandling.isCategoryMatchingInput(event.getNewValue())) {
             String trimmedString = event.getNewValue().trim();

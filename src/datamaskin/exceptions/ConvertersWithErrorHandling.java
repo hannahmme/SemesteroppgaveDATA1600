@@ -32,7 +32,7 @@ public class ConvertersWithErrorHandling {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Ops..");
                 alert.setHeaderText("Feil verdier skrevet inn.");
-                alert.setContentText("Du må taste inn et gyldig heltall mellom 0 og 36.");
+                alert.setContentText("Du må taste inn et gyldig heltall fra 1 til og med 35.");
                 alert.showAndWait();
 
                 conversionSuccessful = false;
@@ -70,7 +70,7 @@ public class ConvertersWithErrorHandling {
                 Alert doubleAlert = new Alert(Alert.AlertType.ERROR);
                 doubleAlert.setTitle("Ops..");
                 doubleAlert.setHeaderText("Feil verdier skrevet inn.");
-                doubleAlert.setContentText("Du må skrive inn et gyldig tall mellom 0 og 100 000.");
+                doubleAlert.setContentText("Du må skrive inn et gyldig tall fra 0.01 til og med 99 999.99.");
                 doubleAlert.showAndWait();
 
                 convertSuccessfull = false;

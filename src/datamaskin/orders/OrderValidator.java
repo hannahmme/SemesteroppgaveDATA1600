@@ -128,17 +128,17 @@ public class OrderValidator {
             for (FinalOrderOverview anOrder : allOrdersList) {
                 double expectedPrice = getExpectedPrice(anOrder.getOrderID());
                 if (!CustomerValidator.validateEmail(anOrder.getEmail())) {
-                    System.err.println("Eposten er i feil format på følgende ordrenr.: " + anOrder.getOrderID());
+                    System.err.println("Eposten er i feil format på følgende ordrenr.: " + anOrder.getOrderID()  + ". Se i allOrders.csv-filen.");
                 } else if (!getExpectedEmail(anOrder.getEmail())) {
-                    System.err.println("Eposten fra følgende ordrenr. finnes ikke i kunderegisteret: " + anOrder.getOrderID());
+                    System.err.println("Eposten fra følgende ordrenr. finnes ikke i kunderegisteret: " + anOrder.getOrderID()  + ". Se i allOrders.csv-filen.");
                 } else if (!validateOrderID(anOrder.getOrderID())) {
-                    System.err.println("OrdreID er i feil format på følgende ordrenr.: " + anOrder.getOrderID());
+                    System.err.println("OrdreID er i feil format på følgende ordrenr.: " + anOrder.getOrderID() + ". Se i allOrders.csv-filen.");
                 } else if (checkDuplicate(validOrdersList, anOrder)) {
-                    System.err.println("Duplikat: Det finnes to ordreID-er som er identiske i csv-filen: " + anOrder.getOrderID());
+                    System.err.println("Duplikat: Det finnes to ordreID-er som er identiske i allOrders.csv-filen: " + anOrder.getOrderID());
                 } else if (!validateDate(anOrder.getOrderDate())) {
-                    System.err.println("Dato er i feil format i csv-filen på følgende ordrenr.: " + anOrder.getOrderID());
+                    System.err.println("Dato er i feil format på følgende ordrenr.: " + anOrder.getOrderID() + ". Se i allOrders.csv.");
                 } else if (!validateTotalPrice(anOrder.getTotalPrice(), expectedPrice) && expectedPrice != 0.0 ) {
-                    System.err.println("Totalprisen i filen stemmer ikke overens med totalprisen av produktene i ordrenr: " + anOrder.getOrderID());
+                    System.err.println("Totalprisen i allOrders-filen stemmer ikke overens med totalprisen av produktene i spesifikasjonen til ordrenr: " + anOrder.getOrderID());
                 } else {
                     validOrdersList.add(anOrder);
                 }

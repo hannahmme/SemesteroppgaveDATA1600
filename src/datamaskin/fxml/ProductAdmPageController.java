@@ -154,7 +154,14 @@ public class ProductAdmPageController implements Initializable {
                     throw new IllegalArgumentException("Vennligst velg kategori");
                 }
 
-                return new Product(name.trim(), description.trim(), lifetime, price, category.trim(), imageUri);
+                Product aProduct = new Product(name.trim(), description.trim(), lifetime, price, category.trim(), imageUri);
+
+                if(ProductValidator.checkIfProductIsDuplicate(aProduct)){
+                    throw new IllegalArgumentException("Du har lagt til et produkt som er helt likt et annet produkt");
+                }
+
+                return aProduct;
+
             } catch (InvalidPriceException | IllegalArgumentException | InvalidLifetimeException e) {
                 wrongInput.setText(e.getMessage());
             }

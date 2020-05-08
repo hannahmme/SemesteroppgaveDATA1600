@@ -47,5 +47,15 @@ public class ProductValidator {
         }
         return false;
     }
+
+
+    public static boolean checkIfProductIsDuplicate(Product aProduct){
+        if(ProductRegister.ProductRegister.contains(aProduct)){
+            return true;
+        }
+        return false;
+    }
+
+
 }
 

@@ -2,6 +2,8 @@ package datamaskin.fxml;
 
 import datamaskin.Page;
 import datamaskin.users.Customer;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,9 +29,11 @@ public class AllUsersController implements Initializable {
     @FXML private Button toSuperuserpage;
 
     @Override public void initialize(URL url, ResourceBundle rb) {
+        ObservableList<Customer> validCustomersList = FXCollections.observableArrayList();
         try {
-            customerTV.getItems().addAll(Objects.requireNonNull(getCustomerList()));
-            customerTV.setItems(getCustomerList());
+            validCustomersList = getCustomerList();
+            customerTV.getItems().addAll(validCustomersList));
+            customerTV.setItems(validCustomersList);
         } catch (IOException e) {
             System.err.println("Filsti ikke funnet: " + e.getMessage());
         }

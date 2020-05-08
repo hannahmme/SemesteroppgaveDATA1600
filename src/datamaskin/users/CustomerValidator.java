@@ -47,26 +47,27 @@ public class CustomerValidator {
 
     // metode som henter og returnerer en liste med kundene
     public static ObservableList<Customer> getCustomerList() throws IOException {
-        try {
-            ObservableList<Customer> allCustomersList = readFromCustomerFile.readFromCustomerFile("./src/Datamaskin/users/allCustomers.csv");
-            ObservableList<Customer> validCustomersList = FXCollections.observableArrayList();
+        ObservableList<Customer> validCustomersList = FXCollections.observableArrayList();
+        ObservableList<Customer> allCustomersList =FXCollections.observableArrayList();
 
-            for(Customer aCustomer: allCustomersList){
-                if (!validateEmail(aCustomer.getEmail()) || !validatePassword(aCustomer.getPassword())){
-                    System.err.println("Epost eller passord i filen er i feil format.");
-                } else if(checkDuplicate(validCustomersList, aCustomer)) {
-                    System.err.println("Denne meldingen skrives ut i CustomerValidator i getCustomerList-metoden");
-                    System.err.println("Duplikat: Det finnes to eposter som er identiske i csv-filen");
-                } else if(validateEmail(aCustomer.getEmail()) && validatePassword(aCustomer.getPassword())
-                        && !checkDuplicate(validCustomersList,aCustomer)) {
-                    validCustomersList.add(aCustomer);
-                }
-            }
-            return validCustomersList;
+        try {
+            allCustomersList = readFromCustomerFile.readFromCustomerFile("./src/Datamaskin/users/allCustomers.csv");
+
         } catch (IOException e){
             System.err.println("Filsti ikke funnet: " + e.getMessage());
         }
-        return null;
+
+        for(Customer aCustomer: allCustomersList){
+            if (!validateEmail(aCustomer.getEmail()) || !validatePassword(aCustomer.getPassword())) {
+                System.err.println("Epost eller passord i filen er i feil format.");
+            } else if(checkDuplicate(validCustomersList, aCustomer)) {
+                System.err.println("Duplikat: Det finnes to eposter som er identiske i csv-filen");
+            } else if(validateEmail(aCustomer.getEmail()) && validatePassword(aCustomer.getPassword())
+                    && !checkDuplicate(validCustomersList,aCustomer)) {
+                validCustomersList.add(aCustomer);
+            }
+        }
+        return validCustomersList;
     }
 
     private static boolean checkDuplicate(ObservableList<Customer> validCustomersList, Customer aCustomer){

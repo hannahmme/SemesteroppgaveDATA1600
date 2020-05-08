@@ -1,12 +1,10 @@
 package datamaskin.orders;
 
 import datamaskin.filbehandling.ReadFromAllOrdersFile;
-import datamaskin.filbehandling.ReadFromAnOrderFile;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.io.File;
 import java.io.IOException;
 

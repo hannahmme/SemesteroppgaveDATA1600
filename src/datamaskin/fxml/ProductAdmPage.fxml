@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="datamaskin.fxml.ProductAdmPageController">
+<AnchorPane prefHeight="670.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="datamaskin.fxml.ProductAdmPageController">
    <children>
       <Button fx:id="toSuperUserPage" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#toSuperUserPage" onKeyPressed="#btnGoBackEnter" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: grey;" text="Gå tilbake" textFill="WHITE">
          <font>
@@ -26,9 +26,9 @@
       <TextField fx:id="txtComponentname" layoutX="22.0" layoutY="126.0" prefHeight="31.0" prefWidth="187.0" />
       <Text layoutX="22.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beskrivelse av komponent" />
        <TextArea fx:id="txtDescription" layoutX="22.0" layoutY="194.0" prefHeight="115.0" prefWidth="187.0" wrapText="true" />
-       <Text layoutX="22.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Levetid (i år)" />
+       <Text layoutX="22.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Levetid (år)" />
       <TextField fx:id="txtLifetime" layoutX="22.0" layoutY="345.0" prefHeight="31.0" prefWidth="187.0" />
-      <Text layoutX="22.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pris (i KR)" />
+      <Text layoutX="22.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pris (kr)" />
       <TextField fx:id="txtPrice" layoutX="22.0" layoutY="415.0" prefHeight="31.0" prefWidth="187.0" />
       <Text layoutX="22.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kategori" />
       <ChoiceBox fx:id="cboxCategory" layoutX="22.0" layoutY="488.0" prefHeight="31.0" prefWidth="187.0" />
@@ -66,7 +66,7 @@
                     <PropertyValueFactory property="Price" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="categoryColumn" onEditCommit="#txtProductCategoryEdited" prefWidth="156.0" text="Kategori">
+            <TableColumn fx:id="categoryColumn" onEditCommit="#txtProductCategoryEdited" prefWidth="142.0" text="Kategori">
                 <cellValueFactory>
                     <PropertyValueFactory property="Category" />
                 </cellValueFactory>

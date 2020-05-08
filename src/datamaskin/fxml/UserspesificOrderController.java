@@ -45,19 +45,17 @@ public class UserspesificOrderController implements Initializable {
     // metoder for å legge inn ordreregisteret på denne siden
     @Override public void initialize(URL url, ResourceBundle rb) {
         try {
-            if( OrderValidator.getOrderList() != null ) {
-                ObservableList<FinalOrderOverview> allOrdersList = OrderValidator.getOrderList();
-                ObservableList<FinalOrderOverview> userSpecifiedOrderList = FXCollections.observableArrayList();
+            ObservableList<FinalOrderOverview> allOrdersList = OrderValidator.getOrderList();
+            ObservableList<FinalOrderOverview> userSpecifiedOrderList = FXCollections.observableArrayList();
 
-                for (FinalOrderOverview order : Objects.requireNonNull(allOrdersList)) {
-                    if (order.getEmail().equals(sortingKey)) {
-                        userSpecifiedOrderList.add(order);
-                    }
+            for (FinalOrderOverview order : Objects.requireNonNull(allOrdersList)) {
+                if (order.getEmail().equals(sortingKey)) {
+                    userSpecifiedOrderList.add(order);
                 }
-
-                tblAllOrders.getItems().addAll(userSpecifiedOrderList);
-                tblAllOrders.setItems(userSpecifiedOrderList);
             }
+
+            tblAllOrders.getItems().addAll(userSpecifiedOrderList);
+            tblAllOrders.setItems(userSpecifiedOrderList);
         } catch (IOException e) {
             System.err.println("Filsti ikke funnet " + e.getMessage());
         }

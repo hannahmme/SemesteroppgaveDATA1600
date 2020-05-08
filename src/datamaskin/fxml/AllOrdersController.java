@@ -74,12 +74,11 @@ public class AllOrdersController implements Initializable {
     }
 
     private void setTV() throws IOException {
-            if(OrderValidator.getOrderList()!=null) {
-                allOrders.getItems().addAll((OrderValidator.getOrderList()));
-                allOrders.setItems((OrderValidator.getOrderList()));
-            }
+        ObservableList<FinalOrderOverview> validOrdersList = OrderValidator.getOrderList();
+        allOrders.getItems().addAll(validOrdersList);
+        allOrders.setItems(validOrdersList);
 
-            emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
             orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("OrderID"));
             orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("OrderDate"));
             totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
